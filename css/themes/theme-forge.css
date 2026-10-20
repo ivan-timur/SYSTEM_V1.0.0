@@ -1,0 +1,137 @@
+/* SYSTEM — THEME FORGE
+   Additive visual refinement across every built-in theme. No theme is removed.
+   Distinct material language, deeper surfaces, stronger hierarchy and accessible motion. */
+html[data-system-theme] {
+  --tf-radius: 18px;
+  --tf-card-border: color-mix(in srgb, var(--color-border-bright, #8fc7ff) 42%, transparent);
+  --tf-card-sheen: color-mix(in srgb, var(--color-neon, #5da9ff) 9%, transparent);
+}
+#system-app .page-header { position:relative; }
+#system-app .page-header::after {
+  content:""; display:block; width:min(220px,42%); height:2px; margin:13px auto 0;
+  background:linear-gradient(90deg,transparent,var(--color-blue-light),var(--color-neon),transparent);
+  box-shadow:0 0 14px color-mix(in srgb,var(--color-neon) 30%,transparent);
+  border-radius:99px;
+}
+#system-app .card, #system-app .stat-card, #system-app .settings-panel,
+#system-app .settings-row, #system-app .quest-card, #system-app .reward-card,
+#system-app .skill-card, #system-app .goal-card, #system-app .panel {
+  border-color:var(--tf-card-border);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.045), 0 14px 35px rgba(0,0,0,.19);
+}
+#system-app .stat-card, #system-app .quest-card, #system-app .reward-card,
+#system-app .skill-card, #system-app .settings-row {
+  position:relative; isolation:isolate; overflow:hidden;
+  transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease,filter .22s ease;
+}
+#system-app .stat-card::before, #system-app .quest-card::before,
+#system-app .reward-card::before, #system-app .skill-card::before,
+#system-app .settings-row::before {
+  content:""; position:absolute; z-index:-1; inset:0 0 auto; height:1px;
+  background:linear-gradient(90deg,transparent,var(--color-blue-light),var(--color-neon-light),transparent);
+  opacity:.72; pointer-events:none;
+}
+#system-app .stat-card:hover, #system-app .quest-card:hover,
+#system-app .reward-card:hover, #system-app .skill-card:hover,
+#system-app .settings-row:hover {
+  transform:translateY(-3px);
+  border-color:var(--color-border-bright);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 18px 42px rgba(0,0,0,.27),var(--glow-small);
+}
+#system-app button:not(.nav-item):not([data-theme]) {
+  transition:transform .18s ease,border-color .18s ease,background .18s ease,box-shadow .18s ease;
+}
+#system-app button:not(.nav-item):not([data-theme]):hover { filter:brightness(1.08); }
+#system-app button:focus-visible, #system-app a:focus-visible {
+  outline:2px solid var(--color-blue-light); outline-offset:3px;
+}
+#system-app input, #system-app textarea, #system-app select {
+  border-color:var(--tf-card-border); border-radius:10px;
+}
+#system-app .sidebar {
+  border-right-color:var(--tf-card-border);
+  box-shadow:12px 0 42px rgba(0,0,0,.22),inset -1px 0 0 rgba(255,255,255,.025);
+}
+#system-app .nav-item { border-radius:12px; transition:background .2s ease,color .2s ease,transform .2s ease; }
+#system-app .nav-item:hover { transform:translateX(2px); }
+#system-app .nav-item.active {
+  box-shadow:inset 3px 0 0 var(--color-blue-light),inset 0 0 22px color-mix(in srgb,var(--color-neon) 8%,transparent);
+}
+#system-app .system-logo { letter-spacing:.2em; }
+#system-app .progress-bar, #system-app progress {
+  overflow:hidden; border-radius:999px;
+}
+#system-app .progress-bar > *, #system-app progress::-webkit-progress-value {
+  border-radius:999px; box-shadow:0 0 12px color-mix(in srgb,var(--color-neon) 28%,transparent);
+}
+/* Theme chooser: larger swatches and selected-state clarity without changing its behavior. */
+#system-settings-dialog .system-theme-options { gap:13px; }
+#system-settings-dialog .system-theme-options > button {
+  min-height:148px; padding:13px; border-radius:15px;
+  background:
+    radial-gradient(ellipse at 100% 0%,var(--tf-card-sheen),transparent 65%),
+    linear-gradient(145deg,var(--color-panel-light),var(--color-panel-dark));
+  border-color:var(--tf-card-border);
+}
+#system-settings-dialog .system-theme-swatch {
+  height:48px; border-radius:9px; position:relative;
+}
+#system-settings-dialog .system-theme-swatch::after {
+  content:""; display:block; height:100%; width:100%;
+  background:linear-gradient(115deg,transparent 25%,rgba(255,255,255,.22) 48%,transparent 68%);
+}
+#system-settings-dialog .system-theme-options > button.is-selected {
+  border-color:var(--color-blue-light);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--color-blue-light) 45%,transparent),
+    0 0 0 1px color-mix(in srgb,var(--color-blue-light) 20%,transparent),0 12px 30px rgba(0,0,0,.25);
+}
+#system-settings-dialog .system-theme-options > button.is-selected strong { color:var(--color-blue-bright); }
+#system-settings-dialog .system-theme-options small { font-size:11px; }
+#system-app #settings-page .settings-panel {
+  border-radius:20px; background:linear-gradient(145deg,var(--color-panel-light),var(--color-panel-dark));
+}
+#system-app #settings-page .settings-row {
+  border-radius:15px; background:linear-gradient(115deg,var(--color-panel-light),var(--color-panel-dark));
+}
+#system-app #settings-page .page-title { color:var(--color-text); text-shadow:var(--text-glow); }
+#system-app .modal-content, #system-app .system-modal, #system-settings-dialog {
+  border-color:var(--tf-card-border); box-shadow:0 28px 90px rgba(0,0,0,.55),0 0 35px color-mix(in srgb,var(--color-neon) 8%,transparent);
+}
+html[data-system-theme="cosmic"] #system-app {
+  background-image:radial-gradient(ellipse at 78% 0%,rgba(25,104,255,.105),transparent 32%),linear-gradient(130deg,rgba(2,6,17,.10),rgba(2,6,17,.35));
+}
+html[data-system-theme="royal"] #system-app .stat-card,
+html[data-system-theme="royal"] #system-app .quest-card,
+html[data-system-theme="royal"] #system-app .reward-card,
+html[data-system-theme="royal"] #system-app .skill-card,
+html[data-system-theme="royal"] #system-app .settings-row {
+  background-image:linear-gradient(145deg,rgba(255,224,151,.045),transparent 45%),var(--panel-gradient);
+}
+html[data-system-theme="couture"] #system-app .stat-card,
+html[data-system-theme="couture"] #system-app .quest-card,
+html[data-system-theme="couture"] #system-app .reward-card,
+html[data-system-theme="couture"] #system-app .skill-card {
+  background-image:linear-gradient(135deg,rgba(120,174,255,.055),transparent 48%),var(--panel-gradient);
+}
+html[data-system-theme="aurora"] #system-app .stat-card,
+html[data-system-theme="aurora"] #system-app .quest-card,
+html[data-system-theme="aurora"] #system-app .reward-card,
+html[data-system-theme="aurora"] #system-app .skill-card {
+  background-image:radial-gradient(ellipse at 100% 0%,rgba(166,85,247,.09),transparent 55%),var(--panel-gradient);
+}
+html[data-system-theme="abyss"] { --color-panel:rgba(10,6,29,.96); }
+html[data-system-theme="ice"] { --color-panel:rgba(3,15,23,.96); }
+html[data-system-theme="crimson"] { --color-panel:rgba(24,5,13,.96); }
+html[data-system-theme="emerald"] { --color-panel:rgba(3,18,12,.96); }
+html[data-system-theme="solar"] { --color-panel:rgba(22,13,3,.96); }
+html[data-system-theme="sakura"] { --color-panel:rgba(22,5,20,.96); }
+@media(max-width:620px) {
+ #system-settings-dialog .system-theme-options { gap:9px; }
+ #system-settings-dialog .system-theme-options > button { min-height:132px; padding:10px; }
+ #system-settings-dialog .system-theme-swatch { height:40px; }
+ #system-app .stat-card:hover, #system-app .quest-card:hover, #system-app .reward-card:hover,
+ #system-app .skill-card:hover, #system-app .settings-row:hover { transform:none; }
+}
+@media(prefers-reduced-motion:reduce) {
+ #system-app *, #system-settings-dialog * { transition-duration:.01ms; animation-duration:.01ms; }
+}

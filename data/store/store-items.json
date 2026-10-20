@@ -1,0 +1,23 @@
+[
+  {
+    "id": "reward-video-break",
+    "name": "Watch a Saved Video",
+    "description": "Redeem this reward for a planned video break.",
+    "price": 60,
+    "category": "Personal Reward"
+  },
+  {
+    "id": "reward-game-break",
+    "name": "Game Break",
+    "description": "A short, planned gaming break after your work is done.",
+    "price": 80,
+    "category": "Personal Reward"
+  },
+  {
+    "id": "reward-free-choice",
+    "name": "Choose a Personal Reward",
+    "description": "Use this token for a reward you have chosen for yourself.",
+    "price": 100,
+    "category": "Personal Reward"
+  }
+]

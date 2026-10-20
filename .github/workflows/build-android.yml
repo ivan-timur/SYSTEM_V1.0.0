@@ -1,0 +1,68 @@
+name: Build SYSTEM Android APK
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-debug-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out project
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install pinned JavaScript test dependency
+        run: npm install --no-package-lock --no-audit --no-fund
+
+      - name: Run static regression suite
+        run: npm test
+
+      - name: Run project health checks
+        run: npm run doctor
+
+      - name: Read canonical application version
+        id: version
+        shell: bash
+        run: echo "version=$(tr -d '\r\n ' < VERSION)" >> "$GITHUB_OUTPUT"
+
+      - name: Build current web assets and bundle offline files
+        run: npm run prepare:android
+
+      - name: Verify release metadata and Android bundle parity
+        run: npm run release:preflight
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android platform packages
+        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.13'
+
+      - name: Build debug APK
+        working-directory: android
+        run: gradle --no-daemon assembleDebug
+
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v7
+        with:
+          name: SYSTEM-v${{ steps.version.outputs.version }}-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 14

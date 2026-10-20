@@ -1,0 +1,270 @@
+/* ================================================================
+   SYSTEM — STATUS REFERENCE REBUILD
+   Art direction: royal cosmic blue, metallic frame, classic serif
+   Loaded last deliberately so it safely overrides older layout layers.
+   ================================================================ */
+
+:root {
+  --sidebar-width: 320px;
+  --sidebar-min-width: 300px;
+  --status-frame: rgba(79, 164, 255, .78);
+  --status-frame-dim: rgba(41, 112, 220, .43);
+  --status-blue-glow: 0 0 9px rgba(44, 139, 255, .8), 0 0 24px rgba(13, 86, 255, .35);
+  --status-serif: "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
+}
+
+/* Keep the art behind the actual interface, not baked into a screenshot. */
+#system-app {
+  background-color: #01040c;
+  background-image:
+    linear-gradient(180deg, rgba(0, 3, 12, .28), rgba(0, 3, 12, .48)),
+    linear-gradient(90deg, rgba(0, 2, 9, .55), rgba(0, 3, 14, .32) 43%, rgba(0, 3, 11, .16) 72%, rgba(0, 2, 8, .28)),
+    url("../../assets/images/backgrounds/rewards-bg.webp");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
+
+
+
+/* Desktop sidebar: a tall black-and-blue royal navigation frame. */
+@media (min-width: 1200px) {
+  #system-app .sidebar {
+    width: 320px;
+    min-width: 300px;
+    padding: 22px 22px 25px;
+    overflow: hidden;
+    border-right: 1px solid rgba(61, 139, 255, .38);
+    background:
+      linear-gradient(90deg, rgba(0, 3, 12, .91), rgba(0, 5, 17, .80) 80%, rgba(0, 9, 26, .68)),
+      url("../../assets/images/backgrounds/rewards-bg.webp") left center / auto 100% no-repeat;
+    box-shadow: inset -1px 0 rgba(116, 190, 255, .18), 8px 0 30px rgba(0, 9, 32, .3);
+  }
+  #system-app .sidebar::before {
+    content: "";
+    position: absolute;
+    inset: 20px 10px 18px;
+    pointer-events: none;
+    border: 1px solid rgba(41, 121, 239, .30);
+    clip-path: polygon(0 0, 16% 0, 20% 2%, 80% 2%, 84% 0, 100% 0, 100% 98%, 84% 98%, 80% 100%, 20% 100%, 16% 98%, 0 98%);
+    box-shadow: inset 0 0 22px rgba(0, 87, 255, .08);
+  }
+  #system-app .sidebar-header {
+    position: relative;
+    min-height: 130px;
+    margin: 0 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(62, 132, 240, .26);
+    background: linear-gradient(180deg, rgba(1, 8, 22, .58), rgba(0, 3, 11, .22));
+    box-shadow: inset 0 0 23px rgba(0, 92, 255, .10), 0 0 18px rgba(0, 79, 255, .08);
+  }
+  #system-app .system-logo { gap: 9px; letter-spacing: 4px; }
+  #system-app .system-logo .logo-icon {
+    color: #c5edff;
+    filter: drop-shadow(0 0 7px #168cff);
+    font-size: 28px;
+  }
+  #system-app .system-logo .logo-text {
+    color: #d9efff;
+    font-family: var(--status-serif);
+    font-size: 23px;
+    letter-spacing: 4px;
+    text-shadow: 0 0 8px rgba(107, 187, 255, .8), 0 0 22px rgba(0, 87, 255, .65);
+  }
+  #system-app .sidebar-nav {
+    position: relative;
+    gap: 0;
+    padding: 4px 0;
+    border-top: 1px solid rgba(50, 125, 230, .26);
+    border-bottom: 1px solid rgba(50, 125, 230, .24);
+  }
+  #system-app .sidebar-nav .nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    min-height: 78px;
+    width: 100%;
+    padding: 11px 13px;
+    border: 0;
+    border-bottom: 1px solid rgba(72, 134, 218, .29);
+    border-radius: 0;
+    background: linear-gradient(90deg, rgba(1, 5, 15, .24), rgba(0, 4, 14, .11));
+    color: #e2f0ff;
+    font-family: var(--status-serif);
+    font-size: 22px;
+    text-shadow: 0 0 7px rgba(91, 159, 255, .22);
+    box-shadow: none;
+    text-align: left;
+  }
+  #system-app .sidebar-nav .nav-item:last-child { border-bottom: 0; }
+  #system-app .sidebar-nav .nav-item img,
+  #system-app .sidebar-nav .nav-item .nav-icon {
+    flex: 0 0 52px;
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 7px rgba(18, 113, 255, .95));
+  }
+  #system-app .sidebar-nav .nav-item span { position: relative; z-index: 1; }
+  #system-app .sidebar-nav .nav-item::after {
+    content: "";
+    position: absolute;
+    left: 7px; right: 7px; top: 5px; bottom: 5px;
+    border: 1px solid transparent;
+    pointer-events: none;
+  }
+  #system-app .sidebar-nav .nav-item.active {
+    border: 1px solid rgba(69, 160, 255, .98);
+    background: linear-gradient(90deg, rgba(0, 64, 184, .90), rgba(0, 28, 95, .88));
+    box-shadow: inset 0 0 22px rgba(0, 112, 255, .5), 0 0 16px rgba(0, 104, 255, .48), 0 0 36px rgba(0, 73, 255, .23);
+    color: #fff;
+  }
+  #system-app .sidebar-nav .nav-item.active::after {
+    border-color: rgba(114, 202, 255, .66);
+    box-shadow: inset 0 0 13px rgba(24, 130, 255, .2);
+  }
+  #system-app .sidebar-nav .nav-item.active::before {
+    left: -1px; top: 5px; bottom: 5px; width: 4px;
+    background: linear-gradient(180deg, transparent, #c9f4ff 20%, #168cff 50%, #d9f5ff 80%, transparent);
+    box-shadow: 0 0 13px #168cff, 0 0 24px #005dff;
+  }
+  #system-app .sidebar-footer { margin-top: auto; padding-top: 24px; color: #729dce; font-family: var(--status-serif); letter-spacing: 3px; font-size: 10px; }
+  #system-app .sidebar-footer .sidebar-line { background: linear-gradient(90deg, transparent, #1a76ff, transparent); box-shadow: 0 0 9px #126fff; }
+}
+
+/* Desktop Status layout mirrors the reference: title and XP over the wide column, rank crest to the right, six cards below. */
+@media (min-width: 1200px) {
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+}
+
+/* Medium windows retain the same visual hierarchy without squeezing the art. */
+@media (min-width: 851px) and (max-width: 1199px) {
+  #system-app .sidebar { width: 245px; min-width: 245px; }
+  #system-app .main-content { width: calc(100% - 245px); margin-left: 245px; }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+}
+
+/* Tablet and phone: a legible, touch-friendly rearrangement, not a shrunken desktop screenshot. */
+@media (max-width: 850px) {
+  #system-app { background-attachment: scroll; }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+}
+@media (max-width: 520px) {
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+}
+
+@media (prefers-reduced-motion: reduce) {
+  
+}

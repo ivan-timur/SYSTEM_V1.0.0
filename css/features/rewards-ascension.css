@@ -1,0 +1,795 @@
+/* SYSTEM — Rewards Ascension: command-centre refinement and milestone route. */
+#system-app #rewards-page {
+    --ra-bg: #030713;
+    --ra-panel: rgba(5, 14, 31, .94);
+    --ra-edge: rgba(89, 155, 255, .26);
+    --ra-edge-hot: rgba(108, 190, 255, .68);
+    --ra-blue: #57b2ff;
+    --ra-ice: #b5e2ff;
+    --ra-muted: #8ea7c5;
+    --ra-gold: #e2c17d;
+}
+
+#system-app #rewards-page .rp-hub,
+#system-app #rewards-page .ra-ascension {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--ra-edge);
+    border-radius: 10px;
+    background:
+        radial-gradient(ellipse at 0 0, rgba(50, 123, 255, .105), transparent 48%),
+        linear-gradient(145deg, rgba(6, 16, 36, .96), rgba(2, 6, 17, .98));
+    box-shadow: 0 14px 35px rgba(0, 0, 0, .18), inset 0 1px 0 rgba(198, 228, 255, .035);
+}
+
+#system-app #rewards-page .rp-hub::before,
+#system-app #rewards-page .ra-ascension::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    inset-inline: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ra-ice), transparent);
+    opacity: .58;
+    pointer-events: none;
+}
+
+#system-app #rewards-page .rp-hub {
+    gap: 15px;
+    padding: clamp(12px, 2vw, 18px);
+}
+
+#system-app #rewards-page .rp-stats {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+    text-align: start;
+}
+
+#system-app #rewards-page .rp-stats > div {
+    position: relative;
+    min-width: 0;
+    min-height: 83px;
+    padding: 12px 10px 10px;
+    border: 1px solid rgba(91, 151, 228, .19);
+    border-radius: 6px;
+    background: linear-gradient(155deg, rgba(11, 30, 61, .88), rgba(2, 8, 21, .9));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+#system-app #rewards-page .rp-stats > div::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 10px;
+    top: 0;
+    width: 24px;
+    height: 2px;
+    background: var(--ra-blue);
+    opacity: .72;
+}
+
+#system-app #rewards-page .rp-stats strong {
+    display: block;
+    overflow-wrap: anywhere;
+    color: #eef8ff;
+    font-size: clamp(1.1rem, 2vw, 1.52rem);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.25;
+    text-shadow: 0 0 18px rgba(67, 166, 255, .22);
+}
+
+#system-app #rewards-page .rp-stats strong small {
+    margin-inline-start: 2px;
+    color: var(--ra-muted);
+    font-size: .7em;
+}
+
+#system-app #rewards-page .rp-stats span {
+    display: block;
+    margin-top: 7px;
+    color: var(--ra-muted);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .075em;
+    line-height: 1.45;
+    text-transform: uppercase;
+}
+
+#system-app #rewards-page .rp-stats .rp-stat-ready {
+    border-color: rgba(103, 195, 255, .43);
+    background: radial-gradient(ellipse at 0 0, rgba(43, 150, 255, .18), transparent 70%), linear-gradient(155deg, rgba(7, 32, 66, .95), rgba(2, 8, 21, .94));
+}
+
+#system-app #rewards-page .rp-collection {
+    padding: 2px 1px 0;
+}
+
+#system-app #rewards-page .rp-collection-head {
+    color: #c2d8f3;
+    font-size: 9px;
+    letter-spacing: .15em;
+}
+
+#system-app #rewards-page .rp-collection-head b {
+    color: var(--ra-ice);
+    font-size: 11px;
+    letter-spacing: .04em;
+}
+
+#system-app #rewards-page .rp-collection-track,
+#system-app #rewards-page .ra-xp-track,
+#system-app #rewards-page .ra-route-progress,
+#system-app #rewards-page .ra-pity-track {
+    height: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(102, 162, 235, .18);
+    border-radius: 99px;
+    background: rgba(0, 4, 15, .85);
+}
+
+#system-app #rewards-page .rp-collection-track i,
+#system-app #rewards-page .ra-xp-track i,
+#system-app #rewards-page .ra-route-progress i,
+#system-app #rewards-page .ra-pity-track i {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #2278f6, #72ccff 72%, #d1efff);
+    box-shadow: 0 0 12px rgba(76, 170, 255, .47);
+    transition: width .38s ease;
+}
+
+#system-app #rewards-page .rp-actions {
+    gap: 8px;
+}
+
+#system-app #rewards-page .rp-actions button {
+    min-width: 0;
+    min-height: 41px;
+    padding: 10px 12px;
+    border: 1px solid rgba(91, 160, 251, .45);
+    border-radius: 5px;
+    background: linear-gradient(180deg, rgba(13, 49, 96, .92), rgba(4, 19, 43, .96));
+    color: #e6f5ff;
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: .035em;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.055);
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+#system-app #rewards-page .rp-actions button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    border-color: var(--ra-edge-hot);
+    box-shadow: 0 6px 20px rgba(29, 130, 255, .13), inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+#system-app #rewards-page .rp-actions .rp-box {
+    border-color: rgba(204, 158, 255, .46);
+    background: linear-gradient(180deg, rgba(55, 28, 98, .78), rgba(16, 7, 34, .96));
+    color: #f0e4ff;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 0 15px rgba(159, 93, 255, .08);
+}
+
+#system-app #rewards-page .ra-export-button {
+    flex: 0 1 auto;
+    border-color: rgba(226, 193, 125, .35);
+    background: linear-gradient(180deg, rgba(65, 50, 24, .75), rgba(19, 15, 10, .94));
+    color: #f2dfb0;
+}
+
+#system-app #rewards-page .rp-controls {
+    grid-template-columns: minmax(0, 1fr) minmax(125px, .5fr) minmax(125px, .5fr);
+    gap: 9px;
+    padding-top: 13px;
+    border-top: 1px solid rgba(98, 154, 222, .17);
+}
+
+#system-app #rewards-page .rp-controls label > span {
+    color: #8fa9c9;
+    font-size: 9px;
+    letter-spacing: .11em;
+}
+
+#system-app #rewards-page .rp-controls input,
+#system-app #rewards-page .rp-controls select {
+    min-height: 39px;
+    border: 1px solid rgba(93, 153, 229, .28);
+    border-radius: 4px;
+    background-color: rgba(1, 7, 19, .86);
+    color: #e3f1ff;
+    font-size: 11px;
+}
+
+#system-app #rewards-page .rp-controls input:focus-visible,
+#system-app #rewards-page .rp-controls select:focus-visible,
+#system-app #rewards-page .ra-favorite:focus-visible,
+#system-app #rewards-page .ra-route-card button:focus-visible,
+#system-app #rewards-page .ra-export-button:focus-visible {
+    outline: 2px solid var(--ra-ice);
+    outline-offset: 2px;
+}
+
+#system-app #rewards-page .rp-vault-info {
+    gap: 7px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(98, 154, 222, .14);
+}
+
+#system-app #rewards-page .rp-pity,
+#system-app #rewards-page .rp-odds {
+    color: #819abb;
+    font-size: 9px;
+    letter-spacing: .045em;
+    line-height: 1.6;
+    text-transform: none;
+}
+
+#system-app #rewards-page .rp-odds {
+    color: #90a7c5;
+}
+
+#system-app #rewards-page .ra-pity-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+    width: 100%;
+    margin-top: 7px;
+}
+
+#system-app #rewards-page .ra-pity-row {
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid rgba(74, 151, 244, .2);
+    border-radius: 5px;
+    background: rgba(2, 8, 22, .68);
+}
+
+#system-app #rewards-page .ra-pity-row > div:first-child {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 5px 10px;
+    margin-bottom: 8px;
+}
+
+#system-app #rewards-page .ra-pity-row span {
+    color: #79bfff;
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: .14em;
+}
+
+#system-app #rewards-page .ra-pity-row b {
+    color: #bfdfff;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+#system-app #rewards-page .ra-pity-row small {
+    display: block;
+    margin-top: 6px;
+    color: #8299b9;
+    font-size: 9px;
+}
+
+#system-app #rewards-page .ra-pity-row.is-legendary {
+    border-color: rgba(222, 184, 105, .25);
+    background: linear-gradient(120deg, rgba(43, 31, 14, .32), rgba(2, 8, 22, .7));
+}
+
+#system-app #rewards-page .ra-pity-row.is-legendary span,
+#system-app #rewards-page .ra-pity-row.is-legendary b {
+    color: #e5c783;
+}
+
+#system-app #rewards-page .ra-pity-row.is-legendary .ra-pity-track i {
+    background: linear-gradient(90deg, #9b6f26, #dfb95f, #fff0b8);
+    box-shadow: 0 0 12px rgba(224, 182, 80, .35);
+}
+
+#system-app #rewards-page .ra-ascension {
+    display: grid;
+    gap: 15px;
+    margin: 13px 0 22px;
+    padding: clamp(14px, 2vw, 20px);
+    background:
+        radial-gradient(ellipse at 98% 0, rgba(94, 151, 255, .11), transparent 42%),
+        linear-gradient(145deg, rgba(5, 16, 36, .98), rgba(2, 6, 18, .98));
+}
+
+#system-app #rewards-page .ra-section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-width: 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(95, 157, 233, .19);
+}
+
+#system-app #rewards-page .ra-section-heading > div:first-child {
+    min-width: 0;
+}
+
+#system-app #rewards-page .ra-kicker {
+    display: block;
+    margin-bottom: 5px;
+    color: #79bfff;
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: .2em;
+}
+
+#system-app #rewards-page .ra-section-heading h2 {
+    margin: 0;
+    color: #edf7ff;
+    font-size: clamp(16px, 2.2vw, 22px);
+    font-weight: 850;
+    letter-spacing: .025em;
+}
+
+#system-app #rewards-page .ra-section-heading p {
+    margin: 5px 0 0;
+    color: var(--ra-muted);
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+#system-app #rewards-page .ra-level-mark {
+    display: grid;
+    flex: 0 0 auto;
+    min-width: 66px;
+    padding: 8px 11px;
+    border: 1px solid rgba(105, 180, 255, .34);
+    border-radius: 5px;
+    background: linear-gradient(155deg, rgba(20, 62, 111, .55), rgba(2, 9, 22, .85));
+    text-align: center;
+}
+
+#system-app #rewards-page .ra-level-mark span {
+    color: #8ebce8;
+    font-size: 7px;
+    font-weight: 900;
+    letter-spacing: .12em;
+}
+
+#system-app #rewards-page .ra-level-mark strong {
+    margin-top: 3px;
+    color: #f1f9ff;
+    font-size: 24px;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    text-shadow: 0 0 16px rgba(70, 163, 255, .45);
+}
+
+#system-app #rewards-page .ra-xp-overview {
+    display: grid;
+    gap: 7px;
+}
+
+#system-app #rewards-page .ra-xp-label,
+#system-app #rewards-page .ra-xp-foot {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+#system-app #rewards-page .ra-xp-label span {
+    color: #89a8ce;
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: .14em;
+}
+
+#system-app #rewards-page .ra-xp-label b {
+    color: #d7edff;
+    font-size: 10px;
+    font-variant-numeric: tabular-nums;
+}
+
+#system-app #rewards-page .ra-xp-label small {
+    color: #8099ba;
+    font-size: 9px;
+    font-weight: 600;
+}
+
+#system-app #rewards-page .ra-xp-foot {
+    color: #7893b6;
+    font-size: 9px;
+}
+
+#system-app #rewards-page .ra-xp-foot span:last-child {
+    color: var(--ra-ice);
+    font-weight: 850;
+}
+
+#system-app #rewards-page .ra-route-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+#system-app #rewards-page .ra-route-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 196px;
+    padding: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(86, 143, 220, .23);
+    border-radius: 6px;
+    background:
+        radial-gradient(ellipse at 100% 0, rgba(62, 136, 242, .1), transparent 60%),
+        linear-gradient(155deg, rgba(9, 23, 49, .96), rgba(2, 7, 19, .98));
+    transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+#system-app #rewards-page .ra-route-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    inset-inline: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #6bbcff, transparent);
+    opacity: .62;
+}
+
+#system-app #rewards-page .ra-route-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(112, 190, 255, .46);
+    box-shadow: 0 8px 23px rgba(0, 0, 0, .18), 0 0 15px rgba(38, 125, 236, .08);
+}
+
+#system-app #rewards-page .ra-route-head {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+
+#system-app #rewards-page .ra-route-kind {
+    color: #8eb9e7;
+    font-size: 7px;
+    font-weight: 900;
+    letter-spacing: .12em;
+}
+
+#system-app #rewards-page .ra-route-state {
+    margin-inline-start: auto;
+    color: #869bb9;
+    font-size: 7px;
+    font-weight: 900;
+    letter-spacing: .055em;
+}
+
+#system-app #rewards-page .ra-route-state.is-ready {
+    color: #8bf0c0;
+}
+
+#system-app #rewards-page .ra-route-state.is-done {
+    color: #e2c17d;
+}
+
+#system-app #rewards-page .ra-route-card h3 {
+    margin: 12px 0 5px;
+    color: #f0f7ff;
+    font-size: 13px;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+#system-app #rewards-page .ra-route-card p {
+    display: -webkit-box;
+    min-height: 31px;
+    margin: 0 0 10px;
+    overflow: hidden;
+    color: #8da5c4;
+    font-size: 9px;
+    line-height: 1.55;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+#system-app #rewards-page .ra-route-progress {
+    height: 5px;
+    margin-top: auto;
+}
+
+#system-app #rewards-page .ra-route-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 8px;
+}
+
+#system-app #rewards-page .ra-route-foot > span {
+    color: #8198b8;
+    font-size: 8px;
+    font-variant-numeric: tabular-nums;
+}
+
+#system-app #rewards-page .ra-route-card button {
+    min-height: 27px;
+    padding: 5px 7px;
+    border: 1px solid rgba(92, 162, 243, .32);
+    border-radius: 4px;
+    background: rgba(12, 42, 79, .6);
+    color: #c4e6ff;
+    font-size: 8px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+#system-app #rewards-page .ra-route-card button:disabled {
+    border-color: rgba(226, 193, 125, .18);
+    background: rgba(42, 32, 18, .4);
+    color: #bda976;
+    cursor: default;
+}
+
+#system-app #rewards-page .ra-route-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding-top: 11px;
+    border-top: 1px solid rgba(95, 157, 233, .13);
+    color: #7e96b7;
+    font-size: 9px;
+    line-height: 1.65;
+}
+
+#system-app #rewards-page .ra-route-note b {
+    color: #d0e7ff;
+    font-variant-numeric: tabular-nums;
+}
+
+#system-app #rewards-page .ra-note-dot {
+    flex: 0 0 6px;
+    width: 6px;
+    height: 6px;
+    margin-top: 4px;
+    border-radius: 50%;
+    background: #6bc7ff;
+    box-shadow: 0 0 10px rgba(91, 184, 255, .7);
+}
+
+#system-app #rewards-page .reward-card {
+    padding-top: 39px;
+}
+
+#system-app #rewards-page .reward-card .ra-favorite {
+    position: absolute;
+    z-index: 2;
+    top: 8px;
+    inset-inline-start: 9px;
+    display: grid;
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    min-height: 26px;
+    padding: 0;
+    place-items: center;
+    border: 1px solid rgba(92, 153, 225, .27);
+    border-radius: 5px;
+    background: rgba(1, 7, 18, .78);
+    color: #8fa8c9;
+    font-size: 17px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+#system-app #rewards-page .reward-card .ra-favorite:hover,
+#system-app #rewards-page .reward-card .ra-favorite.is-favorite {
+    border-color: rgba(230, 196, 120, .58);
+    background: rgba(65, 48, 20, .55);
+    color: #f0d48c;
+}
+
+#system-app #rewards-page .reward-card .ra-favorite.is-favorite {
+    text-shadow: 0 0 12px rgba(239, 200, 110, .43);
+}
+
+#system-app #rewards-page .rp-log {
+    border-top: 1px solid rgba(95, 157, 233, .18);
+}
+
+#system-app #rewards-page .rp-log summary {
+    padding: 10px 0 2px;
+    color: #bad7f7;
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: .04em;
+}
+
+#system-app #rewards-page .rp-log .rp-log-entry {
+    align-items: center;
+    min-width: 0;
+    flex-wrap: wrap;
+    padding: 9px 0;
+    border-bottom-color: rgba(83, 142, 214, .14);
+}
+
+#system-app #rewards-page .rp-log-entry > span {
+    min-width: 0;
+    color: #b5c9e4;
+    overflow-wrap: anywhere;
+}
+
+#system-app #rewards-page .rp-log-entry b {
+    color: #9bd1ff;
+    font-size: 10px;
+}
+
+#system-app #rewards-page .rp-log-entry time {
+    color: #6f88a9;
+    font-size: 9px;
+}
+
+#system-app #rewards-page .rp-result {
+    border: 1px solid rgba(109, 177, 255, .26);
+    border-radius: 6px;
+    background: radial-gradient(ellipse at center, rgba(43, 114, 227, .14), transparent 70%);
+}
+
+#system-app #rewards-page .rp-result .rp-result-kicker {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 8px;
+}
+
+#system-app #rewards-page .selected-reward {
+    position: sticky;
+    top: 14px;
+}
+
+#system-app #rewards-page .selected-reward .rp-detail-meta {
+    display: inline-flex;
+    align-self: center;
+    margin: 4px auto 8px;
+    padding: 5px 8px;
+    border: 1px solid var(--ra-edge);
+    border-radius: 3px;
+    color: #9dccf6;
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: .1em;
+}
+
+#system-app #rewards-page .selected-reward .rp-detail-meta.rp-detail-legendary {
+    border-color: rgba(224, 184, 96, .4);
+    color: #e9c978;
+}
+
+#system-app #rewards-page .selected-reward .rp-detail-progress {
+    display: grid;
+    gap: 5px;
+    width: 100%;
+    margin: 2px 0 8px;
+    color: #8ea8c7;
+    font-size: 9px;
+}
+
+#system-app #rewards-page .selected-reward .rp-detail-progress > div {
+    height: 5px;
+    overflow: hidden;
+    border-radius: 99px;
+    background: rgba(0, 4, 15, .9);
+}
+
+#system-app #rewards-page .selected-reward .rp-detail-progress i {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, #2378f4, #8cd7ff);
+    box-shadow: 0 0 11px rgba(77, 166, 255, .4);
+}
+
+@media (max-width: 1080px) {
+    #system-app #rewards-page .rp-stats {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    #system-app #rewards-page .rp-controls {
+        grid-template-columns: minmax(0, 1fr) repeat(2, minmax(115px, .45fr));
+    }
+    #system-app #rewards-page .rewards-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(205px, 235px);
+    }
+}
+
+@media (max-width: 760px) {
+    #system-app #rewards-page .rewards-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    #system-app #rewards-page .selected-reward {
+        position: relative;
+        top: auto;
+    }
+    #system-app #rewards-page .ra-route-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    #system-app #rewards-page .ra-route-card {
+        min-height: 0;
+    }
+    #system-app #rewards-page .ra-route-card p {
+        min-height: 0;
+        -webkit-line-clamp: 3;
+    }
+    #system-app #rewards-page .ra-route-foot {
+        align-items: center;
+    }
+}
+
+@media (max-width: 520px) {
+    #system-app #rewards-page .rp-hub {
+        padding: 11px;
+        gap: 12px;
+    }
+    #system-app #rewards-page .rp-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+    }
+    #system-app #rewards-page .rp-stats > div {
+        min-height: 72px;
+        padding: 10px 9px 9px;
+    }
+    #system-app #rewards-page .rp-stats > div:last-child {
+        grid-column: auto;
+    }
+    #system-app #rewards-page .rp-controls {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+    #system-app #rewards-page .rp-search-label {
+        grid-column: 1 / -1;
+    }
+    #system-app #rewards-page .rp-actions button {
+        flex-basis: 100%;
+    }
+    #system-app #rewards-page .ra-export-button {
+        flex-basis: 100%;
+    }
+    #system-app #rewards-page .ra-pity-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    #system-app #rewards-page .ra-section-heading {
+        align-items: flex-start;
+    }
+    #system-app #rewards-page .ra-level-mark {
+        min-width: 55px;
+        padding: 7px 8px;
+    }
+    #system-app #rewards-page .ra-level-mark strong {
+        font-size: 20px;
+    }
+    #system-app #rewards-page .ra-route-card {
+        padding: 11px;
+    }
+    #system-app #rewards-page .rp-log .rp-log-entry {
+        align-items: flex-start;
+        gap: 5px 8px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #system-app #rewards-page .rp-actions button,
+    #system-app #rewards-page .ra-route-card,
+    #system-app #rewards-page .rp-collection-track i,
+    #system-app #rewards-page .ra-xp-track i,
+    #system-app #rewards-page .ra-route-progress i,
+    #system-app #rewards-page .ra-pity-track i {
+        transition: none;
+    }
+}
+
+
+/* Category isolation: never let visual card styles override the hidden state. */
+#system-app #rewards-page .available-rewards .reward-card[hidden],
+#rewards-page #reward-card-grid .reward-card[hidden],
+#rewards-page .available-rewards .reward-card[hidden] {
+  display: none;
+  visibility: hidden;
+}

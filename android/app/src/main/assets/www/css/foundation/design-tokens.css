@@ -1,0 +1,71 @@
+/* =========================================================
+   SYSTEM V1 — SEMANTIC DESIGN TOKENS
+   Shared aliases for surfaces, content, interaction and motion.
+   Keep legacy tokens as the compatibility contract while pages migrate.
+   ========================================================= */
+
+:root {
+  /* Surfaces */
+  --sys-surface-canvas: var(--color-background);
+  --sys-surface-raised: var(--color-panel);
+  --sys-surface-overlay: var(--color-panel-dark);
+  --sys-surface-highlight: var(--color-panel-light);
+
+  /* Content */
+  --sys-content-primary: var(--color-text);
+  --sys-content-secondary: var(--color-text-light);
+  --sys-content-muted: var(--color-text-muted);
+  --sys-content-on-accent: #ffffff;
+
+  /* Accent and semantic states. Values remain theme-aware via legacy tokens. */
+  --sys-accent: var(--color-blue);
+  --sys-accent-strong: var(--color-blue-light);
+  --sys-accent-soft: var(--color-blue-bright);
+  --sys-border: var(--color-border);
+  --sys-border-strong: var(--color-border-bright);
+  --sys-state-success: var(--color-success);
+  --sys-state-warning: var(--color-warning);
+  --sys-state-danger: var(--color-danger);
+
+  /* Shape and spacing */
+  --sys-radius-sm: var(--radius-small);
+  --sys-radius-md: var(--radius-medium);
+  --sys-radius-lg: var(--radius-large);
+  --sys-space-1: var(--space-xs);
+  --sys-space-2: var(--space-sm);
+  --sys-space-3: var(--space-md);
+  --sys-space-4: var(--space-lg);
+  --sys-space-5: var(--space-xl);
+  --sys-space-6: var(--space-xxl);
+
+  /* Typography */
+  --sys-font-body: var(--font-ui);
+  --sys-font-display: var(--font-main);
+  --sys-text-xs: var(--font-size-xs);
+  --sys-text-sm: var(--font-size-sm);
+  --sys-text-md: var(--font-size-md);
+  --sys-text-lg: var(--font-size-lg);
+  --sys-text-xl: var(--font-size-xl);
+  --sys-text-2xl: var(--font-size-xxl);
+
+  /* Motion: centralized values for gradual adoption */
+  --sys-motion-fast: 120ms;
+  --sys-motion-standard: 200ms;
+  --sys-motion-emphasis: 320ms;
+  --sys-motion-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* Focus and interaction */
+  --sys-focus-ring: 0 0 0 2px var(--color-background), 0 0 0 4px var(--color-blue-light);
+  --sys-interaction-hover-opacity: 0.92;
+  --sys-interaction-disabled-opacity: 0.55;
+}
+
+/* Semantic tokens deliberately reference themeable legacy tokens, so a theme
+   switch updates the semantic layer without requiring per-theme duplication. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --sys-motion-fast: 0ms;
+    --sys-motion-standard: 0ms;
+    --sys-motion-emphasis: 0ms;
+  }
+}

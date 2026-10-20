@@ -1,0 +1,44 @@
+[
+  {
+    "id": "study",
+    "title": "Study for 2 Hours",
+    "xp": 100,
+    "coins": 20,
+    "stat": "mathematics"
+  },
+  {
+    "id": "coding",
+    "title": "Practice Coding",
+    "xp": 120,
+    "coins": 25,
+    "stat": "computer"
+  },
+  {
+    "id": "training",
+    "title": "Physical Training",
+    "xp": 80,
+    "coins": 15,
+    "stat": null
+  },
+  {
+    "id": "reading",
+    "title": "Read a Book",
+    "xp": 100,
+    "coins": 20,
+    "stat": "unique-thinking"
+  },
+  {
+    "id": "english",
+    "title": "English Practice",
+    "xp": 90,
+    "coins": 15,
+    "stat": "global-skills"
+  },
+  {
+    "id": "planning",
+    "title": "Plan Tomorrow",
+    "xp": 50,
+    "coins": 10,
+    "stat": "entrepreneurship"
+  }
+]

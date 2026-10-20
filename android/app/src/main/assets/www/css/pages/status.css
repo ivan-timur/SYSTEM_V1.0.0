@@ -1,0 +1,826 @@
+/*
+ * SYSTEM — authoritative Status page layout
+ * One responsive grid owns the Level, Rank, XP and Stats placement.
+ * Other application stylesheets must not redefine this page's structure.
+ */
+
+:root {
+  --status-bg: rgba(2, 9, 23, .92);
+  --status-card-bg: linear-gradient(145deg, rgba(5, 22, 48, .96), rgba(1, 6, 18, .97));
+  --status-border: rgba(69, 147, 255, .58);
+  --status-border-soft: rgba(69, 147, 255, .30);
+  --status-text: #eef6ff;
+  --status-muted: #a9c2e2;
+  --status-glow: 0 0 14px rgba(16, 105, 255, .16);
+  --status-font: var(--font-main, system-ui, sans-serif);
+  --status-serif: "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
+}
+
+/* Page shell and centered level title */
+#system-app .main-content:has(#status-page.active) {
+  min-width: 0;
+  padding-top: clamp(12px, 2vw, 28px);
+}
+
+#system-app .main-content:has(#status-page.active) > .player-hud {
+  display: none;
+}
+
+#system-app .content-container > #status-page.active {
+  display: block;
+  width: 100%;
+  max-width: 1320px;
+  min-width: 0;
+  margin: 0 auto;
+  padding: clamp(8px, 1.2vw, 18px) 0 36px;
+  color: var(--status-text);
+  background: transparent;
+  overflow: visible;
+}
+
+#system-app #status-page > .page-header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  min-height: 58px;
+  margin: 0 0 15px;
+  padding: 0 0 13px;
+  text-align: center;
+  border: 0;
+  box-shadow: none;
+}
+
+#system-app #status-page > .page-header::before {
+  content: none;
+}
+
+#system-app #status-page > .page-header::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(420px, 72%);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(70, 153, 255, .64), #d4f2ff, rgba(70, 153, 255, .64), transparent);
+  box-shadow: 0 0 10px rgba(35, 129, 255, .48);
+}
+
+#system-app #status-page > .page-header > div {
+  width: 100%;
+  min-width: 0;
+}
+
+#system-app #status-page .page-title {
+  margin: 0;
+  color: #f5f9ff;
+  font-family: var(--status-serif);
+  font-size: clamp(32px, 3.6vw, 48px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: .025em;
+  text-align: center;
+  text-shadow: 0 0 8px rgba(176, 223, 255, .76), 0 0 22px rgba(25, 112, 255, .55);
+  overflow-wrap: normal;
+}
+
+#system-app #status-page .page-subtitle {
+  margin: 4px 0 0;
+  color: var(--status-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* The only layout grid for the whole player summary. */
+#system-app #status-page > .player-overview {
+  display: grid;
+  grid-template-columns: minmax(210px, 1.45fr) minmax(72px, .38fr) minmax(270px, 1.55fr);
+  grid-template-areas:
+    "level rank xp"
+    "stats stats stats";
+  align-items: stretch;
+  gap: 14px;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#system-app #status-page .level-panel,
+#system-app #status-page .rank-panel,
+#system-app #status-page .xp-panel {
+  position: relative;
+  display: flex;
+  align-self: stretch;
+  min-width: 0;
+  min-height: 112px;
+  height: auto;
+  margin: 0;
+  border: 1px solid var(--status-border);
+  border-radius: 12px;
+  background: var(--status-card-bg);
+  box-shadow: inset 0 0 22px rgba(23, 109, 255, .09), var(--status-glow);
+}
+
+#system-app #status-page .level-panel {
+  grid-area: level;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  padding: 13px;
+  text-align: center;
+  overflow: hidden;
+}
+
+#system-app #status-page .level-panel::before,
+#system-app #status-page .level-panel::after {
+  content: none;
+}
+
+#system-app #status-page .level-label {
+  width: 100%;
+  color: #a7c7ef;
+  font-family: var(--status-font);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: .18em;
+  text-align: center;
+}
+
+#system-app #status-page .level-number {
+  width: 100%;
+  margin: 0;
+  color: #f4f9ff;
+  font-family: var(--status-serif);
+  font-size: clamp(30px, 3vw, 42px);
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  text-shadow: 0 0 12px rgba(72, 161, 255, .75);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Rank crest and rank letter stay grouped together. */
+#system-app #status-page .rank-panel {
+  grid-area: rank;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(48px, 4.5vw, 62px);
+  grid-template-rows: minmax(0, 1fr);
+  align-items: center;
+  justify-items: stretch;
+  gap: 0;
+  padding: 8px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 75% 48%, rgba(16, 106, 255, .22), transparent 68%), var(--status-card-bg);
+}
+
+#system-app #status-page .rank-panel::before,
+#system-app #status-page .rank-panel::after {
+  content: none;
+}
+
+#system-app #status-page .rank-copy {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5px;
+  min-width: 0;
+}
+
+#system-app #status-page .rank-label {
+  color: #9dbde8;
+  font-family: var(--status-font);
+  font-size: 10px;
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: .16em;
+}
+
+#system-app #status-page .rank-name {
+  display: block;
+  color: #f4f9ff;
+  font-family: var(--status-serif);
+  font-size: clamp(20px, 2.4vw, 30px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .04em;
+  text-shadow: 0 0 10px rgba(41, 145, 255, .68);
+}
+
+#system-app #status-page .rank-image {
+  grid-column: 2;
+  grid-row: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 72px;
+  max-height: 72px;
+  margin: 0;
+  object-fit: contain;
+  justify-self: end;
+  filter: drop-shadow(0 0 7px rgba(34, 142, 255, .70));
+}
+
+/* XP stays a single compact panel; labels and value never drift apart. */
+#system-app #status-page .xp-panel {
+  grid-area: xp;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 13px;
+  padding: 18px clamp(14px, 1.7vw, 24px);
+  overflow: hidden;
+}
+
+#system-app #status-page .xp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 12px;
+  min-width: 0;
+  margin: 0;
+}
+
+#system-app #status-page .xp-current {
+  flex: 0 0 auto;
+  color: #a9c9ef;
+  font-family: var(--status-font);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: .16em;
+}
+
+#system-app #status-page .xp-required {
+  min-width: 0;
+  color: #f0f7ff;
+  font-family: var(--status-font);
+  font-size: clamp(12px, 1.35vw, 16px);
+  font-weight: 750;
+  line-height: 1.25;
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+#system-app #status-page .xp-track {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 11px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(87, 163, 255, .68);
+  border-radius: 999px;
+  background: rgba(0, 3, 12, .95);
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, .65);
+  clip-path: none;
+}
+
+#system-app #status-page .xp-fill {
+  position: relative;
+  display: block;
+  width: 50%;
+  min-width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #0645ba 0%, #087dff 55%, #8be1ff 100%);
+  box-shadow: 0 0 9px rgba(28, 137, 255, .65);
+  transition: width .35s ease;
+}
+
+#system-app #status-page .xp-fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: #d8f7ff;
+  box-shadow: 0 0 8px #9ce3ff;
+}
+
+#system-app #status-page .xp-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  margin: 0;
+  color: var(--status-muted);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+/* Stats occupy one full row, with cards that shrink without clipping labels. */
+#system-app #status-page .stats-section {
+  grid-area: stats;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: clamp(13px, 1.4vw, 20px);
+  overflow: visible;
+  border: 1px solid var(--status-border-soft);
+  border-radius: 13px;
+  background: linear-gradient(145deg, rgba(1, 7, 19, .92), rgba(1, 5, 14, .88));
+  box-shadow: inset 0 0 28px rgba(0, 85, 255, .075), 0 6px 28px rgba(0, 0, 0, .12);
+}
+
+#system-app #status-page .stats-section::before,
+#system-app #status-page .stats-section::after {
+  content: none;
+}
+
+#system-app #status-page .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  min-height: 0;
+  margin: 0 0 13px;
+  padding: 0 0 10px;
+  border-bottom: 1px solid rgba(76, 143, 228, .30);
+}
+
+#system-app #status-page .section-header::after {
+  content: none;
+}
+
+#system-app #status-page .section-title {
+  margin: 0;
+  color: #eaf5ff;
+  font-family: var(--status-serif);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: .08em;
+  text-shadow: 0 0 9px rgba(62, 153, 255, .34);
+}
+
+#system-app #status-page .section-title::before {
+  content: none;
+}
+
+#system-app #status-page .section-subtitle {
+  margin: 0;
+  color: var(--status-muted);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+#system-app #status-page .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 11px;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+
+#system-app #status-page .stat-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  min-width: 0;
+  min-height: 86px;
+  margin: 0;
+  padding: 11px 12px;
+  overflow: hidden;
+  color: var(--status-text);
+  text-align: left;
+  font-family: var(--status-font);
+  background: linear-gradient(135deg, rgba(5, 22, 48, .93), rgba(1, 7, 18, .96));
+  border: 1px solid rgba(64, 137, 230, .40);
+  border-radius: 9px;
+  box-shadow: inset 0 0 16px rgba(0, 82, 220, .055);
+  cursor: pointer;
+  transition: border-color .18s ease, background-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+#system-app #status-page .stat-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, #3a9bff, #c4eeff, #168cff, transparent);
+  box-shadow: 0 0 8px rgba(26, 130, 255, .55);
+  pointer-events: none;
+}
+
+#system-app #status-page .stat-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 13px;
+  height: 13px;
+  border-top: 1px solid rgba(137, 202, 255, .7);
+  border-right: 1px solid rgba(137, 202, 255, .7);
+  pointer-events: none;
+}
+
+#system-app #status-page .stat-card:hover {
+  border-color: rgba(126, 197, 255, .82);
+  box-shadow: inset 0 0 20px rgba(0, 105, 255, .10), 0 4px 16px rgba(0, 83, 210, .13);
+  transform: translateY(-1px);
+}
+
+#system-app #status-page .stat-card:focus-visible {
+  outline: 2px solid #8bd4ff;
+  outline-offset: 2px;
+}
+
+#system-app #status-page .stat-card.active {
+  border-color: rgba(138, 207, 255, .88);
+  background: linear-gradient(135deg, rgba(7, 41, 86, .98), rgba(2, 11, 28, .98));
+  box-shadow: inset 0 0 18px rgba(12, 115, 255, .15), 0 0 12px rgba(14, 109, 255, .12);
+}
+
+#system-app #status-page .stat-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 clamp(30px, 3vw, 44px);
+  width: clamp(30px, 3vw, 44px);
+  height: clamp(30px, 3vw, 44px);
+  min-width: 0;
+  margin: 0;
+  background: radial-gradient(circle, rgba(0, 109, 255, .16), transparent 72%);
+}
+
+#system-app #status-page .stat-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5px rgba(32, 133, 255, .62));
+}
+
+#system-app #status-page .stat-info {
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+  margin: 0;
+}
+
+#system-app #status-page .stat-name {
+  display: block;
+  margin: 0 0 5px;
+  color: #edf6ff;
+  font-family: var(--status-font);
+  font-size: clamp(11px, 1vw, 14px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+#system-app #status-page .stat-level {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px 7px;
+  margin: 0;
+  color: #acc5e4;
+  font-family: var(--status-font);
+  font-size: clamp(9px, .75vw, 10px);
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+}
+
+#system-app #status-page .stat-level span {
+  min-width: 0;
+  white-space: nowrap;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+#system-app #status-page .stat-progress {
+  width: 100%;
+  height: 4px;
+  margin: 7px 0 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(93, 127, 169, .18);
+  clip-path: none;
+}
+
+#system-app #status-page .stat-progress-fill {
+  width: 0;
+  height: 100%;
+  min-width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #0751c5, #1689ff, #7edbff);
+  box-shadow: 0 0 7px rgba(27, 137, 255, .47);
+}
+
+#system-app #status-page #skill-tree-panel[hidden] {
+  display: none;
+}
+
+#system-app #status-page #skill-tree-panel:not([hidden]) {
+  width: 100%;
+  min-width: 0;
+  margin: 13px 0 0;
+}
+
+#system-app #status-page #grok-progress-suite {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  margin: 13px 0 0;
+}
+
+@media (max-width: 850px) {
+  #system-app { background-attachment: scroll; }
+  #system-app .main-content:has(#status-page.active) {
+    width: 100%; min-width: 0; margin-left: 0; margin-right: 0;
+    box-sizing: border-box; padding: 14px 14px 34px;
+  }
+}
+
+/* Tablet / small laptop: two balanced columns, XP spans across both. */
+@media (max-width: 1199px) {
+  #system-app .content-container > #status-page.active {
+    max-width: 1100px;
+    padding-top: 8px;
+  }
+
+  #system-app #status-page > .player-overview {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, .65fr);
+    grid-template-areas:
+      "level rank"
+      "xp xp"
+      "stats stats";
+    gap: 11px;
+  }
+
+  #system-app #status-page .level-panel,
+  #system-app #status-page .rank-panel {
+    min-height: 92px;
+  }
+
+  #system-app #status-page .level-panel {
+    padding: 10px;
+  }
+
+  #system-app #status-page .rank-panel {
+    grid-template-columns: minmax(0, 1fr) 54px;
+    padding: 8px 9px;
+  }
+
+  #system-app #status-page .rank-image {
+    grid-column: 2;
+    max-width: 62px;
+    max-height: 62px;
+  }
+
+  #system-app #status-page .xp-panel {
+    min-height: 90px;
+    padding: 15px 18px;
+    gap: 11px;
+  }
+
+  #system-app #status-page .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #system-app #status-page .stat-card {
+    min-height: 80px;
+  }
+}
+
+/* Phone: compact header, aligned Level + Rank row, then XP and Stats. */
+@media (max-width: 700px) {
+  #system-app .main-content:has(#status-page.active) {
+    padding: 8px 10px calc(86px + env(safe-area-inset-bottom));
+  }
+
+  #system-app .main-content:has(#status-page.active) > .top-bar {
+    display: flex;
+    min-height: 28px;
+    margin: 0 0 7px;
+  }
+
+  #system-app #status-page > .page-header {
+    min-height: 42px;
+    margin-bottom: 10px;
+    padding-bottom: 9px;
+  }
+
+  #system-app #status-page .page-title {
+    font-size: clamp(27px, 7.6vw, 36px);
+    line-height: 1.06;
+    letter-spacing: 0;
+  }
+
+  #system-app #status-page > .player-overview {
+    grid-template-columns: minmax(0, 1.38fr) minmax(0, .62fr);
+    grid-template-areas:
+      "level rank"
+      "xp xp"
+      "stats stats";
+    gap: 8px;
+  }
+
+  #system-app #status-page .level-panel,
+  #system-app #status-page .rank-panel {
+    min-height: 78px;
+    border-radius: 9px;
+  }
+
+  #system-app #status-page .level-panel {
+    gap: 4px;
+    padding: 8px;
+  }
+
+  #system-app #status-page .level-label {
+    font-size: 9px;
+    letter-spacing: .14em;
+  }
+
+  #system-app #status-page .level-number {
+    font-size: clamp(27px, 8vw, 36px);
+  }
+
+  #system-app #status-page .rank-panel {
+    grid-template-columns: minmax(0, 1fr) clamp(38px, 11vw, 46px);
+    gap: 3px 4px;
+    padding: 6px 6px;
+  }
+
+  #system-app #status-page .rank-image {
+    grid-column: 2;
+    max-width: clamp(42px, 12vw, 50px);
+    max-height: clamp(42px, 12vw, 50px);
+    justify-self: end;
+  }
+
+  #system-app #status-page .xp-panel {
+    min-height: 75px;
+    gap: 10px;
+    padding: 12px 13px;
+    border-radius: 9px;
+  }
+
+  #system-app #status-page .xp-header {
+    gap: 8px;
+  }
+
+  #system-app #status-page .xp-current {
+    font-size: 10px;
+  }
+
+  #system-app #status-page .xp-required {
+    font-size: clamp(11px, 3vw, 13px);
+  }
+
+  #system-app #status-page .xp-track {
+    height: 7px;
+  }
+
+  #system-app #status-page .stats-section {
+    padding: 11px;
+    border-radius: 10px;
+  }
+
+  #system-app #status-page .section-header {
+    gap: 5px 8px;
+    margin-bottom: 9px;
+    padding-bottom: 8px;
+  }
+
+  #system-app #status-page .section-title {
+    font-size: 19px;
+  }
+
+  #system-app #status-page .section-subtitle {
+    font-size: 9px;
+  }
+
+  #system-app #status-page .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  #system-app #status-page .stat-card {
+    align-items: center;
+    gap: 7px;
+    min-height: 78px;
+    padding: 8px 7px;
+    border-radius: 7px;
+  }
+
+  #system-app #status-page .stat-icon {
+    flex-basis: 29px;
+    width: 29px;
+    height: 29px;
+  }
+
+  #system-app #status-page .stat-name {
+    margin-bottom: 4px;
+    font-size: clamp(10px, 2.9vw, 12px);
+    line-height: 1.2;
+  }
+
+  #system-app #status-page .stat-level {
+    gap: 2px 4px;
+    font-size: clamp(8px, 2.2vw, 9px);
+    line-height: 1.25;
+  }
+
+  #system-app #status-page .stat-progress {
+    height: 4px;
+    margin-top: 6px;
+  }
+
+  #system-app #status-page #skill-tree-panel:not([hidden]),
+  #system-app #status-page #grok-progress-suite {
+    margin-top: 8px;
+  }
+}
+
+/* Very narrow phones retain readable text by switching the Stats list to one column. */
+@media (max-width: 359px) {
+  #system-app .main-content:has(#status-page.active) {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  #system-app #status-page > .player-overview {
+    gap: 7px;
+  }
+
+  #system-app #status-page .stats-section {
+    padding: 9px;
+  }
+
+  #system-app #status-page .stats-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 7px;
+  }
+
+  #system-app #status-page .stat-card {
+    min-height: 66px;
+    padding: 8px 10px;
+  }
+
+  #system-app #status-page .stat-icon {
+    flex-basis: 31px;
+    width: 31px;
+    height: 31px;
+  }
+
+  #system-app #status-page .stat-name {
+    font-size: 12px;
+  }
+
+  #system-app #status-page .stat-level {
+    font-size: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #system-app #status-page .stat-card,
+  #system-app #status-page .xp-fill {
+    transition: none;
+  }
+}
+
+/* Center the Rank E image inside its own existing rank rectangle only.
+   Keep the rank panel's position/size and the Level/Xp/Stats layout unchanged. */
+#system-app #status-page .rank-panel > .rank-image {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  justify-self: center;
+  align-self: center;
+  margin-inline: auto;
+}
+
+
+/* Remove the duplicate Level title at the very top of Status. */
+#system-app #status-page > .page-header {
+  display: none;
+}

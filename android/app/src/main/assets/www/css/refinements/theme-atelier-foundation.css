@@ -1,0 +1,395 @@
+/*
+ * SYSTEM — THEME ATELIER / HIGH-FINISH VISUAL PASS
+ * A shared luxury-material layer for every existing theme.
+ * No theme IDs, content, progression rules or application behavior are changed.
+ */
+
+html[data-system-theme] {
+  --atelier-haze-1: #2979ff;
+  --atelier-haze-2: #3dd8ff;
+  --atelier-haze-3: #b7caff;
+  --atelier-edge: color-mix(in srgb, var(--color-blue-light, #8fc7ff) 52%, transparent);
+  --atelier-edge-soft: color-mix(in srgb, var(--color-blue-light, #8fc7ff) 22%, transparent);
+  --atelier-glass-top: color-mix(in srgb, var(--color-panel-light, #101a2d) 82%, transparent);
+  --atelier-glass-bottom: color-mix(in srgb, var(--color-panel-dark, #030713) 92%, transparent);
+  --atelier-radius: 20px;
+  --atelier-shadow: 0 22px 54px rgba(0, 0, 0, .30);
+}
+
+/* Distinct atmosphere identities — original palettes remain selectable. */
+html[data-system-theme="cosmic"] { --atelier-haze-1:#126bff; --atelier-haze-2:#35c9ff; --atelier-haze-3:#9fc8ff; }
+html[data-system-theme="aether"] { --atelier-haze-1:#8b5cf6; --atelier-haze-2:#64ddff; --atelier-haze-3:#d7c6ff; }
+html[data-system-theme="couture"] { --atelier-haze-1:#3a76d8; --atelier-haze-2:#8ec9ff; --atelier-haze-3:#e6c77d; }
+html[data-system-theme="royal"] { --atelier-haze-1:#a77a2b; --atelier-haze-2:#e8c574; --atelier-haze-3:#a37db1; }
+html[data-system-theme="aurora"] { --atelier-haze-1:#9247dc; --atelier-haze-2:#30dfff; --atelier-haze-3:#20d6bc; }
+html[data-system-theme="abyss"] { --atelier-haze-1:#6545eb; --atelier-haze-2:#a18aff; --atelier-haze-3:#4c7bff; }
+html[data-system-theme="ice"] { --atelier-haze-1:#057eaa; --atelier-haze-2:#51e7ff; --atelier-haze-3:#b5f7ff; }
+html[data-system-theme="crimson"] { --atelier-haze-1:#bd1538; --atelier-haze-2:#ff536e; --atelier-haze-3:#ffa2a9; }
+html[data-system-theme="emerald"] { --atelier-haze-1:#087b4c; --atelier-haze-2:#31e5a0; --atelier-haze-3:#a4ffd9; }
+html[data-system-theme="solar"] { --atelier-haze-1:#b66a0b; --atelier-haze-2:#ffc64a; --atelier-haze-3:#ffe8a6; }
+html[data-system-theme="sakura"] { --atelier-haze-1:#9d2c86; --atelier-haze-2:#ff62d1; --atelier-haze-3:#ffc0f0; }
+
+/* Remove the old full-viewport hue wash. It tinted text and artwork as well as surfaces;
+   theme identity is now carried by precise accents, materials, and controlled lighting. */
+html[data-system-theme]::after { content: none; display: none; }
+
+html[data-system-theme] body {
+  background-color: var(--color-black, #02040a);
+  background-image:
+    radial-gradient(ellipse 68% 42% at 11% 0%, color-mix(in srgb, var(--atelier-haze-1) 19%, transparent), transparent 72%),
+    radial-gradient(ellipse 60% 44% at 96% 15%, color-mix(in srgb, var(--atelier-haze-2) 12%, transparent), transparent 70%),
+    radial-gradient(ellipse 78% 55% at 53% 104%, color-mix(in srgb, var(--atelier-haze-3) 7%, transparent), transparent 74%),
+    linear-gradient(148deg, var(--color-background, #050816), var(--color-black, #02040a) 78%);
+  background-attachment: fixed;
+  color: var(--color-text, #f3f7ff);
+}
+
+/* Preserve the supplied page artwork while adding an individually tinted, readable veil. */
+html[data-system-theme] #system-app .content-container > #status-page {
+  background-image:
+    radial-gradient(ellipse 70% 34% at 85% 0%, color-mix(in srgb, var(--atelier-haze-1) 16%, transparent), transparent 76%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-background, #050816) 28%, transparent), color-mix(in srgb, var(--color-black, #02040a) 72%, transparent)),
+    var(--status-background-image);
+  background-size: auto, auto, cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+html[data-system-theme] #system-app .content-container > #quest-page {
+  background-image:
+    radial-gradient(ellipse 75% 36% at 8% 0%, color-mix(in srgb, var(--atelier-haze-2) 13%, transparent), transparent 74%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-background, #050816) 34%, transparent), color-mix(in srgb, var(--color-black, #02040a) 75%, transparent)),
+    var(--quest-background-image);
+  background-size: auto, auto, cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+html[data-system-theme] #system-app .content-container > #rewards-page {
+  background-image:
+    radial-gradient(ellipse 72% 38% at 92% 0%, color-mix(in srgb, var(--atelier-haze-3) 13%, transparent), transparent 74%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-background, #050816) 32%, transparent), color-mix(in srgb, var(--color-black, #02040a) 78%, transparent)),
+    var(--rewards-background-image);
+  background-size: auto, auto, cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+html[data-system-theme] #system-app .content-container > #ai-page {
+  background-image:
+    radial-gradient(ellipse 76% 40% at 18% 0%, color-mix(in srgb, var(--atelier-haze-1) 15%, transparent), transparent 76%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-background, #050816) 34%, transparent), color-mix(in srgb, var(--color-black, #02040a) 78%, transparent)),
+    var(--ai-background-image);
+  background-size: auto, auto, cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+html[data-system-theme] #system-app .content-container > #settings-page {
+  background-image:
+    radial-gradient(ellipse 70% 36% at 87% 0%, color-mix(in srgb, var(--atelier-haze-2) 12%, transparent), transparent 74%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-background, #050816) 35%, transparent), color-mix(in srgb, var(--color-black, #02040a) 79%, transparent)),
+    var(--settings-background-image);
+  background-size: auto, auto, cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* Main layout: clearer edges and a more considered rhythm without changing geometry. */
+#system-app .main-content { isolation: isolate; }
+#system-app .sidebar {
+  border-right-color: var(--atelier-edge-soft);
+  box-shadow: 16px 0 50px rgba(0, 0, 0, .26), inset -1px 0 0 rgba(255, 255, 255, .035);
+  backdrop-filter: blur(22px) saturate(1.16);
+  -webkit-backdrop-filter: blur(22px) saturate(1.16);
+}
+#system-app .sidebar-header,
+#system-app .sidebar-footer { border-color: var(--atelier-edge-soft); }
+#system-app .system-logo { filter: drop-shadow(0 3px 20px color-mix(in srgb, var(--atelier-haze-2) 12%, transparent)); }
+#system-app .system-logo .logo-text { letter-spacing: .24em; }
+#system-app .system-logo::after {
+  background: linear-gradient(90deg, transparent, var(--atelier-haze-1), var(--atelier-haze-2), var(--atelier-haze-3), transparent);
+  opacity: .82;
+}
+
+#system-app .sidebar-nav { gap: 7px; }
+#system-app .nav-item {
+  position: relative;
+  min-height: 48px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  transition: background .24s cubic-bezier(.2,.8,.2,1), border-color .24s ease, color .24s ease, box-shadow .24s ease, transform .24s ease;
+}
+#system-app .nav-item img,
+#system-app .nav-item .nav-icon {
+  filter: drop-shadow(0 2px 7px color-mix(in srgb, var(--atelier-haze-2) 22%, transparent));
+  transition: filter .24s ease, transform .24s ease;
+}
+#system-app .nav-item:hover {
+  border-color: var(--atelier-edge-soft);
+  background: linear-gradient(105deg, color-mix(in srgb, var(--atelier-haze-1) 12%, transparent), color-mix(in srgb, var(--atelier-haze-2) 4%, transparent));
+}
+#system-app .nav-item:hover img,
+#system-app .nav-item:hover .nav-icon { transform: translateY(-1px); }
+#system-app .nav-item.active,
+#system-app .nav-item.is-active,
+#system-app .nav-item[aria-current="page"] {
+  color: var(--color-neon-white, var(--color-text, #f3f7ff));
+  border-color: var(--atelier-edge);
+  background:
+    linear-gradient(105deg, color-mix(in srgb, var(--atelier-haze-1) 22%, transparent), color-mix(in srgb, var(--atelier-haze-2) 9%, transparent) 66%, color-mix(in srgb, var(--atelier-haze-3) 4%, transparent)),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-panel-light) 78%, transparent), color-mix(in srgb, var(--color-panel-dark) 65%, transparent));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 9px 25px rgba(0,0,0,.16), 0 0 22px color-mix(in srgb, var(--atelier-haze-2) 9%, transparent);
+}
+#system-app .nav-item.active::before,
+#system-app .nav-item.is-active::before,
+#system-app .nav-item[aria-current="page"]::before {
+  background: linear-gradient(180deg, var(--atelier-haze-2), var(--atelier-haze-1), var(--atelier-haze-3));
+  box-shadow: 0 0 12px color-mix(in srgb, var(--atelier-haze-2) 42%, transparent);
+}
+
+/* Page headings: precise luminous rule and improved contrast. */
+#system-app .page-header {
+  border-bottom-color: var(--atelier-edge-soft);
+  box-shadow: 0 10px 24px -24px var(--atelier-haze-2);
+}
+#system-app .page-header::after {
+  content: "";
+  display: block;
+  width: min(250px, 42%);
+  height: 2px;
+  margin: 13px auto 0;
+  border-radius: 99px;
+  background: linear-gradient(90deg, transparent, var(--atelier-haze-1), var(--atelier-haze-2) 52%, var(--atelier-haze-3), transparent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--atelier-haze-2) 27%, transparent);
+}
+#system-app .page-title {
+  color: var(--color-neon-white, var(--color-text, #f3f7ff));
+  font-weight: 760;
+  letter-spacing: -.025em;
+  text-shadow: 0 2px 24px color-mix(in srgb, var(--atelier-haze-2) 19%, transparent);
+}
+#system-app .page-subtitle {
+  max-width: 68ch;
+  line-height: 1.65;
+  color: var(--color-text-muted, #93a4bf);
+}
+
+/* Signature glass surfaces. Accent is a reflection, never a blanket tint. */
+#system-app .card,
+#system-app .stat-card,
+#system-app .quest-card,
+#system-app .reward-card,
+#system-app .skill-card,
+#system-app .goal-card,
+#system-app .panel,
+#system-app .settings-panel,
+#system-app .settings-row,
+#system-app .system-panel {
+  border-color: var(--atelier-edge-soft);
+  border-radius: var(--atelier-radius);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.065), inset 0 -1px 0 rgba(0,0,0,.20), 0 15px 37px rgba(0,0,0,.23);
+  -webkit-backdrop-filter: blur(14px) saturate(1.12);
+  backdrop-filter: blur(14px) saturate(1.12);
+  transition: transform .26s cubic-bezier(.2,.8,.2,1), border-color .26s ease, box-shadow .26s ease, filter .26s ease;
+}
+#system-app .stat-card,
+#system-app .quest-card,
+#system-app .reward-card,
+#system-app .skill-card,
+#system-app .goal-card,
+#system-app .settings-row {
+  background-image:
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--atelier-haze-2) 8%, transparent), transparent 54%),
+    linear-gradient(145deg, color-mix(in srgb, var(--color-panel-light) 86%, transparent), color-mix(in srgb, var(--color-panel-dark) 94%, transparent));
+}
+#system-app .stat-card::before,
+#system-app .quest-card::before,
+#system-app .reward-card::before,
+#system-app .skill-card::before,
+#system-app .goal-card::before,
+#system-app .settings-row::before {
+  background: linear-gradient(90deg, transparent, var(--atelier-haze-1), var(--atelier-haze-2), var(--atelier-haze-3), transparent);
+  opacity: .72;
+}
+#system-app .stat-card:hover,
+#system-app .quest-card:hover,
+#system-app .reward-card:hover,
+#system-app .skill-card:hover,
+#system-app .goal-card:hover,
+#system-app .settings-row:hover {
+  transform: translateY(-3px);
+  border-color: var(--atelier-edge);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.09), 0 22px 50px rgba(0,0,0,.30), 0 0 25px color-mix(in srgb, var(--atelier-haze-2) 10%, transparent);
+  filter: brightness(1.025);
+}
+#system-app .player-hud {
+  border-color: var(--atelier-edge);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.09), 0 24px 64px rgba(0,0,0,.31), 0 0 34px color-mix(in srgb, var(--atelier-haze-1) 10%, transparent);
+}
+
+/* Status numbers and progression bars become crisp, layered focal points. */
+#system-app .stat-value,
+#system-app .hud-xp-labels strong,
+#system-app .hud-player-copy strong,
+#system-app .hud-currency-copy strong {
+  text-shadow: 0 2px 18px color-mix(in srgb, var(--atelier-haze-2) 12%, transparent);
+}
+#system-app .progress-bar,
+#system-app .progress-track,
+#system-app .xp-track,
+#system-app .hud-xp-track,
+#system-app progress {
+  border: 1px solid color-mix(in srgb, var(--atelier-haze-2) 18%, transparent);
+  border-radius: 999px;
+  overflow: hidden;
+  background-color: color-mix(in srgb, var(--color-black, #02040a) 82%, var(--color-panel, #101827));
+  box-shadow: inset 0 2px 5px rgba(0,0,0,.42);
+}
+#system-app .xp-fill,
+#system-app .progress-fill,
+#system-app .progress-bar > span,
+#system-app .progress-bar > div,
+#system-app .hud-xp-track > span,
+#system-app progress::-webkit-progress-value {
+  border-radius: 999px;
+  background-image: linear-gradient(90deg, var(--atelier-haze-1), var(--atelier-haze-2) 55%, var(--atelier-haze-3));
+  box-shadow: 0 0 13px color-mix(in srgb, var(--atelier-haze-2) 32%, transparent), inset 0 1px 0 rgba(255,255,255,.25);
+}
+#system-app progress::-moz-progress-bar {
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--atelier-haze-1), var(--atelier-haze-2) 55%, var(--atelier-haze-3));
+  box-shadow: 0 0 13px color-mix(in srgb, var(--atelier-haze-2) 32%, transparent);
+}
+
+/* Controls feel tactile, but avoid glow overload. */
+#system-app :is(button, .system-button, .system-primary-button, .system-action-button, .quest-go, .claim-button, .daily-login-claim) {
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .18s ease, border-color .2s ease, background-color .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+#system-app :is(button, .system-button, .system-primary-button, .system-action-button, .quest-go, .claim-button, .daily-login-claim):not(:disabled):active {
+  transform: translateY(1px) scale(.99);
+}
+#system-app :is(button, .system-button, .system-primary-button, .system-action-button, .quest-go, .claim-button, .daily-login-claim):focus-visible,
+#system-app a:focus-visible,
+#system-settings-dialog :is(button, a):focus-visible {
+  outline: 2px solid var(--atelier-haze-2);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--atelier-haze-2) 14%, transparent);
+}
+#system-app input,
+#system-app textarea,
+#system-app select,
+#system-settings-dialog input,
+#system-settings-dialog textarea,
+#system-settings-dialog select {
+  border-color: var(--atelier-edge-soft);
+  border-radius: 12px;
+  background-color: color-mix(in srgb, var(--color-panel-dark, #030713) 88%, transparent);
+  color: var(--color-text, #f3f7ff);
+  box-shadow: inset 0 1px 4px rgba(0,0,0,.17);
+}
+#system-app :is(input, textarea, select):focus-visible,
+#system-settings-dialog :is(input, textarea, select):focus-visible {
+  border-color: var(--atelier-edge);
+  outline: 2px solid color-mix(in srgb, var(--atelier-haze-2) 58%, transparent);
+  outline-offset: 1px;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--atelier-haze-2) 10%, transparent), inset 0 1px 4px rgba(0,0,0,.14);
+}
+
+/* Settings and modal surfaces are treated as a deliberate floating layer. */
+#system-settings-dialog {
+  border: 1px solid var(--atelier-edge);
+  border-radius: 26px;
+  background:
+    radial-gradient(ellipse at 85% 0%, color-mix(in srgb, var(--atelier-haze-1) 15%, transparent), transparent 55%),
+    radial-gradient(ellipse at 0% 100%, color-mix(in srgb, var(--atelier-haze-3) 7%, transparent), transparent 48%),
+    linear-gradient(145deg, color-mix(in srgb, var(--color-panel-light) 96%, transparent), color-mix(in srgb, var(--color-panel-dark) 99%, transparent));
+  box-shadow: 0 34px 110px rgba(0,0,0,.68), inset 0 1px 0 rgba(255,255,255,.08), 0 0 40px color-mix(in srgb, var(--atelier-haze-2) 8%, transparent);
+  -webkit-backdrop-filter: blur(24px) saturate(1.18);
+  backdrop-filter: blur(24px) saturate(1.18);
+}
+#system-settings-dialog::backdrop { background: rgba(1,3,9,.76); backdrop-filter: blur(8px); }
+#system-settings-dialog .system-modal-header { border-bottom-color: var(--atelier-edge-soft); }
+#system-settings-dialog .system-modal-eyebrow { color: var(--atelier-haze-2); letter-spacing: .19em; }
+#system-settings-dialog .system-theme-options { gap: 14px; }
+#system-settings-dialog .system-theme-options > button {
+  min-height: 150px;
+  padding: 13px;
+  border: 1px solid var(--atelier-edge-soft);
+  border-radius: 17px;
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--atelier-haze-2) 9%, transparent), transparent 66%),
+    linear-gradient(145deg, color-mix(in srgb, var(--color-panel-light) 88%, transparent), color-mix(in srgb, var(--color-panel-dark) 97%, transparent));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 8px 22px rgba(0,0,0,.16);
+}
+#system-settings-dialog .system-theme-options > button:hover {
+  transform: translateY(-3px);
+  border-color: var(--atelier-edge);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 16px 34px rgba(0,0,0,.25), 0 0 22px color-mix(in srgb, var(--atelier-haze-2) 8%, transparent);
+}
+#system-settings-dialog .system-theme-options > button.is-selected {
+  border-color: var(--atelier-haze-2);
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--atelier-haze-2) 14%, transparent), transparent 65%),
+    linear-gradient(145deg, color-mix(in srgb, var(--color-panel-light) 86%, transparent), color-mix(in srgb, var(--color-panel-dark) 95%, transparent));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--atelier-haze-2) 44%, transparent), 0 0 0 1px color-mix(in srgb, var(--atelier-haze-2) 18%, transparent), 0 16px 36px rgba(0,0,0,.26);
+}
+#system-settings-dialog .system-theme-swatch {
+  height: 46px;
+  border: 1px solid rgba(255,255,255,.21);
+  border-radius: 10px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 6px 14px rgba(0,0,0,.22);
+}
+#system-settings-dialog .system-theme-options strong { font-size: 12px; letter-spacing: .01em; }
+#system-settings-dialog .system-theme-options small { font-size: 10.5px; line-height: 1.5; }
+
+/* Palette-aware button and badge accents, keyed to the current theme. */
+#system-app :is(.btn-primary, button.primary, .system-primary-button, .system-button.primary) {
+  border-color: color-mix(in srgb, var(--atelier-haze-2) 45%, transparent);
+  background-image: linear-gradient(120deg, var(--atelier-haze-1), var(--atelier-haze-2) 61%, var(--atelier-haze-3));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.24), 0 9px 24px color-mix(in srgb, var(--atelier-haze-1) 18%, transparent);
+}
+#system-app :is(.btn-primary, button.primary, .system-primary-button, .system-button.primary):not(:disabled):hover {
+  filter: brightness(1.08) saturate(1.05);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.28), 0 13px 30px color-mix(in srgb, var(--atelier-haze-1) 24%, transparent);
+}
+
+/* RTL layouts use logical edges, not mirrored physical margins. */
+html[dir="rtl"] #system-app .nav-item.active,
+html[dir="rtl"] #system-app .nav-item.is-active,
+html[dir="rtl"] #system-app .nav-item[aria-current="page"] { direction: rtl; }
+html[dir="rtl"] #system-app .sidebar { border-right-color: transparent; border-left-color: var(--atelier-edge-soft); }
+
+@media (max-width: 900px) {
+  #system-app .card,
+  #system-app .stat-card,
+  #system-app .quest-card,
+  #system-app .reward-card,
+  #system-app .skill-card,
+  #system-app .goal-card,
+  #system-app .panel,
+  #system-app .settings-panel,
+  #system-app .settings-row { border-radius: 17px; }
+  #system-app .main-content { padding-top: max(20px, env(safe-area-inset-top)); }
+}
+@media (max-width: 620px) {
+  #system-app .page-header { gap: 12px; align-items: flex-start; flex-wrap: wrap; padding-bottom: 13px; }
+  #system-app .page-header::after { margin-top: 10px; width: min(190px, 48%); }
+  #system-app .page-title { letter-spacing: -.02em; }
+  #system-app .sidebar { backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+  #system-app .stat-card:hover,
+  #system-app .quest-card:hover,
+  #system-app .reward-card:hover,
+  #system-app .skill-card:hover,
+  #system-app .goal-card:hover,
+  #system-app .settings-row:hover { transform: none; }
+  #system-settings-dialog { border-radius: 20px; }
+  #system-settings-dialog .system-theme-options { gap: 10px; }
+  #system-settings-dialog .system-theme-options > button { min-height: 132px; padding: 10px; }
+  #system-settings-dialog .system-theme-swatch { height: 39px; }
+}
+@media (max-width: 350px) {
+  #system-settings-dialog .system-theme-options { grid-template-columns: minmax(0,1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #system-app *, #system-settings-dialog * { scroll-behavior: auto; transition-duration: .01ms; animation-duration: .01ms; }
+  #system-app :is(.stat-card, .quest-card, .reward-card, .skill-card, .goal-card, .settings-row):hover,
+  #system-settings-dialog .system-theme-options > button:hover { transform: none; }
+}

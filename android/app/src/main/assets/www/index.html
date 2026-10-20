@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+
+<html lang="en" data-system-theme="cosmic">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#060b18">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="stylesheet" href="css/system.css">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="description" content="SYSTEM — Personal Progress and Development System">
+    <meta name="application-name" content="SYSTEM">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'; img-src 'self' data: blob:; font-src 'self' data:; style-src 'self' 'unsafe-inline'; connect-src 'self' https://api.groq.com; worker-src 'self'">
+
+    <title>SYSTEM</title>
+
+    <!-- SYSTEM CSS FILES -->
+
+    <!-- PAGE STYLES -->
+
+    <!-- FINAL STYLE OVERRIDES -->
+
+    <!-- Optional complete visual skin; scoped to the Aurora theme only. -->
+
+    <!-- Single source of truth for Status page layout and responsive sizing. -->
+    <!-- Keep Royal last so it can correctly theme the late-loaded legacy overrides. -->
+
+</head>
+
+
+<body>
+
+    <div id="system-app">
+
+
+        <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+        <aside class="sidebar">
+
+
+            <!-- SYSTEM LOGO -->
+
+            <div class="sidebar-header">
+
+                <div class="system-logo">
+
+                    <div class="logo-icon"></div>
+
+                    <div class="logo-text">
+                        SYSTEM
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+
+            <nav class="sidebar-nav" aria-label="Main Navigation">
+
+
+                <button type="button" class="nav-item active" data-page="status">
+
+                    <img class="nav-icon" src="assets/images/icons/status.webp" alt="" aria-hidden="true">
+
+                    <span>Status</span>
+
+                </button>
+
+
+                <button type="button" class="nav-item" data-page="quest">
+
+                    <img src="assets/images/icons/quest.webp" alt="">
+
+                    <span>Quest</span>
+
+                </button>
+
+
+                <button type="button" class="nav-item" data-page="rewards">
+
+                    <img src="assets/images/icons/rewards.webp" alt="">
+
+                    <span>Rewards</span>
+
+                </button>
+
+
+                <button type="button" class="nav-item" data-page="ai">
+
+                    <img src="assets/images/icons/ai.webp" alt="">
+
+                    <span>AI</span>
+
+                </button>
+
+
+                <button type="button" class="nav-item" data-page="settings">
+
+                    <img src="assets/images/icons/settings.webp" alt="">
+
+                    <span>Settings</span>
+
+                </button>
+
+
+            </nav>
+
+
+            <!-- SIDEBAR FOOTER -->
+
+            <div class="sidebar-footer">
+
+                <div class="sidebar-line"></div>
+
+                <span>SYSTEM ONLINE</span>
+
+            </div>
+
+
+        </aside>
+
+
+
+        <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+        <main class="main-content">
+
+
+            <!-- MOBILE TOP BAR -->
+
+            <div class="top-bar">
+
+                <div class="top-bar-left">
+
+                    <button type="button" class="sidebar-toggle" aria-label="Open navigation"></button>
+
+                </div>
+
+
+                <div class="top-bar-right">
+
+                    <span class="system-status">
+                        ONLINE
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+             SHARED PLAYER HUD — STRUCTURE
+             Keeps progression visible on every main screen.
+             ================================================= -->
+
+            <section class="player-hud" aria-label="Player progression overview">
+                <div class="hud-player">
+                    <img id="hud-rank-image" src="assets/images/ranks/rank-e.webp" alt="Current player rank E">
+                    <div class="hud-player-copy">
+                        <span class="hud-eyebrow">SYSTEM PLAYER</span>
+                        <strong id="hud-level">LEVEL 1</strong>
+                    </div>
+                </div>
+                <div class="hud-xp">
+                    <div class="hud-xp-labels">
+                        <span>EXPERIENCE</span>
+                        <strong id="hud-xp-text">500 / 1000 XP</strong>
+                    </div>
+                    <div class="hud-xp-track" role="progressbar" aria-label="Player experience" aria-valuemin="0" aria-valuemax="1000" aria-valuenow="500" id="hud-xp-progress">
+                        <span id="hud-xp-fill" style="width:50%"></span>
+                    </div>
+                    <span class="hud-xp-remaining" id="hud-xp-remaining">500 XP to next level</span>
+                </div>
+                <div class="hud-currency" aria-label="Player currency">
+                    <span class="hud-coin-icon" aria-hidden="true"></span>
+                    <span class="hud-currency-copy"><strong id="hud-coins">0</strong><small>SYSTEM COINS</small></span>
+                </div>
+            </section>
+
+
+            <!-- =================================================
+             CONTENT CONTAINER
+             ================================================= -->
+
+            <div class="content-container">
+
+
+                <!-- =================================================
+                 STATUS PAGE
+                 ================================================= -->
+
+                <section id="status-page" class="page active">
+
+
+                    <!-- PAGE HEADER -->
+
+                    <header class="page-header">
+
+                        <div>
+
+                            <h1 class="page-title" id="player-level-title">
+                                Level 1
+                            </h1>
+
+
+                        </div>
+
+                    </header>
+
+
+
+                    <!-- =================================================
+                     PLAYER OVERVIEW
+                     ================================================= -->
+
+                    <section class="player-overview">
+
+
+                        <!-- LEVEL -->
+
+                        <div class="level-panel">
+
+                            <div class="level-label">
+                                LEVEL
+                            </div>
+
+                            <div class="level-number">
+                                1
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- XP -->
+
+                        <div class="xp-panel">
+
+
+                            <div class="xp-header">
+                                <span class="xp-current">XP</span>
+                                <span class="xp-required">500 / 1000</span>
+                            </div>
+
+                            <div class="xp-track" role="progressbar" aria-label="Player XP" aria-valuemin="0" aria-valuemax="1000" aria-valuenow="500">
+                                <div class="xp-fill" style="width: 50%;"></div>
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- RANK -->
+
+                        <div class="rank-panel" aria-label="Player rank">
+
+                            <img class="rank-image" src="./assets/images/ranks/rank-e.webp" alt="Rank E"
+                                data-hide-on-error>
+
+                        </div>
+
+
+
+                        <!-- =================================================
+                     STATS
+                     ================================================= -->
+
+                        <section class="stats-section">
+
+
+                            <div class="section-header">
+
+                                <h2 class="section-title">
+                                    STATS
+                                </h2>
+
+
+                            </div>
+
+
+
+                            <div class="stats-grid">
+
+
+                                <!-- ENTREPRENEURSHIP -->
+
+                                <button type="button" class="stat-card" data-stat="entrepreneurship"
+                                    aria-label="Open Entrepreneurship skills">
+
+
+                                    <div class="stat-icon">
+
+                                        <img src="assets/images/icons/stats/entrepreneurship.webp" alt="">
+
+                                    </div>
+
+
+                                    <div class="stat-info">
+
+
+                                        <div class="stat-name">
+                                            Entrepreneurship
+                                        </div>
+
+
+                                        <div class="stat-level">
+                                            <span>LV. 1</span>
+                                            <span>0 / 100 XP</span>
+                                        </div>
+
+
+                                        <div class="stat-progress">
+
+                                            <div class="stat-progress-fill" style="width: 0%;">
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                </button>
+
+
+
+                                <!-- GLOBAL SKILLS -->
+
+                                <button type="button" class="stat-card" data-stat="global-skills"
+                                    aria-label="Open Global Skills">
+
+
+                                    <div class="stat-icon">
+
+                                        <img src="assets/images/icons/stats/global-skills.webp" alt="">
+
+                                    </div>
+
+
+                                    <div class="stat-info">
+
+
+                                        <div class="stat-name">
+                                            Global Skills
+                                        </div>
+
+
+                                        <div class="stat-level">
+                                            <span>LV. 1</span>
+                                            <span>0 / 100 XP</span>
+                                        </div>
+
+
+                                        <div class="stat-progress">
+
+                                            <div class="stat-progress-fill" style="width: 0%;">
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                </button>
+
+
+
+                                <!-- MATHEMATICS -->
+
+                                <button type="button" class="stat-card" data-stat="mathematics"
+                                    aria-label="Open Mathematics skills">
+
+
+                                    <div class="stat-icon">
+
+                                        <img src="assets/images/icons/stats/mathematics.webp" alt="">
+
+                                    </div>
+
+
+                                    <div class="stat-info">
+
+
+                                        <div class="stat-name">
+                                            Mathematics
+                                        </div>
+
+
+                                        <div class="stat-level">
+                                            <span>LV. 1</span>
+                                            <span>0 / 100 XP</span>
+                                        </div>
+
+
+                                        <div class="stat-progress">
+
+                                            <div class="stat-progress-fill" style="width: 0%;">
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                </button>
+
+
+
+                                <!-- COMPUTER -->
+
+                                <button type="button" class="stat-card" data-stat="computer"
+                                    aria-label="Open Computer skills">
+
+
+                                    <div class="stat-icon">
+
+                                        <img src="assets/images/icons/stats/computer.webp" alt="">
+
+                                    </div>
+
+
+                                    <div class="stat-info">
+
+
+                                        <div class="stat-name">
+                                            Computer
+                                        </div>
+
+
+                                        <div class="stat-level">
+                                            <span>LV. 1</span>
+                                            <span>0 / 100 XP</span>
+                                        </div>
+
+
+                                        <div class="stat-progress">
+
+                                            <div class="stat-progress-fill" style="width: 0%;">
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                </button>
+
+
+
+                                <!-- PHYSICS -->
+
+                                <button type="button" class="stat-card" data-stat="physics"
+                                    aria-label="Open Physics skills">
+
+
+                                    <div class="stat-icon">
+
+                                        <img src="assets/images/icons/stats/physics.webp" alt="">
+
+                                    </div>
+
+
+                                    <div class="stat-info">
+
+
+                                        <div class="stat-name">
+                                            Physics
+                                        </div>
+
+
+                                        <div class="stat-level">
+                                            <span>LV. 1</span>
+                                            <span>0 / 100 XP</span>
+                                        </div>
+
+
+                                        <div class="stat-progress">
+
+                                            <div class="stat-progress-fill" style="width: 0%;">
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                </button>
+
+
+
+                                <!-- UNIQUE THINKING -->
+
+                                <button type="button" class="stat-card" data-stat="unique-thinking"
+                                    aria-label="Open Unique Thinking skills">
+
+
+                                    <div class="stat-icon">
+
+                                        <img src="assets/images/icons/stats/unique-thinking.webp" alt="">
+
+                                    </div>
+
+
+                                    <div class="stat-info">
+
+
+                                        <div class="stat-name">
+                                            Unique Thinking
+                                        </div>
+
+
+                                        <div class="stat-level">
+                                            <span>LV. 1</span>
+                                            <span>0 / 100 XP</span>
+                                        </div>
+
+
+                                        <div class="stat-progress">
+
+                                            <div class="stat-progress-fill" style="width: 0%;">
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                </button>
+
+
+                            </div>
+
+
+                        </section>
+
+
+                    </section>
+                    <!-- =================================================
+     SKILL TREE PANEL
+     ================================================= -->
+
+                    <section id="skill-tree-panel" class="skill-tree-panel" hidden>
+
+                        <div class="skill-tree-header">
+
+                            <div>
+                                <span class="skill-tree-label">
+                                    SKILL PROGRESSION
+                                </span>
+
+                                <h2 id="skill-tree-title">
+                                    Select a Stat
+                                </h2>
+
+                                <p id="skill-tree-description">
+                                    Select a stat to view its skills.
+                                </p>
+                            </div>
+
+                            <button type="button" id="close-skill-tree" class="skill-tree-close">
+                                ×
+                            </button>
+
+                        </div>
+
+
+                        <div id="skill-tree-content" class="skill-tree-content">
+
+                            <div class="skill-tree-empty">
+
+                                <div class="skill-tree-empty-icon"></div>
+
+                                <h3>
+                                    No Skill Selected
+                                </h3>
+
+                                <p>
+                                    Select one of the six stats above.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- Status Command Deck — keeps secondary tools out of the main view -->
+                    <div class="status-more-bar">
+                        <button type="button" id="status-more-btn" class="status-more-btn status-command-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="status-more-sheet" title="Open Status Command Deck" aria-label="Open Status Command Deck">
+                            <span class="status-command-copy">
+                                <strong data-status-command-title>COMMAND DECK</strong>
+                                <small data-status-command-subtitle>Tools · insight · mastery</small>
+                            </span>
+                            <span class="status-command-state"><i aria-hidden="true"></i><span data-status-command-state>EXPLORE</span></span>
+                        </button>
+                    </div>
+
+                    <div id="status-more-sheet" class="status-more-sheet" hidden role="dialog" aria-modal="true" aria-label="Status tools">
+                        <div class="status-more-sheet-inner">
+                            <header class="status-more-sheet-head">
+                                <h2>Status Tools</h2>
+                                <button type="button" id="status-more-close" class="status-more-close" aria-label="Close">×</button>
+                            </header>
+                            <div class="status-more-actions">
+                                <button type="button" class="status-more-action" aria-pressed="false" data-status-tool="progress">
+                                    <span class="status-more-action-index" aria-hidden="true">01</span>
+                                    <span class="status-more-action-copy">
+                                        <strong>Progress Graph</strong>
+                                        <small>Weekly activity, momentum & history</small>
+                                    </span>
+                                    <span class="status-more-action-access" aria-hidden="true">OPEN</span>
+                                </button>
+                                <button type="button" class="status-more-action" aria-pressed="false" data-status-tool="timer">
+                                    <span class="status-more-action-index" aria-hidden="true">02</span>
+                                    <span class="status-more-action-copy">
+                                        <strong>Focus Timer</strong>
+                                        <small>25-minute focus block</small>
+                                    </span>
+                                    <span class="status-more-action-access" aria-hidden="true">OPEN</span>
+                                </button>
+                                <button type="button" class="status-more-action" aria-pressed="false" data-status-tool="intelligence">
+                                    <span class="status-more-action-index" aria-hidden="true">03</span>
+                                    <span class="status-more-action-copy">
+                                        <strong>SYSTEM Intelligence</strong>
+                                        <small>Insights, focus & next action</small>
+                                    </span>
+                                    <span class="status-more-action-access" aria-hidden="true">OPEN</span>
+                                </button>
+                                <button type="button" class="status-more-action" aria-pressed="false" data-status-tool="ledger">
+                                    <span class="status-more-action-index" aria-hidden="true">04</span>
+                                    <span class="status-more-action-copy">
+                                        <strong>Activity Ledger</strong>
+                                        <small>Review and export recorded progress</small>
+                                    </span>
+                                    <span class="status-more-action-access" aria-hidden="true">OPEN</span>
+                                </button>
+                                <button type="button" class="status-more-action" aria-pressed="false" data-status-tool="smart-roadmap">
+                                    <span class="status-more-action-index" aria-hidden="true">05</span>
+                                    <span class="status-more-action-copy">
+                                        <strong>Smart Roadmap</strong>
+                                        <small>Plan milestones, priorities and deadlines</small>
+                                    </span>
+                                    <span class="status-more-action-access" aria-hidden="true">OPEN</span>
+                                </button>
+                                <button type="button" class="status-more-action" aria-pressed="false" data-status-tool="skill-mastery">
+                                    <span class="status-more-action-index" aria-hidden="true">06</span>
+                                    <span class="status-more-action-copy">
+                                        <strong>Mastery Tracker</strong>
+                                        <small>Log practice, tests, projects and evidence</small>
+                                    </span>
+                                    <span class="status-more-action-access" aria-hidden="true">OPEN</span>
+                                </button>
+                                <button type="button" class="status-more-action" aria-pressed="false" data-status-tool="skill-review">
+                                    <span class="status-more-action-index" aria-hidden="true">07</span>
+                                    <span class="status-more-action-copy">
+                                        <strong>Skill Review</strong>
+                                        <small>Rate confidence and record practical evidence</small>
+                                    </span>
+                                    <span class="status-more-action-access" aria-hidden="true">OPEN</span>
+                                </button>
+                            </div>
+                            <div id="status-tool-panel" class="status-tool-panel" hidden></div>
+                        </div>
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                 QUEST PAGE
+                 ================================================= -->
+
+                <section id="quest-page" class="page">
+
+
+                    <header class="page-header">
+
+                        <h1 class="page-title">
+                            Quest
+                        </h1>
+
+                        <p class="page-subtitle">
+                            Every achievement starts with a small quest.
+                        </p>
+
+                    </header>
+
+
+                    <div class="quest-layout">
+
+
+                        <div class="quest-main-panel">
+
+
+                            <div class="panel-header">
+
+                                <h2>
+                                    Daily Quest
+                                </h2>
+
+                                <span class="quest-countdown" aria-live="off">Resets in --:--:--</span>
+
+                            </div>
+
+
+                            <div class="quest-list">
+
+
+                                <div class="quest-card" data-quest-id="study">
+
+                                    <div class="quest-icon"></div>
+
+                                    <div class="quest-information">
+
+                                        <h3>
+                                            Study for 2 Hours
+                                        </h3>
+
+                                        <p>
+                                            Complete 2 hours of focused study.
+                                        </p>
+
+                                        <div class="quest-progress">
+                                            1 / 2
+                                        </div>
+
+                                    </div>
+
+                                    <div class="quest-reward">
+                                        +100 XP
+                                    </div>
+
+                                    <button type="button" class="quest-go">
+                                        Go
+                                    </button>
+
+                                </div>
+
+
+
+                                <div class="quest-card" data-quest-id="coding">
+
+                                    <div class="quest-icon"></div>
+
+                                    <div class="quest-information">
+
+                                        <h3>
+                                            Practice Coding
+                                        </h3>
+
+                                        <p>
+                                            Write and solve coding exercises.
+                                        </p>
+
+                                        <div class="quest-progress">
+                                            0 / 3
+                                        </div>
+
+                                    </div>
+
+                                    <div class="quest-reward">
+                                        +120 XP
+                                    </div>
+
+                                    <button type="button" class="quest-go">
+                                        Go
+                                    </button>
+
+                                </div>
+
+
+
+                                <div class="quest-card" data-quest-id="training">
+
+                                    <div class="quest-icon"></div>
+
+                                    <div class="quest-information">
+
+                                        <h3>
+                                            Physical Training
+                                        </h3>
+
+                                        <p>
+                                            Complete today's exercise.
+                                        </p>
+
+                                        <div class="quest-progress">
+                                            0 / 30
+                                        </div>
+
+                                    </div>
+
+                                    <div class="quest-reward">
+                                        +80 XP
+                                    </div>
+
+                                    <button type="button" class="quest-go">
+                                        Go
+                                    </button>
+
+                                </div>
+
+
+
+                                <div class="quest-card" data-quest-id="reading">
+
+                                    <div class="quest-icon"></div>
+
+                                    <div class="quest-information">
+
+                                        <h3>
+                                            Read a Book
+                                        </h3>
+
+                                        <p>
+                                            Read at least 20 pages.
+                                        </p>
+
+                                        <div class="quest-progress">
+                                            0 / 20
+                                        </div>
+
+                                    </div>
+
+                                    <div class="quest-reward">
+                                        +100 XP
+                                    </div>
+
+                                    <button type="button" class="quest-go">
+                                        Go
+                                    </button>
+
+                                </div>
+
+
+
+                                <div class="quest-card" data-quest-id="english">
+
+                                    <div class="quest-icon"></div>
+
+                                    <div class="quest-information">
+
+                                        <h3>
+                                            English Practice
+                                        </h3>
+
+                                        <p>
+                                            Learn 15 new English words.
+                                        </p>
+
+                                        <div class="quest-progress">
+                                            0 / 15
+                                        </div>
+
+                                    </div>
+
+                                    <div class="quest-reward">
+                                        +90 XP
+                                    </div>
+
+                                    <button type="button" class="quest-go">
+                                        Go
+                                    </button>
+
+                                </div>
+
+
+
+                                <div class="quest-card" data-quest-id="planning">
+
+                                    <div class="quest-icon"></div>
+
+                                    <div class="quest-information">
+
+                                        <h3>
+                                            Plan Tomorrow
+                                        </h3>
+
+                                        <p>
+                                            Write your plan for the next day.
+                                        </p>
+
+                                        <div class="quest-progress">
+                                            0 / 1
+                                        </div>
+
+                                    </div>
+
+                                    <div class="quest-reward">
+                                        +50 XP
+                                    </div>
+
+                                    <button type="button" class="quest-go">
+                                        Go
+                                    </button>
+
+                                </div>
+
+                                <!-- Daily Prize is revealed automatically after all six core Daily Quests are complete. -->
+                                <article id="daily-prize-card" class="daily-prize-card is-locked" data-state="locked" aria-labelledby="daily-prize-title">
+                                    <div class="daily-prize-art" aria-hidden="true"><span id="daily-prize-symbol">?</span></div>
+                                    <div class="daily-prize-body">
+                                        <div class="daily-prize-topline">
+                                            <span id="daily-prize-kicker" class="daily-prize-kicker">DAILY MYSTERY DROP</span>
+                                            <span id="daily-prize-state" class="daily-prize-state">LOCKED</span>
+                                        </div>
+                                        <h3 id="daily-prize-title">Daily Prize</h3>
+                                        <p id="daily-prize-description">Complete all six Daily Quests to reveal a random surprise reward.</p>
+                                        <div id="daily-prize-progress" class="daily-prize-progress" role="status" aria-live="polite">0 / 6 missions completed</div>
+                                        <div id="daily-prize-reveal" class="daily-prize-reveal" hidden>
+                                            <span id="daily-prize-rarity" class="daily-prize-rarity"></span>
+                                            <strong id="daily-prize-name"></strong>
+                                            <p id="daily-prize-details"></p>
+                                        </div>
+                                    </div>
+                                    <div id="daily-prize-value" class="daily-prize-value" aria-hidden="true">???</div>
+                                </article>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <aside class="quest-side-panel">
+
+
+                            <button type="button" class="side-quest-card">
+
+                                <h2>
+                                    Boss Quest
+                                </h2>
+
+                                <p>
+                                    Face powerful enemies.
+                                </p>
+
+                                <span>
+                                    →
+                                </span>
+
+                            </button>
+
+
+                            <button type="button" class="side-quest-card">
+
+                                <h2>
+                                    Custom Quest
+                                </h2>
+
+                                <p>
+                                    Choose your own path.
+                                </p>
+
+                                <span>
+                                    →
+                                </span>
+
+                            </button>
+
+
+                        </aside>
+
+
+                    </div>
+
+                    <!-- Quest More (⋯) — secondary tools only; Daily / Boss / Custom stay visible -->
+                    <div class="quest-more-bar">
+                        <button type="button" id="quest-more-btn" class="quest-more-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="quest-more-sheet" title="More">
+                            <span class="quest-more-dots" aria-hidden="true">⋯</span>
+                        </button>
+                    </div>
+
+                    <div id="quest-more-sheet" class="quest-more-sheet" hidden role="dialog" aria-label="Quest tools">
+                        <div class="status-more-sheet-inner">
+                            <header class="status-more-sheet-head">
+                                <h2>Quest Tools</h2>
+                                <button type="button" id="quest-more-close" class="status-more-close" aria-label="Close">×</button>
+                            </header>
+                            <div class="status-more-actions">
+                                <button type="button" class="status-more-action" data-quest-tool="command">
+                                    <span class="status-more-action-icon">⌘</span>
+                                    <span>
+                                        <strong>Quest Command Center</strong>
+                                        <small>Progress, search & filters</small>
+                                    </span>
+                                </button>
+                                <button type="button" class="status-more-action" data-quest-tool="metrics">
+                                    <span class="status-more-action-icon">📈</span>
+                                    <span>
+                                        <strong>Daily Metrics</strong>
+                                        <small>Cleared missions & XP available</small>
+                                    </span>
+                                </button>
+                            </div>
+                            <div id="quest-tool-panel" class="status-tool-panel quest-tool-panel" hidden></div>
+                        </div>
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                 REWARDS PAGE
+                 ================================================= -->
+
+                <section id="rewards-page" class="page">
+
+
+                    <header class="page-header">
+
+                        <h1 class="page-title">
+                            Rewards
+                        </h1>
+
+                        <p class="page-subtitle">
+                            Small rewards. Big progress.
+                        </p>
+
+                    </header>
+
+
+                    <div class="rewards-layout">
+
+
+                        <div class="rewards-main-panel">
+
+
+                            <div class="reward-tabs" role="tablist" aria-label="Reward categories">
+
+                                <button type="button" class="reward-tab active" role="tab" aria-selected="true" aria-controls="reward-card-grid" id="reward-tab-mission">
+                                    Mission Rewards
+                                </button>
+
+                                <button type="button" class="reward-tab" role="tab" aria-selected="false" aria-controls="reward-card-grid" id="reward-tab-achievement" tabindex="-1">
+                                    Achievement Rewards
+                                </button>
+
+                                <button type="button" class="reward-tab" role="tab" aria-selected="false" aria-controls="reward-card-grid" id="reward-tab-special" tabindex="-1">
+                                    Special Rewards
+                                </button>
+
+                            </div>
+
+
+
+                            <h2 class="sub-title">
+                                Available Rewards
+                            </h2>
+
+
+                            <div class="available-rewards" id="reward-card-grid" role="tabpanel" aria-labelledby="reward-tab-mission">
+
+
+                                <div class="reward-card">
+
+                                    <h3>
+                                        Focus Bonus
+                                    </h3>
+
+                                    <p>
+                                        Complete at least one daily quest. Available once per day.
+                                    </p>
+
+                                    <button type="button">
+                                        Claim
+                                    </button>
+
+                                </div>
+
+
+                                <div class="reward-card">
+
+                                    <h3>
+                                        Mission Completion
+                                    </h3>
+
+                                    <p>
+                                        Complete a daily quest.
+                                    </p>
+
+                                    <button type="button">
+                                        Claim
+                                    </button>
+
+                                </div>
+
+
+                                <div class="reward-card">
+
+                                    <h3>
+                                        Quest Trio
+                                    </h3>
+
+                                    <p>
+                                        Complete at least three daily quests. Available once per day.
+                                    </p>
+
+                                    <button type="button">
+                                        Claim
+                                    </button>
+
+                                </div>
+
+
+                                <div class="reward-card">
+
+                                    <h3>
+                                        Explorer
+                                    </h3>
+
+                                    <p>
+                                        Reach Level 2 to unlock your first exploration reward.
+                                    </p>
+
+                                    <button type="button">
+                                        Claim
+                                    </button>
+
+                                </div>
+
+
+                                <div class="reward-card">
+
+                                    <h3>
+                                        Level Up
+                                    </h3>
+
+                                    <p>
+                                        Reach Level 2 and collect this milestone once.
+                                    </p>
+
+                                    <button type="button" disabled>
+                                        Locked
+                                    </button>
+
+                                </div>
+
+
+                                <div class="reward-card">
+
+                                    <h3>
+                                        Level Five Cache
+                                    </h3>
+
+                                    <p>
+                                        Reach Level 5 to claim the milestone cache.
+                                    </p>
+
+                                    <button type="button" disabled>
+                                        Locked
+                                    </button>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <aside class="selected-reward">
+
+                            <h2>
+                                Focus Bonus
+                            </h2>
+
+
+                            <p>
+                                Complete at least one daily quest. Available once per day.
+                            </p>
+
+
+                            <div class="reward-cost">
+                                +50 XP
+                            </div>
+
+
+                            <button type="button" class="claim-button">
+
+                                Claim Reward
+
+                            </button>
+
+
+                        </aside>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================================
+                 AI PAGE
+                 ================================================= -->
+
+                <section id="ai-page" class="page">
+
+
+                    <header class="page-header">
+
+                        <h1 class="page-title">
+                            AI
+                        </h1>
+
+                        <p class="page-subtitle">
+                            Your Personal Intelligence Companion
+                        </p>
+
+                    </header>
+
+
+                    <div class="ai-workspace-tabs" role="tablist" aria-label="AI workspace">
+                        <button type="button" class="ai-workspace-tab is-active" data-ai-view="chat"
+                            role="tab" aria-selected="true" aria-controls="ai-chat-view">AI Chat</button>
+                        <button type="button" class="ai-workspace-tab" data-ai-view="groq"
+                            role="tab" aria-selected="false" aria-controls="ai-groq-view">Groq API</button>
+                        <button type="button" class="ai-workspace-tab" data-ai-view="quest"
+                            role="tab" aria-selected="false" aria-controls="ai-quest-view">AI Quest</button>
+                    </div>
+
+                    <div class="ai-layout ai-mode-panel" id="ai-chat-view" data-ai-panel="chat" role="tabpanel">
+
+
+                        <div class="ai-chat-panel">
+
+
+                            <div class="ai-chat-header">
+
+
+                                <div>
+
+                                    <h2>
+                                        AI Assistant
+                                    </h2>
+
+                                    <span>Ask questions, plan, and learn.</span>
+
+                                </div>
+
+
+                                <div class="ai-chat-header-tools">
+                                    <div class="ai-model" id="ai-chat-provider-badge" title="Active AI provider">SYSTEM AI</div>
+                                    <button type="button" class="ai-quiet-button ai-chat-clear" id="ai-clear-chat">Clear Chat</button>
+                                </div>
+
+
+                            </div>
+
+
+
+                            <div class="chat-messages">
+                                <div class="message ai-message">
+                                    <div class="message-icon">AI</div>
+                                    <div class="message-content">
+                                        SYSTEM AI Core is ready. Connect Groq above. The API key stays in this browser tab only; never publish it in a project ZIP.
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="ai-quick-actions" aria-label="Suggested prompts">
+                        <button type="button" data-ai-prompt="Create Study Plan">Create Study Plan</button>
+                        <button type="button" data-ai-prompt="Explain a Topic">Explain a Topic</button>
+                        <button type="button" data-ai-prompt="Solve a Problem">Solve a Problem</button>
+                        <button type="button" data-ai-prompt="Get Suggestions">Get Suggestions</button>
+                    </div>
+
+                    <form class="chat-input ai-composer" aria-label="AI message composer">
+                        <div class="ai-composer-meta" aria-label="AI activity">
+                            <span><i aria-hidden="true"></i> Saved <strong id="ai-saved-message-count">1</strong></span>
+                            <span>API calls <strong id="ai-live-call-count">0</strong></span>
+                        </div>
+                        <div class="ai-composer-row">
+                            <input type="text" maxlength="12000" placeholder="Type your message..." autocomplete="off" aria-label="Message">
+                            <button type="submit" aria-label="Send message">→</button>
+                        </div>
+                    </form>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- Groq API option: opens only when the user selects Groq API. -->
+                    <section class="ai-provider-panel ai-mode-panel" id="ai-groq-view" data-ai-panel="groq"
+                        role="tabpanel" hidden>
+                        <div class="ai-subpanel-heading">
+                            <div>
+                                <span class="ai-section-kicker">ALTERNATE AI PROVIDER</span>
+                                <h2>Groq API</h2>
+                                <p>Connect Groq to enable AI chat and mission planning.</p>
+                            </div>
+                            <span class="ai-panel-symbol" aria-hidden="true"></span>
+                        </div>
+                        <div class="settings-ai-status ai-provider-status" role="status" aria-live="polite">
+                            <span class="ai-connection-status" data-ai-provider-status="groq">GROQ SETUP REQUIRED · API DISCONNECTED</span>
+                            <span class="ai-model" data-ai-provider-badge="groq">GROQ · DISCONNECTED</span>
+                        </div>
+                        <div class="groq-connect-panel groq-connect-panel" aria-label="Groq API settings">
+                            <label for="groq-api-key">Groq API key</label>
+                            <div class="groq-key-row">
+                                <input id="groq-api-key" type="password" autocomplete="off" spellcheck="false" placeholder="Paste your Groq API key here" aria-describedby="groq-key-note">
+                                <select id="groq-model-select" aria-label="Groq model">
+                                    <option value="openai/gpt-oss-20b" selected>GPT OSS 20B · Default</option>
+                                    <option value="openai/gpt-oss-120b">GPT OSS 120B</option>
+                                    <option value="qwen/qwen3.8-27b">Qwen 3.8 27B</option>
+                                    <option value="llama-3.1-8b-instant">Llama 3.1 8B Instant</option>
+                                    <option value="llama-3.3-70b-versatile">Llama 3.3 70B Versatile</option>
+                                </select>
+                                <button type="button" class="ai-primary-button" id="groq-connect-btn">Test &amp; Connect</button>
+                            </div>
+                            <small id="groq-key-note">The key stays in memory for this browser tab only. It is not saved in localStorage. Never publish your real key in a ZIP or repository.</small>
+                        </div>
+                    </section>
+
+
+                    <!-- AI Quest view: parses pasted AI output locally; no API key is required. -->
+                    <section class="ai-quest-panel ai-mode-panel" id="ai-quest-view" data-ai-panel="quest"
+                        role="tabpanel" hidden>
+                        <div class="ai-subpanel-heading">
+                            <div>
+                                <span class="ai-section-kicker">MISSION IMPORT PROTOCOL</span>
+                                <h2>AI Quest</h2>
+                                <p>Generate missions from your actual SYSTEM progress, review the analysis, then approve what enters Daily Quest. Manual import remains available below.</p>
+                            </div>
+                            <span class="ai-panel-symbol" aria-hidden="true"></span>
+                        </div>
+
+                        <div class="ai-adaptive-controls">
+                            <label for="ai-quest-focus">Personal focus (optional)</label>
+                            <input id="ai-quest-focus" type="text" maxlength="500" placeholder="Example: Mathematics first, then Python; keep tasks under 45 minutes.">
+                            <div class="ai-adaptive-options">
+                                <label for="ai-quest-count">Missions to generate</label>
+                                <select id="ai-quest-count" aria-label="Number of missions">
+                                    <option value="3">3 missions</option>
+                                    <option value="4" selected>4 missions</option>
+                                    <option value="5">5 missions</option>
+                                    <option value="6">6 missions</option>
+                                </select>
+                            </div>
+                            <button type="button" class="ai-primary-button ai-generate-button" id="ai-generate-personalized-quests">Analyze Progress &amp; Generate Missions</button>
+                            <small>Uses your currently connected provider. Only a progress summary is sent for planning; your API key is not included. Review and approve missions before adding them.</small>
+                        </div>
+
+                        <section class="ai-progress-analysis" id="ai-progress-analysis" hidden aria-live="polite">
+                            <h3>Progress Analysis</h3>
+                            <p id="ai-progress-summary"></p>
+                            <div class="ai-intelligence-metrics" aria-label="Local SYSTEM intelligence indicators">
+                                <div><span id="ai-intel-momentum-label">Momentum</span><strong id="ai-intel-momentum">—</strong></div>
+                                <div><span id="ai-intel-consistency-label">Consistency</span><strong id="ai-intel-consistency">—</strong></div>
+                                <div><span id="ai-intel-trend-label">Activity trend</span><strong id="ai-intel-trend">—</strong></div>
+                                <div><span id="ai-intel-confidence-label">Data sufficiency · heuristic</span><strong id="ai-intel-confidence">—</strong></div>
+                                <div><span id="ai-intel-review-label">Review opportunities</span><strong id="ai-intel-review">—</strong></div>
+                                <div><span id="ai-intel-learning-modes-label">Method diversity · inferred</span><strong id="ai-intel-learning-modes">—</strong></div>
+                                <div><span id="ai-intel-outcomes-label">Explicit outcomes · 30d</span><strong id="ai-intel-outcomes">—</strong></div>
+                            </div>
+                            <small class="ai-intelligence-method-note" id="ai-intel-method-note">Local activity signals will appear after analysis.</small>
+                            <div class="ai-progress-analysis-grid">
+                                <div><strong>Strengths</strong><ul id="ai-progress-strengths"></ul></div>
+                                <div><strong>Focus areas</strong><ul id="ai-progress-focus"></ul></div>
+                            </div>
+                            <p class="ai-progress-next"><strong>Recommended next step: </strong><span id="ai-progress-next-step"></span></p>
+                            <small id="ai-progress-evidence"></small>
+                        </section>
+
+                        <details class="ai-manual-import">
+                            <summary>Manual import / edit mission list</summary>
+                            <label class="ai-quest-input-label" for="ai-quest-input">Paste or edit numbered missions</label>
+                            <textarea id="ai-quest-input" class="ai-quest-input" rows="7"
+                                placeholder="1. Study mathematics for 30 minutes.&#10;2. Solve 10 physics problems.&#10;3. Practice Python for 45 minutes.&#10;4. Learn 15 English words."></textarea>
+                            <div class="ai-quest-actions">
+                                <button type="button" class="ai-secondary-button" id="ai-quest-preview">Preview Missions</button>
+                                <button type="button" class="ai-quiet-button" id="ai-quest-clear">Clear</button>
+                            </div>
+                        </details>
+
+                        <div class="ai-quest-actions ai-quest-approve-actions">
+                            <button type="button" class="ai-secondary-button" id="ai-quest-import" disabled>Add Approved Missions to Daily Quest</button>
+                        </div>
+                        <div class="ai-quest-status" id="ai-quest-status" role="status" aria-live="polite">
+                            Connect Groq in the Groq API tab, then generate a plan from your current levels and recorded quest history. Nothing is added until you approve it.
+                        </div>
+
+                        <div class="ai-quest-preview-block">
+                            <div class="ai-quest-preview-header">
+                                <h3>Import Preview</h3>
+                                <span id="ai-quest-preview-count">0 missions</span>
+                            </div>
+                            <ol class="ai-quest-preview-list" id="ai-quest-preview-list">
+                                <li class="ai-quest-preview-empty">Your separated missions will appear here before they are added.</li>
+                            </ol>
+                        </div>
+                    </section>
+
+
+                </section>
+
+
+
+                <!-- =================================================
+                 SETTINGS PAGE
+                 ================================================= -->
+
+                <section id="settings-page" class="page">
+
+
+                    <header class="page-header">
+
+                        <h1 class="page-title">
+                            Settings
+                        </h1>
+
+                        <p class="page-subtitle">
+                            Customize your system. Build your future.
+                        </p>
+
+                    </header>
+
+
+                    <div class="settings-panel">
+
+                        <div class="settings-row" id="system-language-setting">
+                            <div class="settings-number">00</div>
+                            <div class="settings-icon" aria-hidden="true"></div>
+                            <div class="settings-information">
+                                <h2>Language</h2>
+                                <p>Choose the language used throughout the SYSTEM interface.</p>
+                            </div>
+                            <button type="button" id="system-language-toggle" title="Switch between English and Persian" aria-label="Switch interface to Persian"><span class="lang-dot" aria-hidden="true"></span>فارسی · FA</button>
+                        </div>
+
+                        <section class="system-update-card" id="system-github-updater" hidden aria-labelledby="system-update-title">
+                            <div class="system-update-heading">
+                                <div>
+                                    <p class="system-update-eyebrow">SYSTEM RELEASE CHANNEL</p>
+                                    <h2 id="system-update-title">App updates</h2>
+                                    <p class="system-update-description">Check for signed SYSTEM updates from your private GitHub repository.</p>
+                                </div>
+                                <span class="system-update-version" id="system-update-current-version">Current version</span>
+                            </div>
+
+                            <div class="system-update-token-area">
+                                <label for="system-github-token">Fine-grained GitHub token</label>
+                                <input id="system-github-token" type="password" inputmode="text" autocomplete="new-password" autocapitalize="off" spellcheck="false" placeholder="github_pat_…" aria-describedby="system-github-token-help">
+                                <p class="system-update-help" id="system-github-token-help">Use a fine-grained token limited to <code>ivan-timur/System_v1.1</code> with read-only Contents access. The token is encrypted with Android Keystore on this device and is not written to app web storage.</p>
+                                <div class="system-update-actions system-update-token-actions">
+                                    <button type="button" id="system-github-token-save">Save token</button>
+                                    <button type="button" id="system-github-token-clear" class="system-update-secondary">Remove saved token</button>
+                                </div>
+                            </div>
+
+                            <div class="system-update-divider"></div>
+                            <div class="system-update-actions">
+                                <button type="button" id="system-update-check">Check for updates</button>
+                                <button type="button" id="system-update-download" hidden>Download and install</button>
+                            </div>
+                            <p class="system-update-status" id="system-update-status" role="status" aria-live="polite">Update check has not run yet.</p>
+                            <p class="system-update-release-notes" id="system-update-release-notes" hidden></p>
+                            <p class="system-update-footnote">APK updates replace the Android package and require installer approval.</p>
+
+                            <div class="system-update-divider"></div>
+                            <section id="system-web-updater" aria-labelledby="system-web-update-title">
+                                <div class="system-update-heading">
+                                    <div>
+                                        <p class="system-update-eyebrow">SYSTEM WEB CHANNEL</p>
+                                        <h2 id="system-web-update-title">Interface and feature updates</h2>
+                                        <p class="system-update-description">Update compatible web UI and JavaScript features without reinstalling the APK.</p>
+                                    </div>
+                                    <span class="system-update-version" id="system-web-update-version">Web 1.0.0</span>
+                                </div>
+                                <div class="system-update-actions">
+                                    <button type="button" id="system-web-update-check">Check web updates</button>
+                                    <button type="button" id="system-web-update-apply" hidden>Apply web update</button>
+                                </div>
+                                <p class="system-update-status" id="system-web-update-status" role="status" aria-live="polite">Web update check has not run yet.</p>
+                                <p class="system-update-footnote" id="system-web-update-footnote">Web packages are verified before activation. SYSTEM keeps the previous version so it can recover if a new page fails to start. Native Android changes still require an APK update.</p>
+                            </section>
+                        </section>
+
+                        <div class="settings-row">
+
+                            <div class="settings-number">
+                                01
+                            </div>
+
+                            <div class="settings-icon"></div>
+
+                            <div class="settings-information">
+
+                                <h2>
+                                    Inventory
+                                </h2>
+
+                                <p>
+                                    View all your stored items,
+                                    titles and special rewards.
+                                </p>
+
+                            </div>
+
+                            <button type="button">
+                                View Inventory →
+                            </button>
+
+                        </div>
+
+
+
+                        <div class="settings-row">
+
+                            <div class="settings-number">
+                                02
+                            </div>
+
+                            <div class="settings-icon"></div>
+
+                            <div class="settings-information">
+
+                                <h2>
+                                    Store
+                                </h2>
+
+                                <p>
+                                    Spend your currency to unlock
+                                    valuable items and features.
+                                </p>
+
+                            </div>
+
+                            <button type="button">
+                                Open Store →
+                            </button>
+
+                        </div>
+
+
+
+                        <div class="settings-row">
+
+                            <div class="settings-number">
+                                03
+                            </div>
+
+                            <div class="settings-icon"></div>
+
+                            <div class="settings-information">
+
+                                <h2>
+                                    Goals
+                                </h2>
+
+                                <p>
+                                    Set your future goals and let
+                                    the AI help create your path.
+                                </p>
+
+                            </div>
+
+                            <button type="button">
+                                Manage Goals →
+                            </button>
+
+                        </div>
+
+
+
+                        <div class="settings-row">
+
+                            <div class="settings-number">
+                                04
+                            </div>
+
+                            <div class="settings-icon"></div>
+
+                            <div class="settings-information">
+
+                                <h2>
+                                    Roadmap
+                                </h2>
+
+                                <p>
+                                    View your personalized learning
+                                    and progress path.
+                                </p>
+
+                            </div>
+
+                            <button type="button">
+                                View Roadmap →
+                            </button>
+
+                        </div>
+
+
+
+                        <div class="settings-row">
+
+                            <div class="settings-number">
+                                05
+                            </div>
+
+                            <div class="settings-icon"></div>
+
+                            <div class="settings-information">
+
+                                <h2>
+                                    Theme
+                                </h2>
+
+                                <p>
+                                    Change the appearance of your
+                                    SYSTEM interface.
+                                </p>
+
+                            </div>
+
+                            <button type="button">
+                                Change Theme →
+                            </button>
+
+                        </div>
+
+                        <div class="settings-row">
+                            <div class="settings-number">07</div>
+                            <div class="settings-icon"></div>
+                            <div class="settings-information">
+                                <h2>My Profile &amp; AI Memory</h2>
+                                <p>Teach SYSTEM about your interests, goals, learning style, motivation and visual preferences.</p>
+                            </div>
+                            <button type="button" id="open-personal-profile">Personalize SYSTEM →</button>
+                        </div>
+
+                        <div class="settings-row">
+                            <div class="settings-number">06</div>
+                            <div class="settings-icon"></div>
+                            <div class="settings-information">
+                                <h2>Data Backup</h2>
+                                <p>Export your progress or restore it from a backup file.</p>
+                            </div>
+                            <button type="button">Backup / Restore →</button>
+                        </div>
+
+                        <div class="settings-row" id="system-visual-effects-setting">
+                            <div class="settings-number">08</div>
+                            <div class="settings-icon" aria-hidden="true"></div>
+                            <div class="settings-information">
+                                <h2>Visual Effects</h2>
+                                <p>Control the cosmic atmosphere and milestone celebrations.</p>
+                            </div>
+                            <button type="button">Configure →</button>
+                        </div>
+
+                    </div>
+
+                    <section id="personal-profile" class="personal-profile-panel" aria-labelledby="personal-profile-title">
+                        <div class="profile-heading">
+                            <div>
+                                <p class="profile-eyebrow">PERSONALIZATION CORE</p>
+                                <h2 id="personal-profile-title">My Profile &amp; AI Memory</h2>
+                                <p class="profile-intro">Build a reliable personal operating profile for your goals, learning, motivation and boundaries. Profile data stays on this device by default; connected AI receives only selected context after you explicitly enable sharing.</p>
+                                <div class="profile-metrics" aria-label="Profile overview"><div class="profile-metric"><strong id="profile-completion">0%</strong><span>Profile completed</span></div><div class="profile-metric"><strong id="profile-filled-count">0 / 14</strong><span>Personal signals</span></div><div class="profile-metric"><strong id="profile-last-updated">—</strong><span>Last saved</span></div></div>
+                            </div>
+                            <span id="profile-save-state" class="profile-save-state" role="status" aria-live="polite">Not saved yet</span>
+                        </div>
+                        <form id="personal-profile-form">
+                            <div class="profile-fields-grid">
+                                <label class="profile-field profile-field-feature"><span>00 · North Star</span><small>Your personal mission in one or two sentences. Use this as a compass, not a rigid rule.</small><textarea name="northStar" rows="2" maxlength="3000" placeholder="The kind of life, person or contribution I am working toward…"></textarea></label>
+                                <label class="profile-field profile-field-feature"><span>00 · Current focus</span><small>What matters most right now? Keep this separate from your long-term vision.</small><textarea name="currentFocus" rows="2" maxlength="3000" placeholder="My top 1–3 priorities for this season…"></textarea></label>
+                                <label class="profile-field"><span>01 · Identity &amp; values</span><small>Who do you want to become? Which values matter most?</small><textarea name="identity" rows="3" placeholder="e.g. independent, disciplined, creative, analytical…"></textarea></label>
+                                <label class="profile-field"><span>02 · Interests</span><small>Topics you enjoy exploring, creating or studying.</small><textarea name="interests" rows="3" placeholder="e.g. mathematics, physics, programming, AI…"></textarea></label>
+                                <label class="profile-field"><span>03 · Goals &amp; vision</span><small>Long-term vision, yearly goals and current priorities.</small><textarea name="goals" rows="3" placeholder="What are your three biggest goals?"></textarea></label>
+                                <label class="profile-field"><span>04 · Strengths &amp; growth areas</span><small>Separate your own impressions from evidence and results.</small><textarea name="strengths" rows="3" placeholder="Current strengths, challenges and skills to improve…"></textarea></label>
+                                <label class="profile-field"><span>05 · Learning profile</span><small>Preferred learning methods, pace, practice and feedback.</small><textarea name="learning" rows="3" placeholder="Theory, projects, quizzes, step-by-step explanations…"></textarea></label>
+                                <label class="profile-field"><span>06 · Schedule &amp; constraints</span><small>Optional availability and practical limits for planning.</small><textarea name="lifestyle" rows="3" placeholder="Realistic study time, busy days, focus windows…"></textarea></label>
+                                <label class="profile-field"><span>07 · Motivation</span><small>What helps you continue? What drains your motivation?</small><textarea name="motivation" rows="3" placeholder="Real projects, measurable progress, challenges…"></textarea></label>
+                                <label class="profile-field"><span>08 · Visual preferences</span><small>Describe your favorite themes and interface details.</small><textarea name="visual" rows="3" placeholder="Royal gold, cosmic blue, obsidian, glass panels…"></textarea></label>
+                                <label class="profile-field"><span>09 · Observed patterns</span><small>Patterns you have noticed; SYSTEM should treat these as hypotheses.</small><textarea name="patterns" rows="3" placeholder="When you focus best, tasks you tend to postpone…"></textarea></label>
+                                <label class="profile-field"><span>10 · Personal rules</span><small>Rules and boundaries SYSTEM should respect.</small><textarea name="rules" rows="3" maxlength="12000" placeholder="No unearned XP, explain recommendations, ask before major changes…"></textarea></label>
+                                <label class="profile-field"><span>11 · Evidence &amp; milestones</span><small>Concrete proof of progress: projects, test results, achievements or examples.</small><textarea name="evidence" rows="3" maxlength="12000" placeholder="What I have demonstrated, with dates or links if useful…"></textarea></label>
+                                <label class="profile-field"><span>12 · Boundaries &amp; do-not-assume</span><small>What SYSTEM should not infer, pressure you about, or change without asking.</small><textarea name="boundaries" rows="3" maxlength="12000" placeholder="Never assume… Always ask before… Avoid…"></textarea></label>
+                            </div>
+                            <div class="profile-controls">
+                                <label class="profile-field profile-select"><span>AI autonomy</span><select name="autonomy"><option value="suggest">Suggest only — I decide</option><option value="confirm">Prepare changes; ask before applying important ones</option><option value="managed">Automate routine planning; keep review and undo controls</option></select></label>
+                                <label class="profile-field profile-select"><span>Preferred response style</span><select name="responseStyle"><option value="balanced">Balanced and practical</option><option value="deep">Deep, technical analysis</option><option value="concise">Concise and direct</option><option value="coach">Supportive coach</option><option value="critical">Strict, evidence-based critic</option></select></label>
+                            </div>
+                            <section class="profile-ai-engine" aria-labelledby="profile-ai-engine-title">
+                                <div class="profile-ai-engine-head">
+                                    <div><p class="profile-eyebrow">PERSONALIZATION ENGINE</p><h3 id="profile-ai-engine-title">Connect your profile to SYSTEM AI</h3><p>Use your own goals and learning preferences to make answers, study plans and mission suggestions more relevant. This is request-time context, not permanent memory stored by the AI provider.</p></div>
+                                    <span class="profile-private-badge" id="profile-ai-sharing-state">PRIVATE BY DEFAULT</span>
+                                </div>
+                                <label class="profile-consent-row"><input type="checkbox" id="profile-ai-consent"><span><b>Allow selected profile details to be sent to the connected AI provider</b><small>OFF means no My Profile fields are attached to AI requests. Your actual prompt and normal chat history still follow the existing AI chat behavior.</small></span></label>
+                                <div class="profile-ai-scopes" aria-label="Profile context sharing choices">
+                                    <label><input type="checkbox" data-profile-scope="currentFocus" checked><span>Current focus</span></label>
+                                    <label><input type="checkbox" data-profile-scope="goals" checked><span>Goals &amp; vision</span></label>
+                                    <label><input type="checkbox" data-profile-scope="interests" checked><span>Interests</span></label>
+                                    <label><input type="checkbox" data-profile-scope="learning" checked><span>Learning profile</span></label>
+                                    <label><input type="checkbox" data-profile-scope="strengths" checked><span>Strengths &amp; growth areas</span></label>
+                                    <label><input type="checkbox" data-profile-scope="motivation" checked><span>Motivation</span></label>
+                                    <label><input type="checkbox" data-profile-scope="northStar"><span>North Star / mission</span></label>
+                                    <label><input type="checkbox" data-profile-scope="identity"><span>Identity &amp; values</span></label>
+                                    <label><input type="checkbox" data-profile-scope="lifestyle"><span>Schedule &amp; constraints</span></label>
+                                    <label><input type="checkbox" data-profile-scope="rules"><span>Personal rules</span></label>
+                                    <label><input type="checkbox" data-profile-scope="boundaries"><span>Boundaries</span></label>
+                                    <label><input type="checkbox" data-profile-scope="evidence"><span>Evidence &amp; milestones</span></label>
+                                    <label><input type="checkbox" data-profile-scope="visual"><span>Visual preferences</span></label>
+                                    <label><input type="checkbox" data-profile-scope="responseStyle" checked><span>Preferred response style</span></label>
+                                    <label><input type="checkbox" data-profile-scope="autonomy" checked><span>AI autonomy preference</span></label>
+                                    <label><input type="checkbox" data-profile-scope="progress"><span>Current SYSTEM level &amp; skill snapshot</span></label>
+                                </div>
+                                <div class="profile-actions profile-intelligence-actions">
+                                    <button type="button" id="profile-build-local-brief" class="profile-primary">Build private local brief</button>
+                                    <button type="button" id="profile-analyze-with-ai">Analyze with connected AI</button>
+                                    <button type="button" id="profile-clear-insights" class="profile-danger">Clear AI insights</button>
+                                </div>
+                                <p id="profile-ai-status" class="profile-ai-status" role="status" aria-live="polite">Profile sharing is off. Local profile analysis never sends data to a provider.</p>
+                                <section class="profile-brief-card" id="profile-local-brief" hidden aria-labelledby="profile-local-brief-title"><h4 id="profile-local-brief-title">Personal operating brief · local only</h4><pre id="profile-local-brief-output"></pre></section>
+                                <section class="profile-insights-panel" id="profile-ai-insights" hidden aria-labelledby="profile-ai-insights-title"><div class="profile-insights-heading"><div><h4 id="profile-ai-insights-title">AI profile analysis</h4><p>Suggestions are hypotheses, not diagnoses or facts. Review them before relying on them.</p></div><span id="profile-insights-date"></span></div><div id="profile-ai-insights-content"></div><div class="profile-insight-review-actions"><button type="button" id="profile-insights-confirm">Mark as reviewed / useful</button><button type="button" id="profile-insights-reject" class="profile-danger">Mark as inaccurate</button></div><p id="profile-insights-review-state" role="status"></p><div id="profile-insight-history" class="profile-insight-history" aria-label="Saved profile analysis history"></div></section>
+                                <p class="profile-privacy-note">When sharing is enabled, only non-empty fields selected above are attached as context to AI requests. This feature does not send the profile during provider connection tests. You can turn sharing off at any time. Do not enter passwords, API keys, financial identifiers or other secrets into your profile.</p>
+                            </section>
+                            <div class="profile-memory-note"><strong>Four-layer memory model</strong><span><b>Profile</b> = your stated preferences</span><span><b>Current state</b> = priorities and constraints</span><span><b>History</b> = evidence you choose to record</span><span><b>Insights</b> = hypotheses, not facts, until you confirm them</span></div>
+                            <div class="profile-actions">
+                                <button type="submit" class="profile-primary">Save personal profile</button>
+                                <button type="button" id="export-personal-profile">Export profile</button>
+                                <button type="button" id="import-personal-profile">Import profile</button>
+                                <button type="button" id="clear-personal-profile" class="profile-danger">Delete profile</button>
+                                <input type="file" id="personal-profile-file" accept="application/json,.json" hidden>
+                            </div>
+                            <p class="profile-privacy-note">Storage: profile data and reviewed insights remain in this browser. Exported JSON files may contain personal information; keep them private. Clearing browser data can remove this profile.</p>
+                        </form>
+                    </section>
+
+
+                </section>
+
+
+            </div>
+
+
+        </main>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+    <script type="module" src="js/app.js"></script>
+    <script src="js/features/apex-evolution.js"></script>
+    <script src="js/features/rebirth-core.js"></script>
+    <script src="js/features/personal-profile-settings.js"></script>
+</body>
+
+</html>

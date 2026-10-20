@@ -1,0 +1,367 @@
+/* =========================================================
+   SYSTEM — Mobile Premium UI Layer
+   Excellent phone-first design: touch, spacing, depth, safe-area
+   ========================================================= */
+
+/* ---------- Base mobile refinements ---------- */
+@media (max-width: 850px) {
+  :root {
+    --mobile-radius: 18px;
+    --mobile-radius-sm: 14px;
+    --mobile-gap: 14px;
+    --touch-min: 48px;
+  }
+
+  #system-app {
+    /* Better font smoothing on mobile */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Main content breathing room */
+  #system-app .main-content {
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+    padding-bottom: calc(88px + env(safe-area-inset-bottom));
+  }
+
+  /* Player HUD – cleaner & more compact */
+  #system-app .player-hud {
+    border-radius: var(--mobile-radius);
+    padding: 12px 14px;
+    margin-bottom: 16px;
+    background:
+      linear-gradient(145deg, rgba(8, 18, 36, 0.92), rgba(3, 9, 20, 0.96));
+    border: 1px solid rgba(70, 150, 255, 0.28);
+    box-shadow:
+      0 10px 28px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+}
+
+/* ---------- Bottom Navigation (Premium) ---------- */
+@media (max-width: 850px) {
+  /* Hide desktop sidebar on mobile */
+  #system-app .sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    width: 100%;
+    height: auto;
+    z-index: 1000;
+    background: rgba(4, 10, 22, 0.88);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border-top: 1px solid rgba(80, 160, 255, 0.25);
+    border-right: none;
+    border-radius: 22px 22px 0 0;
+    padding: 8px 6px calc(8px + env(safe-area-inset-bottom));
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.45);
+  }
+
+  #system-app .sidebar-header {
+    display: none; /* logo not needed in bottom bar */
+  }
+
+  #system-app .sidebar-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2px;
+    padding: 0;
+    width: 100%;
+  }
+
+  #system-app .nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-height: var(--touch-min);
+    min-width: 0;
+    padding: 8px 4px;
+    border-radius: 16px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: rgba(180, 210, 255, 0.65);
+    background: transparent;
+    border: none;
+    transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  #system-app .nav-item img,
+  #system-app .nav-item .nav-icon {
+    width: 24px;
+    height: 24px;
+    opacity: 0.75;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+  }
+
+  #system-app .nav-item.active {
+    color: #e8f4ff;
+    background: linear-gradient(145deg, rgba(25, 90, 200, 0.35), rgba(15, 55, 140, 0.25));
+    box-shadow:
+      0 0 0 1px rgba(90, 170, 255, 0.35),
+      0 6px 18px rgba(20, 90, 220, 0.25);
+  }
+
+  #system-app .nav-item.active img,
+  #system-app .nav-item.active .nav-icon {
+    opacity: 1;
+    transform: translateY(-1px) scale(1.08);
+  }
+
+  #system-app .nav-item:active {
+    transform: scale(0.94);
+  }
+}
+
+/* ---------- Cards & Panels – Premium depth ---------- */
+@media (max-width: 850px) {
+  #system-app .panel,
+  #system-app .card,
+  #system-app .skill-card,
+  #system-app .quest-card,
+  #system-app .reward-card,
+  #system-app .settings-row,
+  #system-app [class*="-panel"] {
+    border-radius: var(--mobile-radius);
+    border: 1px solid rgba(70, 150, 255, 0.22);
+    background:
+      linear-gradient(160deg, rgba(9, 20, 40, 0.94), rgba(3, 9, 20, 0.97));
+    box-shadow:
+      0 12px 32px rgba(0, 0, 0, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  }
+
+  /* Skill Tree cards */
+  #system-app .skill-node,
+  #system-app .skill-item {
+    border-radius: var(--mobile-radius-sm);
+    min-height: 56px;
+    padding: 12px 14px;
+  }
+
+  /* Better spacing between sections */
+  #system-app .page-section,
+  #system-app .content-block {
+    margin-bottom: 18px;
+  }
+}
+
+/* ---------- Typography & hierarchy ---------- */
+@media (max-width: 850px) {
+  #system-app h1 {
+    font-size: clamp(22px, 6vw, 28px);
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+  }
+
+  #system-app h2 {
+    font-size: clamp(17px, 4.5vw, 21px);
+    letter-spacing: -0.02em;
+  }
+
+  #system-app h3 {
+    font-size: clamp(15px, 4vw, 17px);
+  }
+
+  #system-app p,
+  #system-app .description {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  /* Prevent tiny text */
+  #system-app .nav-item span,
+  #system-app .label,
+  #system-app .meta {
+    font-size: max(11px, 0.7rem);
+  }
+}
+
+/* ---------- Buttons & interactive elements ---------- */
+@media (max-width: 850px) {
+  #system-app button,
+  #system-app .btn,
+  #system-app [role="button"] {
+    min-height: var(--touch-min);
+    border-radius: 14px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  }
+
+  #system-app button:active,
+  #system-app .btn:active {
+    transform: scale(0.96);
+  }
+
+  /* Primary action buttons */
+  #system-app .btn-primary,
+  #system-app button.primary {
+    background: linear-gradient(145deg, #1a6dff, #0d4bcc);
+    box-shadow: 0 6px 20px rgba(20, 100, 255, 0.35);
+  }
+}
+
+/* ---------- Skill Command Center specific ---------- */
+@media (max-width: 850px) {
+  #system-app #skill-tree-panel {
+    margin-top: 12px;
+    padding: 14px;
+    border-radius: var(--mobile-radius);
+  }
+
+  #system-app .skill-tree-header {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+  }
+
+  #system-app .skill-tree-overview {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* Search & filters more thumb-friendly */
+  #system-app .skill-tree-search,
+  #system-app input[type="search"],
+  #system-app .filter-bar {
+    min-height: 46px;
+    border-radius: 14px;
+    font-size: 15px;
+  }
+}
+
+/* ---------- Safe area & notches ---------- */
+@supports (padding: max(0px)) {
+  @media (max-width: 850px) {
+    #system-app .sidebar {
+      padding-bottom: max(10px, env(safe-area-inset-bottom));
+    }
+
+    #system-app .main-content {
+      padding-bottom: calc(92px + env(safe-area-inset-bottom));
+    }
+  }
+}
+
+/* ---------- Very small phones ---------- */
+@media (max-width: 380px) {
+  #system-app .nav-item {
+    font-size: 10px;
+    gap: 3px;
+    padding: 6px 2px;
+  }
+
+  #system-app .nav-item img,
+  #system-app .nav-item .nav-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  #system-app .main-content {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  #system-app .player-hud {
+    padding: 10px 12px;
+  }
+}
+
+/* ---------- Landscape mobile ---------- */
+@media (max-width: 900px) and (orientation: landscape) {
+  #system-app .sidebar {
+    border-radius: 16px 16px 0 0;
+    padding-top: 4px;
+    padding-bottom: max(4px, env(safe-area-inset-bottom));
+  }
+
+  #system-app .nav-item {
+    min-height: 44px;
+    flex-direction: row;
+    gap: 6px;
+    font-size: 12px;
+  }
+
+  #system-app .main-content {
+    padding-bottom: calc(68px + env(safe-area-inset-bottom));
+  }
+}
+
+/* ---------- Subtle entrance polish ---------- */
+@media (max-width: 850px) {
+  #system-app .page-content > * {
+    animation: mobileFadeUp 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes mobileFadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* ---------- SYSTEM Intelligence Insight Card () ---------- */
+.system-intelligence-card {
+  margin: 0 0 16px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(80, 170, 255, 0.3);
+  background:
+    radial-gradient(ellipse at 10% 0%, rgba(40, 120, 255, 0.12), transparent 50%),
+    linear-gradient(155deg, rgba(8, 18, 38, 0.95), rgba(3, 9, 20, 0.98));
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+}
+.system-intelligence-card .si-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: #9ecfff;
+}
+.system-intelligence-card .si-momentum {
+  font-weight: 700;
+  color: #e8f4ff;
+  background: rgba(30, 100, 220, 0.35);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+.system-intelligence-card .si-next {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #eef6ff;
+}
+.system-intelligence-card .si-insights {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: #a8c8e8;
+  line-height: 1.45;
+}
+.system-intelligence-card .si-insights li + li { margin-top: 4px; }
+
+@media (max-width: 850px) {
+  .system-intelligence-card {
+    border-radius: 14px;
+    padding: 12px 14px;
+  }
+}

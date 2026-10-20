@@ -1,0 +1,14 @@
+{
+  "id": "computer",
+  "name": "Computer",
+  "skills": [
+    "Computer Fundamentals",
+    "Programming",
+    "Data Structures",
+    "Algorithms",
+    "Software Engineering"
+  ],
+  "level": 1,
+  "xp": 0,
+  "xpRequired": 100
+}

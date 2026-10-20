@@ -1,0 +1,340 @@
+/* SYSTEM skill tree: compact, touch-friendly nodes. */
+#system-app .skill-tree {
+    width: 100%;
+    gap: 0;
+}
+
+#system-app .skill-node-wrapper {
+    position: relative;
+}
+
+#system-app .skill-node {
+    border-radius: 6px;
+    overflow-wrap: anywhere;
+}
+
+#system-app .skill-node.locked {
+    border-color: rgba(109, 130, 160, .22);
+    opacity: .68;
+    filter: saturate(.65);
+}
+
+#system-app .skill-node-number {
+    display: grid;
+    place-items: center;
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    color: var(--color-neon-white);
+    background: rgba(7, 24, 49, .95);
+    font-weight: 800;
+}
+
+#system-app .skill-node.unlocked .skill-node-number {
+    border-color: var(--color-blue-light);
+    box-shadow: 0 0 12px rgba(45, 145, 255, .2);
+}
+
+#system-app .skill-node-info {
+    min-width: 0;
+}
+
+#system-app .skill-node-info h3 {
+    margin: 0;
+    color: var(--color-neon-white);
+    font-size: 14px;
+}
+
+#system-app .skill-node-info span {
+    display: inline-block;
+    margin-top: 5px;
+    color: var(--color-text-muted);
+    font-size: 9px;
+    letter-spacing: .1em;
+}
+
+#system-app .skill-connection {
+    width: 2px;
+    height: 16px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, var(--color-blue-light), rgba(30, 130, 255, .12));
+}
+
+@media (max-width: 600px) {
+    #system-app #skill-tree-panel {
+        padding: 12px;
+    }
+    #system-app .skill-node {
+        min-height: 70px;
+        padding: 12px;
+        gap: 11px;
+    }
+}
+
+/* SYSTEM — nested curriculum, individual XP bars, and keyboard-friendly expanders. */
+#system-app #skill-tree-panel .skill-node-wrapper {
+    min-width: 0;
+    align-self: start;
+    overflow: hidden;
+    border: 1px solid rgba(93, 169, 255, .14);
+    border-radius: 12px;
+    background: rgba(3, 9, 19, .54);
+}
+
+#system-app #skill-tree-panel .skill-node-wrapper.is-filtered-out {
+    display: none;
+}
+
+#system-app #skill-tree-panel .skill-node {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    opacity: 1;
+    filter: none;
+}
+
+#system-app #skill-tree-panel .skill-node.locked {
+    opacity: .78;
+    filter: saturate(.72);
+}
+
+#system-app #skill-tree-panel .skill-node-info h3 {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+#system-app #skill-tree-panel .skill-node-description {
+    margin: 5px 0 0;
+    color: #94a7c0;
+    font-size: 11px;
+    line-height: 1.65;
+}
+
+#system-app #skill-tree-panel .skill-node-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 7px;
+}
+
+#system-app #skill-tree-panel .skill-node-meta .skill-requirement,
+#system-app #skill-tree-panel .skill-node-meta .skill-status {
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    margin: 0;
+    padding: 4px 7px;
+    border: 1px solid rgba(108, 145, 192, .16);
+    border-radius: 6px;
+    color: #b6c7df;
+    background: rgba(9, 20, 37, .64);
+    font-size: 9px;
+    line-height: 1.5;
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+}
+
+#system-app #skill-tree-panel .skill-node-meta .skill-status.is-unlocked {
+    color: #9bd8ff;
+    border-color: rgba(93, 169, 255, .3);
+    background: rgba(24, 84, 142, .16);
+}
+
+#system-app #skill-tree-panel .skill-node-meta .skill-status.is-locked {
+    color: #c0a8a8;
+}
+
+#system-app #skill-tree-panel .skill-node-progress-track,
+#system-app #skill-tree-panel .skill-subnode-xp-row + .skill-node-progress-track {
+    width: 100%;
+    height: 5px;
+    margin-top: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(100, 145, 198, .14);
+    border-radius: 999px;
+    background: rgba(1, 6, 14, .85);
+}
+
+#system-app #skill-tree-panel .skill-node-progress-track > span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #2573cc, #78c8ff);
+    box-shadow: 0 0 10px rgba(75, 164, 255, .22);
+    transition: width .25s ease;
+}
+
+#system-app #skill-tree-panel .skill-expand-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    margin-top: 11px;
+    padding: 9px 10px;
+    border: 1px solid rgba(93, 169, 255, .19);
+    border-radius: 8px;
+    color: #a9d7ff;
+    background: rgba(17, 52, 88, .2);
+    font: inherit;
+    font-size: 10px;
+    font-weight: 750;
+    text-align: start;
+    cursor: pointer;
+    transition: border-color .18s ease, background .18s ease;
+}
+
+#system-app #skill-tree-panel .skill-expand-button:hover {
+    border-color: rgba(112, 191, 255, .45);
+    background: rgba(30, 89, 145, .25);
+}
+
+#system-app #skill-tree-panel .skill-expand-button:focus-visible {
+    outline: 2px solid #83c6ff;
+    outline-offset: 2px;
+}
+
+#system-app #skill-tree-panel .skill-expand-button b {
+    color: #d1ebff;
+    font-size: 15px;
+    line-height: 1;
+}
+
+#system-app #skill-tree-panel .skill-children[hidden] {
+    display: none;
+}
+
+#system-app #skill-tree-panel .skill-children {
+    display: grid;
+    gap: 8px;
+    padding: 0 10px 11px;
+}
+
+#system-app #skill-tree-panel .skill-subnode-wrapper {
+    min-width: 0;
+    padding-inline-start: 10px;
+    border-inline-start: 2px solid rgba(93, 169, 255, .21);
+}
+
+#system-app #skill-tree-panel .skill-subnode-card {
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid rgba(92, 136, 192, .14);
+    border-radius: 9px;
+    background: linear-gradient(135deg, rgba(8, 18, 33, .92), rgba(5, 10, 20, .92));
+}
+
+#system-app #skill-tree-panel .skill-subnode-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 9px;
+}
+
+#system-app #skill-tree-panel .skill-subnode-heading h4 {
+    min-width: 0;
+    margin: 0;
+    color: #e2efff;
+    font-size: 11px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+#system-app #skill-tree-panel .skill-subnode-status {
+    flex: 0 0 auto;
+    max-width: 48%;
+    padding: 3px 6px;
+    border: 1px solid rgba(93, 169, 255, .17);
+    border-radius: 5px;
+    color: #96cfff;
+    font-size: 8px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+#system-app #skill-tree-panel .skill-subnode-status.is-locked {
+    color: #c9acac;
+    border-color: rgba(180, 125, 125, .2);
+    background: rgba(89, 29, 35, .14);
+}
+
+#system-app #skill-tree-panel .skill-subnode-card > p {
+    margin: 6px 0 0;
+    color: #8fa5c1;
+    font-size: 10px;
+    line-height: 1.65;
+}
+
+#system-app #skill-tree-panel .skill-subnode-xp-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 9px;
+    color: #95abc7;
+    font-size: 9px;
+}
+
+#system-app #skill-tree-panel .skill-subnode-xp-row bdi:first-child {
+    color: #c6e3ff;
+    font-weight: 800;
+}
+
+#system-app #skill-tree-panel .skill-prerequisite-note {
+    display: block;
+    margin-top: 7px;
+    color: #c8aaaa;
+    font-size: 9px;
+    line-height: 1.6;
+}
+
+#system-app #skill-tree-panel .skill-subnode-expand {
+    margin-top: 9px;
+    padding: 7px 8px;
+    font-size: 9px;
+}
+
+#system-app #skill-tree-panel .skill-tree-kpis {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    color: #91a8c5;
+    font-size: 9px;
+    line-height: 1.55;
+}
+
+#system-app #skill-tree-panel .skill-tree-kpis bdi {
+    color: #d9edff;
+    font-weight: 800;
+}
+
+#system-app #skill-tree-panel .skill-tree-learning-note {
+    padding: 10px 12px;
+    border: 1px solid rgba(93, 169, 255, .14);
+    border-radius: 8px;
+    color: #9aafc8;
+    background: rgba(4, 15, 29, .66);
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+html[dir="rtl"] #system-app #skill-tree-panel .skill-subnode-wrapper {
+    border-inline-start-width: 2px;
+}
+
+@media (max-width: 600px) {
+    #system-app #skill-tree-panel .skill-node-info h3 { font-size: 13px; }
+    #system-app #skill-tree-panel .skill-node-meta .skill-requirement,
+    #system-app #skill-tree-panel .skill-node-meta .skill-status { font-size: 8px; }
+    #system-app #skill-tree-panel .skill-subnode-card { padding: 9px; }
+    #system-app #skill-tree-panel .skill-subnode-heading { flex-direction: column; align-items: flex-start; }
+    #system-app #skill-tree-panel .skill-subnode-status { max-width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #system-app #skill-tree-panel .skill-node-progress-track > span,
+    #system-app #skill-tree-panel .skill-expand-button { transition: none; }
+}

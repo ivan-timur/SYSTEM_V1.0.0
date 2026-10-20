@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const source = fs.readFileSync(new URL('../../src/storage/database-health.ts', import.meta.url), 'utf8');
+const app = fs.readFileSync(new URL('../../js/app.js', import.meta.url), 'utf8');
+assert.match(source, /export async function inspectSystemDatabase/);
+assert.match(source, /db\.transaction\(\[\.\.\.SYSTEM_STORES\], 'readonly'\)/, 'inspection must use a readonly transaction');
+assert.match(source, /readOnly: true/);
+assert.match(source, /missing-main-player/);
+assert.match(source, /invalid-xp-events/);
+assert.match(source, /xp-event-missing-quest/);
+assert.match(source, /invalid-activity-records/);
+assert.doesNotMatch(source, /objectStore\([^)]*\)\.(put|add|delete|clear)\(/, 'diagnostics must never mutate the database');
+assert.match(app, /SYSTEMStorageDiagnostics = Object\.freeze/);
+assert.match(app, /inspectIndexedDB: \(\) => inspectSystemDatabase\(\)/);
+console.log('Database health contract tests passed: readonly inspection, structural checks, and runtime diagnostics bridge.');

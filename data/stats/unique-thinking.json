@@ -1,0 +1,14 @@
+{
+  "id": "unique-thinking",
+  "name": "Unique Thinking",
+  "skills": [
+    "First Principles",
+    "Pattern Recognition",
+    "Quantification",
+    "Creative Thinking",
+    "Execute & Expand"
+  ],
+  "level": 1,
+  "xp": 0,
+  "xpRequired": 100
+}

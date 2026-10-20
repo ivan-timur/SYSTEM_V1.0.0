@@ -1,0 +1,684 @@
+/* SYSTEM — Rewards Command Center. Loaded as the final source fragment. */
+#system-app #rewards-page {
+    isolation: isolate;
+    --rp-surface: color-mix(in srgb, var(--color-panel, #030916) 90%, transparent);
+    --rp-edge: var(--color-border, rgba(70, 150, 255, .38));
+    --rp-edge-active: var(--color-border-bright, rgba(120, 195, 255, .78));
+    --rp-accent: var(--color-neon, #168cff);
+    --rp-accent-bright: var(--color-neon-light, #70c4ff);
+    --rp-copy: var(--color-text, #eff7ff);
+    --rp-muted: var(--color-text-muted, #8da6c8);
+}
+
+#system-app #rewards-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        linear-gradient(180deg, rgba(1, 5, 15, .28), rgba(1, 5, 15, .84) 58%, rgba(1, 5, 15, .97)),
+        url("../../assets/images/backgrounds/rewards-bg.webp");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: .32;
+}
+
+#system-app #rewards-page > .page-header {
+    position: relative;
+    min-height: 104px;
+    margin-bottom: 22px;
+    padding: 14px 12px 19px;
+    border-bottom: 1px solid var(--rp-edge);
+    background: linear-gradient(100deg, transparent, color-mix(in srgb, var(--rp-accent) 7%, transparent), transparent);
+}
+
+#system-app #rewards-page > .page-header::before {
+    content: "REWARD ARMORY  /  COLLECTION PROTOCOL";
+    display: block;
+    margin-bottom: 7px;
+    color: var(--rp-accent-bright);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .24em;
+    opacity: .82;
+}
+
+#system-app #rewards-page .page-title {
+    font-size: clamp(29px, 3.8vw, 43px);
+    letter-spacing: .08em;
+    text-shadow: 0 0 20px color-mix(in srgb, var(--rp-accent) 34%, transparent);
+}
+
+#system-app #rewards-page .page-subtitle {
+    max-width: 560px;
+    margin-inline: auto;
+    color: var(--rp-muted);
+    font-size: 11px;
+    letter-spacing: .05em;
+}
+
+#system-app #rewards-page .rewards-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(215px, 265px);
+    align-items: start;
+    gap: clamp(12px, 1.7vw, 20px);
+}
+
+#system-app #rewards-page .rewards-main-panel,
+#system-app #rewards-page .selected-reward {
+    border-color: var(--rp-edge);
+    border-radius: 9px;
+    background: linear-gradient(150deg, color-mix(in srgb, var(--rp-surface) 96%, transparent), rgba(1, 5, 16, .94));
+    box-shadow: 0 16px 38px rgba(0, 0, 0, .20), inset 0 1px 0 rgba(255, 255, 255, .035);
+    backdrop-filter: blur(10px);
+}
+
+#system-app #rewards-page .rewards-main-panel {
+    padding: clamp(12px, 1.5vw, 18px);
+}
+
+#system-app #rewards-page .reward-tabs {
+    gap: 7px;
+    padding-bottom: 14px;
+    margin-bottom: 15px;
+}
+
+#system-app #rewards-page .reward-tab {
+    position: relative;
+    min-height: 39px;
+    padding: 9px 12px;
+    border-radius: 5px;
+    border-color: var(--rp-edge);
+    color: var(--rp-muted);
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: .035em;
+}
+
+#system-app #rewards-page .reward-tab:hover,
+#system-app #rewards-page .reward-tab.active {
+    border-color: var(--rp-edge-active);
+    color: var(--rp-copy);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--rp-accent) 12%, transparent), 0 0 17px color-mix(in srgb, var(--rp-accent) 12%, transparent);
+}
+
+#system-app #rewards-page .rp-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 17px;
+    height: 17px;
+    margin-inline-start: 6px;
+    padding: 0 4px;
+    border: 1px solid color-mix(in srgb, var(--rp-accent-bright) 52%, transparent);
+    border-radius: 99px;
+    background: color-mix(in srgb, var(--rp-accent) 20%, #030916);
+    color: var(--rp-copy);
+    font-size: 9px;
+    line-height: 1;
+}
+
+#system-app #rewards-page .daily-reward-panel {
+    border-color: var(--rp-edge-active);
+    border-radius: 7px;
+    background:
+        radial-gradient(ellipse at 0 50%, color-mix(in srgb, var(--rp-accent) 16%, transparent), transparent 68%),
+        linear-gradient(115deg, color-mix(in srgb, var(--rp-accent) 7%, #061126), rgba(1, 6, 18, .96));
+}
+
+#system-app #rewards-page .daily-reward-panel .reward-icon {
+    border-radius: 7px;
+    color: var(--rp-accent-bright);
+    border-color: var(--rp-edge-active);
+    background: color-mix(in srgb, var(--rp-accent) 9%, #030916);
+}
+
+#system-app #rewards-page .reward-days span {
+    border-radius: 5px;
+    border-color: var(--rp-edge);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--rp-accent) 7%, #07152b), rgba(1, 5, 15, .98));
+}
+
+#system-app #rewards-page .reward-days span.is-current {
+    border-color: var(--rp-edge-active);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--rp-accent) 18%, transparent), 0 0 13px color-mix(in srgb, var(--rp-accent) 14%, transparent);
+}
+
+#system-app #rewards-page .sub-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+    font-size: 16px;
+    letter-spacing: .025em;
+}
+
+#system-app #rewards-page .available-rewards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 11px;
+}
+
+#system-app #rewards-page .available-rewards .reward-card {
+    min-height: 194px;
+    padding: 13px 12px 12px;
+    gap: 9px;
+    border: 1px solid var(--rp-edge);
+    border-radius: 7px;
+    background:
+        radial-gradient(ellipse at 100% 0, color-mix(in srgb, var(--rp-accent) 7%, transparent), transparent 62%),
+        linear-gradient(145deg, rgba(8, 20, 42, .97), rgba(2, 7, 19, .99));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .025), 0 8px 20px rgba(0, 0, 0, .12);
+}
+
+#system-app #rewards-page .available-rewards .reward-card::before {
+    left: 12%;
+    width: 76%;
+    background: linear-gradient(90deg, transparent, var(--rp-accent-bright), transparent);
+    opacity: .5;
+}
+
+#system-app #rewards-page .available-rewards .reward-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--rp-edge-active);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04), 0 12px 28px rgba(0, 0, 0, .22), 0 0 18px color-mix(in srgb, var(--rp-accent) 10%, transparent);
+}
+
+#system-app #rewards-page .available-rewards .reward-card[hidden] {
+    display: none;
+}
+
+#system-app #rewards-page .available-rewards .reward-card.is-collected {
+    border-color: color-mix(in srgb, var(--color-success, #65d89c) 40%, var(--rp-edge));
+}
+
+#system-app #rewards-page .available-rewards .reward-card.is-collected::after {
+    content: "✓";
+    position: absolute;
+    top: 9px;
+    right: 10px;
+    display: grid;
+    width: 19px;
+    height: 19px;
+    place-items: center;
+    border: 1px solid color-mix(in srgb, var(--color-success, #65d89c) 58%, transparent);
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-success, #65d89c) 12%, #030916);
+    color: var(--color-success, #65d89c);
+    font-size: 11px;
+    font-weight: 900;
+}
+
+#system-app #rewards-page .reward-card-icon {
+    width: 43px;
+    height: 43px;
+    flex-basis: 43px;
+    border-radius: 7px;
+    font-size: 23px;
+    background: radial-gradient(circle at 35% 25%, color-mix(in srgb, var(--rp-accent) 19%, #081a31), #020712);
+    border-color: var(--rp-edge);
+}
+
+#system-app #rewards-page .available-rewards .reward-card h3 {
+    max-width: 100%;
+    color: var(--rp-copy);
+    font-size: 12px;
+    letter-spacing: .015em;
+}
+
+#system-app #rewards-page .available-rewards .reward-card p {
+    color: var(--rp-muted);
+    font-size: 10px;
+    line-height: 1.65;
+}
+
+#system-app #rewards-page .available-rewards .reward-card button {
+    min-height: 34px;
+    border-radius: 4px;
+    border-color: var(--rp-edge-active);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--rp-accent) 22%, #0b1a31), rgba(2, 8, 22, .98));
+    color: var(--rp-copy);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .03em;
+}
+
+#system-app #rewards-page .available-rewards .reward-card button:disabled {
+    border-color: var(--rp-edge);
+    color: var(--rp-muted);
+    background: rgba(1, 5, 14, .84);
+}
+
+#system-app #rewards-page .rp-hub {
+    display: grid;
+    gap: 14px;
+    margin: 16px 0 18px;
+    padding: clamp(12px, 1.6vw, 18px);
+    border: 1px solid var(--rp-edge);
+    border-radius: 8px;
+    background:
+        radial-gradient(ellipse at 4% 0, color-mix(in srgb, var(--rp-accent) 10%, transparent), transparent 54%),
+        linear-gradient(145deg, rgba(6, 15, 32, .96), rgba(1, 5, 15, .97));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .03), 0 14px 32px rgba(0, 0, 0, .16);
+}
+
+#system-app #rewards-page .rp-stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    text-align: start;
+}
+
+#system-app #rewards-page .rp-stats > div {
+    min-width: 0;
+    padding: 11px 12px;
+    border: 1px solid color-mix(in srgb, var(--rp-edge) 82%, transparent);
+    border-radius: 5px;
+    background: linear-gradient(145deg, rgba(9, 21, 42, .92), rgba(2, 7, 18, .88));
+}
+
+#system-app #rewards-page .rp-stats strong {
+    display: block;
+    overflow-wrap: anywhere;
+    color: var(--rp-copy);
+    font-size: clamp(19px, 2.2vw, 27px);
+    line-height: 1.15;
+    text-shadow: 0 0 14px color-mix(in srgb, var(--rp-accent) 22%, transparent);
+    font-variant-numeric: tabular-nums;
+}
+
+#system-app #rewards-page .rp-stats strong small {
+    color: var(--rp-muted);
+    font-size: 11px;
+}
+
+#system-app #rewards-page .rp-stats span {
+    display: block;
+    margin-top: 6px;
+    color: var(--rp-muted);
+    font-size: 9px;
+    letter-spacing: .065em;
+    line-height: 1.45;
+    text-transform: uppercase;
+}
+
+#system-app #rewards-page .rp-collection {
+    display: grid;
+    gap: 7px;
+}
+
+#system-app #rewards-page .rp-collection-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    color: var(--rp-muted);
+    font-size: 9px;
+    letter-spacing: .14em;
+}
+
+#system-app #rewards-page .rp-collection-head b {
+    color: var(--rp-accent-bright);
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+}
+
+#system-app #rewards-page .rp-collection-track {
+    height: 6px;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--rp-edge) 75%, transparent);
+    border-radius: 99px;
+    background: rgba(0, 0, 0, .35);
+}
+
+#system-app #rewards-page .rp-collection-track i {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--color-blue, #0d5cff), var(--rp-accent-bright), var(--color-neon-white, #dff2ff));
+    box-shadow: 0 0 13px color-mix(in srgb, var(--rp-accent) 33%, transparent);
+    transition: width .35s ease;
+}
+
+#system-app #rewards-page .rp-actions {
+    gap: 9px;
+}
+
+#system-app #rewards-page .rp-actions button {
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid var(--rp-edge-active);
+    border-radius: 5px;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--rp-accent) 20%, #0c1d37), rgba(2, 7, 19, .98));
+    color: var(--rp-copy);
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: .03em;
+    transition: transform .18s ease, border-color .18s ease, filter .18s ease;
+}
+
+#system-app #rewards-page .rp-actions button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    filter: brightness(1.15);
+    border-color: var(--rp-accent-bright);
+}
+
+#system-app #rewards-page .rp-actions button:disabled {
+    opacity: .42;
+    cursor: not-allowed;
+}
+
+#system-app #rewards-page .rp-actions .rp-box:not(:disabled) {
+    border-color: color-mix(in srgb, #ba8aff 62%, var(--rp-edge));
+    background: linear-gradient(135deg, rgba(91, 50, 145, .42), rgba(7, 10, 27, .98));
+    box-shadow: inset 0 0 0 1px rgba(195, 150, 255, .08), 0 0 16px rgba(143, 93, 255, .10);
+}
+
+#system-app #rewards-page .rp-controls {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(105px, .8fr) minmax(105px, .8fr);
+    align-items: end;
+    gap: 8px;
+}
+
+#system-app #rewards-page .rp-controls label {
+    display: grid;
+    min-width: 0;
+    gap: 5px;
+}
+
+#system-app #rewards-page .rp-controls label > span {
+    color: var(--rp-muted);
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .14em;
+}
+
+#system-app #rewards-page .rp-controls input,
+#system-app #rewards-page .rp-controls select {
+    width: 100%;
+    min-width: 0;
+    min-height: 37px;
+    padding: 8px 9px;
+    border: 1px solid var(--rp-edge);
+    border-radius: 4px;
+    outline: none;
+    background: rgba(1, 5, 15, .9);
+    color: var(--rp-copy);
+    font: inherit;
+    font-size: 10px;
+}
+
+#system-app #rewards-page .rp-controls input:focus-visible,
+#system-app #rewards-page .rp-controls select:focus-visible {
+    border-color: var(--rp-edge-active);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--rp-accent) 20%, transparent);
+}
+
+#system-app #rewards-page .rp-pity,
+#system-app #rewards-page .rp-odds {
+    display: block;
+    color: var(--rp-muted);
+    font-size: 9px;
+    line-height: 1.6;
+    letter-spacing: .025em;
+    text-transform: none;
+}
+
+#system-app #rewards-page .rp-vault-info {
+    display: grid;
+    gap: 3px;
+}
+
+#system-app #rewards-page .rp-empty {
+    margin: 0;
+    padding: 16px 10px;
+    border: 1px dashed var(--rp-edge);
+    border-radius: 5px;
+    color: var(--rp-muted);
+    text-align: center;
+    font-size: 11px;
+}
+
+#system-app #rewards-page .rp-empty[hidden] {
+    display: none;
+}
+
+#system-app #rewards-page .rp-result {
+    display: grid;
+    justify-items: center;
+    gap: 5px;
+    padding: 16px 12px;
+    border: 1px solid currentColor;
+    border-radius: 6px;
+    background: rgba(1, 5, 15, .76);
+}
+
+#system-app #rewards-page .rp-result-kicker {
+    font-size: 8px;
+    letter-spacing: .2em;
+    opacity: .78;
+}
+
+#system-app #rewards-page .rp-result strong {
+    font-size: 22px;
+    letter-spacing: .12em;
+}
+
+#system-app #rewards-page .rp-result span:last-child {
+    font-size: 11px;
+}
+
+#system-app #rewards-page .rp-log {
+    padding-top: 10px;
+    border-top: 1px solid var(--rp-edge);
+}
+
+#system-app #rewards-page .rp-log summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    cursor: pointer;
+    color: var(--rp-copy);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .04em;
+    list-style-position: inside;
+}
+
+#system-app #rewards-page .rp-log summary span {
+    color: var(--rp-muted);
+    font-weight: 600;
+}
+
+#system-app #rewards-page .rp-log-entry {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 5px 10px;
+    padding: 9px 2px;
+    border-bottom: 1px solid color-mix(in srgb, var(--rp-edge) 55%, transparent);
+    font-size: 10px;
+}
+
+#system-app #rewards-page .rp-log-entry > span {
+    overflow-wrap: anywhere;
+    color: var(--rp-copy);
+}
+
+#system-app #rewards-page .rp-log-entry b {
+    color: var(--rp-accent-bright);
+    font-size: 9px;
+    text-align: end;
+}
+
+#system-app #rewards-page .rp-log-entry time {
+    grid-column: 1 / -1;
+    color: var(--rp-muted);
+    font-size: 9px;
+}
+
+#system-app #rewards-page .rp-log-empty {
+    margin: 12px 0 2px;
+    color: var(--rp-muted);
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+#system-app #rewards-page .rp-chip {
+    align-self: flex-start;
+    max-width: 100%;
+    margin: 0;
+    padding: 4px 6px;
+    overflow-wrap: anywhere;
+    border: 1px solid currentColor;
+    border-radius: 3px;
+    background: rgba(0, 0, 0, .18);
+    font-size: 8px;
+    font-weight: 850;
+    letter-spacing: .055em;
+}
+
+#system-app #rewards-page .rp-r-common .rp-chip { color: #aebbd0; }
+#system-app #rewards-page .rp-r-uncommon .rp-chip { color: #74e3af; }
+#system-app #rewards-page .rp-r-rare .rp-chip { color: #75bdff; }
+#system-app #rewards-page .rp-r-epic .rp-chip { color: #c49aff; }
+#system-app #rewards-page .rp-r-legendary .rp-chip { color: #ffd76a; }
+#system-app #rewards-page .rp-r-rare { border-color: color-mix(in srgb, #75bdff 36%, var(--rp-edge)); }
+#system-app #rewards-page .rp-r-epic { border-color: color-mix(in srgb, #c49aff 48%, var(--rp-edge)); }
+#system-app #rewards-page .rp-r-legendary { border-color: color-mix(in srgb, #ffd76a 56%, var(--rp-edge)); box-shadow: inset 0 0 24px rgba(255, 190, 60, .07); }
+
+#system-app #rewards-page .rp-progress {
+    width: 100%;
+    height: 17px;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid var(--rp-edge);
+    border-radius: 3px;
+    background: rgba(1, 5, 14, .92);
+}
+
+#system-app #rewards-page .rp-progress i {
+    background: linear-gradient(90deg, var(--color-blue, #0d5cff), var(--rp-accent-bright));
+}
+
+#system-app #rewards-page .rp-progress em {
+    font-size: 8px;
+    font-weight: 750;
+    line-height: 15px;
+}
+
+#system-app #rewards-page .rp-detail-meta {
+    align-self: stretch;
+    padding: 7px 8px;
+    border: 1px solid var(--rp-edge);
+    border-radius: 4px;
+    color: var(--rp-muted);
+    font-size: 8px;
+    font-weight: 850;
+    letter-spacing: .12em;
+}
+
+#system-app #rewards-page .rp-detail-common { color: #aebbd0; }
+#system-app #rewards-page .rp-detail-uncommon { color: #74e3af; }
+#system-app #rewards-page .rp-detail-rare { color: #75bdff; }
+#system-app #rewards-page .rp-detail-epic { color: #c49aff; }
+#system-app #rewards-page .rp-detail-legendary { color: #ffd76a; }
+
+#system-app #rewards-page .rp-detail-progress {
+    display: grid;
+    align-self: stretch;
+    gap: 5px;
+    color: var(--rp-muted);
+    font-size: 9px;
+}
+
+#system-app #rewards-page .rp-detail-progress > div {
+    height: 5px;
+    overflow: hidden;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, .45);
+}
+
+#system-app #rewards-page .rp-detail-progress i {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-blue, #0d5cff), var(--rp-accent-bright));
+}
+
+#system-app #rewards-page .selected-reward {
+    position: sticky;
+    top: 12px;
+    padding: 20px 16px;
+}
+
+#system-app #rewards-page .selected-reward-icon {
+    border: 1px solid var(--rp-edge);
+    border-radius: 12px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--rp-accent) 14%, transparent), transparent 72%);
+}
+
+#system-app #rewards-page .selected-reward .claim-button {
+    min-height: 42px;
+    border: 1px solid var(--rp-edge-active);
+    border-radius: 5px;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--rp-accent) 24%, #091a32), #020712);
+    color: var(--rp-copy);
+    font-weight: 850;
+}
+
+#system-app #rewards-page :is(button, input, select, summary):focus-visible {
+    outline: 2px solid var(--rp-accent-bright);
+    outline-offset: 3px;
+}
+
+@media (max-width: 1000px) {
+    #system-app #rewards-page .rewards-layout { grid-template-columns: minmax(0, 1fr); }
+    #system-app #rewards-page .selected-reward { position: relative; top: auto; }
+    #system-app #rewards-page .available-rewards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 720px) {
+    #system-app #rewards-page > .page-header { min-height: 92px; margin-bottom: 15px; }
+    #system-app #rewards-page > .page-header::before { font-size: 7px; letter-spacing: .16em; }
+    #system-app #rewards-page .rp-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #system-app #rewards-page .rp-controls { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    #system-app #rewards-page .rp-search-label { grid-column: 1 / -1; }
+}
+
+@media (max-width: 500px) {
+    #system-app #rewards-page .rewards-main-panel { padding: 10px; }
+    #system-app #rewards-page .reward-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #system-app #rewards-page .reward-tab { padding: 8px 6px; font-size: 9px; }
+    #system-app #rewards-page .available-rewards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    #system-app #rewards-page .available-rewards .reward-card { min-height: 186px; padding: 10px 9px; }
+    #system-app #rewards-page .rp-hub { padding: 10px; gap: 11px; }
+    #system-app #rewards-page .rp-stats > div { padding: 9px; }
+    #system-app #rewards-page .rp-stats strong { font-size: 20px; }
+    #system-app #rewards-page .rp-actions { flex-direction: column; }
+    #system-app #rewards-page .rp-controls { grid-template-columns: minmax(0, 1fr); }
+    #system-app #rewards-page .rp-search-label { grid-column: auto; }
+    #system-app #rewards-page .daily-reward-panel { grid-template-columns: 44px minmax(0, 1fr); gap: 9px; padding: 12px; }
+    #system-app #rewards-page .daily-reward-panel .reward-icon { width: 42px; height: 42px; font-size: 27px; }
+}
+
+@media (max-width: 355px) {
+    #system-app #rewards-page .available-rewards { grid-template-columns: minmax(0, 1fr); }
+    #system-app #rewards-page .available-rewards .reward-card { min-height: 164px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #system-app #rewards-page .rp-collection-track i,
+    #system-app #rewards-page .available-rewards .reward-card,
+    #system-app #rewards-page .rp-actions button { transition: none; }
+    #system-app #rewards-page .rp-result { animation: none; }
+}
+
+
+/* Category isolation: never let visual card styles override the hidden state. */
+#system-app #rewards-page .available-rewards .reward-card[hidden],
+#rewards-page #reward-card-grid .reward-card[hidden],
+#rewards-page .available-rewards .reward-card[hidden] {
+  display: none;
+  visibility: hidden;
+}

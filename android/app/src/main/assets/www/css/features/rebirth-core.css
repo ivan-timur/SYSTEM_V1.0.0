@@ -1,0 +1,20 @@
+/* APEX REBIRTH — additive visual refinement; respects the selected theme. */
+:root { --rebirth-radius: 18px; --rebirth-line: color-mix(in srgb, var(--accent, #5da9ff) 22%, transparent); }
+.page .page-header { gap: 1rem; }
+.page .page-title { letter-spacing: .025em; text-wrap: balance; }
+.player-overview > *, .stat-card, .skill-card, .quest-card, .reward-card, .settings-row {
+  border-radius: var(--rebirth-radius);
+  transition: border-color .22s ease, box-shadow .22s ease, transform .22s ease;
+}
+button, [role="button"], a.button { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--accent, #5da9ff); outline-offset: 3px;
+}
+@media (hover:hover) and (prefers-reduced-motion:no-preference) {
+  .stat-card:hover, .skill-card:hover, .quest-card:hover, .reward-card:hover, .settings-row:hover {
+    border-color: var(--rebirth-line); box-shadow: 0 12px 34px #0003, 0 0 0 1px var(--rebirth-line); transform: translateY(-2px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto; animation-duration: .01ms; animation-iteration-count: 1; transition-duration: .01ms; }
+}

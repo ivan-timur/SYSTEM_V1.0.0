@@ -1,0 +1,94 @@
+/* SYSTEM — APEX FINISH
+   Cross-page hierarchy, accessible interaction states, responsive density and
+   premium surface treatment. No progression, reward, or storage logic changed. */
+:root {
+  --apex-radius-sm: 10px;
+  --apex-radius-md: 15px;
+  --apex-radius-lg: 22px;
+  --apex-line: rgba(126, 165, 220, .22);
+  --apex-line-hot: rgba(116, 181, 255, .48);
+  --apex-shadow: 0 16px 42px rgba(0, 0, 0, .24);
+  --apex-shadow-hover: 0 20px 48px rgba(0, 0, 0, .32), 0 0 24px rgba(74, 145, 245, .09);
+  --apex-motion: cubic-bezier(.2, .72, .22, 1);
+}
+#system-app {
+  isolation: isolate;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+#system-app :where(button, input, select, textarea) { font: inherit; }
+#system-app :where(button, a, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-neon, #79baff);
+  outline-offset: 3px;
+}
+#system-app :where(button, .system-button, .card, .stat-card, .skill-card, .quest-card, .reward-card, .settings-row) {
+  transition: border-color .2s var(--apex-motion), box-shadow .22s var(--apex-motion),
+    background-color .22s var(--apex-motion), transform .22s var(--apex-motion);
+}
+#system-app :where(.card, .stat-card, .skill-card, .quest-card, .reward-card, .settings-row) {
+  border-color: var(--apex-line);
+  border-radius: var(--apex-radius-md);
+}
+#system-app :where(.card, .stat-card, .skill-card, .quest-card, .reward-card):hover {
+  border-color: var(--apex-line-hot);
+  box-shadow: var(--apex-shadow-hover);
+}
+#system-app :where(button, .system-button) { min-height: 40px; }
+#system-app :where(button, .system-button):not(:disabled):active { transform: translateY(1px) scale(.99); }
+#system-app :where(button, .system-button):disabled { cursor: not-allowed; }
+#system-app :where(input, select, textarea) {
+  max-width: 100%;
+  border-radius: var(--apex-radius-sm);
+}
+#system-app :where(img, svg, video, canvas) { max-width: 100%; }
+#system-app :where(h1, h2, h3, h4) { text-wrap: balance; }
+#system-app :where(p, .description, .muted, .text-muted) { overflow-wrap: anywhere; }
+#system-app :where(.progress, .progress-bar, [role="progressbar"]) { overflow: hidden; }
+#system-app :where(.modal, .dialog, [role="dialog"]) { overscroll-behavior: contain; }
+#system-app :where(.modal-content, .dialog-content, [role="dialog"]) {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(119, 169, 232, .45) transparent;
+}
+html[data-system-theme="couture"] #system-app {
+  --apex-line: rgba(130, 169, 225, .23);
+  --apex-line-hot: rgba(143, 195, 255, .62);
+}
+html[data-system-theme="couture"] #system-app :where(.card, .stat-card, .skill-card, .quest-card, .settings-row) {
+  background-image: linear-gradient(145deg, rgba(255,255,255,.025), transparent 48%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035), 0 12px 32px rgba(0,0,0,.16);
+}
+html[data-system-theme="couture"] #system-app :where(h1, .page-title, .section-title) {
+  letter-spacing: -.025em;
+}
+html[data-system-theme="couture"] #system-app :where(.badge, .chip, .tag, .rarity, .status-badge) {
+  border: 1px solid rgba(133, 181, 245, .24);
+  border-radius: 999px;
+}
+html[data-system-theme="couture"] #system-app :where(.primary, .system-button.primary) {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 7px 22px rgba(34, 107, 210, .2);
+}
+@media (hover: hover) and (pointer: fine) {
+  #system-app :where(button, .system-button):not(:disabled):hover { filter: brightness(1.07); }
+}
+@media (max-width: 760px) {
+  #system-app { overflow-wrap: anywhere; }
+  #system-app :where(.card, .stat-card, .skill-card, .quest-card, .reward-card, .settings-row) {
+    border-radius: 13px;
+  }
+  #system-app :where(button, .system-button) { min-height: 42px; }
+  #system-app :where(input, select, textarea) { font-size: 16px; }
+}
+@media (max-width: 420px) {
+  #system-app :where(.page-title, h1) { line-height: 1.15; }
+  #system-app :where(.card, .stat-card, .skill-card, .quest-card, .reward-card) {
+    min-width: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #system-app *, #system-app *::before, #system-app *::after {
+    animation-duration: .01ms;
+    animation-iteration-count: 1;
+    scroll-behavior: auto;
+    transition-duration: .01ms;
+  }
+}

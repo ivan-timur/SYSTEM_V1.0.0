@@ -1,0 +1,131 @@
+name: Publish signed SYSTEM Android release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: system-android-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the tagged source
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate tag against project version
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          SOURCE_VERSION="$(tr -d '\r\n ' < VERSION)"
+          if [[ "$TAG_VERSION" != "$SOURCE_VERSION" ]]; then
+            echo "Tag v${TAG_VERSION} does not match VERSION (${SOURCE_VERSION})."
+            exit 1
+          fi
+          grep -Fq "## ${SOURCE_VERSION} " CHANGELOG.md || {
+            echo "CHANGELOG.md must contain a section for ${SOURCE_VERSION}."
+            exit 1
+          }
+
+      - name: Install pinned JavaScript test dependency
+        run: npm install --no-package-lock --no-audit --no-fund
+
+      - name: Run static regression suite
+        run: npm test
+
+      - name: Run project health checks
+        run: npm run doctor
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run real-browser IndexedDB transaction tests
+        run: npm run test:browser-idb
+
+      - name: Run real-browser release checks
+        run: npm run test:e2e
+
+      - name: Build and bundle the offline web app
+        run: npm run prepare:android
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android platform packages
+        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.13'
+
+      - name: Configure private release signing key
+        shell: bash
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${ANDROID_KEYSTORE_BASE64:-}" ]]; then
+            echo "Missing repository secret ANDROID_KEYSTORE_BASE64. See ANDROID_APP_GUIDE_FA.md."
+            exit 1
+          fi
+          KEYSTORE_PATH="$RUNNER_TEMP/system-release-key.jks"
+          printf '%s' "$ANDROID_KEYSTORE_BASE64" | base64 --decode > "$KEYSTORE_PATH"
+          test -s "$KEYSTORE_PATH"
+          echo "ANDROID_KEYSTORE_FILE=$KEYSTORE_PATH" >> "$GITHUB_ENV"
+
+      - name: Build signed release APK
+        working-directory: android
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          test -n "$ANDROID_KEYSTORE_PASSWORD"
+          test -n "$ANDROID_KEY_ALIAS"
+          test -n "$ANDROID_KEY_PASSWORD"
+          gradle --no-daemon assembleRelease
+
+      - name: Verify APK signature and prepare checksum
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="$(tr -d '\r\n ' < VERSION)"
+          APK_SOURCE="android/app/build/outputs/apk/release/app-release.apk"
+          APK_NAME="SYSTEM-${VERSION}.apk"
+          test -s "$APK_SOURCE"
+          "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --verbose "$APK_SOURCE"
+          mkdir -p dist
+          cp "$APK_SOURCE" "dist/${APK_NAME}"
+          cd dist
+          sha256sum "$APK_NAME" > "${APK_NAME}.sha256"
+
+      - name: Publish GitHub Release with APK
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: SYSTEM ${{ github.ref_name }}
+          generate_release_notes: true
+          fail_on_unmatched_files: true
+          files: |
+            dist/SYSTEM-*.apk
+            dist/SYSTEM-*.apk.sha256

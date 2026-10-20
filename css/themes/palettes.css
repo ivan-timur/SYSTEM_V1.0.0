@@ -1,0 +1,38 @@
+/* SYSTEM — theme palettes. Each theme sets design tokens AND a hue tint (see end) that
+   recolours the blue artwork and every hard-coded blue, so themes apply to the whole UI. */
+html[data-system-theme="abyss"]{
+    --color-background:#05030f;--color-blue-dark:#251950;--color-blue:#5746ed;--color-blue-light:#8f83ff;--color-blue-bright:#c5beff;
+    --color-neon:#7968ff;--color-neon-light:#a69aff;--theme-tint:#6a4dff;
+    --color-border:rgba(121,104,255,.42);--color-border-bright:rgba(166,154,255,.86);
+}
+html[data-system-theme="ice"]{
+    --color-background:#000d14;--color-blue-dark:#063449;--color-blue:#008bb4;--color-blue-light:#38d7f5;--color-blue-bright:#b3f5ff;
+    --color-neon:#00b7db;--color-neon-light:#79edff;--theme-tint:#00b7ff;
+    --color-border:rgba(0,183,219,.42);--color-border-bright:rgba(121,237,255,.86);
+}
+html[data-system-theme="crimson"]{
+    --color-background:#0c0204;--color-blue-dark:#4a0a14;--color-blue:#e0243c;--color-blue-light:#ff6b7d;--color-blue-bright:#ffc2c9;
+    --color-neon:#ff3b55;--color-neon-light:#ff8fa0;--theme-tint:#ff2d4a;
+    --color-border:rgba(255,59,85,.42);--color-border-bright:rgba(255,143,160,.86);
+}
+html[data-system-theme="emerald"]{
+    --color-background:#010a06;--color-blue-dark:#06402a;--color-blue:#12b86a;--color-blue-light:#4be8a0;--color-blue-bright:#c3ffe3;
+    --color-neon:#19e08a;--color-neon-light:#7dffc4;--theme-tint:#14d98a;
+    --color-border:rgba(25,224,138,.42);--color-border-bright:rgba(125,255,196,.86);
+}
+html[data-system-theme="solar"]{
+    --color-background:#0a0601;--color-blue-dark:#4a3205;--color-blue:#e09a10;--color-blue-light:#ffc94d;--color-blue-bright:#fff0c2;
+    --color-neon:#ffb020;--color-neon-light:#ffd876;--theme-tint:#ffae1a;
+    --color-border:rgba(255,176,32,.42);--color-border-bright:rgba(255,216,118,.86);
+}
+html[data-system-theme="sakura"]{
+    --color-background:#0b0209;--color-blue-dark:#4a0f3a;--color-blue:#e03cb4;--color-blue-light:#ff80d8;--color-blue-bright:#ffd0f2;
+    --color-neon:#ff4fd8;--color-neon-light:#ff9ae6;--theme-tint:#ff4fd0;
+    --color-border:rgba(255,79,216,.42);--color-border-bright:rgba(255,154,230,.86);
+}
+
+/* Hue-blend overlay: keeps luminance/contrast of the original art, swaps only the hue. */
+html[data-system-theme]:not([data-system-theme="cosmic"]):not([data-system-theme="aurora"]):not([data-system-theme="royal"]):not([data-system-theme="couture"])::after{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;
+    background:var(--theme-tint);mix-blend-mode:hue;
+}

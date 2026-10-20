@@ -1,0 +1,14 @@
+{
+  "id": "mathematics",
+  "name": "Mathematics",
+  "skills": [
+    "Arithmetic",
+    "Algebra",
+    "Geometry",
+    "Trigonometry",
+    "Calculus"
+  ],
+  "level": 1,
+  "xp": 0,
+  "xpRequired": 100
+}

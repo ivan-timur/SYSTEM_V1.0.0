@@ -1,0 +1,87 @@
+/* Phase 26 — Mobile navigation integrity
+   Keep every primary destination visible and its icon stable while scrolling. */
+@media (max-width: 700px) {
+  #system-app .sidebar {
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: 1200;
+    display: block;
+    width: 100vw;
+    max-width: 100vw;
+    min-width: 0;
+    height: auto;
+    max-height: none;
+    box-sizing: border-box;
+    padding: 7px 8px calc(7px + env(safe-area-inset-bottom, 0px));
+    transform: none;
+    overflow: visible;
+  }
+
+  #system-app .sidebar-nav {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: stretch;
+    justify-content: initial;
+    gap: 4px;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    flex: none;
+    padding: 0;
+    overflow: visible;
+  }
+
+  #system-app .sidebar-nav > .nav-item {
+    display: flex;
+    flex: initial;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 100%;
+    min-width: 0;
+    min-height: 54px;
+    max-width: none;
+    margin: 0;
+    flex: none;
+    padding: 5px 1px;
+    box-sizing: border-box;
+    white-space: normal;
+    overflow: hidden;
+    transform: none;
+    line-height: 1.15;
+    text-align: center;
+  }
+
+  #system-app .sidebar-nav > .nav-item img,
+  #system-app .sidebar-nav > .nav-item .nav-icon {
+    display: block;
+    flex: 0 0 23px;
+    width: 23px;
+    height: 23px;
+    max-width: 100%;
+    object-fit: contain;
+    visibility: visible;
+    opacity: .92;
+  }
+
+  #system-app .sidebar-nav > .nav-item > span {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  #system-app .main-content {
+    padding-bottom: calc(104px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media screen and (max-width: 380px) {
+  #system-app .sidebar-nav > .nav-item { min-height: 50px; font-size: 8px; }
+  #system-app .sidebar-nav > .nav-item img,
+  #system-app .sidebar-nav > .nav-item .nav-icon { width: 21px; height: 21px; flex-basis: 21px; }
+}

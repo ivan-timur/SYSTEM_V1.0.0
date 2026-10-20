@@ -1,0 +1,384 @@
+/* SYSTEM — Rewards Miniature Couture
+   Presentation-only refinement of reward tiles and milestone challenges.
+   Reward IDs, eligibility, progress, localization, and claim logic are untouched. */
+
+#system-app #rewards-page {
+  --rm-ice: #b9e7ff;
+  --rm-edge: rgba(98, 166, 238, .26);
+  --rm-glow: rgba(55, 145, 255, .11);
+  --rm-ease: cubic-bezier(.2, .8, .2, 1);
+}
+
+/* Spend less vertical space on framing; keep the collectible feel in the detail. */
+#system-app #rewards-page .rewards-main-panel {
+  padding: clamp(10px, 1.25vw, 16px);
+}
+
+#system-app #rewards-page .reward-tabs {
+  gap: 6px;
+  margin-bottom: 13px;
+  padding-bottom: 10px;
+}
+
+#system-app #rewards-page .reward-tab {
+  min-height: 34px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  font-size: 10px;
+}
+
+#system-app #rewards-page .sub-title {
+  margin-top: 16px;
+  margin-bottom: 10px;
+  font-size: clamp(14px, 1.35vw, 17px);
+}
+
+#system-app #rewards-page .available-rewards,
+#system-app #rewards-page #reward-card-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 9px;
+}
+
+#system-app #rewards-page .available-rewards .reward-card,
+#system-app #rewards-page #reward-card-grid .reward-card {
+  min-width: 0;
+  min-height: 142px;
+  height: auto;
+  padding: 32px 10px 9px;
+  gap: 5px;
+  border-radius: 14px;
+  box-shadow: inset 0 1px rgba(255,255,255,.045), 0 6px 16px rgba(0,0,0,.14);
+  transition: transform .22s var(--rm-ease), border-color .22s ease, box-shadow .22s ease, background .22s ease;
+}
+
+#system-app #rewards-page .available-rewards .reward-card::before,
+#system-app #rewards-page #reward-card-grid .reward-card::before {
+  inset-inline: 14%;
+  opacity: .62;
+}
+
+#system-app #rewards-page .available-rewards .reward-card:hover,
+#system-app #rewards-page #reward-card-grid .reward-card:hover {
+  transform: translateY(-2px);
+  box-shadow: inset 0 1px rgba(255,255,255,.065), 0 11px 21px rgba(0,0,0,.2), 0 0 15px var(--rm-glow);
+}
+
+#system-app #rewards-page .reward-card .rp-chip {
+  max-width: calc(100% - 30px);
+  min-height: 18px;
+  padding: 3px 7px;
+  font-size: 7px;
+  letter-spacing: .055em;
+}
+
+#system-app #rewards-page .reward-card .ra-favorite {
+  top: 7px;
+  inset-inline-start: 7px;
+  width: 23px;
+  height: 23px;
+  min-width: 23px;
+  min-height: 23px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+#system-app #rewards-page .available-rewards .reward-card h3,
+#system-app #rewards-page #reward-card-grid .reward-card h3 {
+  margin: 0;
+  font-size: clamp(11px, .95vw, 12.5px);
+  line-height: 1.35;
+  letter-spacing: -.005em;
+  overflow-wrap: anywhere;
+}
+
+#system-app #rewards-page .available-rewards .reward-card p,
+#system-app #rewards-page #reward-card-grid .reward-card p {
+  display: -webkit-box;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  color: #9aacc7;
+  font-size: 9.5px;
+  line-height: 1.48;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+#system-app #rewards-page .reward-card .rp-progress {
+  gap: 3px;
+  margin-top: 2px;
+}
+
+#system-app #rewards-page .reward-card .rp-progress::before,
+#system-app #rewards-page .reward-card .rp-progress i {
+  height: 4px;
+}
+
+#system-app #rewards-page .reward-card .rp-progress em {
+  font-size: 8px;
+  line-height: 1.25;
+}
+
+#system-app #rewards-page .available-rewards .reward-card > button:not(.ra-favorite),
+#system-app #rewards-page #reward-card-grid .reward-card > button:not(.ra-favorite) {
+  min-height: 29px;
+  margin-top: auto;
+  padding: 6px 8px;
+  border-radius: 9px;
+  font-size: 9px;
+  letter-spacing: .02em;
+  box-shadow: inset 0 1px rgba(255,255,255,.045), 0 3px 9px rgba(0,0,0,.12);
+}
+
+#system-app #rewards-page .available-rewards .reward-card > button:not(.ra-favorite):hover:not(:disabled),
+#system-app #rewards-page #reward-card-grid .reward-card > button:not(.ra-favorite):hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+/* The currently selected reward stays distinct, but no longer dominates the page. */
+#system-app #rewards-page .selected-reward {
+  padding: clamp(14px, 1.6vw, 19px);
+  border-radius: 17px;
+}
+
+#system-app #rewards-page .selected-reward h2 {
+  font-size: clamp(15px, 1.35vw, 18px);
+}
+
+#system-app #rewards-page .selected-reward > p {
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+#system-app #rewards-page .selected-reward .reward-cost {
+  margin: 14px 0 11px;
+  padding: 10px 12px;
+  border-radius: 11px;
+  font-size: 15px;
+}
+
+#system-app #rewards-page .selected-reward .claim-button {
+  min-height: 42px;
+  border-radius: 11px;
+}
+
+/* Three major milestones: compact cards, with status and progress still legible. */
+#system-app #rewards-page .ra-ascension {
+  padding: clamp(11px, 1.4vw, 16px);
+  border-radius: 17px;
+}
+
+#system-app #rewards-page .ra-section-heading {
+  gap: 12px;
+  margin-bottom: 11px;
+}
+
+#system-app #rewards-page .ra-section-heading h2 {
+  font-size: clamp(16px, 1.6vw, 20px);
+  line-height: 1.28;
+}
+
+#system-app #rewards-page .ra-section-heading p {
+  margin-top: 4px;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+#system-app #rewards-page .ra-xp-overview {
+  margin-bottom: 11px;
+  padding: 10px 11px;
+  border-radius: 12px;
+}
+
+#system-app #rewards-page .ra-route-grid {
+  gap: 8px;
+}
+
+#system-app #rewards-page .ra-route-card {
+  min-width: 0;
+  min-height: 150px;
+  padding: 10px;
+  border-radius: 13px;
+  background:
+    radial-gradient(ellipse at 100% 0, rgba(62,136,242,.09), transparent 58%),
+    linear-gradient(155deg, rgba(9,23,49,.96), rgba(2,7,19,.98));
+  box-shadow: inset 0 1px rgba(255,255,255,.035), 0 5px 14px rgba(0,0,0,.12);
+  transition: border-color .22s ease, transform .22s var(--rm-ease), box-shadow .22s ease;
+}
+
+#system-app #rewards-page .ra-route-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 20px rgba(0,0,0,.19), 0 0 13px rgba(38,125,236,.07);
+}
+
+#system-app #rewards-page .ra-route-head {
+  gap: 5px;
+}
+
+#system-app #rewards-page .ra-route-kind,
+#system-app #rewards-page .ra-route-state {
+  font-size: 6.5px;
+  line-height: 1.35;
+}
+
+#system-app #rewards-page .ra-route-kind {
+  letter-spacing: .075em;
+}
+
+#system-app #rewards-page .ra-route-state {
+  letter-spacing: .025em;
+}
+
+#system-app #rewards-page .ra-route-card h3 {
+  margin: 8px 0 4px;
+  font-size: 12px;
+  line-height: 1.32;
+}
+
+#system-app #rewards-page .ra-route-card p {
+  min-height: 0;
+  margin-bottom: 7px;
+  font-size: 8.5px;
+  line-height: 1.48;
+  -webkit-line-clamp: 2;
+}
+
+#system-app #rewards-page .ra-route-progress {
+  height: 4px;
+}
+
+#system-app #rewards-page .ra-route-foot {
+  gap: 6px;
+  margin-top: 7px;
+}
+
+#system-app #rewards-page .ra-route-foot > span {
+  font-size: 7.5px;
+  line-height: 1.35;
+}
+
+#system-app #rewards-page .ra-route-card button {
+  min-height: 25px;
+  padding: 4px 7px;
+  border-radius: 8px;
+  font-size: 7.5px;
+  line-height: 1.25;
+}
+
+#system-app #rewards-page .ra-route-note {
+  gap: 7px;
+  margin-top: 10px;
+  padding-top: 9px;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+@media (max-width: 1050px) {
+  #system-app #rewards-page .available-rewards,
+  #system-app #rewards-page #reward-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  #system-app #rewards-page .rewards-main-panel {
+    padding: 10px;
+  }
+
+  #system-app #rewards-page .available-rewards,
+  #system-app #rewards-page #reward-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  #system-app #rewards-page .available-rewards .reward-card,
+  #system-app #rewards-page #reward-card-grid .reward-card {
+    min-height: 136px;
+    padding: 31px 9px 9px;
+    gap: 5px;
+  }
+
+  #system-app #rewards-page .available-rewards .reward-card h3,
+  #system-app #rewards-page #reward-card-grid .reward-card h3 {
+    font-size: 11px;
+  }
+
+  #system-app #rewards-page .available-rewards .reward-card p,
+  #system-app #rewards-page #reward-card-grid .reward-card p {
+    font-size: 9px;
+    -webkit-line-clamp: 3;
+  }
+
+  #system-app #rewards-page .ra-route-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #system-app #rewards-page .ra-route-card {
+    min-height: 139px;
+    padding: 9px;
+  }
+
+  #system-app #rewards-page .ra-route-card:last-child {
+    grid-column: 1 / -1;
+    min-height: 112px;
+  }
+
+  #system-app #rewards-page .ra-route-card:last-child .ra-route-foot {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 420px) {
+  #system-app #rewards-page .available-rewards,
+  #system-app #rewards-page #reward-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #system-app #rewards-page .available-rewards .reward-card,
+  #system-app #rewards-page #reward-card-grid .reward-card {
+    min-height: 132px;
+    padding-inline: 8px;
+    border-radius: 12px;
+  }
+
+  #system-app #rewards-page .reward-card .rp-chip {
+    font-size: 6.5px;
+  }
+
+  #system-app #rewards-page .ra-route-grid {
+    gap: 7px;
+  }
+
+  #system-app #rewards-page .ra-route-card:last-child {
+    min-height: 106px;
+  }
+}
+
+@media (max-width: 340px) {
+  #system-app #rewards-page .available-rewards,
+  #system-app #rewards-page #reward-card-grid,
+  #system-app #rewards-page .ra-route-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #system-app #rewards-page .ra-route-card:last-child {
+    grid-column: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #system-app #rewards-page .available-rewards .reward-card,
+  #system-app #rewards-page .ra-route-card,
+  #system-app #rewards-page .selected-reward,
+  #system-app #rewards-page .reward-tab {
+    transition: none;
+  }
+
+  #system-app #rewards-page .available-rewards .reward-card:hover,
+  #system-app #rewards-page .ra-route-card:hover {
+    transform: none;
+  }
+}

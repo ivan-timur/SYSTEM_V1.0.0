@@ -1,0 +1,30 @@
+/* SYSTEM — responsive reconstruction overrides */
+
+
+
+
+/* Never allow narrow cards to break every few letters. */
+#system-app #rewards-page .daily-reward-panel,
+#system-app #rewards-page .daily-reward-panel > *,
+#system-app #rewards-page .reward-card,
+#system-app #rewards-page .reward-card > * {
+  min-width:0; max-width:100%;
+}
+#system-app #rewards-page .daily-reward-panel { grid-template-columns:minmax(0,1fr); }
+#system-app #rewards-page .daily-reward-panel h2,
+#system-app #rewards-page .daily-reward-panel p,
+#system-app #rewards-page .reward-card h3,
+#system-app #rewards-page .reward-card p {
+  width:auto; white-space:normal; word-break:normal;
+  overflow-wrap:break-word; hyphens:none;
+}
+#system-app #rewards-page .daily-reward-panel .reward-icon { display:none; }
+#system-app #rewards-page .reward-days { grid-template-columns:repeat(4,minmax(0,1fr)); gap:7px; }
+#system-app #rewards-page .reward-days span { font-size:clamp(10px,2.8vw,12px); line-height:1.35; padding:8px 4px; }
+@media (max-width:420px) {
+ 
+ 
+ 
+ 
+ #system-app #rewards-page .reward-days { grid-template-columns:repeat(4,minmax(0,1fr)); }
+}

@@ -1,0 +1,143 @@
+/* Private GitHub release updater card for the native Android shell. */
+#system-app #settings-page .system-update-card {
+    position: relative;
+    display: grid;
+    gap: 16px;
+    margin: 0 0 24px;
+    padding: clamp(16px, 3vw, 24px);
+    overflow: hidden;
+    border: 1px solid rgba(112, 190, 255, 0.28);
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(12, 24, 48, 0.94), rgba(9, 14, 31, 0.96));
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+#system-app #settings-page .system-update-card[hidden] { display: none; }
+
+#system-app #settings-page .system-update-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: linear-gradient(180deg, #8de8ff, #8a7cff 65%, transparent);
+    pointer-events: none;
+}
+
+#system-app #settings-page .system-update-card .system-update-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+#system-app #settings-page .system-update-card .system-update-eyebrow {
+    margin: 0 0 6px;
+    color: #8de8ff;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+}
+
+#system-app #settings-page .system-update-card .system-update-heading h2 {
+    margin: 0;
+    color: #f2f7ff;
+    font-size: clamp(1.08rem, 2.8vw, 1.35rem);
+    font-weight: 750;
+}
+
+#system-app #settings-page .system-update-card .system-update-description,
+#system-app #settings-page .system-update-card .system-update-help,
+#system-app #settings-page .system-update-card .system-update-footnote,
+#system-app #settings-page .system-update-card .system-update-release-notes {
+    margin: 7px 0 0;
+    color: rgba(225, 235, 255, 0.72);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+#system-app #settings-page .system-update-card .system-update-version {
+    flex: 0 0 auto;
+    padding: 6px 10px;
+    border: 1px solid rgba(141, 232, 255, 0.24);
+    border-radius: 999px;
+    color: #b9f1ff;
+    background: rgba(75, 171, 216, 0.1);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+#system-app #settings-page .system-update-card .system-update-token-area { display: grid; gap: 8px; }
+#system-app #settings-page .system-update-card .system-update-token-area label { color: #edf4ff; font-size: 0.88rem; font-weight: 700; }
+
+#system-app #settings-page .system-update-card .system-update-token-area input {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid rgba(151, 190, 242, 0.27);
+    border-radius: 10px;
+    outline: none;
+    color: #f4f8ff;
+    background: rgba(2, 8, 22, 0.72);
+    font: inherit;
+}
+
+#system-app #settings-page .system-update-card .system-update-token-area input:focus-visible {
+    border-color: #8de8ff;
+    box-shadow: 0 0 0 3px rgba(141, 232, 255, 0.12);
+}
+
+#system-app #settings-page .system-update-card .system-update-help code {
+    color: #d7f8ff;
+    overflow-wrap: anywhere;
+}
+
+#system-app #settings-page .system-update-card .system-update-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+#system-app #settings-page .system-update-card .system-update-actions button {
+    min-height: 40px;
+    padding: 9px 14px;
+    border: 1px solid rgba(127, 216, 255, 0.36);
+    border-radius: 10px;
+    color: #04121f;
+    background: linear-gradient(135deg, #a0edff, #8eafff);
+    font: inherit;
+    font-size: 0.84rem;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+#system-app #settings-page .system-update-card .system-update-actions button.system-update-secondary {
+    border-color: rgba(172, 190, 222, 0.24);
+    color: #d9e6fb;
+    background: rgba(255, 255, 255, 0.045);
+}
+
+#system-app #settings-page .system-update-card .system-update-actions button:disabled { opacity: 0.55; cursor: wait; }
+#system-app #settings-page .system-update-card .system-update-actions button[hidden] { display: none; }
+#system-app #settings-page .system-update-card .system-update-divider { height: 1px; background: linear-gradient(90deg, rgba(141, 232, 255, 0.25), rgba(141, 232, 255, 0.03)); }
+#system-app #settings-page .system-update-card .system-update-status { margin: 0; color: #c2e6ff; font-size: 0.88rem; line-height: 1.55; }
+#system-app #settings-page .system-update-card .system-update-release-notes { margin-top: -8px; padding: 12px; border-radius: 10px; color: #d4e4fb; background: rgba(255, 255, 255, 0.035); white-space: pre-wrap; overflow-wrap: anywhere; }
+#system-app #settings-page .system-update-card .system-update-release-notes[hidden] { display: none; }
+#system-app #settings-page .system-update-card .system-update-footnote { margin: -6px 0 0; font-size: 0.76rem; opacity: 0.82; }
+
+@media (max-width: 520px) {
+    #system-app #settings-page .system-update-card .system-update-heading { flex-direction: column; gap: 10px; }
+    #system-app #settings-page .system-update-card .system-update-version { align-self: flex-start; }
+    #system-app #settings-page .system-update-card .system-update-actions button { flex: 1 1 160px; }
+}
+
+
+/* Compact second channel for web-only OTA releases; it shares the secure token above. */
+#system-app #settings-page #system-web-updater {
+    display: grid;
+    gap: 12px;
+    min-width: 0;
+}
+
+#system-app #settings-page #system-web-updater .system-update-heading h2 {
+    font-size: clamp(0.98rem, 2.5vw, 1.15rem);
+}
+
+#system-app #settings-page #system-web-updater .system-update-description {
+    max-width: 58ch;
+}

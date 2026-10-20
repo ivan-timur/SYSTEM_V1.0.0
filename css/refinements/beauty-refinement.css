@@ -1,0 +1,770 @@
+/*
+ * SYSTEM — ASCENSION visual system
+ * CSS-only presentation layer. No external fonts, images, or runtime dependencies.
+ * The saved data and existing interactions are intentionally left untouched.
+ */
+
+:root {
+  color-scheme: dark;
+  --sidebar-width: 280px;
+  --sidebar-min-width: 260px;
+  --content-max-width: 1320px;
+  --content-padding: 28px;
+
+  /* Signature palette: midnight navy, ion blue, and quiet cyan. Theme presets
+     with stronger selectors (Royal, Aurora, etc.) keep their own accents. */
+  --color-black: #030611;
+  --color-background: #060b18;
+  --color-background-2: #0a1325;
+  --color-panel: rgba(8, 16, 32, .94);
+  --color-panel-light: rgba(12, 25, 47, .92);
+  --color-panel-dark: rgba(4, 9, 21, .97);
+  --color-blue-dark: #12356e;
+  --color-blue: #2878ff;
+  --color-blue-light: #5aa8ff;
+  --color-blue-bright: #a6d9ff;
+  --color-neon: #32d6e5;
+  --color-neon-light: #80f0f4;
+  --color-neon-white: #eafcff;
+  --color-text: #eff6ff;
+  --color-text-light: #c7d8ef;
+  --color-text-muted: #8ca2c2;
+  --color-border: rgba(106, 156, 221, .22);
+  --color-border-bright: rgba(101, 205, 239, .66);
+
+  --beauty-refinement-ink: #030611;
+  --beauty-refinement-surface: rgba(8, 16, 32, .88);
+  --beauty-refinement-surface-raised: rgba(12, 24, 45, .91);
+  --beauty-refinement-surface-soft: rgba(18, 32, 56, .62);
+  --beauty-refinement-outline: rgba(126, 163, 211, .20);
+  --beauty-refinement-outline-strong: rgba(101, 205, 239, .52);
+  --beauty-refinement-accent: var(--color-blue-light, #5aa8ff);
+  --beauty-refinement-accent-bright: var(--color-neon-light, #80f0f4);
+  --beauty-refinement-copy: #eff6ff;
+  --beauty-refinement-copy-muted: #9aafcc;
+  --beauty-refinement-radius-sm: 10px;
+  --beauty-refinement-radius-md: 15px;
+  --beauty-refinement-radius-lg: 21px;
+  --beauty-refinement-shadow-soft: 0 10px 28px rgba(0, 0, 0, .22);
+  --beauty-refinement-shadow-card: 0 18px 44px rgba(0, 0, 0, .26), inset 0 1px rgba(255, 255, 255, .035);
+  --beauty-refinement-glow: 0 0 26px rgba(37, 134, 255, .12);
+
+  --radius-small: 10px;
+  --radius-medium: 13px;
+  --radius-large: 18px;
+  --font-main: "Segoe UI", Inter, system-ui, -apple-system, sans-serif;
+  --font-ui: "Segoe UI", Inter, system-ui, -apple-system, sans-serif;
+}
+
+html { scroll-behavior: smooth; background: #030611; }
+body {
+  min-height: 100vh;
+  color: var(--beauty-refinement-copy);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.55;
+  background:
+    radial-gradient(ellipse at 75% 8%, rgba(28, 94, 177, .14), transparent 34%),
+    radial-gradient(ellipse at 18% 86%, rgba(20, 190, 203, .055), transparent 38%),
+    linear-gradient(145deg, #030611 0%, #07101f 48%, #030611 100%);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+button:disabled, [aria-disabled="true"] { cursor: not-allowed; }
+img, svg, canvas, video { max-width: 100%; }
+::selection { color: #fff; background: rgba(27, 126, 224, .62); }
+:where(button, a, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--beauty-refinement-accent-bright);
+  outline-offset: 3px;
+}
+
+/* Atmospheric canvas — quiet enough that foreground text remains dominant. */
+#system-app {
+  min-height: 100vh;
+  overflow-x: clip;
+  background-color: transparent;
+  background-image:
+    radial-gradient(circle at 72% 20%, rgba(17, 95, 185, .075), transparent 31%),
+    linear-gradient(90deg, rgba(1, 5, 14, .32), transparent 23%, transparent 82%, rgba(4, 36, 59, .08));
+  isolation: isolate;
+}
+#system-app::before {
+  z-index: 0;
+  opacity: .11;
+  background-size: 54px 54px;
+}
+#system-app::after {
+  z-index: 0;
+  background: radial-gradient(ellipse at 54% 36%, rgba(45, 150, 255, .07), transparent 58%);
+}
+body::after { opacity: .16; }
+
+/* Sidebar: refined command rail rather than an oversized crystal frame. */
+#system-app .sidebar {
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-min-width);
+  padding: 22px 16px 18px;
+  border: 0;
+  border-right: 1px solid var(--beauty-refinement-outline);
+  border-radius: 0;
+  clip-path: none;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(39, 108, 202, .13), transparent 43%),
+    linear-gradient(180deg, rgba(7, 14, 29, .985), rgba(4, 8, 18, .985));
+  box-shadow: 14px 0 48px rgba(0, 0, 0, .24), inset -1px 0 rgba(255, 255, 255, .025);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+#system-app .sidebar::before {
+  inset: 18px 10px 16px;
+  border: 1px solid rgba(99, 178, 233, .08);
+  clip-path: none;
+  border-radius: 18px;
+}
+#system-app .sidebar-header {
+  min-height: 88px;
+  padding: 6px 8px 18px;
+  margin: 0 0 12px;
+  border: 0;
+  border-bottom: 1px solid var(--beauty-refinement-outline);
+  background: transparent;
+  box-shadow: none;
+}
+#system-app .system-logo {
+  min-height: 58px;
+  gap: 8px;
+  color: var(--beauty-refinement-copy);
+  font-family: var(--font-main);
+  font-size: 22px;
+  letter-spacing: .24em;
+  text-shadow: 0 0 25px rgba(74, 158, 255, .2);
+}
+#system-app .system-logo::after {
+  left: 18%; right: 18%; bottom: -10px;
+  background: linear-gradient(90deg, transparent, var(--beauty-refinement-accent), var(--beauty-refinement-accent-bright), transparent);
+  opacity: .65;
+  box-shadow: none;
+}
+#system-app .system-logo .logo-icon { filter: drop-shadow(0 0 10px rgba(43, 154, 255, .48)); }
+#system-app .system-logo .logo-text {
+  font-family: var(--font-main);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: .24em;
+  color: var(--beauty-refinement-copy);
+  text-shadow: 0 0 22px rgba(59, 151, 255, .23);
+}
+#system-app .sidebar-nav {
+  gap: 7px;
+  margin-top: 14px;
+  padding: 0;
+  border: 0;
+}
+#system-app .sidebar-nav .nav-item {
+  position: relative;
+  min-height: 54px;
+  gap: 13px;
+  margin: 0;
+  padding: 9px 13px;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  clip-path: none;
+  background: transparent;
+  box-shadow: none;
+  color: #9bb0ce;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .015em;
+  text-shadow: none;
+  text-align: start;
+  transition: color .2s ease, border-color .2s ease, background .2s ease, transform .2s ease;
+}
+#system-app .sidebar-nav .nav-item img,
+#system-app .sidebar-nav .nav-item .nav-icon {
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  opacity: .86;
+  filter: drop-shadow(0 3px 8px rgba(27, 123, 255, .23));
+  transition: transform .2s ease, opacity .2s ease, filter .2s ease;
+}
+#system-app .sidebar-nav .nav-item::after { content: none; }
+#system-app .sidebar-nav .nav-item::before {
+  content: "";
+  position: absolute;
+  left: -1px; top: 12px; bottom: 12px;
+  width: 3px; height: auto;
+  border: 0;
+  border-radius: 0 3px 3px 0;
+  background: transparent;
+  box-shadow: none;
+  transition: background .2s ease, box-shadow .2s ease;
+}
+#system-app .sidebar-nav .nav-item:hover {
+  color: #edf7ff;
+  border-color: rgba(103, 167, 231, .13);
+  background: rgba(38, 74, 124, .16);
+  transform: translateX(2px);
+}
+#system-app .sidebar-nav .nav-item:hover img { opacity: 1; transform: scale(1.04); }
+#system-app .sidebar-nav .nav-item.active {
+  color: #f4fbff;
+  border-color: rgba(107, 190, 240, .24);
+  background: linear-gradient(105deg, rgba(28, 98, 186, .30), rgba(20, 58, 94, .20));
+  box-shadow: inset 0 1px rgba(255,255,255,.035), 0 7px 20px rgba(0,0,0,.10);
+  text-shadow: none;
+}
+#system-app .sidebar-nav .nav-item.active::before {
+  background: linear-gradient(180deg, var(--beauty-refinement-accent-bright), var(--beauty-refinement-accent));
+  box-shadow: 0 0 14px color-mix(in srgb, var(--beauty-refinement-accent) 45%, transparent);
+}
+#system-app .sidebar-nav .nav-item.active img { opacity: 1; filter: drop-shadow(0 0 8px rgba(67, 175, 255, .35)); }
+#system-app .sidebar-footer {
+  margin-top: auto;
+  padding: 18px 4px 4px;
+  color: #7188a8;
+  font-family: var(--font-ui);
+  font-size: 9px;
+  letter-spacing: .18em;
+}
+#system-app .sidebar-footer .sidebar-line { background: linear-gradient(90deg, transparent, var(--beauty-refinement-outline-strong), transparent); box-shadow: none; }
+
+/* Main work area, player HUD, and page shell. */
+#system-app .main-content {
+  width: calc(100% - var(--sidebar-width));
+  min-width: 0;
+  margin-left: var(--sidebar-width);
+  padding: 28px 30px 42px;
+  z-index: 1;
+}
+#system-app .content-container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+}
+#system-app .player-hud {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(165px, .9fr) minmax(200px, 1.55fr) minmax(125px, .7fr);
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto 19px;
+  padding: 14px 18px;
+  border: 1px solid var(--beauty-refinement-outline);
+  border-radius: var(--beauty-refinement-radius-md);
+  clip-path: none;
+  background: linear-gradient(115deg, rgba(10, 22, 42, .90), rgba(9, 20, 37, .78) 52%, rgba(5, 15, 28, .91));
+  box-shadow: var(--beauty-refinement-shadow-card), var(--beauty-refinement-glow);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+#system-app .player-hud::before {
+  top: 0; left: 7%; right: 7%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--beauty-refinement-accent), var(--beauty-refinement-accent-bright), transparent);
+  opacity: .55;
+}
+#system-app .player-hud::after {
+  right: -1px; top: 23%; bottom: 23%; width: 2px;
+  background: var(--beauty-refinement-accent-bright);
+  box-shadow: 0 0 12px var(--beauty-refinement-accent);
+  opacity: .8;
+}
+#system-app .hud-player { gap: 12px; }
+#system-app .hud-player > img { width: 46px; height: 46px; flex-basis: 46px; filter: drop-shadow(0 0 12px rgba(51, 158, 255, .34)); }
+#system-app .hud-eyebrow,
+#system-app .hud-xp-labels > span,
+#system-app .hud-currency small { color: var(--beauty-refinement-copy-muted); font-size: 9px; letter-spacing: .14em; }
+#system-app .hud-player-copy strong { color: var(--beauty-refinement-copy); font-family: var(--font-main); font-size: 15px; letter-spacing: .08em; text-shadow: none; }
+#system-app .hud-xp-labels strong { color: #e5f4ff; font-size: 11px; font-variant-numeric: tabular-nums; }
+#system-app .hud-xp-track { height: 8px; border: 1px solid rgba(86, 160, 225, .28); border-radius: 99px; background: rgba(0, 3, 10, .9); }
+#system-app .hud-xp-track > span { border-radius: 99px; background: linear-gradient(90deg, var(--color-blue), var(--beauty-refinement-accent), var(--beauty-refinement-accent-bright)); box-shadow: 0 0 12px rgba(37, 146, 255, .42); }
+#system-app .hud-xp-remaining { color: #8098b9; font-size: 9px; }
+#system-app .hud-currency { gap: 10px; padding-left: 16px; border-left: 1px solid var(--beauty-refinement-outline); }
+#system-app .hud-coin-icon { color: var(--beauty-refinement-accent-bright); font-size: 25px; text-shadow: 0 0 16px rgba(38, 158, 240, .3); }
+#system-app .hud-currency-copy strong { color: var(--beauty-refinement-copy); font-size: 18px; font-variant-numeric: tabular-nums; }
+
+#system-app .content-container > .page {
+  position: relative;
+  min-width: 0;
+  color: var(--beauty-refinement-copy);
+  border: 1px solid rgba(117, 159, 211, .09);
+  border-radius: var(--beauty-refinement-radius-lg);
+  overflow: hidden;
+  isolation: isolate;
+}
+#system-app .content-container > .page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 18% 0%, rgba(31, 105, 190, .09), transparent 35%);
+}
+
+#system-app .content-container > #quest-page,
+#system-app .content-container > #rewards-page,
+#system-app .content-container > #ai-page,
+#system-app .content-container > #settings-page {
+  padding: clamp(18px, 2.3vw, 32px);
+  background-color: rgba(5, 11, 23, .52);
+  background-size: cover;
+  background-position: center top;
+  background-attachment: local;
+  border-color: rgba(112, 165, 221, .12);
+}
+#system-app .content-container > #quest-page {
+  background-image: linear-gradient(180deg, rgba(3, 7, 17, .77), rgba(4, 9, 20, .89)), var(--quest-background-image);
+}
+#system-app .content-container > #rewards-page {
+  background-image: linear-gradient(180deg, rgba(3, 7, 17, .76), rgba(4, 9, 20, .89)), var(--rewards-background-image);
+}
+#system-app .content-container > #ai-page {
+  background-image: linear-gradient(180deg, rgba(3, 7, 17, .78), rgba(4, 9, 20, .91)), var(--ai-background-image);
+}
+#system-app .content-container > #settings-page {
+  background-image: linear-gradient(180deg, rgba(3, 7, 17, .78), rgba(4, 9, 20, .92)), var(--settings-background-image);
+}
+
+/* Headings: strong hierarchy, fewer oversized glows. */
+#system-app .page-header {
+  gap: 18px;
+  min-height: 64px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--beauty-refinement-outline);
+  box-shadow: none;
+  text-align: start;
+}
+#system-app .page-title {
+  margin: 0;
+  color: #edf7ff;
+  font-family: var(--font-main);
+  font-size: clamp(28px, 2.8vw, 38px);
+  font-weight: 760;
+  line-height: 1.12;
+  letter-spacing: -.035em;
+  text-shadow: 0 3px 24px rgba(58, 145, 255, .16);
+  filter: none;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+#system-app .page-title::before,
+#system-app .page-title::after { content: none; display: none; }
+#system-app .page-subtitle { margin-top: 7px; color: var(--beauty-refinement-copy-muted); font-size: 12px; letter-spacing: .01em; line-height: 1.55; }
+#system-app .section-header { padding-bottom: 10px; border-bottom: 1px solid var(--beauty-refinement-outline); }
+#system-app .section-title { color: #d9eaff; font-family: var(--font-main); font-size: 14px; font-weight: 750; letter-spacing: .15em; text-shadow: none; }
+
+/* Status dashboard — keep the existing interactive grid but unify its surfaces. */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Quest workbench. */
+#system-app #quest-page .quest-layout { grid-template-columns: minmax(0, 1fr) minmax(230px, .34fr); gap: 18px; align-items: start; }
+#system-app #quest-page .quest-main-panel,
+#system-app #quest-page .quest-side-panel,
+#system-app #rewards-page .rewards-main-panel,
+#system-app #rewards-page .selected-reward,
+#system-app #ai-page .ai-chat-panel,
+#system-app #ai-page .ai-tools-panel,
+#system-app #ai-page .ai-provider-panel,
+#system-app #ai-page .ai-quest-panel {
+  min-width: 0;
+  border: 1px solid var(--beauty-refinement-outline);
+  border-radius: var(--beauty-refinement-radius-md);
+  clip-path: none;
+  background: linear-gradient(145deg, rgba(10, 22, 42, .91), rgba(6, 13, 27, .90));
+  box-shadow: var(--beauty-refinement-shadow-card);
+}
+#system-app #quest-page .quest-main-panel { padding: 19px; }
+#system-app #quest-page .panel-header { align-items: center; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--beauty-refinement-outline); }
+#system-app #quest-page .panel-header h2 { color: #edf6ff; font-family: var(--font-main); font-size: 16px; font-weight: 750; }
+#system-app #quest-page .panel-header > span { padding: 5px 9px; border: 1px solid var(--beauty-refinement-outline); border-radius: 99px; background: rgba(3, 10, 22, .42); color: var(--beauty-refinement-copy-muted); font-size: 10px; }
+#system-app #quest-page .quest-list { gap: 10px; padding-top: 14px; }
+#system-app #quest-page .quest-card {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 14px;
+  border: 1px solid rgba(126, 163, 211, .16);
+  border-radius: 13px;
+  clip-path: none;
+  background: rgba(7, 16, 31, .68);
+  box-shadow: none;
+}
+#system-app #quest-page .quest-card:hover { border-color: var(--beauty-refinement-outline-strong); background: rgba(12, 28, 49, .82); }
+#system-app #quest-page .quest-card.completed { border-color: rgba(62, 207, 167, .28); background: rgba(10, 48, 42, .24); }
+#system-app #quest-page .quest-icon { width: 38px; height: 38px; border-radius: 11px; background: linear-gradient(145deg, rgba(32, 113, 202, .26), rgba(19, 42, 73, .5)); }
+#system-app #quest-page .quest-information h3 { margin-bottom: 4px; color: #e7f1ff; font-family: var(--font-main); font-size: 13px; font-weight: 720; }
+#system-app #quest-page .quest-information p { color: var(--beauty-refinement-copy-muted); font-size: 11px; line-height: 1.45; }
+#system-app #quest-page .quest-progress { color: #8eabc9; font-size: 10px; }
+#system-app #quest-page .quest-reward { color: var(--beauty-refinement-accent-bright); font-size: 11px; font-weight: 750; white-space: nowrap; }
+#system-app #quest-page .quest-go,
+#system-app #rewards-page .reward-card button,
+#system-app #rewards-page .claim-button,
+#system-app #rewards-page .daily-login-claim,
+#system-app #ai-page button:not(.ai-workspace-tab),
+#system-app #settings-page .settings-row > button {
+  min-height: 38px;
+  padding: 8px 13px;
+  border: 1px solid rgba(96, 178, 230, .34);
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(28, 104, 192, .29), rgba(12, 42, 77, .4));
+  color: #e6f5ff;
+  box-shadow: inset 0 1px rgba(255,255,255,.045), 0 6px 15px rgba(0,0,0,.12);
+  font-size: 11px;
+  font-weight: 750;
+  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+#system-app #quest-page .quest-go:hover,
+#system-app #rewards-page .reward-card button:not(:disabled):hover,
+#system-app #rewards-page .claim-button:hover,
+#system-app #rewards-page .daily-login-claim:hover,
+#system-app #settings-page .settings-row > button:hover {
+  transform: translateY(-1px);
+  border-color: var(--beauty-refinement-outline-strong);
+  background: linear-gradient(135deg, rgba(33, 124, 220, .42), rgba(14, 58, 94, .48));
+}
+#system-app #quest-page .quest-side-panel { display: flex; flex-direction: column; gap: 10px; padding: 14px; }
+#system-app #quest-page .side-quest-card { border: 1px solid var(--beauty-refinement-outline); border-radius: 12px; background: rgba(6, 14, 28, .72); box-shadow: none; }
+#system-app #quest-page .side-quest-card h2 { color: #e4f2ff; font-family: var(--font-main); font-size: 14px; }
+#system-app #quest-page .side-quest-card p { color: var(--beauty-refinement-copy-muted); font-size: 11px; }
+
+/* Rewards: clearer hierarchy and less constant glow. */
+#system-app #rewards-page .rewards-layout { grid-template-columns: minmax(0, 1fr) minmax(220px, .30fr); gap: 18px; align-items: start; }
+#system-app #rewards-page .rewards-main-panel { padding: 19px; }
+#system-app #rewards-page .reward-tabs { gap: 7px; padding-bottom: 14px; border-bottom: 1px solid var(--beauty-refinement-outline); }
+#system-app #rewards-page .reward-tab,
+#system-app #ai-page .ai-workspace-tab {
+  min-height: 37px;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: #91a8c7;
+  box-shadow: none;
+  font-size: 11px;
+  font-weight: 700;
+}
+#system-app #rewards-page .reward-tab.active,
+#system-app #rewards-page .reward-tab:hover,
+#system-app #ai-page .ai-workspace-tab.is-active {
+  border-color: var(--beauty-refinement-outline);
+  background: rgba(31, 83, 139, .25);
+  color: #e7f5ff;
+}
+#system-app #rewards-page .daily-reward-panel {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  align-items: center;
+  gap: 11px 15px;
+  margin-top: 16px;
+  padding: 17px;
+  border: 1px solid rgba(118, 168, 214, .17);
+  border-radius: 14px;
+  clip-path: none;
+  background: linear-gradient(110deg, rgba(17, 43, 72, .52), rgba(7, 17, 33, .70));
+  box-shadow: none;
+}
+#system-app #rewards-page .daily-reward-panel .reward-icon { grid-row: span 2; width: 54px; height: 54px; border-radius: 14px; background: rgba(43, 115, 186, .16); }
+#system-app #rewards-page .daily-reward-panel h2 { color: #e8f4ff; font-family: var(--font-main); font-size: 15px; }
+#system-app #rewards-page .daily-reward-panel p { color: var(--beauty-refinement-copy-muted); font-size: 11px; }
+#system-app #rewards-page .reward-days { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 7px; }
+#system-app #rewards-page .reward-days span { padding: 8px 3px; border: 1px solid var(--beauty-refinement-outline); border-radius: 9px; background: rgba(3, 10, 21, .45); color: #91a8c7; text-align: center; font-size: 10px; }
+#system-app #rewards-page .daily-login-actions { grid-column: 1 / -1; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+#system-app #rewards-page .daily-login-status { margin: 0; color: var(--beauty-refinement-copy-muted); font-size: 10px; }
+#system-app #rewards-page .sub-title { margin: 22px 0 12px; color: #dcecff; font-family: var(--font-main); font-size: 15px; }
+#system-app #rewards-page .available-rewards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 11px; }
+#system-app #rewards-page .reward-card { min-width: 0; padding: 15px; border: 1px solid var(--beauty-refinement-outline); border-radius: 13px; clip-path: none; background: rgba(7, 16, 31, .70); box-shadow: none; }
+#system-app #rewards-page .reward-card:hover { border-color: var(--beauty-refinement-outline-strong); transform: translateY(-2px); }
+#system-app #rewards-page .reward-card h3 { color: #e5f1ff; font-family: var(--font-main); font-size: 12px; }
+#system-app #rewards-page .reward-card p { color: var(--beauty-refinement-copy-muted); font-size: 10px; line-height: 1.5; }
+#system-app #rewards-page .reward-card button:disabled,
+#system-app #quest-page button:disabled,
+#system-app #ai-page button:disabled,
+#system-app #settings-page button:disabled { opacity: .46; filter: grayscale(.35); }
+#system-app #rewards-page .selected-reward { position: sticky; top: 22px; padding: 20px; text-align: center; }
+#system-app #rewards-page .selected-reward h2 { color: #eaf6ff; font-family: var(--font-main); font-size: 16px; }
+#system-app #rewards-page .selected-reward p { color: var(--beauty-refinement-copy-muted); font-size: 11px; }
+#system-app #rewards-page .reward-cost { margin: 16px 0; color: var(--beauty-refinement-accent-bright); font-size: 15px; font-weight: 800; }
+
+/* AI workspace, providers, generated tools and chat controls. */
+#system-app #ai-page .ai-workspace-tabs { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 17px; padding: 6px; border: 1px solid var(--beauty-refinement-outline); border-radius: 13px; background: rgba(4, 11, 23, .66); }
+#system-app #ai-page .ai-workspace-tab { flex: 0 0 auto; }
+#system-app #ai-page .ai-layout { gap: 16px; }
+#system-app #ai-page .ai-chat-panel,
+#system-app #ai-page .ai-tools-panel,
+#system-app #ai-page .ai-provider-panel,
+#system-app #ai-page .ai-quest-panel { padding: 18px; }
+#system-app #ai-page .ai-chat-header { padding-bottom: 13px; border-bottom: 1px solid var(--beauty-refinement-outline); }
+#system-app #ai-page .ai-chat-header h2 { color: #e9f5ff; font-family: var(--font-main); font-size: 15px; }
+#system-app #ai-page .ai-chat-header span { color: var(--beauty-refinement-copy-muted); font-size: 10px; }
+#system-app #ai-page .chat-messages { gap: 11px; }
+#system-app #ai-page .message-content { border: 1px solid rgba(124, 164, 210, .12); border-radius: 12px; background: rgba(10, 22, 40, .76); color: #dceafa; line-height: 1.6; }
+#system-app #ai-page .user-message .message-content { border-color: rgba(80, 158, 218, .20); background: rgba(22, 67, 109, .35); }
+#system-app #ai-page .chat-input { gap: 9px; padding-top: 12px; }
+#system-app #ai-page .chat-input input { min-width: 0; border: 1px solid var(--beauty-refinement-outline); border-radius: 11px; background: rgba(2, 7, 16, .82); color: #e7f3ff; box-shadow: none; }
+#system-app #ai-page input::placeholder,
+#system-app #ai-page textarea::placeholder,
+#system-app #settings-page input::placeholder,
+#system-app #settings-page textarea::placeholder { color: #748ba9; }
+
+/* Settings, theme selection modal, backups and generated add-on panels. */
+#system-app #settings-page .settings-row {
+  gap: 14px;
+  margin-bottom: 10px;
+  padding: 16px 17px;
+  border: 1px solid var(--beauty-refinement-outline);
+  border-radius: 13px;
+  background: linear-gradient(110deg, rgba(10, 22, 41, .80), rgba(6, 14, 27, .74));
+  box-shadow: none;
+}
+#system-app #settings-page .settings-row:hover { border-color: var(--beauty-refinement-outline-strong); background: rgba(13, 27, 48, .90); }
+#system-app #settings-page .settings-number { color: var(--beauty-refinement-accent-bright); font-family: var(--font-main); font-size: 12px; opacity: .92; }
+#system-app #settings-page .settings-information h2 { color: #e9f4ff; font-family: var(--font-main); font-size: 14px; }
+#system-app #settings-page .settings-information p { color: var(--beauty-refinement-copy-muted); font-size: 11px; }
+#system-app #settings-page .settings-icon { border-radius: 10px; background: rgba(42, 111, 181, .12); }
+#system-app #settings-page .settings-row > button { flex: 0 0 auto; white-space: nowrap; }
+#system-language-toggle {
+  position: relative; z-index: auto;
+  gap: 8px;
+  padding: 8px 11px;
+  border: 1px solid rgba(119, 170, 221, .24);
+  border-radius: 11px;
+  background: rgba(5, 12, 25, .82);
+  color: #cfe5ff;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: 0 8px 22px rgba(0,0,0,.14);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+#system-language-toggle:hover { border-color: var(--beauty-refinement-outline-strong); box-shadow: 0 8px 24px rgba(0,0,0,.20); }
+#system-language-toggle .lang-dot { background: var(--beauty-refinement-accent-bright); box-shadow: 0 0 9px rgba(55, 203, 234, .48); }
+#system-settings-dialog .system-modal-shell {
+  border: 1px solid var(--beauty-refinement-outline-strong);
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(10, 21, 40, .99), rgba(3, 8, 19, .99));
+  box-shadow: 0 30px 100px rgba(0,0,0,.58), 0 0 40px rgba(25, 112, 207, .12);
+}
+#system-settings-dialog .system-modal-header { border-bottom-color: var(--beauty-refinement-outline); }
+#system-settings-dialog .system-modal-eyebrow { color: var(--beauty-refinement-accent-bright); letter-spacing: .17em; }
+#system-settings-dialog .system-modal-intro { color: var(--beauty-refinement-copy-muted); }
+#system-settings-dialog .system-theme-options button,
+#system-settings-dialog .system-modal-header button,
+#system-settings-dialog [data-theme] { border-radius: 12px; }
+#system-settings-dialog .system-theme-options button.is-selected { border-color: var(--beauty-refinement-outline-strong); background: rgba(25, 77, 125, .28); }
+#system-settings-dialog .system-store-card,
+#system-settings-dialog .system-list-card,
+#system-settings-dialog .system-roadmap-step,
+#system-settings-dialog .system-wallet,
+#system-settings-dialog .system-health-panel,
+#system-settings-dialog .system-backup-actions > * {
+  border-color: var(--beauty-refinement-outline);
+  border-radius: 12px;
+  background: rgba(7, 17, 33, .78);
+}
+#system-app :is(.grok-suite-panel, .grok-study-panel, .grok-progress-panel, .grok-title-card, .grok-theme-card, .grok-chest) {
+  border-color: var(--beauty-refinement-outline);
+  border-radius: 15px;
+  box-shadow: none;
+}
+#system-app :is(.grok-suite-panel, .grok-study-panel, .grok-progress-panel) { background: linear-gradient(145deg, rgba(10, 22, 42, .91), rgba(6, 13, 27, .90)); }
+#system-app :is(input, select, textarea) {
+  max-width: 100%;
+  border-color: rgba(125, 164, 211, .23);
+  border-radius: 10px;
+  background-color: rgba(3, 9, 20, .78);
+  color: var(--beauty-refinement-copy);
+}
+#system-app :is(input, select, textarea):focus { border-color: var(--beauty-refinement-outline-strong); outline: none; box-shadow: 0 0 0 3px rgba(44, 154, 220, .10); }
+#system-app :is(.system-notification, .notification, .toast) { border-radius: 13px; box-shadow: 0 18px 48px rgba(0,0,0,.42); }
+
+/* The Royal palette remains gold, but uses a cleaner single-edge frame. */
+html[data-system-theme="royal"] :is(.sidebar, .player-hud, .xp-panel, .rank-panel, .stat-card, .quest-card, .reward-card, .daily-reward-panel, .system-dialog, .rp-hub) {
+  border: 1px solid rgba(226, 188, 94, .24);
+  border-radius: 14px;
+  clip-path: none;
+  box-shadow: 0 16px 38px rgba(0,0,0,.28), inset 0 1px rgba(255,255,255,.035);
+}
+html[data-system-theme="royal"] #system-app .sidebar { border-radius: 0; border-right-color: rgba(226, 188, 94, .22); }
+html[data-system-theme="royal"] #system-app .page-title { filter: none; text-shadow: 0 0 26px rgba(255, 200, 76, .13); }
+html[data-system-theme="royal"] #system-app .sidebar-nav .nav-item.active { background: linear-gradient(105deg, rgba(137, 94, 28, .27), rgba(66, 48, 19, .19)); }
+html[data-system-theme="royal"] #system-app .sidebar-nav .nav-item.active::before { background: linear-gradient(180deg, #fff0b8, #c8912a); box-shadow: 0 0 12px rgba(255,206,92,.24); }
+html[data-system-theme="royal"] #system-app .hud-xp-track > span{ background: linear-gradient(90deg, #9b691d, #e8c55e, #fff0b8); box-shadow: 0 0 12px rgba(220, 173, 65, .30); }
+
+/* RTL / Dari layout fixes without forcing directional changes inside code. */
+html[dir="rtl"] #system-app .sidebar { left: auto; right: 0; border-right: 0; border-left: 1px solid var(--beauty-refinement-outline); }
+html[dir="rtl"] #system-app .sidebar-nav .nav-item::before { left: auto; right: -1px; border-radius: 3px 0 0 3px; }
+html[dir="rtl"] #system-app .main-content { margin-left: 0; margin-right: var(--sidebar-width); }
+html[dir="rtl"] #system-app .hud-currency { padding-left: 0; padding-right: 16px; border-left: 0; border-right: 1px solid var(--beauty-refinement-outline); }
+html[dir="rtl"] #system-app .page-header { text-align: right; }
+
+
+html[dir="rtl"] #system-app #quest-page .quest-card { text-align: right; }
+html[dir="rtl"] #system-app #settings-page .settings-row { text-align: right; }
+
+/* Desktop width correction for the previous reference-layout override. */
+@media (min-width: 1200px) {
+  #system-app .sidebar { width: 280px; min-width: 260px; }
+  
+  
+  
+  
+  
+}
+@media (max-width: 1199px) {
+  #system-app .sidebar { width: 250px; min-width: 230px; }
+  #system-app .main-content { width: calc(100% - 250px); margin-left: 250px; padding: 24px 22px 36px; }
+  
+  
+}
+@media (max-width: 900px) {
+  #system-app .main-content { padding: 22px 18px 32px; }
+  #system-app .player-hud { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 11px 15px; }
+  #system-app .hud-currency { grid-column: 1 / -1; justify-content: flex-start; padding: 9px 0 0; border-left: 0; border-top: 1px solid var(--beauty-refinement-outline); }
+  
+  
+  
+  #system-app #quest-page .quest-layout,
+  #system-app #rewards-page .rewards-layout { grid-template-columns: minmax(0, 1fr); }
+  #system-app #quest-page .quest-side-panel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #system-app #rewards-page .selected-reward { position: static; }
+}
+@media (max-width: 700px) {
+  #system-app .sidebar {
+    left: 0; right: 0; bottom: 0; top: auto;
+    width: 100%; min-width: 0; height: auto; max-height: none;
+    padding: 7px 8px calc(7px + env(safe-area-inset-bottom));
+    border: 0; border-top: 1px solid rgba(110, 166, 220, .20);
+    border-radius: 0;
+    background: rgba(5, 11, 23, .94);
+    box-shadow: 0 -12px 34px rgba(0, 0, 0, .32);
+    backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+  }
+  #system-app .sidebar::before { content: none; }
+  #system-app .sidebar-header, #system-app .sidebar-footer { display: none; }
+  #system-app .sidebar-nav { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; margin: 0; }
+  #system-app .sidebar-nav .nav-item {
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    gap: 4px; min-width: 0; min-height: 54px; padding: 5px 1px;
+    border: 1px solid transparent; border-radius: 10px;
+    color: #8fa7c7; font-size: 9px; line-height: 1.1; letter-spacing: 0;
+    text-align: center; transform: none;
+  }
+  #system-app .sidebar-nav .nav-item img,
+  #system-app .sidebar-nav .nav-item .nav-icon { flex-basis: 23px; width: 23px; height: 23px; }
+  #system-app .sidebar-nav .nav-item::before { left: 25%; right: 25%; top: auto; bottom: -1px; width: auto; height: 2px; border-radius: 3px 3px 0 0; }
+  #system-app .sidebar-nav .nav-item.active { border-color: rgba(100, 176, 229, .15); background: rgba(24, 72, 123, .22); box-shadow: none; }
+  #system-app .sidebar-nav .nav-item.active::before { left: 25%; right: 25%; bottom: -1px; width: auto; height: 2px; }
+  #system-app .main-content { width: 100%; margin: 0; padding: 16px 12px calc(82px + env(safe-area-inset-bottom)); }
+  
+  #system-app .top-bar { margin-bottom: 10px; }
+  #system-app .player-hud { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 9px 12px; margin-bottom: 13px; padding: 11px 12px; border-radius: 13px; }
+  #system-app .hud-player > img { width: 36px; height: 36px; flex-basis: 36px; }
+  #system-app .hud-player-copy strong { font-size: 13px; }
+  #system-app .hud-eyebrow { font-size: 8px; letter-spacing: .09em; }
+  #system-app .hud-xp-labels > span { display: none; }
+  #system-app .hud-xp-labels strong { font-size: 10px; }
+  #system-app .hud-xp-remaining { font-size: 8px; }
+  #system-language-toggle { padding: 7px 9px; font-size: 10px; }
+  #system-app .content-container > .page { border-radius: 15px; }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  #system-app .content-container > #quest-page,
+  #system-app .content-container > #rewards-page,
+  #system-app .content-container > #ai-page,
+  #system-app .content-container > #settings-page { padding: 16px 12px; }
+  #system-app .page-header { min-height: auto; margin-bottom: 17px; padding-bottom: 12px; }
+  #system-app .page-title { font-size: 29px; }
+  #system-app .page-subtitle { font-size: 11px; }
+  #system-app #quest-page .quest-main-panel,
+  #system-app #rewards-page .rewards-main-panel,
+  #system-app #ai-page .ai-chat-panel,
+  #system-app #ai-page .ai-tools-panel,
+  #system-app #ai-page .ai-provider-panel,
+  #system-app #ai-page .ai-quest-panel { padding: 12px; }
+  #system-app #quest-page .quest-card { grid-template-columns: 32px minmax(0, 1fr) auto; gap: 8px; padding: 10px; }
+  #system-app #quest-page .quest-icon { width: 30px; height: 30px; }
+  #system-app #quest-page .quest-reward { grid-column: 2; grid-row: 2; justify-self: start; }
+  #system-app #quest-page .quest-go { grid-column: 3; grid-row: 1 / span 2; }
+  #system-app #quest-page .quest-information h3 { font-size: 12px; }
+  #system-app #quest-page .quest-information p { font-size: 10px; }
+  #system-app #quest-page .quest-side-panel { grid-template-columns: minmax(0, 1fr); }
+  #system-app #rewards-page .available-rewards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #system-app #rewards-page .daily-reward-panel { grid-template-columns: 42px minmax(0, 1fr); padding: 12px; }
+  #system-app #rewards-page .daily-reward-panel .reward-icon { width: 40px; height: 40px; }
+  #system-app #rewards-page .reward-days { gap: 4px; }
+  #system-app #rewards-page .reward-days span { font-size: 8px; padding: 7px 1px; }
+  #system-app #settings-page .settings-row { display: grid; grid-template-columns: 22px 30px minmax(0, 1fr); gap: 9px; padding: 12px; }
+  #system-app #settings-page .settings-row > button { grid-column: 3; justify-self: start; white-space: normal; }
+  #system-app #settings-page .settings-information h2 { font-size: 13px; }
+  #system-app #settings-page .settings-information p { font-size: 10px; }
+  #system-app #ai-page .ai-workspace-tabs { gap: 4px; padding: 4px; }
+  #system-app #ai-page .ai-workspace-tab { flex: 1 1 auto; padding: 8px 7px; font-size: 10px; }
+  html[dir="rtl"] #system-app .main-content { margin: 0; }
+  html[dir="rtl"] #system-app .sidebar { left: 0; right: 0; border-left: 0; }
+  html[dir="rtl"] #system-app .sidebar-nav .nav-item::before,
+  html[dir="rtl"] #system-app .sidebar-nav .nav-item.active::before { left: 25%; right: 25%; top: auto; bottom: -1px; width: auto; height: 2px; }
+  html[dir="rtl"] #system-app .hud-currency { padding-right: 0; border-right: 0; }
+}
+@media (max-width: 390px) {
+  #system-app .main-content { padding-inline: 8px; }
+  
+  
+  
+  
+  #system-app #rewards-page .available-rewards { grid-template-columns: minmax(0, 1fr); }
+  #system-app .hud-currency-copy strong { font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms; animation-iteration-count: 1; transition-duration: .01ms; scroll-behavior: auto; }
+}

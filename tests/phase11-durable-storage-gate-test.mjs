@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const gate = fs.readFileSync(new URL('../js/modules/durable-storage-gate.js', import.meta.url), 'utf8');
+const app = fs.readFileSync(new URL('../js/app.js', import.meta.url), 'utf8');
+assert.match(gate, /inspectDurableStorageCapabilities/);
+assert.match(gate, /estimateDurableStorage/);
+assert.match(gate, /requestPersistentStorage/);
+assert.match(gate, /queryPersistentStorage/);
+assert.match(gate, /storage\.persist\(\)/, 'persistence request must be explicit');
+assert.match(gate, /catch \{\s*return \{ available: false, usage: null, quota: null \};\s*\}/);
+assert.match(app, /window\.SYSTEMDurableStorage = Object\.freeze/);
+assert.match(app, /requestPersistence: requestPersistentStorage/);
+assert.match(app, /never triggers data migration or deletion/);
+assert.doesNotMatch(gate, /localStorage\.clear\(|indexedDB\.deleteDatabase\(/, 'storage gate must never delete user data');
+console.log('Phase 11 durable storage gate contract passed.');

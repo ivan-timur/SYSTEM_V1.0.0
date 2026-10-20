@@ -1,0 +1,631 @@
+/*
+ * SYSTEM — ROYAL SOVEREIGN / PREMIUM THEME
+ * Midnight regalia, velvet-shadow surfaces, antique gold and champagne highlights.
+ * Scope is intentionally limited to this preset so the other themes remain independent.
+ */
+
+html[data-system-theme="royal"] {
+    color-scheme: dark;
+    --color-black: #04050b;
+    --color-background: #080a16;
+    --color-background-2: #101225;
+    --color-panel: rgba(10, 12, 27, .95);
+    --color-panel-light: rgba(20, 20, 38, .95);
+    --color-panel-dark: rgba(4, 5, 14, .985);
+
+    /* The blue-named design tokens intentionally become the Royal gold accent. */
+    --color-blue-dark: #49351a;
+    --color-blue: #c49a4a;
+    --color-blue-light: #f0cd79;
+    --color-blue-bright: #fff0bd;
+    --color-neon: #e3b75b;
+    --color-neon-light: #ffe4a0;
+    --color-neon-white: #fff8e8;
+
+    --color-text: #f7f2e5;
+    --color-text-light: #dfd2b1;
+    --color-text-muted: #ad9b75;
+    --color-border: rgba(211, 173, 91, .31);
+    --color-border-bright: rgba(246, 216, 143, .78);
+    --color-success: #75d4a2;
+    --color-warning: #edc56a;
+    --color-danger: #e78387;
+
+    --glow-small: 0 0 7px rgba(220, 174, 76, .18);
+    --glow-medium: 0 0 13px rgba(220, 174, 76, .20);
+    --glow-large: 0 0 24px rgba(220, 174, 76, .16);
+    --glow-intense: 0 0 36px rgba(220, 174, 76, .14);
+    --text-glow: 0 0 12px rgba(255, 217, 135, .24);
+    --panel-glow: 0 12px 36px rgba(0, 0, 0, .23), 0 0 18px rgba(191, 147, 57, .055);
+    --active-glow: 0 0 20px rgba(229, 184, 83, .20);
+    --frame-color: rgba(204, 164, 78, .48);
+    --frame-highlight: rgba(255, 228, 159, .78);
+    --background-overlay: linear-gradient(180deg, rgba(5, 6, 15, .32), rgba(4, 4, 12, .74));
+    --background-overlay-strong: linear-gradient(180deg, rgba(5, 5, 13, .58), rgba(4, 4, 12, .88));
+    --dark-gradient: linear-gradient(180deg, rgba(16, 15, 31, .96), rgba(5, 6, 16, .985));
+    --panel-gradient: linear-gradient(145deg, rgba(24, 22, 40, .94), rgba(7, 8, 20, .98));
+    --blue-gradient: linear-gradient(90deg, #79531e, #d3a448, #fff0bd);
+
+    --royal-signature-ink: #05060f;
+    --royal-signature-surface: rgba(12, 13, 28, .92);
+    --royal-signature-surface-raised: rgba(22, 21, 38, .96);
+    --royal-signature-surface-soft: rgba(37, 30, 48, .62);
+    --royal-signature-outline: rgba(213, 176, 96, .22);
+    --royal-signature-outline-strong: rgba(242, 207, 122, .58);
+    --royal-signature-accent: #c49a4a;
+    --royal-signature-accent-bright: #ffe4a0;
+    --royal-signature-copy: #f7f2e5;
+    --royal-signature-copy-muted: #b4a27c;
+    --royal-signature-glow: 0 0 26px rgba(194, 147, 55, .085);
+
+    --status-bg: rgba(8, 9, 21, .93);
+    --status-background-image: url("../../assets/images/backgrounds/status-bg.webp");
+    --status-card-bg: linear-gradient(145deg, rgba(24, 22, 39, .96), rgba(7, 8, 19, .98));
+    --status-border: rgba(216, 177, 91, .50);
+    --status-border-soft: rgba(216, 177, 91, .26);
+    --status-text: #faf4e4;
+    --status-muted: #c0b18c;
+    --status-glow: 0 0 18px rgba(197, 150, 58, .11);
+
+    --cr-edge: rgba(239, 202, 119, .82);
+    --cr-edge-dim: rgba(184, 137, 48, .33);
+    --cr-fill: linear-gradient(155deg, rgba(27, 24, 42, .91), rgba(6, 7, 17, .97) 62%, rgba(31, 17, 32, .89));
+    --cr-title: "Cinzel Decorative", "Cinzel", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    --gold-grad: linear-gradient(180deg, #fff8dc 4%, #f1d080 43%, #c49a4a 78%, #8b6324 100%);
+}
+
+html[data-system-theme="royal"] body {
+    color: var(--color-text);
+    background:
+        radial-gradient(ellipse at 79% 8%, rgba(195, 147, 56, .095), transparent 27%),
+        radial-gradient(ellipse at 18% 86%, rgba(93, 52, 91, .11), transparent 34%),
+        linear-gradient(145deg, #05060f 0%, #0b0b19 48%, #05050d 100%);
+}
+
+/* Quiet, layered atmosphere: the background art is darkened, not hue-blended over text. */
+html[data-system-theme="royal"] #system-app {
+    background-color: #070812;
+    background-image:
+        radial-gradient(ellipse at 83% 8%, rgba(216, 171, 73, .12), transparent 28%),
+        radial-gradient(ellipse at 24% 91%, rgba(95, 52, 93, .10), transparent 38%),
+        linear-gradient(145deg, rgba(5, 6, 15, .30), rgba(8, 8, 20, .56) 56%, rgba(10, 7, 18, .64));
+    background-position: center, center, center;
+    background-size: cover, cover, cover;
+    background-attachment: fixed;
+}
+
+html[data-system-theme="royal"] #system-app::before {
+    opacity: .16;
+    background-image:
+        linear-gradient(rgba(218, 179, 95, .042) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(218, 179, 95, .042) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at center, #000 10%, transparent 88%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 10%, transparent 88%);
+}
+
+html[data-system-theme="royal"] #system-app::after {
+    background:
+        radial-gradient(ellipse at 73% 9%, rgba(229, 186, 91, .075), transparent 29%),
+        radial-gradient(ellipse at 47% 62%, rgba(107, 72, 119, .065), transparent 55%);
+}
+
+/* Use the project's dedicated artwork on each page, with a restrained dark-gold veil. */
+html[data-system-theme="royal"] #system-app .content-container > #status-page {
+    background-image:
+        linear-gradient(180deg, rgba(7, 7, 17, .31), rgba(5, 6, 15, .60)),
+        var(--status-background-image);
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+html[data-system-theme="royal"] #system-app .content-container > #quest-page {
+    background-image:
+        linear-gradient(180deg, rgba(7, 7, 17, .34), rgba(5, 6, 15, .66)),
+        var(--quest-background-image);
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+html[data-system-theme="royal"] #system-app .content-container > #rewards-page {
+    background-image:
+        linear-gradient(180deg, rgba(7, 7, 17, .34), rgba(5, 6, 15, .66)),
+        var(--rewards-background-image);
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+html[data-system-theme="royal"] #system-app .content-container > #ai-page {
+    background-image:
+        linear-gradient(180deg, rgba(7, 7, 17, .38), rgba(5, 6, 15, .68)),
+        var(--ai-background-image);
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+html[data-system-theme="royal"] #system-app .content-container > #settings-page {
+    background-image:
+        linear-gradient(180deg, rgba(7, 7, 17, .36), rgba(5, 6, 15, .67)),
+        var(--settings-background-image);
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+html[data-system-theme="royal"] body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 48%, rgba(2, 2, 9, .46) 100%);
+}
+
+html[data-system-theme="royal"] body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: .19;
+    background:
+        radial-gradient(1.5px 1.5px at 12% 18%, rgba(255, 231, 164, .9), transparent 2px),
+        radial-gradient(1px 1px at 32% 72%, rgba(225, 182, 89, .8), transparent 1.7px),
+        radial-gradient(2px 2px at 67% 14%, rgba(255, 242, 201, .8), transparent 2.6px),
+        radial-gradient(1px 1px at 83% 53%, rgba(238, 201, 119, .8), transparent 1.8px),
+        radial-gradient(1.5px 1.5px at 91% 84%, rgba(255, 226, 148, .75), transparent 2px),
+        radial-gradient(1px 1px at 24% 91%, rgba(255, 241, 198, .7), transparent 1.7px);
+    animation: none;
+}
+
+/* Sidebar and navigation: slim gold rail, not a heavy triple frame. */
+html[data-system-theme="royal"] #system-app .sidebar {
+    border: 0;
+    border-right: 1px solid rgba(211, 173, 91, .34);
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(195, 147, 56, .10), transparent 42%),
+        linear-gradient(180deg, rgba(12, 12, 26, .985), rgba(5, 6, 15, .99));
+    box-shadow: 14px 0 42px rgba(0, 0, 0, .28), inset -1px 0 rgba(255, 232, 177, .035);
+}
+
+html[data-system-theme="royal"] #system-app .sidebar::before {
+    border-color: rgba(228, 191, 106, .10);
+}
+
+html[data-system-theme="royal"] #system-app .sidebar-header,
+html[data-system-theme="royal"] #system-app .sidebar-footer {
+    border-color: rgba(214, 177, 95, .17);
+}
+
+html[data-system-theme="royal"] #system-app .system-logo,
+html[data-system-theme="royal"] #system-app .system-logo .logo-text {
+    color: #f5e6bd;
+    text-shadow: 0 0 18px rgba(220, 174, 76, .16);
+}
+
+html[data-system-theme="royal"] #system-app .system-logo::after {
+    background: linear-gradient(90deg, transparent, #9e762f, #f5d789, transparent);
+}
+
+html[data-system-theme="royal"] #system-app .system-logo .logo-icon,
+html[data-system-theme="royal"] #system-app .sidebar-nav .nav-item img,
+html[data-system-theme="royal"] #system-app .sidebar-nav .nav-item .nav-icon {
+    filter: drop-shadow(0 0 7px rgba(212, 168, 69, .21));
+}
+
+html[data-system-theme="royal"] #system-app .sidebar-nav .nav-item {
+    color: #bdb08f;
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+html[data-system-theme="royal"] #system-app .sidebar-nav .nav-item:hover {
+    color: #fff0c5;
+    border-color: rgba(218, 178, 91, .18);
+    background: linear-gradient(100deg, rgba(194, 146, 49, .11), rgba(67, 42, 72, .12));
+    transform: translateX(2px);
+}
+
+html[data-system-theme="royal"] #system-app .sidebar-nav .nav-item.active {
+    color: #fff4d5;
+    border-color: rgba(220, 182, 96, .28);
+    background: linear-gradient(105deg, rgba(155, 111, 35, .22), rgba(49, 34, 54, .26));
+    box-shadow: inset 0 1px rgba(255, 240, 198, .05), 0 7px 20px rgba(0, 0, 0, .14);
+}
+
+html[data-system-theme="royal"] #system-app .sidebar-nav .nav-item.active::before {
+    background: linear-gradient(180deg, #fff0bc, #b98735);
+    box-shadow: 0 0 13px rgba(226, 183, 82, .32);
+}
+
+html[data-system-theme="royal"] #system-app .sidebar-footer .sidebar-line {
+    background: linear-gradient(90deg, transparent, rgba(220, 181, 94, .40), transparent);
+}
+
+/* Shared title system — gold foil, quiet serif hierarchy, no emoji/crown overlays. */
+html[data-system-theme="royal"] #system-app :is(h1, h2, h3, .section-title, .level-number, .rank-name, .hud-player-copy strong) {
+    font-family: var(--cr-title);
+}
+
+html[data-system-theme="royal"] #system-app .page-title {
+    color: #f5d98d;
+    background: var(--gold-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(222, 176, 78, .16));
+    text-shadow: none;
+    letter-spacing: .035em;
+}
+
+html[data-system-theme="royal"] #system-app .page-title::before,
+html[data-system-theme="royal"] #system-app .page-title::after {
+    content: none;
+    display: none;
+}
+
+html[data-system-theme="royal"] #system-app .page-header::after,
+html[data-system-theme="royal"] #system-app .section-title::before {
+    background: linear-gradient(90deg, transparent, #99702c 18%, #f5d98d 50%, #99702c 82%, transparent);
+    box-shadow: 0 0 10px rgba(220, 174, 76, .18);
+}
+
+html[data-system-theme="royal"] #system-app .section-title::before {
+    background: linear-gradient(180deg, #fff0bc, #a9782c);
+}
+
+html[data-system-theme="royal"] #system-app :is(.page-subtitle, .xp-label, .xp-info, .stat-description, .quest-description, .reward-description) {
+    color: var(--color-text-muted);
+}
+
+/* Glass / velvet surfaces shared across the Status, Quest, Rewards, AI and Settings areas. */
+html[data-system-theme="royal"] #system-app :is(.player-hud, .xp-panel, .level-panel, .rank-panel, .stats-section, .stat-card, .quest-main-panel, .quest-side-panel, .quest-card, .rewards-main-panel, .reward-card, .daily-reward-panel, .selected-reward, .ai-chat-panel, .ai-tools-panel, .ai-stats, .settings-panel, .settings-row, .system-panel, .system-frame, .grok-suite-panel) {
+    color: var(--color-text);
+    border-color: rgba(210, 171, 88, .34);
+    background-color: rgba(11, 12, 25, .90);
+    box-shadow: inset 0 1px rgba(255, 242, 205, .025), 0 12px 30px rgba(0, 0, 0, .19);
+}
+
+html[data-system-theme="royal"] #system-app :is(.player-hud, .xp-panel, .level-panel, .rank-panel, .stats-section, .stat-card, .quest-main-panel, .quest-side-panel, .quest-card, .rewards-main-panel, .reward-card, .daily-reward-panel, .selected-reward, .ai-chat-panel, .ai-tools-panel, .ai-stats, .settings-panel, .settings-row, .grok-suite-panel) {
+    background-image: linear-gradient(145deg, rgba(30, 25, 42, .55), rgba(6, 8, 20, .90));
+}
+
+html[data-system-theme="royal"] #system-app :is(.stat-card, .quest-card, .reward-card, .settings-row, .system-store-card, .system-list-card) {
+    transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease, transform .2s ease;
+}
+
+html[data-system-theme="royal"] #system-app :is(.stat-card, .quest-card, .reward-card, .settings-row, .system-store-card, .system-list-card):hover {
+    border-color: rgba(243, 207, 124, .64);
+    box-shadow: inset 0 1px rgba(255, 242, 205, .045), 0 0 0 1px rgba(204, 158, 58, .07), 0 12px 28px rgba(0, 0, 0, .24);
+}
+
+html[data-system-theme="royal"] #system-app .player-hud::before,
+html[data-system-theme="royal"] #system-app .settings-row::before,
+html[data-system-theme="royal"] #system-app .quest-card::before,
+html[data-system-theme="royal"] #system-app .reward-card::before {
+    background: linear-gradient(90deg, transparent, rgba(240, 202, 113, .38), transparent);
+}
+
+/* Status page: recolour all high-salience Level / Rank / XP / Stat elements together. */
+html[data-system-theme="royal"] #system-app #status-page > .page-header::after {
+    background: linear-gradient(90deg, transparent, rgba(201, 153, 60, .68), #ffebae, rgba(201, 153, 60, .68), transparent);
+    box-shadow: 0 0 10px rgba(214, 168, 73, .24);
+}
+
+html[data-system-theme="royal"] #system-app #status-page :is(.level-panel, .rank-panel, .xp-panel, .stats-section) {
+    border-color: var(--status-border);
+    background: var(--status-card-bg);
+    box-shadow: inset 0 0 20px rgba(191, 145, 49, .055), var(--status-glow);
+}
+
+html[data-system-theme="royal"] #system-app #status-page .rank-panel {
+    background: radial-gradient(ellipse at 75% 48%, rgba(183, 132, 43, .13), transparent 70%), var(--status-card-bg);
+}
+
+html[data-system-theme="royal"] #system-app #status-page :is(.level-label, .rank-label, .xp-current, .xp-required, .stat-name, .stat-level) {
+    color: #cfbd94;
+}
+
+html[data-system-theme="royal"] #system-app #status-page :is(.level-number, .rank-name, .stat-value) {
+    color: #fff0bf;
+    text-shadow: 0 0 12px rgba(226, 181, 78, .18);
+}
+
+html[data-system-theme="royal"] #system-app #status-page .rank-image {
+    filter: drop-shadow(0 0 10px rgba(217, 173, 75, .12));
+}
+
+html[data-system-theme="royal"] #system-app #status-page :is(.xp-track, .stat-progress) {
+    background: rgba(3, 4, 12, .92);
+    border-color: rgba(208, 166, 72, .25);
+}
+
+html[data-system-theme="royal"] #system-app #status-page :is(.xp-fill, .stat-progress-fill, #hud-xp-fill, .rp-progress i) {
+    background: linear-gradient(90deg, #77501b 0%, #c09136 38%, #f2d17d 74%, #fff0be 100%);
+    box-shadow: 0 0 11px rgba(218, 168, 64, .25);
+}
+
+html[data-system-theme="royal"] #system-app #status-page .stat-card {
+    background: linear-gradient(145deg, rgba(25, 23, 40, .95), rgba(7, 8, 19, .97));
+}
+
+html[data-system-theme="royal"] #system-app #status-page .stat-card:hover {
+    background: linear-gradient(145deg, rgba(43, 34, 46, .97), rgba(11, 10, 22, .98));
+}
+
+/* Quest page */
+html[data-system-theme="royal"] #system-app #quest-page > .page-header {
+    border-bottom-color: rgba(208, 168, 81, .34);
+}
+
+html[data-system-theme="royal"] #system-app #quest-page .quest-main-panel,
+html[data-system-theme="royal"] #system-app #quest-page .quest-side-panel {
+    background: linear-gradient(145deg, rgba(23, 21, 38, .94), rgba(6, 8, 19, .97));
+    border-color: rgba(208, 168, 81, .34);
+}
+
+html[data-system-theme="royal"] #system-app #quest-page .quest-card {
+    background: linear-gradient(105deg, rgba(28, 25, 41, .94), rgba(7, 8, 19, .97));
+    border-color: rgba(208, 168, 81, .26);
+}
+
+html[data-system-theme="royal"] #system-app #quest-page .quest-progress {
+    background: rgba(3, 4, 12, .8);
+    border-color: rgba(208, 168, 81, .2);
+}
+
+html[data-system-theme="royal"] #system-app #quest-page .quest-progress > span,
+html[data-system-theme="royal"] #system-app #quest-page .quest-progress-fill {
+    background: linear-gradient(90deg, #845b1e, #d6a94f, #fff0bf);
+    box-shadow: 0 0 10px rgba(211, 167, 67, .20);
+}
+
+/* Rewards page */
+html[data-system-theme="royal"] #system-app #rewards-page .rewards-main-panel,
+html[data-system-theme="royal"] #system-app #rewards-page .daily-reward-panel,
+html[data-system-theme="royal"] #system-app #rewards-page .selected-reward {
+    background: linear-gradient(145deg, rgba(26, 23, 41, .96), rgba(7, 8, 18, .98));
+    border-color: rgba(209, 169, 82, .38);
+}
+
+html[data-system-theme="royal"] #system-app #rewards-page .reward-tab {
+    color: #c3b38e;
+    border-color: rgba(204, 163, 74, .22);
+    background: rgba(12, 12, 25, .78);
+}
+
+html[data-system-theme="royal"] #system-app #rewards-page .reward-tab.active,
+html[data-system-theme="royal"] #system-app #rewards-page .reward-tab[aria-selected="true"] {
+    color: #fff0bf;
+    background: linear-gradient(145deg, rgba(154, 110, 35, .28), rgba(45, 30, 47, .55));
+    border-color: rgba(239, 203, 119, .65);
+    box-shadow: inset 0 0 0 1px rgba(245, 218, 149, .06);
+}
+
+html[data-system-theme="royal"] #system-app #rewards-page .reward-days span.is-current {
+    color: #211707;
+    background: linear-gradient(145deg, #fff0bd, #c99c42);
+    border-color: #f5d88b;
+}
+
+html[data-system-theme="royal"] #system-app #rewards-page .reward-cost,
+html[data-system-theme="royal"] #system-app #rewards-page .daily-reward-status {
+    color: #f2d28a;
+}
+
+/* AI workspace */
+html[data-system-theme="royal"] #system-app #ai-page .ai-chat-panel,
+html[data-system-theme="royal"] #system-app #ai-page .ai-tools-panel,
+html[data-system-theme="royal"] #system-app #ai-page .ai-stats {
+    background: linear-gradient(145deg, rgba(25, 22, 39, .95), rgba(6, 8, 19, .98));
+    border-color: rgba(209, 169, 82, .32);
+}
+
+html[data-system-theme="royal"] #system-app #ai-page :is(.ai-chat-header, .ai-subpanel-heading) {
+    border-color: rgba(205, 166, 83, .20);
+}
+
+html[data-system-theme="royal"] #system-app #ai-page .message-content,
+html[data-system-theme="royal"] #system-app #ai-page .chat-messages,
+html[data-system-theme="royal"] #system-app #ai-page .ai-sheet {
+    border-color: rgba(205, 166, 83, .19);
+    background-color: rgba(5, 6, 16, .70);
+}
+
+html[data-system-theme="royal"] #system-app #ai-page .user-message .message-content {
+    background: linear-gradient(135deg, rgba(132, 92, 33, .20), rgba(40, 29, 46, .28));
+    border-color: rgba(215, 176, 90, .28);
+}
+
+/* Settings page */
+html[data-system-theme="royal"] #system-app #settings-page .settings-panel {
+    background: linear-gradient(145deg, rgba(22, 21, 37, .94), rgba(6, 8, 19, .97));
+    border-color: rgba(210, 170, 83, .34);
+}
+
+html[data-system-theme="royal"] #system-app #settings-page .settings-row {
+    background: linear-gradient(105deg, rgba(27, 24, 41, .95), rgba(7, 8, 19, .97));
+    border-color: rgba(208, 168, 81, .24);
+}
+
+html[data-system-theme="royal"] #system-app #settings-page .settings-information h2 {
+    color: #f1d58f;
+}
+
+html[data-system-theme="royal"] #system-app #settings-page .settings-row > button {
+    color: #f8e9c0;
+    background: linear-gradient(145deg, rgba(133, 94, 31, .27), rgba(38, 28, 45, .55));
+    border-color: rgba(219, 180, 93, .43);
+}
+
+/* Buttons and controls: a clear gold primary, dark secondary controls, visible focus. */
+html[data-system-theme="royal"] #system-app :is(.quest-go, .claim-button, .daily-login-claim, .system-primary-button, .rp-actions button, .exp-actions button, .ai-generate-button, .ai-primary-button, .chat-input button, .grok-primary):not(:disabled) {
+    color: #241909;
+    background: linear-gradient(180deg, #fff0b8 0%, #e4bd61 48%, #ae7926 100%);
+    border: 1px solid #f4d78b;
+    box-shadow: inset 0 1px rgba(255, 255, 255, .52), 0 5px 15px rgba(0, 0, 0, .23), 0 0 14px rgba(210, 162, 57, .13);
+    text-shadow: none;
+}
+
+html[data-system-theme="royal"] #system-app :is(.quest-go, .claim-button, .daily-login-claim, .system-primary-button, .rp-actions button, .exp-actions button, .ai-generate-button, .ai-primary-button, .chat-input button, .grok-primary):not(:disabled):hover {
+    filter: brightness(1.06);
+    box-shadow: inset 0 1px rgba(255, 255, 255, .62), 0 8px 20px rgba(0, 0, 0, .25), 0 0 20px rgba(210, 162, 57, .21);
+}
+
+html[data-system-theme="royal"] #system-app :is(button, .system-button, .system-action-button, .grok-secondary):disabled {
+    opacity: .52;
+    filter: saturate(.65);
+}
+
+html[data-system-theme="royal"] :is(input, textarea, select) {
+    color: #f7f0df;
+    background-color: rgba(5, 6, 16, .88);
+    border-color: rgba(206, 166, 79, .34);
+}
+
+html[data-system-theme="royal"] :is(input, textarea, select):focus-visible {
+    outline-color: #f0cd79;
+    box-shadow: 0 0 0 3px rgba(217, 173, 75, .12);
+}
+
+html[data-system-theme="royal"] ::selection {
+    color: #211707;
+    background: #efd080;
+}
+
+html[data-system-theme="royal"] ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #d7ae57, #785522);
+    border: 2px solid #090a16;
+    border-radius: 12px;
+}
+
+html[data-system-theme="royal"] ::-webkit-scrollbar-track {
+    background: rgba(4, 5, 13, .85);
+}
+
+/* Theme dialog: premium velvet surface; shared picker rules still serve every preset. */
+html[data-system-theme="royal"] #system-settings-dialog {
+    color: #f7f1df;
+    background: linear-gradient(145deg, rgba(24, 21, 39, .99), rgba(6, 7, 17, .995));
+    border: 1px solid rgba(227, 188, 97, .54);
+    border-radius: 16px;
+    box-shadow: 0 28px 90px rgba(0, 0, 0, .64), 0 0 32px rgba(186, 137, 43, .10);
+}
+
+html[data-system-theme="royal"] #system-settings-dialog::backdrop {
+    background: rgba(2, 2, 8, .78);
+    backdrop-filter: blur(9px);
+}
+
+html[data-system-theme="royal"] #system-settings-dialog .system-modal-header {
+    border-bottom-color: rgba(214, 176, 92, .25);
+}
+
+html[data-system-theme="royal"] #system-settings-dialog .system-modal-eyebrow {
+    color: #c7a458;
+}
+
+html[data-system-theme="royal"] #system-settings-dialog :is(h2, h3, .system-modal-intro, .system-modal-body) {
+    color: #f7f1df;
+}
+
+html[data-system-theme="royal"] #system-settings-dialog .system-modal-header button,
+html[data-system-theme="royal"] #system-settings-dialog .system-action-button,
+html[data-system-theme="royal"] #system-settings-dialog .system-quiet-button {
+    color: #f2e5c3;
+    background: rgba(32, 26, 41, .88);
+    border-color: rgba(209, 170, 86, .34);
+}
+
+html[data-system-theme="royal"] #system-settings-dialog .system-theme-options > button {
+    color: #f8f0dd;
+    background: linear-gradient(145deg, rgba(30, 26, 43, .96), rgba(8, 9, 20, .985));
+    border-color: rgba(210, 170, 83, .25);
+}
+
+html[data-system-theme="royal"] #system-settings-dialog .system-theme-options > button:hover {
+    border-color: rgba(244, 211, 133, .66);
+}
+
+html[data-system-theme="royal"] #system-settings-dialog .system-theme-options > button.is-selected {
+    border-color: #f0cd79;
+    box-shadow: inset 0 0 0 1px rgba(240, 205, 121, .24), 0 0 22px rgba(209, 162, 66, .11);
+}
+
+html[data-system-theme="royal"] #system-settings-dialog .system-theme-options > button.is-selected::after {
+    color: #211707;
+    background: linear-gradient(145deg, #fff0bd, #c99b41);
+}
+
+html[data-system-theme="royal"] #system-settings-dialog .system-theme-options strong {
+    color: #f8edcf;
+}
+
+html[data-system-theme="royal"] #system-settings-dialog .system-theme-options small {
+    color: #bca980;
+}
+
+/* The Grok add-on remains inside the same design language without overwriting app-wide tokens. */
+html[data-system-theme="royal"] #system-app .grok-suite-panel {
+    --grok-accent: #d4ad59;
+    color: #f4ecd7;
+    background: linear-gradient(145deg, rgba(26, 22, 40, .95), rgba(6, 8, 19, .97));
+    border-color: rgba(208, 169, 84, .35);
+}
+
+html[data-system-theme="royal"] #system-app .grok-suite-panel :is(.grok-tabs button, .grok-tools button, .grok-secondary, .grok-note button, .grok-title-card button, .grok-theme-card) {
+    color: #e8ddbd;
+    background: rgba(9, 10, 22, .8);
+    border-color: rgba(209, 169, 84, .26);
+}
+
+html[data-system-theme="royal"] #system-app .grok-suite-panel :is(.grok-tabs button.active, .grok-tools button.active, .grok-theme-card.active) {
+    color: #fff0bd;
+    border-color: rgba(241, 205, 121, .66);
+    background: rgba(149, 106, 35, .19);
+}
+
+html[data-system-theme="royal"] #system-app .grok-suite-panel :is(.grok-eyebrow, .grok-gem, .grok-theme-card small) {
+    color: #ebca79;
+}
+
+html[data-system-theme="royal"] #system-app .grok-suite-panel :is(textarea, input, select) {
+    background: rgba(5, 6, 16, .9);
+    border-color: rgba(209, 169, 84, .28);
+}
+
+html[data-system-theme="royal"] .system-notification {
+    color: #fff1c8;
+    background: linear-gradient(135deg, rgba(39, 24, 45, .98), rgba(9, 9, 22, .99));
+    border: 1px solid rgba(241, 205, 121, .66);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .62), 0 0 22px rgba(207, 161, 68, .15);
+}
+
+html[data-system-theme="royal"] .system-badge,
+html[data-system-theme="royal"] .coin-display {
+    color: #ffe8a7;
+    border-color: rgba(212, 172, 81, .35);
+    background: rgba(117, 79, 25, .14);
+}
+
+@media (max-width: 760px) {
+    html[data-system-theme="royal"] #system-app .sidebar {
+        border-right-color: rgba(211, 173, 91, .26);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html[data-system-theme="royal"] #system-app *,
+    html[data-system-theme="royal"] #system-settings-dialog * {
+        scroll-behavior: auto;
+        animation-duration: .01ms;
+        animation-iteration-count: 1;
+        transition-duration: .01ms;
+    }
+}

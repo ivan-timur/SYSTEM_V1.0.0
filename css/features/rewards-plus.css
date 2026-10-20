@@ -1,0 +1,37 @@
+/* SYSTEM — Rewards+ */
+.rp-hub{margin:18px 0;padding:18px;display:grid;gap:12px;box-shadow:inset 0 0 0 1px var(--color-border),inset 0 0 30px rgba(22,110,255,.15);background:linear-gradient(160deg,rgba(10,26,64,.7),rgba(2,7,20,.9))}
+.rp-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center}
+.rp-stats div{padding:10px;box-shadow:inset 0 0 0 1px var(--color-border);background:rgba(3,10,26,.6)}
+.rp-stats strong{display:block;font-size:1.6rem;color:var(--color-neon-white);text-shadow:0 0 12px var(--color-neon)}
+.rp-stats span,.rp-pity{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted)}
+.rp-actions{display:flex;gap:10px;flex-wrap:wrap}.rp-actions button{flex:1 1 180px;min-height:44px}
+.rp-box:not(:disabled){box-shadow:0 0 18px rgba(176,107,255,.5)}
+.rp-result{padding:12px;text-align:center;font-weight:700;letter-spacing:.08em;animation:rp-pop .6s cubic-bezier(.2,.8,.2,1)}
+.rp-common{color:#c4d3ea}.rp-uncommon{color:#6ee7a8}.rp-rare{color:#6cb4ff;text-shadow:0 0 14px #2a7bff}
+.rp-legendary{color:#ffd76a;text-shadow:0 0 18px #ffb020;box-shadow:inset 0 0 30px rgba(255,190,60,.35)}
+@keyframes rp-pop{from{transform:scale(.7);opacity:0}to{transform:none;opacity:1}}
+.rp-log summary{cursor:pointer;color:var(--color-text-light)}
+.rp-log div{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid rgba(80,160,255,.15);font-size:.85rem}
+.rp-log time{color:var(--color-text-muted)}
+.reward-card{position:relative}
+.rp-chip{display:inline-block;margin-bottom:6px;padding:2px 8px;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;box-shadow:inset 0 0 0 1px currentColor}
+.rp-r-common .rp-chip{color:#aab9d0}.rp-r-rare .rp-chip{color:#5fb0ff}.rp-r-epic .rp-chip{color:#c08bff}.rp-r-legendary .rp-chip{color:#ffd15a}
+.rp-r-epic{box-shadow:inset 0 0 0 1px rgba(192,139,255,.55),inset 0 0 26px rgba(150,80,255,.22)}
+.rp-r-legendary{box-shadow:inset 0 0 0 1px rgba(255,209,90,.7),inset 0 0 30px rgba(255,170,40,.28)}
+.rp-progress{position:relative;height:16px;margin:8px 0;background:rgba(0,10,30,.8);box-shadow:inset 0 0 0 1px var(--color-border)}
+.rp-progress i{display:block;height:100%;background:linear-gradient(90deg,var(--color-blue),var(--color-neon-light));transition:width .6s}
+.rp-progress em{position:absolute;inset:0;font-style:normal;font-size:.65rem;line-height:16px;text-align:center;color:#fff}
+.rp-badge{margin-left:6px;padding:0 6px;font-style:normal;font-size:.68rem;background:var(--color-neon);color:#001;border-radius:9px}
+.rp-burst{position:absolute;left:50%;top:50%;pointer-events:none}
+.rp-burst span{position:absolute;width:6px;height:6px;background:var(--color-neon-light);box-shadow:0 0 8px var(--color-neon);animation:rp-fly .85s ease-out forwards}
+@keyframes rp-fly{to{transform:translate(var(--dx),var(--dy)) scale(.2);opacity:0}}
+@media (prefers-reduced-motion:reduce){.rp-burst{display:none}.rp-result{animation:none}}
+
+
+/* Category isolation: never let visual card styles override the hidden state. */
+#system-app #rewards-page .available-rewards .reward-card[hidden],
+#rewards-page #reward-card-grid .reward-card[hidden],
+#rewards-page .available-rewards .reward-card[hidden] {
+  display: none;
+  visibility: hidden;
+}

@@ -1,0 +1,76 @@
+/* SYSTEM — visual polish layer (loaded last; overrides only, no structural changes) */
+:root{
+  --polish-radius:16px;
+  --polish-ease:cubic-bezier(.2,.8,.2,1);
+  --polish-glass:linear-gradient(145deg,rgba(14,32,66,.62),rgba(3,9,22,.82));
+  --polish-edge:rgba(120,190,255,.22);
+  --polish-shadow:0 10px 30px rgba(0,8,30,.55),inset 0 1px 0 rgba(180,220,255,.10);
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:rgba(22,140,255,.45);color:#fff}
+*{scrollbar-width:thin;scrollbar-color:rgba(60,150,255,.55) transparent}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-thumb{background:rgba(60,150,255,.5);border-radius:8px}
+
+/* Glass panels with soft edge light */
+.quest-card, .reward-card, .daily-reward-panel, .sidebar, .system-dialog, .settings-card, .ai-panel{
+  background:var(--polish-glass);
+  border-color:var(--polish-edge);
+  box-shadow:var(--polish-shadow);
+  backdrop-filter:blur(10px) saturate(1.2);
+  -webkit-backdrop-filter:blur(10px) saturate(1.2);
+  transition:transform .35s var(--polish-ease),box-shadow .35s var(--polish-ease),border-color .35s;
+}
+.quest-card, .reward-card{border-radius:var(--polish-radius)}
+.quest-card:hover, .reward-card:hover{
+  transform:translateY(-3px);
+  border-color:var(--color-border-bright);
+  box-shadow:0 16px 38px rgba(0,20,70,.65),0 0 22px rgba(22,140,255,.28),inset 0 1px 0 rgba(200,230,255,.16);
+}
+.quest-card.completed{opacity:.78;border-color:rgba(66,186,255,.55)}
+
+/* Progress bars: animated fill with a moving sheen */
+[class*="progress-fill"], [class*="xp-fill"]{
+  background:linear-gradient(90deg,#0d5cff,#4da3ff,#8fc7ff);
+  background-size:200% 100%;
+  box-shadow:0 0 12px rgba(77,163,255,.7);
+  transition:width .7s var(--polish-ease);
+  animation:polish-sheen 3.2s linear infinite;
+}
+@keyframes polish-sheen{to{background-position:-200% 0}}
+
+/* Buttons */
+button,.quest-go{transition:transform .2s var(--polish-ease),box-shadow .25s,filter .25s}
+.quest-go:not(:disabled):hover,button:not(:disabled):hover{transform:translateY(-1px);filter:brightness(1.12)}
+.quest-go:not(:disabled):active,button:not(:disabled):active{transform:translateY(1px) scale(.98)}
+button:disabled{cursor:not-allowed}
+
+/* Keyboard accessibility */
+:focus-visible{outline:2px solid var(--color-neon-light);outline-offset:3px;border-radius:8px}
+
+/* Notifications double as level-up / perfect-day banners */
+.system-notification{
+  border-radius:14px;
+  background:linear-gradient(135deg,rgba(13,92,255,.92),rgba(5,20,60,.96));
+  border:1px solid rgba(143,199,255,.6);
+  box-shadow:0 12px 36px rgba(0,30,100,.6),0 0 28px rgba(22,140,255,.45);
+  letter-spacing:.03em;
+}
+.level-pop{animation:polish-pop .9s var(--polish-ease)}
+@keyframes polish-pop{
+  0%{transform:scale(1);text-shadow:none}
+  35%{transform:scale(1.35);text-shadow:0 0 18px #70c4ff,0 0 36px #168cff}
+  100%{transform:scale(1)}
+}
+
+/* Page entrance */
+.page.active{animation:polish-enter .45s var(--polish-ease) both}
+@keyframes polish-enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms;animation-iteration-count:1;transition-duration:.01ms}
+}
+@media (max-width:640px){
+  .quest-card:hover, .reward-card:hover{transform:none}
+  .system-notification{left:12px;right:12px;width:auto}
+}

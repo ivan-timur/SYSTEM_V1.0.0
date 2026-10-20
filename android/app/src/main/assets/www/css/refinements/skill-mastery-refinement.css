@@ -1,0 +1,11 @@
+/* SYSTEM — mastery tracker responsive cards */
+.mastery-stat-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+.mastery-stat-card { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:6px 10px; padding:12px; border:1px solid var(--border-color,#1c2b43); border-radius:13px; background:linear-gradient(135deg,rgba(12,25,44,.78),rgba(4,8,16,.72)); }
+.mastery-stat-card div { display:grid; gap:4px; min-width:0; }
+.mastery-stat-card strong { font-size:13px; }
+.mastery-stat-card span,.mastery-stat-card small { color:var(--text-secondary,#9eacc1); font-size:11px; line-height:1.5; }
+.mastery-stat-card b { color:var(--accent,#8bc5ff); font-size:18px; }
+.mastery-stat-card small { grid-column:1/-1; }
+.system-mastery-review input[type=number] { width:100%; box-sizing:border-box; padding:11px 12px; border:1px solid var(--border-color,#1c2b43); border-radius:10px; background:rgba(3,7,15,.9); color:var(--text-primary,#eef5ff); font:inherit; }
+.system-mastery-review input:focus-visible { outline:2px solid var(--accent,#5da9ff); outline-offset:2px; }
+@media(max-width:480px) { .mastery-stat-grid { grid-template-columns:minmax(0,1fr); } }

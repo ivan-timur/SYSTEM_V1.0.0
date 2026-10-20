@@ -1,0 +1,137 @@
+/* SYSTEM — precision mobile layout. Visual-only; preserves theme/assets/features. */
+
+@media(max-width:700px){
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ #system-app .bottom-nav,#system-app .mobile-nav,#system-app nav[aria-label="Main navigation"]{padding-bottom:env(safe-area-inset-bottom)}
+}
+@media(max-width:360px){
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+}
+
+/* Hotfix: correct actual DOM nesting and prevent injected panels from occupying a side column. */
+@media(max-width:700px){
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+}
+@media(max-width:360px){
+  
+  
+  
+  
+}
+
+
+/* =============================================================
+   SYSTEM — CLEAN STATUS HIERARCHY
+   Remove duplicate labels and reclaim space without changing the
+   page navigation, rank assets, progression logic, or other pages.
+   ============================================================= */
+
+
+
+/* Desktop: slightly tighter title/XP stack; the rank crest stays visual-only. */
+@media (min-width: 1200px) {
+  
+  
+  
+  
+  
+}
+
+/* Tablet: one compact rank crest, without a redundant RANK caption. */
+@media (min-width: 701px) and (max-width: 1199px) {
+  
+  
+}
+
+/* Phones: top row is only Level + Rank; XP and stats follow immediately. */
+@media (max-width: 700px) {
+  
+  
+  /* The heading repeated the exact level already shown in the Level card. */
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+}
+
+@media (max-width: 360px) {
+  
+  
+  
+  
+  
+  
+}

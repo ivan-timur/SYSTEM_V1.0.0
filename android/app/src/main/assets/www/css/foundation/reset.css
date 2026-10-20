@@ -1,0 +1,564 @@
+/* =========================================================
+   SYSTEM — RESET
+   Advanced Global Reset
+   ========================================================= */
+
+
+/* =========================================================
+   1. UNIVERSAL BOX MODEL
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   2. HTML / BODY FOUNDATION
+   ========================================================= */
+
+html {
+    width: 100%;
+    min-height: 100%;
+
+    font-size: 16px;
+
+    scroll-behavior: smooth;
+
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+
+    scrollbar-width: thin;
+    scrollbar-color:
+        rgba(45, 140, 255, 0.75)
+        rgba(2, 6, 17, 0.95);
+}
+
+
+body {
+    width: 100%;
+    min-height: 100vh;
+
+    margin: 0;
+    padding: 0;
+
+    background:
+        var(--color-background);
+
+    color:
+        var(--color-text);
+
+    font-family:
+        var(--font-ui);
+
+    font-size:
+        var(--font-size-md);
+
+    line-height: 1.5;
+
+    text-rendering: optimizeLegibility;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   3. ROOT APPLICATION
+   ========================================================= */
+
+#system-app {
+    position: relative;
+
+    width: 100%;
+    min-height: 100vh;
+
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   4. HEADINGS
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+
+    font-family:
+        var(--font-main);
+
+    font-weight: 600;
+
+    line-height: 1.2;
+
+    color:
+        var(--color-text);
+
+    text-wrap: balance;
+}
+
+
+/* =========================================================
+   5. PARAGRAPHS
+   ========================================================= */
+
+p {
+    margin: 0;
+    padding: 0;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   6. LINKS
+   ========================================================= */
+
+a {
+    margin: 0;
+    padding: 0;
+
+    color: inherit;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+
+a:hover {
+    color:
+        var(--color-blue-bright);
+}
+
+
+/* =========================================================
+   7. LISTS
+   ========================================================= */
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+/* =========================================================
+   8. BUTTONS
+   ========================================================= */
+
+button,
+input,
+textarea,
+select {
+    margin: 0;
+
+    font: inherit;
+
+    color: inherit;
+}
+
+
+button {
+    border: 0;
+
+    background: none;
+
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+button:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.55;
+}
+
+
+/* =========================================================
+   9. FORM ELEMENTS
+   ========================================================= */
+
+input,
+textarea,
+select {
+    border: 0;
+    outline: none;
+
+    background: none;
+}
+
+
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+    outline: none;
+}
+
+
+/* =========================================================
+   10. TEXTAREA
+   ========================================================= */
+
+textarea {
+    resize: vertical;
+
+    min-height: 100px;
+}
+
+
+/* =========================================================
+   11. IMAGES
+   ========================================================= */
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+
+    max-width: 100%;
+}
+
+
+img {
+    height: auto;
+
+    user-select: none;
+
+    -webkit-user-drag: none;
+}
+
+
+/* =========================================================
+   12. SVG
+   ========================================================= */
+
+svg {
+    width: auto;
+    height: auto;
+
+    fill: currentColor;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   13. TABLE
+   ========================================================= */
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    border-spacing: 0;
+}
+
+
+/* =========================================================
+   14. HR
+   ========================================================= */
+
+hr {
+    margin: 0;
+
+    border: 0;
+
+    border-top:
+        var(--border-thin);
+}
+
+
+/* =========================================================
+   15. SELECTION
+   ========================================================= */
+
+::selection {
+    background:
+        rgba(22, 140, 255, 0.35);
+
+    color:
+        #ffffff;
+
+    text-shadow:
+        var(--text-glow);
+}
+
+
+/* =========================================================
+   16. FOCUS ACCESSIBILITY
+   ========================================================= */
+
+:focus-visible {
+    outline:
+        2px solid var(--color-blue-light);
+
+    outline-offset:
+        3px;
+
+    box-shadow:
+        var(--glow-medium);
+}
+
+
+/* =========================================================
+   17. PLACEHOLDER
+   ========================================================= */
+
+::placeholder {
+    color:
+        var(--color-text-muted);
+
+    opacity: 0.85;
+}
+
+
+/* =========================================================
+   18. SCROLLBAR — CHROME / EDGE
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+
+::-webkit-scrollbar-track {
+    background:
+        rgba(1, 5, 14, 0.95);
+}
+
+
+::-webkit-scrollbar-thumb {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(18, 105, 255, 0.85),
+            rgba(55, 174, 255, 0.75)
+        );
+
+    border:
+        1px solid rgba(90, 180, 255, 0.35);
+
+    border-radius:
+        10px;
+
+    box-shadow:
+        var(--glow-small);
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(30, 125, 255, 1),
+            rgba(100, 200, 255, 0.95)
+        );
+
+    box-shadow:
+        var(--glow-medium);
+}
+
+
+/* =========================================================
+   19. HIDDEN UTILITY
+   ========================================================= */
+
+[hidden] {
+    display: none;
+}
+
+
+/* =========================================================
+   20. INTERACTIVE ELEMENTS
+   ========================================================= */
+
+button,
+a,
+label,
+select,
+summary {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   21. DISABLE TEXT SELECTION FOR UI
+   ========================================================= */
+
+button, .nav-item, .sidebar, .system-logo, .quest-card, .reward-card{
+    user-select: none;
+}
+
+
+/* =========================================================
+   22. ALLOW TEXT SELECTION WHERE NEEDED
+   ========================================================= */
+
+p,
+span,
+.description,
+.message,
+.chat-message,
+.quest-description,
+.reward-description,
+input,
+textarea {
+    user-select: text;
+}
+
+
+/* =========================================================
+   23. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms;
+        animation-iteration-count: 1;
+        transition-duration: 0.01ms;
+    }
+}
+
+
+/* =========================================================
+   24. MOBILE TOUCH BEHAVIOR
+   ========================================================= */
+
+button,
+a,
+.nav-item {
+    touch-action: manipulation;
+}
+
+
+/* =========================================================
+   25. SAFE MOBILE WIDTH
+   ========================================================= */
+
+body,
+#system-app {
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   26. PREVENT LAYOUT SHIFT
+   ========================================================= */
+
+iframe,
+embed,
+object {
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   27. DIALOG / MODAL FOUNDATION
+   ========================================================= */
+
+dialog {
+    border: 0;
+
+    padding: 0;
+
+    color: inherit;
+
+    background: transparent;
+}
+
+
+dialog::backdrop {
+    background:
+        rgba(0, 2, 8, 0.78);
+
+    backdrop-filter:
+        blur(5px);
+}
+
+
+/* =========================================================
+   28. CODE
+   ========================================================= */
+
+code,
+pre,
+kbd,
+samp {
+    font-family:
+        "Consolas",
+        "Courier New",
+        monospace;
+}
+
+
+pre {
+    white-space: pre-wrap;
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   29. EMBEDDED CONTENT
+   ========================================================= */
+
+iframe {
+    border: 0;
+}
+
+
+/* =========================================================
+   30. PRINT FOUNDATION
+   ========================================================= */
+
+@media print {
+
+    *,
+    *::before,
+    *::after {
+        background: transparent;
+
+        box-shadow: none;
+
+        text-shadow: none;
+    }
+
+    body {
+        color: #000000;
+
+        background: #ffffff;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+}

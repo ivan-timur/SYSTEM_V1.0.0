@@ -1,0 +1,26 @@
+/* PHASE 24 — Adaptive visual performance without changing the Aether identity. */
+.system-atmosphere-canvas {
+  pointer-events: none;
+  contain: strict;
+}
+@media (max-width: 600px) {
+  .system-atmosphere-canvas { opacity: .28; }
+  .system-milestone-toast { -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .system-atmosphere-canvas { display: none; }
+  .system-page-enter,
+  .system-milestone-toast,
+  .system-milestone-toast.is-visible,
+  body.system-event-quest #system-app,
+  body.system-event-level #system-app,
+  body.system-event-skill #system-app,
+  body.system-event-evolution #system-app,
+  body.system-event-reward #system-app,
+  body.system-event-boss #system-app {
+    animation: none;
+    transition: none;
+    scroll-behavior: auto;
+    will-change: auto;
+  }
+}

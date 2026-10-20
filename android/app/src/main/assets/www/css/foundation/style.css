@@ -1,0 +1,1584 @@
+/* =========================================================
+   SYSTEM — MAIN STYLE
+   Core Visual Layer
+   Black / Deep Blue / Neon Blue
+   ========================================================= */
+
+
+/* =========================================================
+   GLOBAL SYSTEM SURFACE
+   ========================================================= */
+
+body {
+    background-color: var(--color-black);
+    color: var(--color-text);
+}
+
+
+/* =========================================================
+   SYSTEM APP
+   ========================================================= */
+
+#system-app {
+    color: var(--color-text);
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.main-content {
+    position: relative;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+   ========================================================= */
+
+.page-header {
+    position: relative;
+}
+
+.page-header::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -1px;
+
+    width: 150px;
+    height: 2px;
+
+    background:
+        linear-gradient(90deg,
+            var(--color-blue-light),
+            transparent);
+
+    box-shadow:
+        0 0 10px rgba(45, 155, 255, 0.65);
+}
+
+
+/* =========================================================
+   PAGE TITLE
+   ========================================================= */
+
+.page-title {
+    position: relative;
+
+    color: var(--color-neon-white);
+
+    text-shadow:
+        0 0 7px rgba(120, 205, 255, 0.75),
+        0 0 18px rgba(30, 130, 255, 0.35);
+}
+
+
+/* =========================================================
+   SECTION TITLE
+   ========================================================= */
+
+.section-title {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 9px;
+}
+
+.section-title::before {
+    content: "";
+
+    width: 4px;
+    height: 18px;
+
+    background:
+        linear-gradient(180deg,
+            var(--color-blue-bright),
+            var(--color-blue));
+
+    box-shadow:
+        0 0 9px rgba(45, 155, 255, 0.8);
+}
+
+
+/* =========================================================
+   SYSTEM PANEL ENHANCEMENT
+   ========================================================= */
+
+.system-panel,
+.panel,
+.card {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+
+/* =========================================================
+   LEVEL PANEL
+   ========================================================= */
+
+
+
+
+
+
+/* =========================================================
+   LEVEL CONTENT
+   ========================================================= */
+
+
+
+
+/* =========================================================
+   XP PANEL
+   ========================================================= */
+
+
+
+
+
+
+/* =========================================================
+   XP INFORMATION ROW
+   ========================================================= */
+
+.xp-info {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   XP LABEL
+   ========================================================= */
+
+.xp-label {
+    color: var(--color-text-light);
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   XP VALUE
+   ========================================================= */
+
+.xp-value {
+    color: var(--color-blue-bright);
+
+    font-family: var(--font-main);
+    font-size: 14px;
+
+    text-shadow:
+        0 0 7px rgba(75, 175, 255, 0.55);
+}
+
+
+/* =========================================================
+   STAT SECTION
+   ========================================================= */
+
+
+
+
+/* =========================================================
+   STAT CARD SYSTEM EFFECT
+   ========================================================= */
+
+
+
+
+
+
+/* =========================================================
+   STAT CARD ACTIVE STATE
+   ========================================================= */
+
+
+
+
+/* =========================================================
+   STAT LEVEL
+   ========================================================= */
+
+
+
+
+/* =========================================================
+   STAT PROGRESS
+   ========================================================= */
+
+
+
+
+
+
+
+@keyframes stat-progress-scan {
+
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+
+/* =========================================================
+   RANK PANEL
+   ========================================================= */
+
+
+
+
+
+
+
+
+/* =========================================================
+   QUEST AREA
+   ========================================================= */
+
+.quest-section {
+    position: relative;
+}
+
+
+/* =========================================================
+   QUEST CARD
+   ========================================================= */
+
+.quest-card {
+    cursor: default;
+}
+
+.quest-card .system-button {
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   QUEST REWARD
+   ========================================================= */
+
+.quest-reward {
+    text-shadow:
+        0 0 6px rgba(75, 175, 255, 0.45);
+}
+
+
+/* =========================================================
+   COMPLETED QUEST
+   ========================================================= */
+
+.quest-card.completed {
+    filter: saturate(0.65);
+}
+
+.quest-card.completed .quest-reward {
+    opacity: 0.65;
+}
+
+
+/* =========================================================
+   REWARD AREA
+   ========================================================= */
+
+.reward-card {
+    cursor: pointer;
+}
+
+.reward-card:active {
+    transform: scale(0.985);
+}
+
+
+/* =========================================================
+   REWARD ICON
+   ========================================================= */
+
+.reward-icon {
+    transition:
+        transform var(--transition-normal),
+        filter var(--transition-normal);
+}
+
+.reward-card:hover .reward-icon {
+    transform: scale(1.08);
+
+    filter:
+        drop-shadow(0 0 12px rgba(70, 180, 255, 0.95));
+}
+
+
+/* =========================================================
+   SYSTEM BUTTON
+   ========================================================= */
+
+.system-button {
+    user-select: none;
+}
+
+.system-button:focus-visible {
+    outline:
+        1px solid var(--color-blue-bright);
+
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+   ========================================================= */
+
+.system-button.primary {
+    text-shadow:
+        0 0 6px rgba(210, 240, 255, 0.40);
+}
+
+
+/* =========================================================
+   SYSTEM BADGE
+   ========================================================= */
+
+.system-badge {
+    text-shadow:
+        0 0 6px rgba(80, 180, 255, 0.55);
+}
+
+
+/* =========================================================
+   COINS
+   ========================================================= */
+
+.coin-display {
+    text-shadow:
+        0 0 6px rgba(100, 190, 255, 0.45);
+}
+
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.top-bar {
+    position: relative;
+}
+
+
+/* =========================================================
+   TOP BAR DECORATION
+   ========================================================= */
+
+.top-bar::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: -8px;
+
+    height: 1px;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            rgba(45, 135, 255, 0.18),
+            transparent);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   MOBILE SIDEBAR BUTTON
+   ========================================================= */
+
+.sidebar-toggle {
+    cursor: pointer;
+
+    transition:
+        background var(--transition-normal),
+        border-color var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+.sidebar-toggle:hover {
+    border-color:
+        rgba(90, 180, 255, 0.85);
+
+    background:
+        rgba(7, 35, 75, 0.95);
+
+    box-shadow:
+        0 0 14px rgba(20, 120, 255, 0.20);
+}
+
+
+/* =========================================================
+   SIDEBAR BOTTOM AREA
+   ========================================================= */
+
+.sidebar-footer {
+    margin-top: auto;
+
+    padding-top: 18px;
+
+    border-top:
+        1px solid rgba(50, 140, 255, 0.18);
+}
+
+
+/* =========================================================
+   SYSTEM STATUS INDICATOR
+   ========================================================= */
+
+.system-status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--color-text-muted);
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+.system-status-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background:
+        var(--color-blue-light);
+
+    box-shadow:
+        0 0 7px rgba(70, 180, 255, 0.95);
+}
+
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.system-divider {
+    position: relative;
+
+    overflow: hidden;
+}
+
+.system-divider::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -20%;
+
+    width: 20%;
+    height: 100%;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            rgba(130, 215, 255, 0.65),
+            transparent);
+
+    animation:
+        divider-scan 4s linear infinite;
+}
+
+@keyframes divider-scan {
+
+    from {
+        left: -20%;
+    }
+
+    to {
+        left: 120%;
+    }
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.empty-state {
+    position: relative;
+
+    overflow: hidden;
+}
+
+.empty-state::before {
+    content: "";
+
+    width: 42px;
+    height: 42px;
+
+    border:
+        1px solid rgba(65, 160, 255, 0.40);
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 15px rgba(30, 130, 255, 0.12);
+}
+
+
+/* =========================================================
+   NOTIFICATION
+   ========================================================= */
+
+.system-notification {
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+    background:
+        rgba(35, 145, 255, 0.35);
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   RESPONSIVE STYLE OVERRIDES
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .top-bar::after {
+        bottom: -5px;
+    }
+
+    .page-header::after {
+        width: 100px;
+    }
+
+    .section-title::before {
+        width: 3px;
+        height: 16px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .system-divider::after{
+        animation: none;
+    }
+}
+
+/* =========================================================
+   SYSTEM — SKILL TREE
+   ========================================================= */
+
+
+/* =========================================================
+   SKILL TREE PANEL
+   ========================================================= */
+
+.skill-tree-panel {
+
+    display: none;
+
+    margin-top: 30px;
+
+    padding: 28px;
+
+    background:
+        linear-gradient(145deg,
+            rgba(7, 15, 30, 0.96),
+            rgba(2, 7, 16, 0.98));
+
+    border: 1px solid rgba(93, 169, 255, 0.28);
+
+    box-shadow:
+        0 0 25px rgba(40, 120, 255, 0.08),
+        inset 0 0 35px rgba(0, 70, 160, 0.04);
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+
+/* =========================================================
+   OPEN STATE
+   ========================================================= */
+
+.skill-tree-panel.open {
+
+    display: block;
+
+    animation: skillTreeOpen 0.35s ease forwards;
+
+}
+
+
+@keyframes skillTreeOpen {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.skill-tree-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-bottom: 22px;
+
+    margin-bottom: 28px;
+
+    border-bottom:
+        1px solid rgba(93, 169, 255, 0.16);
+
+}
+
+
+.skill-tree-label {
+
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    color: #5da9ff;
+
+    text-shadow:
+        0 0 10px rgba(93, 169, 255, 0.7);
+
+}
+
+
+.skill-tree-header h2 {
+
+    margin: 0;
+
+    font-size: 27px;
+
+    font-weight: 600;
+
+    color: #ffffff;
+
+    letter-spacing: 1px;
+
+}
+
+
+.skill-tree-header p {
+
+    margin-top: 7px;
+
+    font-size: 13px;
+
+    color: rgba(210, 225, 245, 0.6);
+
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+.skill-tree-close {
+
+    width: 36px;
+
+    height: 36px;
+
+    border: 1px solid rgba(93, 169, 255, 0.25);
+
+    background: rgba(5, 12, 24, 0.8);
+
+    color: #7ebaff;
+
+    font-size: 23px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.skill-tree-close:hover {
+
+    color: #ffffff;
+
+    border-color: #5da9ff;
+
+    background: rgba(30, 100, 190, 0.2);
+
+    box-shadow:
+        0 0 18px rgba(93, 169, 255, 0.25);
+
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.skill-tree-content {
+
+    width: 100%;
+
+    min-height: 100px;
+
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.skill-tree-empty {
+
+    min-height: 180px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+
+.skill-tree-empty-icon {
+
+    margin-bottom: 15px;
+
+    font-size: 42px;
+
+    color: #5da9ff;
+
+    text-shadow:
+        0 0 20px rgba(93, 169, 255, 0.8);
+
+}
+
+
+.skill-tree-empty h3 {
+
+    margin-bottom: 8px;
+
+    color: #ffffff;
+
+}
+
+
+.skill-tree-empty p {
+
+    color: rgba(210, 225, 245, 0.55);
+
+    font-size: 13px;
+
+}
+
+
+/* =========================================================
+   SKILL TREE
+   ========================================================= */
+
+.skill-tree {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+}
+
+
+.skill-node-wrapper {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+}
+
+
+/* =========================================================
+   SKILL NODE
+   ========================================================= */
+
+.skill-node {
+
+    width: min(620px, 100%);
+
+    min-height: 82px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 16px 20px;
+
+    border: 1px solid rgba(93, 169, 255, 0.18);
+
+    background:
+        linear-gradient(100deg,
+            rgba(7, 18, 35, 0.95),
+            rgba(3, 9, 18, 0.95));
+
+    position: relative;
+
+    transition:
+        0.25s ease;
+
+}
+
+
+/* =========================================================
+   UNLOCKED
+   ========================================================= */
+
+.skill-node.unlocked {
+
+    border-color:
+        rgba(93, 169, 255, 0.55);
+
+    box-shadow:
+        0 0 18px rgba(50, 130, 255, 0.08);
+
+}
+
+
+.skill-node.unlocked:hover {
+
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(93, 169, 255, 0.9);
+
+    box-shadow:
+        0 0 25px rgba(50, 130, 255, 0.2);
+
+}
+
+
+/* =========================================================
+   LOCKED
+   ========================================================= */
+
+.skill-node.locked {
+
+    opacity: 0.42;
+
+    border-color:
+        rgba(100, 120, 145, 0.15);
+
+    filter: grayscale(0.35);
+
+}
+
+
+/* =========================================================
+   SKILL NUMBER
+   ========================================================= */
+
+.skill-node-number {
+
+    flex: 0 0 45px;
+
+    width: 45px;
+
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid rgba(93, 169, 255, 0.35);
+
+    background: rgba(10, 30, 55, 0.7);
+
+    color: #6fb4ff;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    box-shadow:
+        inset 0 0 15px rgba(40, 120, 255, 0.08);
+
+}
+
+
+/* =========================================================
+   SKILL INFORMATION
+   ========================================================= */
+
+.skill-node-info {
+
+    flex: 1;
+
+}
+
+
+.skill-node-info h3 {
+
+    margin: 0 0 6px;
+
+    color: #eaf4ff;
+
+    font-size: 16px;
+
+    font-weight: 500;
+
+}
+
+
+.skill-node-info span {
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #5da9ff;
+
+}
+
+
+.skill-node.locked .skill-node-info span {
+
+    color: #68778a;
+
+}
+
+
+/* =========================================================
+   CONNECTION
+   ========================================================= */
+
+.skill-connection {
+
+    width: 1px;
+
+    height: 32px;
+
+    background:
+        linear-gradient(to bottom,
+            rgba(93, 169, 255, 0.65),
+            rgba(93, 169, 255, 0.08));
+
+    box-shadow:
+        0 0 8px rgba(93, 169, 255, 0.25);
+
+}
+
+
+/* =========================================================
+   SCAN EFFECT
+   ========================================================= */
+
+.skill-node.unlocked::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+
+    width: 100%;
+
+    height: 1px;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            rgba(93, 169, 255, 0.8),
+            transparent);
+
+    opacity: 0.4;
+
+    animation:
+        skillScan 4s linear infinite;
+
+}
+
+
+@keyframes skillScan {
+
+    0% {
+
+        transform: translateX(-100%);
+
+    }
+
+    100% {
+
+        transform: translateX(100%);
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .skill-tree-panel {
+
+        padding: 20px 15px;
+
+        margin-top: 20px;
+
+    }
+
+
+    .skill-tree-header h2 {
+
+        font-size: 22px;
+
+    }
+
+
+    .skill-node {
+
+        min-height: 72px;
+
+        padding: 13px;
+
+        gap: 12px;
+
+    }
+
+
+    .skill-node-number {
+
+        flex-basis: 38px;
+
+        width: 38px;
+
+        height: 38px;
+
+        font-size: 13px;
+
+    }
+
+
+    .skill-node-info h3 {
+
+        font-size: 14px;
+
+    }
+
+
+    .skill-node-info span {
+
+        font-size: 9px;
+
+    }
+
+
+    /* =========================================================
+   SIDEBAR ICON — ALL SCREEN SIZES
+   ========================================================= */
+
+    .sidebar-nav .nav-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        flex: 0 0 28px;
+        width: 28px;
+        height: 28px;
+
+        margin: 0;
+
+        color: var(--color-blue-bright);
+        font-size: 23px;
+
+        text-shadow:
+            0 0 8px rgba(22, 140, 255, 0.8);
+    }
+}
+
+/* SETTINGS MODULE WINDOW */
+
+#system-settings-dialog {
+    width: min(620px, 92vw);
+    max-height: 85vh;
+    margin: auto;
+    padding: 0;
+    overflow: auto;
+    color: #eaf4ff;
+    background: #080f1d;
+    border: 1px solid #287bc4;
+    border-radius: 16px;
+    box-shadow: 0 0 45px #087bff40;
+}
+
+#system-settings-dialog::backdrop {
+    background: #000b16d9;
+    backdrop-filter: blur(7px);
+}
+
+#system-settings-dialog .system-modal-shell {
+    padding: 24px;
+}
+
+#system-settings-dialog .system-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #1b3553;
+}
+
+#system-settings-dialog .system-modal-eyebrow {
+    color: #60a5fa;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 7px;
+}
+
+#system-settings-dialog h2 {
+    font-size: 25px;
+    color: #ffffff;
+}
+
+#system-settings-dialog h3 {
+    margin: 22px 0 12px;
+    color: #8dc7ff;
+}
+
+#system-settings-dialog .system-modal-header button,
+#system-settings-dialog [data-theme] {
+    padding: 10px 14px;
+    color: #eaf4ff;
+    background: #101f34;
+    border: 1px solid #285580;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#system-settings-dialog .system-modal-body {
+    padding-top: 10px;
+    line-height: 1.8;
+}
+
+#system-settings-dialog .system-theme-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+#system-settings-dialog button:hover {
+    border-color: #60a5fa;
+    box-shadow: 0 0 14px #1688ff35;
+}
+
+/* =========================================================
+   SYSTEM — PERSISTENT LOCAL MODULES
+   ========================================================= */
+
+#system-settings-dialog .system-modal-intro {
+    margin: 0 0 16px;
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+
+#system-settings-dialog .system-modal-body > h3,
+#system-settings-dialog .system-subheading {
+    margin: 18px 0 10px;
+    color: var(--color-neon-white);
+    font-size: 15px;
+}
+
+#system-settings-dialog .system-wallet {
+    margin-bottom: 16px;
+    padding: 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(13, 92, 255, .16), rgba(2, 8, 21, .92));
+}
+
+#system-settings-dialog .system-wallet p {
+    margin: 0 0 6px;
+    color: var(--color-text-muted);
+    font-size: 10px;
+    letter-spacing: .16em;
+}
+
+#system-settings-dialog .system-wallet h3 {
+    margin: 0;
+    font-size: 24px;
+    color: var(--color-neon-white);
+}
+
+#system-settings-dialog .system-store-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+#system-settings-dialog .system-store-card,
+#system-settings-dialog .system-list-card,
+#system-settings-dialog .system-roadmap-step {
+    min-width: 0;
+    border: 1px solid rgba(76, 147, 255, .3);
+    border-radius: 8px;
+    background: rgba(3, 12, 29, .76);
+    padding: 13px;
+}
+
+#system-settings-dialog .system-store-card h3 {
+    margin: 6px 0;
+    color: var(--color-neon-white);
+    font-size: 14px;
+}
+
+#system-settings-dialog .system-store-card p,
+#system-settings-dialog .system-list-card p,
+#system-settings-dialog .system-roadmap-step p {
+    margin: 5px 0;
+    color: var(--color-text-light);
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+#system-settings-dialog .system-store-category,
+#system-settings-dialog .system-list-card small {
+    color: var(--color-text-muted);
+    font-size: 9px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+#system-settings-dialog .system-store-footer,
+#system-settings-dialog .system-inline-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+#system-settings-dialog .system-store-footer strong {
+    color: #ffd77c;
+    font-size: 13px;
+}
+
+#system-settings-dialog .system-action-button,
+#system-settings-dialog .system-quiet-button {
+    min-height: 34px;
+    border-radius: 5px;
+    padding: 7px 11px;
+    border: 1px solid var(--color-border-bright);
+    color: var(--color-neon-white);
+    background: linear-gradient(135deg, rgba(12, 90, 225, .35), rgba(3, 15, 36, .95));
+    font: inherit;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+#system-settings-dialog .system-quiet-button {
+    border-color: rgba(130, 158, 196, .24);
+    background: rgba(7, 15, 28, .7);
+    color: var(--color-text-muted);
+}
+
+#system-settings-dialog button:disabled {
+    opacity: .42;
+    cursor: not-allowed;
+}
+
+#system-settings-dialog .system-list {
+    display: grid;
+    gap: 9px;
+    margin-top: 14px;
+}
+
+#system-settings-dialog .system-list-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+#system-settings-dialog .system-list-main {
+    min-width: 0;
+    flex: 1;
+}
+
+#system-settings-dialog .system-list-main > strong {
+    color: var(--color-neon-white);
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+#system-settings-dialog .system-list-card.is-complete {
+    border-color: rgba(76, 210, 173, .35);
+    background: rgba(6, 30, 35, .54);
+}
+
+#system-settings-dialog .system-pill {
+    flex-shrink: 0;
+    color: #78e7c3;
+    border: 1px solid rgba(76, 210, 173, .35);
+    border-radius: 99px;
+    padding: 5px 8px;
+    font-size: 9px;
+    letter-spacing: .08em;
+}
+
+#system-settings-dialog .system-form {
+    display: grid;
+    gap: 11px;
+    margin: 14px 0;
+    padding: 14px;
+    border: 1px solid rgba(76, 147, 255, .24);
+    border-radius: 8px;
+    background: rgba(2, 8, 19, .7);
+}
+
+#system-settings-dialog .system-form h3 {
+    margin: 0 0 2px;
+    font-size: 14px;
+}
+
+#system-settings-dialog .system-form label {
+    display: grid;
+    gap: 6px;
+    color: var(--color-text-light);
+    font-size: 11px;
+}
+
+#system-settings-dialog .system-form input,
+#system-settings-dialog .system-form textarea {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid rgba(76, 147, 255, .34);
+    border-radius: 5px;
+    padding: 10px;
+    color: var(--color-text);
+    background: rgba(0, 4, 12, .85);
+    font: inherit;
+    font-size: 12px;
+}
+
+#system-settings-dialog .system-form input:focus,
+#system-settings-dialog .system-form textarea:focus {
+    outline: 2px solid var(--color-blue-light);
+    outline-offset: 1px;
+}
+
+#system-settings-dialog .system-form-split {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+#system-settings-dialog .system-empty {
+    padding: 22px 14px;
+    border: 1px dashed rgba(76, 147, 255, .3);
+    border-radius: 8px;
+    text-align: center;
+    color: var(--color-text-light);
+}
+
+#system-settings-dialog .system-empty strong {
+    color: var(--color-neon-white);
+}
+
+#system-settings-dialog .system-empty p {
+    margin: 7px 0 0;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+#system-settings-dialog .system-roadmap-list {
+    display: grid;
+    gap: 9px;
+}
+
+#system-settings-dialog .system-roadmap-step {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+}
+
+#system-settings-dialog .system-roadmap-step > span {
+    color: var(--color-neon-light);
+    font-size: 15px;
+    font-weight: 800;
+}
+
+#system-settings-dialog .system-roadmap-step strong {
+    color: var(--color-neon-white);
+    font-size: 12px;
+}
+
+#system-settings-dialog .system-roadmap-step b {
+    color: var(--color-text-muted);
+    font-size: 8px;
+    letter-spacing: .08em;
+}
+
+#system-settings-dialog .system-roadmap-step.is-current {
+    border-color: var(--color-border-bright);
+}
+
+#system-settings-dialog .system-theme-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+#system-settings-dialog .system-theme-options button {
+    display: grid;
+    justify-items: start;
+    gap: 7px;
+    min-width: 0;
+    padding: 12px;
+    color: var(--color-text);
+    border: 1px solid rgba(76, 147, 255, .3);
+    border-radius: 8px;
+    background: rgba(3, 12, 29, .8);
+    text-align: left;
+    cursor: pointer;
+}
+
+#system-settings-dialog .system-theme-options button.is-selected {
+    border-color: var(--color-blue-light);
+    box-shadow: 0 0 13px rgba(55, 145, 255, .18);
+}
+
+#system-settings-dialog .system-theme-options strong {
+    font-size: 11px;
+}
+
+#system-settings-dialog .system-theme-options small {
+    color: var(--color-text-muted);
+    font-size: 9px;
+    line-height: 1.35;
+}
+
+#system-settings-dialog .system-theme-swatch {
+    display: block;
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, .12);
+}
+
+#system-settings-dialog .system-theme-swatch.cosmic { background: linear-gradient(120deg, #020611, #0d5cff, #8fc7ff); }
+#system-settings-dialog .system-theme-swatch.abyss { background: linear-gradient(120deg, #02040d, #3d33a8, #a69aff); }
+#system-settings-dialog .system-theme-swatch.ice { background: linear-gradient(120deg, #001018, #007f9e, #c2f3ff); }
+
+
+@media (max-width: 600px) {
+    #system-settings-dialog .system-store-grid,
+    #system-settings-dialog .system-theme-options {
+        grid-template-columns: 1fr;
+    }
+    #system-settings-dialog .system-list-card {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    #system-settings-dialog .system-form-split {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* SYSTEM — Groq connection panel */
+.groq-connect-panel{margin:14px 0;padding:14px;border:1px solid rgba(82,157,255,.35);background:rgba(3,12,29,.72);border-radius:8px;display:grid;gap:9px}
+.groq-connect-panel label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#8fc4ff;font-weight:700}
+.groq-key-row{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap}
+.groq-key-row input,.groq-key-row select{min-width:0;flex:1 1 150px;background:#030914;color:#e7f2ff;border:1px solid rgba(110,169,255,.32);padding:11px;border-radius:4px;font:inherit}
+.groq-key-row button{flex:0 0 auto}
+.groq-connect-panel small{color:#8fa6c4;line-height:1.55;font-size:11px}
+#groq-connection-status{display:block;margin-top:5px;color:#8fc4ff;font-size:10px;letter-spacing:.8px;line-height:1.5}
+#groq-connect-btn:disabled,.chat-input button:disabled{opacity:.65;cursor:wait}
+@media(max-width:560px){.groq-key-row{display:grid;grid-template-columns:1fr}.groq-key-row input,.groq-key-row select,.groq-key-row button{width:100%;min-height:42px}}

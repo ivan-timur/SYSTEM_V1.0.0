@@ -1,0 +1,40 @@
+{
+  "name": "system-v1",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SYSTEM v1 — Personal Progress and Development System",
+  "scripts": {
+    "build:css": "node scripts/build-css.js",
+    "test": "npm run build && npm run test:ts && npm run test:static && npm run architecture:check",
+    "test:e2e": "node scripts/run-playwright-tests.js",
+    "test:e2e:mobile": "node scripts/run-playwright-tests.js --project=mobile-chromium tests/playwright/status-quest.spec.js tests/playwright/rewards.spec.js tests/playwright/phase23-settings-backup.spec.js tests/playwright/mobile-navigation-stability.spec.js",
+    "build:sw": "node scripts/build-sw.js",
+    "build": "node scripts/sync-version.js && npm run build:ts && npm run build:runtime && npm run build:css && npm run build:sw && node scripts/sync-android-assets.js",
+    "test:static": "node scripts/phase10-architecture-audit.js && node tests/design-system-contract-test.js && node tests/phase4-audio-motion-contract-test.js && node tests/phase5-feedback-orchestration-test.js && node tests/phase6-ux-mobile-release-gate-test.js && node tests/theme-engine-advanced-test.js && node tests/phase9-transactional-progression-contract-test.js && node tests/transaction-rollback-contract-test.js && node tests/android-build-preflight-contract-test.js && node tests/android-build-command-contract-test.js && node tests/storage-failure-resilience-test.js && node tests/progression-idempotency-test.js && node tests/legacy-migration-contract-test.js && node tests/migration-cutover-ui-contract-test.js && node tests/progression-math-test.js && node tests/progression-runtime-integration-test.js && node tests/smoke-test.js && node tests/ai-quest-parser-test.js && node tests/intelligence-engine-test.js && node tests/storage-test.js && node tests/phase21-data-integrity-test.js && node tests/adaptive-learning-ui-contract-test.js && node tests/learning-cycle-runtime-integration-test.js && node tests/security-audit.js && node tests/skill-mastery-test.js && node tests/skill-progression-test.js && node tests/smart-roadmap-test.js && node tests/rewards-ascension-test.js && node tests/obsidian-couture-test.js && node tests/progression-reward-test.js && node tests/profile-forge-test.js && node tests/profile-intelligence-test.js && node tests/daily-prize-test.js && node tests/project-integrity-test.js && node tests/ui-layout-test.js && node tests/mobile-navigation-contract-test.js && node tests/goal-progress-test.js && node tests/android-updater-test.js && node tests/web-ota-contract-test.js && node tests/release-pipeline-test.js && node tests/theme-atelier-test.js && node tests/theme-atelier-signature-test.js && node tests/status-refinement-test.js && node tests/rewards-miniature-test.js && node tests/browser-runner-contract-test.js && node tests/visual-effects-contract-test.js && node tests/phase24-visual-performance-test.js && node tests/phase25-android-release-readiness-test.js && node tests/phase11-durable-storage-gate-test.mjs && node tests/phase12-durable-progression-bridge-contract-test.js && node tests/phase13-architecture-roadmap-contract-test.js && node tests/phase14-durable-storage-integrity-test.js && node tests/phase15-storage-durability-test.js && node tests/phase27-architecture-consolidation-test.js && node tests/phase28-live-storage-progression-audit-test.js && node tests/phase29-progression-boundary-audit-test.js && node tests/phase30-atomic-progression-integration-test.js && node tests/phase31-storage-release-gates-test.js && node tests/phase32-browser-integration-readiness-test.js && node tests/phase33_android_environment_gate_test.js && node tests/phase40-live-path-audit-test.js && node tests/phase41-atomic-progression-hardening-test.js && node tests/phase42-browser-runtime-gate-test.js && node tests/phase43-android-apk-validation-gate-test.js",
+    "doctor": "node scripts/project-doctor.js && node scripts/architecture-guard.js",
+    "prepare:android": "npm run build && node scripts/sync-android-assets.js",
+    "test:ts": "npm run build:ts && node tests/typescript/progression.test.mjs && node tests/typescript/achievements.test.mjs && node tests/typescript/activity-ledger.test.mjs && node tests/typescript/reward-command.test.mjs && node tests/typescript/storage-contract.test.mjs && node tests/typescript/database-health-contract.test.mjs && node tests/typescript/atomic-command-contract.test.mjs && node tests/typescript/seed-validation.test.mjs && node tests/typescript/runtime-reward-bridge.test.mjs && node tests/typescript/legacy-migration.test.mjs && node tests/typescript/legacy-migration-approval.test.mjs && node tests/typescript/daily-quest-command.test.mjs && node tests/typescript/daily-quest-streak.test.mjs && node tests/typescript/legacy-daily-quest-state.test.mjs && node tests/typescript/quest-command.test.mjs && node tests/typescript/quest-completion-plan.test.mjs && node tests/typescript/goal-curriculum.test.mjs && node tests/typescript/skill-verification-contract.test.mjs && node tests/typescript/skill-assessment.test.mjs && node tests/typescript/adaptive-learning-path.test.mjs && node tests/typescript/learning-cycle.test.mjs && node tests/typescript/curriculum-command.test.mjs",
+    "build:ts": "tsc -p tsconfig.json && node scripts/write-dist-module-marker.js",
+    "build:runtime": "tsc -p tsconfig.runtime.json",
+    "test:browser-idb": "npm run build:ts && node tests/run-indexeddb-browser-test.js",
+    "architecture:check": "node scripts/architecture-guard.js",
+    "test:e2e:phase23": "node scripts/run-playwright-tests.js tests/playwright/status-quest.spec.js tests/playwright/rewards.spec.js tests/playwright/smart-roadmap.spec.js tests/playwright/phase23-settings-backup.spec.js",
+    "android:preflight": "node scripts/android-build-preflight.js",
+    "android:build:debug": "node scripts/build-android-debug.js",
+    "architecture:phase10": "node scripts/phase10-architecture-audit.js",
+    "release:preflight": "node scripts/release-preflight.js",
+    "test:design-system": "node scripts/build-css.js && node tests/design-system-contract-test.js",
+    "test:audio-motion": "node tests/phase4-audio-motion-contract-test.js",
+    "test:feedback-orchestration": "node tests/phase5-feedback-orchestration-test.js",
+    "test:phase6": "node tests/phase6-ux-mobile-release-gate-test.js",
+    "package:web-ota": "npm run prepare:android && node scripts/package-web-ota.js",
+    "test:web-ota": "node tests/web-ota-contract-test.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.0",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "explorer",
+    "name": "Explorer",
+    "category": "achievement",
+    "xp": 90,
+    "minLevel": 2
+  },
+  {
+    "id": "mission-completion",
+    "name": "Mission Completion",
+    "category": "mission",
+    "xp": 100,
+    "minLevel": 1
+  }
+]

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a69aff"/><stop offset="1" stop-color="#30236e"/></linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <circle cx="110" cy="110" r="92" fill="#030a18" fill-opacity=".88" stroke="#a69aff" stroke-opacity=".55" stroke-width="2"/>
+  <path d="M110 25 L178 58 L169 142 L110 192 L51 142 L42 58 Z" fill="#06152e" stroke="url(#g)" stroke-width="5" filter="url(#glow)"/>
+  <path d="M110 42 L160 67 L153 132 L110 169 L67 132 L60 67 Z" fill="url(#g)" fill-opacity=".16" stroke="#a69aff" stroke-opacity=".65" stroke-width="1.5"/>
+  <path d="M70 82 L110 59 L150 82 L145 122 L110 148 L75 122 Z" fill="none" stroke="#a69aff" stroke-opacity=".48" stroke-width="2"/>
+  <text x="110" y="119" font-family="Arial,Helvetica,sans-serif" font-size="70" font-weight="800" text-anchor="middle" fill="#f2f8ff" stroke="#30236e" stroke-width="1" paint-order="stroke" filter="url(#glow)">A</text>
+  <text x="110" y="185" font-family="Arial,Helvetica,sans-serif" font-size="10" letter-spacing="3" text-anchor="middle" fill="#a69aff">SYSTEM RANK</text>
+</svg>

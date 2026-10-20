@@ -1,0 +1,88 @@
+/* SYSTEM — NOCTURNE ATELIER
+   Deep visual refinement: stronger hierarchy, luminous surfaces, tactile controls.
+   Additive only; progression, storage and theme-selection logic remain untouched. */
+:root{
+ --atelier-radius-xs:9px;--atelier-radius-sm:13px;--atelier-radius-md:18px;--atelier-radius-lg:25px;
+ --atelier-ease:cubic-bezier(.2,.75,.25,1);
+ --atelier-edge:color-mix(in srgb,var(--accent,#5da9ff) 27%,transparent);
+ --atelier-glow:0 0 0 1px rgba(91,164,255,.06),0 18px 44px rgba(0,0,0,.24);
+}
+body{
+ background-image:radial-gradient(ellipse at 12% -8%,color-mix(in srgb,var(--accent,#5da9ff) 11%,transparent),transparent 38%),
+ radial-gradient(ellipse at 95% 18%,rgba(77,111,190,.075),transparent 32%);
+ background-attachment:fixed;
+}
+.sidebar{
+ border-right:1px solid var(--atelier-edge);
+ background:linear-gradient(180deg,rgba(7,12,24,.98),rgba(3,6,13,.985));
+ box-shadow:12px 0 42px rgba(0,0,0,.15);
+}
+.system-logo,.logo-icon{filter:drop-shadow(0 0 12px color-mix(in srgb,var(--accent,#5da9ff) 35%,transparent))}
+.nav-item{
+ position:relative;border:1px solid transparent;border-radius:13px;
+ transition:background .22s var(--atelier-ease),border-color .22s,transform .22s,color .22s;
+}
+.nav-item:hover{transform:translateX(3px);border-color:var(--atelier-edge);background:linear-gradient(100deg,rgba(77,145,235,.12),rgba(77,145,235,.025))}
+.nav-item.active{border-color:color-mix(in srgb,var(--accent,#5da9ff) 34%,transparent);background:linear-gradient(100deg,color-mix(in srgb,var(--accent,#5da9ff) 17%,transparent),rgba(6,13,26,.25));box-shadow:inset 3px 0 0 var(--accent,#5da9ff),0 5px 18px rgba(0,0,0,.12)}
+.top-bar{backdrop-filter:blur(18px);background:color-mix(in srgb,var(--color-background,#060914) 82%,transparent);border-bottom:1px solid var(--atelier-edge)}
+.page{animation:atelier-enter .38s var(--atelier-ease) both}
+.page-header{position:relative;padding-bottom:1.1rem;margin-bottom:1.45rem}
+.page-header:after{content:"";position:absolute;bottom:0;left:0;width:min(210px,42%);height:1px;background:linear-gradient(90deg,var(--accent,#5da9ff),transparent);opacity:.8}
+.page-title{letter-spacing:.035em;text-shadow:0 0 28px rgba(80,155,255,.10);font-weight:850}
+.page-subtitle{max-width:72ch;line-height:1.7}
+.stat-card,.quest-card,.reward-card,.settings-row,.player-overview>*,.skill-card,
+.status-tool-panel,.ai-mode-panel,.ai-workspace-tab,.status-more-sheet-inner{
+ position:relative;isolation:isolate;overflow:hidden;
+ border:1px solid var(--atelier-edge);
+ border-radius:var(--atelier-radius-md);
+ box-shadow:var(--atelier-glow);
+ transition:transform .24s var(--atelier-ease),border-color .24s,box-shadow .24s,background .24s;
+}
+.stat-card:before,.quest-card:before,.reward-card:before,.settings-row:before,.skill-card:before{
+ content:"";position:absolute;inset:0 0 auto;height:1px;pointer-events:none;z-index:-1;
+ background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent,#5da9ff) 58%,transparent),transparent);
+ opacity:.75;
+}
+.stat-card:hover,.quest-card:hover,.reward-card:hover,.skill-card:hover{
+ transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent,#5da9ff) 55%,transparent);
+ box-shadow:0 20px 45px rgba(0,0,0,.3),0 0 24px color-mix(in srgb,var(--accent,#5da9ff) 8%,transparent);
+}
+.stat-icon,.quest-icon,.reward-card-icon,.settings-icon{filter:drop-shadow(0 5px 13px rgba(66,145,255,.16))}
+.stat-name,.settings-information h3,.quest-information h3,.reward-card h3{letter-spacing:.015em}
+.stat-progress,.quest-progress{overflow:hidden;border-radius:999px;background:rgba(130,160,205,.13)}
+.stat-progress-fill{border-radius:inherit;box-shadow:0 0 12px color-mix(in srgb,var(--accent,#5da9ff) 40%,transparent)}
+button,.button,.btn,[role="button"],.ai-primary-button,.ai-secondary-button,.quest-go{
+ transition:transform .18s var(--atelier-ease),box-shadow .2s,border-color .2s,filter .2s;
+}
+button:hover,.button:hover,.btn:hover,[role="button"]:hover,.ai-primary-button:hover,.ai-secondary-button:hover,.quest-go:hover{filter:brightness(1.08);box-shadow:0 8px 22px rgba(0,0,0,.2)}
+button:active,.button:active,.btn:active,[role="button"]:active{transform:translateY(1px) scale(.99)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[role="button"]:focus-visible{
+ outline:2px solid var(--accent,#5da9ff);outline-offset:3px;
+}
+input,select,textarea{border-radius:var(--atelier-radius-xs);transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent,#5da9ff) 15%,transparent)}
+.reward-tab,.ai-workspace-tab{border-radius:12px;transition:all .2s var(--atelier-ease)}
+.reward-tab:hover,.ai-workspace-tab:hover{border-color:var(--atelier-edge);transform:translateY(-1px)}
+.reward-tab.active,.ai-workspace-tab.active{box-shadow:inset 0 -2px 0 var(--accent,#5da9ff),0 6px 20px rgba(0,0,0,.12)}
+.settings-row{padding:1rem 1.1rem}
+.settings-row:hover{border-color:color-mix(in srgb,var(--accent,#5da9ff) 42%,transparent);background:linear-gradient(100deg,rgba(65,127,210,.07),transparent)}
+/* Native dialog / modal polish without changing behavior */
+dialog,.modal,.modal-content,.settings-modal,.status-more-sheet-inner{
+ border-color:var(--atelier-edge);border-radius:var(--atelier-radius-lg);
+ box-shadow:0 28px 90px rgba(0,0,0,.58),0 0 0 1px rgba(130,175,240,.04);
+}
+dialog::backdrop{background:rgba(1,4,10,.76);backdrop-filter:blur(7px)}
+/* Cleaner scrollbars, kept low contrast */
+*{scrollbar-color:rgba(91,151,224,.34) rgba(5,10,20,.4);scrollbar-width:thin}
+*::-webkit-scrollbar{width:9px;height:9px}
+*::-webkit-scrollbar-thumb{background:linear-gradient(180deg,rgba(94,165,255,.42),rgba(65,101,158,.25));border:2px solid transparent;background-clip:padding-box;border-radius:99px}
+*::-webkit-scrollbar-track{background:rgba(3,7,15,.25)}
+@keyframes atelier-enter{from{opacity:.01;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.page{animation:none}*,*::before,*::after{scroll-behavior:auto;transition-duration:.01ms;animation-duration:.01ms}}
+@media(max-width:760px){
+ .page-header{margin-bottom:1rem;padding-bottom:.85rem}
+ .page-title{font-size:clamp(1.35rem,5vw,2rem);line-height:1.18}
+ .stat-card,.quest-card,.reward-card,.settings-row,.skill-card{border-radius:15px}
+ .stat-card:hover,.quest-card:hover,.reward-card:hover,.skill-card:hover{transform:none}
+ .settings-row{padding:.85rem}
+}

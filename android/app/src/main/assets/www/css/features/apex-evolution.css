@@ -1,0 +1,8 @@
+/* SYSTEM — APEX EVOLUTION layer */
+:root{
+ --apex-glow: rgba(93,169,255,.18);
+ --apex-border: rgba(139,197,255,.28);
+}
+.apex-card{backdrop-filter:blur(14px);border:1px solid var(--apex-border);box-shadow:0 0 30px var(--apex-glow),inset 0 1px 0 rgba(255,255,255,.04);}
+.apex-interactive{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;}
+.apex-interactive:hover{transform:translateY(-3px);box-shadow:0 12px 40px var(--apex-glow);}

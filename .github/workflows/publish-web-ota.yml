@@ -1,0 +1,106 @@
+name: Publish SYSTEM web-only OTA bundle
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'VERSION'
+      - 'WEB_VERSION'
+      - 'WEB_MIN_NATIVE_VERSION'
+      - 'index.html'
+      - 'manifest.webmanifest'
+      - 'sw.js'
+      - 'assets/**'
+      - 'css/**'
+      - 'data/**'
+      - 'js/**'
+      - 'src/**'
+      - 'scripts/build-css.js'
+      - 'scripts/build-sw.js'
+      - 'scripts/sync-android-assets.js'
+      - 'scripts/package-web-ota.js'
+      - 'package.json'
+      - 'tsconfig*.json'
+      - '.github/workflows/publish-web-ota.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: system-web-ota-publish
+  cancel-in-progress: false
+
+jobs:
+  build-and-publish-web:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the source branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install project dependencies
+        run: npm install --no-package-lock --no-audit --no-fund
+
+      - name: Run project regression suite (no APK build)
+        run: npm test
+
+      - name: Build the offline web payload and package OTA
+        run: |
+          set -euo pipefail
+          npm run prepare:android
+          node scripts/package-web-ota.js
+          mkdir -p "$RUNNER_TEMP/system-web-ota-publish"
+          cp dist/ota-publish/* "$RUNNER_TEMP/system-web-ota-publish/"
+
+      - name: Prevent accidental reuse or downgrade of WEB_VERSION
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git ls-remote --exit-code --heads origin system-ota >/dev/null 2>&1; then
+            git fetch origin refs/heads/system-ota:refs/remotes/origin/system-ota
+            git show origin/system-ota:latest.json > "$RUNNER_TEMP/system-web-ota-previous.json"
+            node - "$RUNNER_TEMP/system-web-ota-previous.json" "$RUNNER_TEMP/system-web-ota-publish/latest.json" <<'NODE'
+          const fs = require('node:fs');
+          const previous = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
+          const current = JSON.parse(fs.readFileSync(process.argv[3], 'utf8'));
+          const parse = value => String(value).split('.').map(Number);
+          const a = parse(current.version), b = parse(previous.version);
+          let cmp = 0;
+          for (let i = 0; i < 3; i++) { if (a[i] !== b[i]) { cmp = a[i] > b[i] ? 1 : -1; break; } }
+          if (cmp < 0) {
+            console.error(`WEB_VERSION downgrade blocked: ${previous.version} -> ${current.version}`);
+            process.exit(2);
+          }
+          if (cmp === 0 && (current.sha256 !== previous.sha256 || current.minNativeVersion !== previous.minNativeVersion)) {
+            console.error(`WEB_VERSION ${current.version} already exists with different content. Increment WEB_VERSION before publishing web changes.`);
+            process.exit(3);
+          }
+          console.log(`OTA version guard passed: ${previous.version} -> ${current.version}`);
+          NODE
+          fi
+
+      - name: Publish bundle to the dedicated system-ota branch
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          git checkout --orphan system-ota
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp "$RUNNER_TEMP/system-web-ota-publish/"* .
+          git add --all
+          OTA_VERSION="$(node -p "require('./latest.json').version")"
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "Publish SYSTEM web OTA ${OTA_VERSION}" || {
+            echo 'The OTA branch did not produce a new commit.'
+            exit 1
+          }
+          git -c http.extraheader="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 -w0)" push --force origin HEAD:system-ota

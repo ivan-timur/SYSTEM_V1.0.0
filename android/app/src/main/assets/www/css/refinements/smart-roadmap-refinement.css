@@ -1,0 +1,34 @@
+/* SYSTEM — Roadmap usability, backup controls and responsive filtering. */
+.roadmap-header-actions{display:flex;align-items:center;justify-content:flex-end;gap:.5rem;flex-wrap:wrap}
+.roadmap-import-mode{display:flex;align-items:center;gap:.4rem;color:var(--text-secondary,#94a3b8);font-size:.78rem}
+.roadmap-import-mode select,.roadmap-toolbar input,.roadmap-toolbar select{min-width:0;max-width:100%;border:1px solid var(--border-color,#1c2b43);border-radius:9px;padding:.62rem .7rem;background:rgba(3,5,10,.78);color:var(--text-primary,#f2f6ff);font:inherit}
+.roadmap-toolbar{display:grid;grid-template-columns:minmax(0,2fr) repeat(2,minmax(0,1fr));gap:.7rem;padding:.85rem;border:1px solid var(--border-color,#1c2b43);border-radius:13px;background:rgba(7,11,19,.42)}
+.roadmap-toolbar label{display:grid;gap:.35rem;min-width:0;color:var(--text-secondary,#94a3b8);font-size:.82rem}
+.roadmap-toolbar input:focus-visible,.roadmap-toolbar select:focus-visible,.roadmap-import-mode select:focus-visible,.roadmap-form input:focus-visible,.roadmap-form select:focus-visible,.roadmap-form textarea:focus-visible,.roadmap-action:focus-visible,.roadmap-form button:focus-visible{outline:2px solid var(--accent-blue,#5da9ff);outline-offset:2px}
+.roadmap-form-actions{grid-column:1/-1;display:flex;gap:.55rem;flex-wrap:wrap}
+.roadmap-form-actions button{flex:0 1 auto}
+.roadmap-item[hidden]{display:none}
+.roadmap-no-filter-results{padding:.8rem;border:1px dashed var(--border-color,#1c2b43);border-radius:10px}
+.roadmap-header-actions .roadmap-action{white-space:nowrap}
+.roadmap-item-actions .roadmap-action{min-height:36px}
+@media(max-width:740px){.roadmap-header-actions{justify-content:flex-start;width:100%}.roadmap-toolbar{grid-template-columns:1fr 1fr}.roadmap-toolbar label:first-child{grid-column:1/-1}.roadmap-import-mode{flex-wrap:wrap}}
+@media(max-width:420px){.roadmap-toolbar{grid-template-columns:1fr}.roadmap-toolbar label:first-child{grid-column:auto}.roadmap-header-actions{display:grid;grid-template-columns:1fr 1fr}.roadmap-import-mode{grid-column:1/-1;justify-content:space-between}.roadmap-import-mode select{flex:1}.roadmap-header-actions .roadmap-action{width:100%;white-space:normal}.roadmap-form-actions button{width:100%}}
+@media(prefers-reduced-motion:reduce){.roadmap-progress-track span{transition:none}}
+
+/* Calm, accessible next-action focus panel */
+.roadmap-focus-card{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:1rem 0;padding:1.1rem 1.2rem;border:1px solid rgba(93,169,255,.32);border-radius:16px;background:linear-gradient(115deg,rgba(24,52,88,.62),rgba(7,11,19,.88));box-shadow:inset 0 1px rgba(255,255,255,.035)}
+.roadmap-focus-card h4{margin:.35rem 0;color:var(--text-primary,#f2f6ff);font-size:1.05rem;overflow-wrap:anywhere}
+.roadmap-focus-card p{margin:.25rem 0 0;color:var(--text-secondary,#94a3b8);font-size:.9rem;line-height:1.6}
+.roadmap-focus-eyebrow{font-size:.68rem;font-weight:800;letter-spacing:.12em;color:var(--neon-blue,#5da9ff)}
+.roadmap-focus-card .roadmap-action{flex-shrink:0;min-height:40px}
+.roadmap-focus-card.is-empty{border-color:rgba(216,181,109,.3)}
+@media(max-width:560px){.roadmap-focus-card{align-items:stretch;flex-direction:column}.roadmap-focus-card .roadmap-action{width:100%}}
+
+
+/* Compact responsive weekly review */
+.roadmap-weekly-review{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0;padding:14px;border:1px solid var(--system-border,#1c2b43);border-radius:14px;background:linear-gradient(135deg,rgba(93,169,255,.09),rgba(7,11,19,.88))}
+.roadmap-weekly-review>div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.roadmap-weekly-review span{font-size:.72rem;letter-spacing:.08em;color:var(--system-blue,#8bc5ff)}
+.roadmap-weekly-review strong{font-size:1.35rem;line-height:1.2;color:var(--system-text,#f2f6ff)}
+.roadmap-weekly-review small{font-size:.78rem;color:var(--system-muted,#94a3b8)}
+@media(max-width:520px){.roadmap-weekly-review{gap:8px;padding:10px}.roadmap-weekly-review strong{font-size:1.15rem}.roadmap-weekly-review small{font-size:.7rem}}

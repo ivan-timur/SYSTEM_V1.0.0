@@ -1,0 +1,287 @@
+/* =========================================================
+   SYSTEM — DESIGN TOKENS
+   Visual direction: Black / Cosmic Blue / Neon
+   ========================================================= */
+
+
+/* =========================================================
+   1. COLOR PALETTE
+   ========================================================= */
+
+:root {
+    /* Main background */
+    --color-black: #000308;
+    --color-background: #020611;
+    --color-background-2: #050b18;
+
+    /* Panels */
+    --color-panel: rgba(3, 9, 22, 0.96);
+    --color-panel-light: rgba(7, 17, 38, 0.94);
+    --color-panel-dark: rgba(1, 5, 14, 0.98);
+
+    /* Blue palette */
+    --color-blue-dark: #06245c;
+    --color-blue: #0d5cff;
+    --color-blue-light: #4da3ff;
+    --color-blue-bright: #8fc7ff;
+
+    /* Neon highlights */
+    --color-neon: #168cff;
+    --color-neon-light: #70c4ff;
+    --color-neon-white: #dff2ff;
+
+    /* Text */
+    --color-text: #f1f7ff;
+    --color-text-light: #c7dcf7;
+    --color-text-muted: #7891b5;
+
+    /* Borders */
+    --color-border: rgba(50, 137, 255, 0.45);
+    --color-border-bright: rgba(80, 168, 255, 0.90);
+
+    /* Status colors */
+    --color-success: #42baff;
+    --color-warning: #8ab8ff;
+    --color-danger: #397cff;
+}
+
+
+/* =========================================================
+   2. NEON GLOW
+   ========================================================= */
+
+:root {
+    --glow-small:
+        0 0 6px rgba(30, 130, 255, 0.65);
+
+    --glow-medium:
+        0 0 12px rgba(30, 130, 255, 0.65);
+
+    --glow-large:
+        0 0 25px rgba(30, 130, 255, 0.55);
+
+    --glow-intense:
+        0 0 45px rgba(30, 130, 255, 0.45);
+
+    --text-glow:
+        0 0 8px rgba(100, 190, 255, 0.80);
+
+    --panel-glow:
+        0 0 18px rgba(15, 105, 255, 0.14);
+
+    --active-glow:
+        0 0 20px rgba(30, 130, 255, 0.35);
+}
+
+
+/* =========================================================
+   3. BORDERS AND FRAMES
+   ========================================================= */
+
+:root {
+    --border-thin:
+        1px solid var(--color-border);
+
+    --border-normal:
+        1px solid var(--color-border-bright);
+
+    --border-glow:
+        1px solid rgba(70, 165, 255, 0.85);
+
+    --frame-color:
+        rgba(45, 140, 255, 0.65);
+
+    --frame-highlight:
+        rgba(125, 205, 255, 0.95);
+}
+
+
+/* =========================================================
+   4. BACKGROUND OVERLAYS
+   ========================================================= */
+
+:root {
+    --background-overlay:
+        linear-gradient(180deg,
+            rgba(0, 4, 14, 0.24),
+            rgba(0, 3, 12, 0.58));
+
+    --background-overlay-strong:
+        linear-gradient(180deg,
+            rgba(0, 3, 12, 0.42),
+            rgba(0, 3, 12, 0.78));
+
+    --dark-gradient:
+        linear-gradient(180deg,
+            rgba(4, 13, 30, 0.96),
+            rgba(0, 3, 10, 0.98));
+
+    --panel-gradient:
+        linear-gradient(135deg,
+            rgba(8, 24, 52, 0.92),
+            rgba(1, 7, 18, 0.97));
+
+    --blue-gradient:
+        linear-gradient(90deg,
+            #031a49,
+            #087cff,
+            #78c7ff);
+}
+
+
+/* =========================================================
+   5. BORDER RADIUS
+   ========================================================= */
+
+:root {
+    --radius-small: 4px;
+    --radius-medium: 8px;
+    --radius-large: 12px;
+}
+
+
+/* =========================================================
+   6. SPACING
+   ========================================================= */
+
+:root {
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-xxl: 48px;
+}
+
+
+/* =========================================================
+   7. SIDEBAR
+   ========================================================= */
+
+:root {
+    --sidebar-width: 250px;
+    --sidebar-min-width: 220px;
+}
+
+
+/* =========================================================
+   8. MAIN CONTENT
+   ========================================================= */
+
+:root {
+    --content-max-width: 1500px;
+
+    --content-padding: 30px;
+    --content-gap: 20px;
+
+    --page-header-gap: 18px;
+}
+
+
+/* =========================================================
+   9. STATUS PAGE
+   ========================================================= */
+
+:root {
+    --status-gap: 20px;
+
+    --stats-columns: 2;
+    --stats-rows: 3;
+
+    --stat-height: 105px;
+    --stat-min-width: 0px;
+    --stat-gap: 12px;
+
+    --rank-image-size: 96px;
+}
+
+
+/* =========================================================
+   10. QUEST AND REWARDS
+   ========================================================= */
+
+:root {
+    --quest-height: 88px;
+    --quest-gap: 12px;
+
+    --reward-card-min-height: 130px;
+
+    --side-panel-width: 230px;
+}
+
+
+/* =========================================================
+   11. TYPOGRAPHY
+   ========================================================= */
+
+:root {
+    --font-main:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    --font-ui:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    --font-size-xs: 11px;
+    --font-size-sm: 13px;
+    --font-size-md: 16px;
+    --font-size-lg: 20px;
+    --font-size-xl: 28px;
+    --font-size-xxl: 42px;
+
+    --heading-glow:
+        0 0 12px rgba(100, 190, 255, 0.65);
+}
+
+
+/* =========================================================
+   12. TRANSITIONS
+   ========================================================= */
+
+:root {
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.25s ease;
+    --transition-slow: 0.45s ease;
+}
+
+
+/* =========================================================
+   13. LAYER ORDER
+   ========================================================= */
+
+:root {
+    --z-background: 0;
+    --z-content: 10;
+    --z-sidebar: 50;
+    --z-modal: 100;
+    --z-notification: 200;
+}
+
+
+
+/* =========================================================
+   14. PAGE BACKGROUND IMAGE PATHS
+   ========================================================= */
+
+:root {
+    --system-background-image:
+        url("../../assets/images/backgrounds/status-bg.webp");
+
+    --status-background-image:
+        url("../../assets/images/backgrounds/status-bg.webp");
+
+    --quest-background-image:
+        url("../../assets/images/backgrounds/quest-bg.webp");
+
+    --rewards-background-image:
+        url("../../assets/images/backgrounds/rewards-bg.webp");
+
+    --ai-background-image:
+        url("../../assets/images/backgrounds/ai-bg.webp");
+
+    --settings-background-image:
+        url("../../assets/images/backgrounds/settings-bg.webp");
+}

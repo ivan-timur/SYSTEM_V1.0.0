@@ -1,0 +1,12 @@
+node_modules/
+playwright-report/
+test-results/
+android/.gradle/
+android/local.properties
+android/app/build/
+*.jks
+*.keystore
+system-release-key.properties
+
+# Generated web-only OTA publication package (never commit build output).
+dist/ota-publish/

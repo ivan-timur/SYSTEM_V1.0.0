@@ -1,0 +1,14 @@
+{
+  "id": "physics",
+  "name": "Physics",
+  "skills": [
+    "Mechanics",
+    "Energy",
+    "Electricity",
+    "Waves",
+    "Modern Physics"
+  ],
+  "level": 1,
+  "xp": 0,
+  "xpRequired": 100
+}

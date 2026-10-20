@@ -1,0 +1,633 @@
+/* SYSTEM — OBSIDIAN COUTURE theme.
+   An optional, premium visual identity. Existing Cosmic, Royal, Aurora and other palettes stay intact. */
+html[data-system-theme="couture"] {
+  color-scheme: dark;
+  --color-black: #03050b;
+  --color-background: #060914;
+  --color-background-2: #0b1020;
+  --color-panel: rgba(9, 14, 29, .94);
+  --color-panel-light: rgba(16, 24, 43, .93);
+  --color-panel-dark: rgba(4, 7, 16, .985);
+  --color-blue-dark: #102a50;
+  --color-blue: #3978d4;
+  --color-blue-light: #7dbdff;
+  --color-blue-bright: #d8eaff;
+  --color-neon: #5da9ff;
+  --color-neon-light: #9ed0ff;
+  --color-neon-white: #f0f6ff;
+  --color-text: #f2f5fb;
+  --color-text-light: #cad5e6;
+  --color-text-muted: #8b9bb5;
+  --color-border: rgba(116, 151, 204, .24);
+  --color-border-bright: rgba(151, 198, 255, .72);
+  --color-success: #70d8ae;
+  --color-warning: #e6c77d;
+  --color-danger: #f08a9b;
+  --glow-small: 0 0 8px rgba(82, 157, 255, .13);
+  --glow-medium: 0 0 15px rgba(82, 157, 255, .15);
+  --glow-large: 0 0 26px rgba(82, 157, 255, .12);
+  --glow-intense: 0 0 40px rgba(82, 157, 255, .10);
+  --text-glow: 0 0 16px rgba(157, 207, 255, .17);
+  --panel-glow: 0 18px 46px rgba(0, 0, 0, .28), 0 0 30px rgba(63, 122, 205, .04);
+  --active-glow: 0 0 24px rgba(82, 157, 255, .13);
+  --frame-color: rgba(120, 158, 215, .32);
+  --frame-highlight: rgba(199, 224, 255, .78);
+  --background-overlay: linear-gradient(180deg, rgba(4, 7, 17, .3), rgba(3, 5, 12, .78));
+  --background-overlay-strong: linear-gradient(180deg, rgba(4, 7, 17, .5), rgba(3, 5, 12, .9));
+  --dark-gradient: linear-gradient(180deg, rgba(12, 18, 34, .97), rgba(4, 7, 16, .99));
+  --panel-gradient: linear-gradient(145deg, rgba(18, 27, 46, .94), rgba(6, 9, 20, .985));
+  --blue-gradient: linear-gradient(90deg, #294f89, #5da9ff 56%, #e6c77d);
+  --status-bg: rgba(8, 12, 24, .94);
+  --status-border: rgba(113, 157, 219, .36);
+  --status-border-soft: rgba(113, 157, 219, .20);
+  --status-text: #f2f5fb;
+  --status-muted: #97a7c0;
+  --status-glow: 0 16px 42px rgba(0, 0, 0, .2);
+  --obsidian-signature-ink: #050711;
+  --obsidian-signature-surface: rgba(10, 16, 31, .94);
+  --obsidian-signature-surface-raised: rgba(17, 26, 46, .96);
+  --obsidian-signature-surface-soft: rgba(25, 37, 60, .58);
+  --obsidian-signature-outline: rgba(117, 153, 207, .22);
+  --obsidian-signature-outline-strong: rgba(151, 198, 255, .54);
+  --obsidian-signature-accent: #5da9ff;
+  --obsidian-signature-accent-bright: #c4e2ff;
+  --obsidian-signature-copy: #f2f5fb;
+  --obsidian-signature-copy-muted: #98a9c3;
+  --obsidian-signature-glow: 0 0 28px rgba(85, 143, 221, .07);
+  --cr-edge: rgba(144, 186, 245, .62);
+  --cr-edge-dim: rgba(110, 145, 198, .23);
+  --cr-fill: linear-gradient(155deg, rgba(17, 25, 43, .94), rgba(5, 8, 18, .985) 64%, rgba(12, 18, 34, .92));
+  --cr-title: Georgia, "Palatino Linotype", "Book Antiqua", serif;
+  --gold-grad: linear-gradient(180deg, #fff7d6 0%, #e6c77d 46%, #a67e37 100%);
+}
+
+html[data-system-theme="couture"] body {
+  background:
+    radial-gradient(ellipse at 77% 2%, rgba(66, 126, 212, .13), transparent 28%),
+    radial-gradient(ellipse at 12% 75%, rgba(61, 82, 132, .1), transparent 33%),
+    radial-gradient(ellipse at 100% 100%, rgba(151, 115, 49, .055), transparent 26%),
+    linear-gradient(145deg, #040610 0%, #080d1b 47%, #04060f 100%);
+}
+
+html[data-system-theme="couture"] #system-app::before {
+  opacity: .13;
+  background-image: linear-gradient(rgba(136, 174, 229, .045) 1px, transparent 1px), linear-gradient(90deg, rgba(136, 174, 229, .045) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(ellipse at center, black 10%, transparent 82%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 10%, transparent 82%);
+}
+
+html[data-system-theme="couture"] #system-app::after {
+  background: radial-gradient(circle at 50% 38%, rgba(69, 127, 211, .035), transparent 58%);
+}
+
+html[data-system-theme="couture"] #system-app .sidebar {
+  background: linear-gradient(180deg, rgba(10, 15, 29, .98), rgba(4, 7, 16, .995));
+  border-right-color: rgba(125, 161, 215, .2);
+  box-shadow: 10px 0 38px rgba(0, 0, 0, .22), inset -1px 0 rgba(255,255,255,.018);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+html[data-system-theme="couture"] #system-app .sidebar-header {
+  padding-bottom: 22px;
+  border-bottom-color: rgba(125, 161, 215, .15);
+}
+
+html[data-system-theme="couture"] #system-app .system-logo {
+  color: #eef5ff;
+  letter-spacing: .27em;
+  text-shadow: 0 0 20px rgba(104, 169, 255, .19);
+}
+
+html[data-system-theme="couture"] #system-app .system-logo::after {
+  left: 17%;
+  right: 17%;
+  background: linear-gradient(90deg, transparent, rgba(125, 189, 255, .8), rgba(230, 199, 125, .6), transparent);
+  box-shadow: none;
+}
+
+html[data-system-theme="couture"] #system-app .sidebar-nav {
+  gap: 8px;
+  margin-top: 28px;
+}
+
+html[data-system-theme="couture"] #system-app .nav-item {
+  min-height: 50px;
+  padding: 10px 13px;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  background: linear-gradient(110deg, rgba(15, 23, 41, .45), rgba(7, 11, 22, .25));
+  color: #8c9bb4;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: .015em;
+  transition: transform .24s cubic-bezier(.19,1,.22,1), border-color .2s ease, color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+html[data-system-theme="couture"] #system-app .nav-item img,
+html[data-system-theme="couture"] #system-app .nav-item .nav-icon {
+  width: 23px;
+  height: 23px;
+  object-fit: contain;
+  opacity: .8;
+  filter: saturate(.68);
+}
+
+html[data-system-theme="couture"] #system-app .nav-item:hover {
+  transform: translateX(2px);
+  border-color: rgba(128, 166, 223, .22);
+  background: linear-gradient(100deg, rgba(29, 47, 76, .52), rgba(12, 19, 34, .62));
+  color: #e5efff;
+}
+
+html[data-system-theme="couture"] #system-app .nav-item.active {
+  border-color: rgba(123, 173, 240, .34);
+  color: #f4f7fc;
+  background: linear-gradient(105deg, rgba(40, 75, 124, .45), rgba(13, 22, 40, .86) 76%);
+  box-shadow: inset 3px 0 0 #7bbcff, inset 0 1px 0 rgba(255,255,255,.05), 0 8px 22px rgba(0,0,0,.12);
+}
+
+html[data-system-theme="couture"] #system-app .nav-item.active img,
+html[data-system-theme="couture"] #system-app .nav-item.active .nav-icon {
+  opacity: 1;
+  filter: saturate(.9) drop-shadow(0 0 5px rgba(117, 188, 255, .18));
+}
+
+html[dir="rtl"][data-system-theme="couture"] #system-app .nav-item.active {
+  box-shadow: inset -3px 0 0 #7bbcff, inset 0 1px 0 rgba(255,255,255,.05), 0 8px 22px rgba(0,0,0,.12);
+}
+
+html[data-system-theme="couture"] #system-app .sidebar-footer {
+  color: #7889a4;
+  letter-spacing: .16em;
+}
+
+html[data-system-theme="couture"] #system-app .sidebar-line {
+  background: linear-gradient(90deg, transparent, rgba(116, 159, 219, .4), rgba(230, 199, 125, .27), transparent);
+}
+
+html[data-system-theme="couture"] #system-app .main-content {
+  background: transparent;
+}
+
+html[data-system-theme="couture"] #system-app .top-bar {
+  border-bottom-color: rgba(122, 158, 211, .15);
+  background: linear-gradient(90deg, rgba(6, 10, 21, .62), rgba(10, 15, 28, .35), rgba(6, 10, 21, .58));
+  backdrop-filter: blur(18px);
+}
+
+html[data-system-theme="couture"] #system-app .system-status {
+  border: 1px solid rgba(112, 214, 174, .24);
+  border-radius: 999px;
+  padding: 5px 10px;
+  background: rgba(33, 111, 83, .1);
+  color: #83dbb7;
+  letter-spacing: .13em;
+}
+
+html[data-system-theme="couture"] #system-app .player-hud {
+  border: 1px solid rgba(123, 159, 213, .25);
+  border-radius: 20px;
+  background:
+    radial-gradient(ellipse at 8% 0%, rgba(76, 134, 215, .1), transparent 39%),
+    linear-gradient(135deg, rgba(15, 22, 39, .94), rgba(5, 8, 18, .96));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 18px 42px rgba(0,0,0,.2);
+  backdrop-filter: blur(18px);
+}
+
+html[data-system-theme="couture"] #system-app .player-hud::before {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(120, 187, 255, .72), rgba(230, 199, 125, .44), transparent);
+  box-shadow: none;
+}
+
+html[data-system-theme="couture"] #system-app .hud-eyebrow,
+html[data-system-theme="couture"] #system-app .hud-xp-labels span,
+html[data-system-theme="couture"] #system-app .hud-currency-copy small {
+  color: #8395b1;
+  letter-spacing: .16em;
+  font-size: 9px;
+}
+
+html[data-system-theme="couture"] #system-app .hud-player-copy strong,
+html[data-system-theme="couture"] #system-app .hud-xp-labels strong,
+html[data-system-theme="couture"] #system-app .hud-currency-copy strong {
+  color: #f2f6fd;
+  font-variant-numeric: tabular-nums;
+}
+
+html[data-system-theme="couture"] #system-app .hud-xp-track {
+  height: 7px;
+  border: 1px solid rgba(119, 155, 207, .2);
+  border-radius: 999px;
+  background: rgba(2, 5, 13, .9);
+}
+
+html[data-system-theme="couture"] #system-app #hud-xp-fill {
+  border-radius: inherit;
+  background: linear-gradient(90deg, #356fb9 0%, #6bb5ff 73%, #d9eaff 100%);
+  box-shadow: 0 0 12px rgba(92, 163, 244, .23);
+}
+
+html[data-system-theme="couture"] #system-app .content-container {
+  position: relative;
+}
+
+html[data-system-theme="couture"] #system-app .page > .page-header {
+  position: relative;
+  border-bottom-color: rgba(123, 159, 213, .2);
+}
+
+html[data-system-theme="couture"] #system-app .page > .page-header::after {
+  background: linear-gradient(90deg, transparent, rgba(115, 175, 246, .7), rgba(230, 199, 125, .38), transparent);
+  box-shadow: none;
+}
+
+html[data-system-theme="couture"] #system-app .page-title {
+  color: #f1f5fc;
+  letter-spacing: .055em;
+  text-shadow: 0 8px 30px rgba(0,0,0,.22), 0 0 22px rgba(95, 153, 227, .14);
+}
+
+html[data-system-theme="couture"] #system-app .page-subtitle {
+  color: #96a7c1;
+  letter-spacing: .035em;
+}
+
+html[data-system-theme="couture"] #system-app :is(.level-panel, .xp-panel, .rank-panel, .stats-section, .stat-card, .quest-main-panel, .quest-side-panel, .quest-card, .rewards-main-panel, .reward-card, .daily-reward-panel, .selected-reward, .ai-chat-panel, .ai-tools-panel, .ai-stats, .settings-panel, .settings-row, .grok-suite-panel, .skill-tree-panel, .skill-node-wrapper) {
+  border-color: rgba(120, 155, 207, .22);
+  background-color: rgba(10, 16, 31, .88);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 14px 35px rgba(0,0,0,.16);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+html[data-system-theme="couture"] #system-app :is(.level-panel, .xp-panel, .rank-panel, .stats-section, .stat-card, .quest-main-panel, .quest-side-panel, .quest-card, .rewards-main-panel, .reward-card, .daily-reward-panel, .selected-reward, .ai-chat-panel, .ai-tools-panel, .ai-stats, .settings-panel, .settings-row, .grok-suite-panel, .skill-tree-panel, .skill-node-wrapper) {
+  border-radius: 17px;
+}
+
+html[data-system-theme="couture"] #system-app :is(.stat-card, .quest-card, .reward-card, .settings-row, .system-store-card, .system-list-card, .skill-node-wrapper) {
+  transition: transform .27s cubic-bezier(.19,1,.22,1), border-color .22s ease, box-shadow .25s ease, background .22s ease;
+}
+
+html[data-system-theme="couture"] #system-app :is(.stat-card, .quest-card, .reward-card, .settings-row, .system-store-card, .system-list-card, .skill-node-wrapper):hover {
+  transform: translateY(-3px);
+  border-color: rgba(142, 184, 245, .48);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 19px 38px rgba(0,0,0,.24), 0 0 22px rgba(83, 142, 220, .055);
+}
+
+html[data-system-theme="couture"] #system-app :is(.stat-card, .quest-card, .reward-card, .settings-row, .system-store-card, .system-list-card)::before {
+  background: linear-gradient(90deg, transparent, rgba(140, 193, 255, .56), rgba(230, 199, 125, .32), transparent);
+  opacity: .55;
+}
+
+html[data-system-theme="couture"] #system-app :is(.level-number, .rank-name, .stat-value, .quest-xp, .reward-cost, .rp-stats strong, .hud-currency-copy strong) {
+  font-variant-numeric: tabular-nums;
+}
+
+html[data-system-theme="couture"] #system-app :is(.xp-track, .stat-progress, .quest-progress, .rp-progress, .rp-collection-track) {
+  border: 1px solid rgba(119, 157, 211, .2);
+  border-radius: 999px;
+  background: rgba(1, 4, 12, .85);
+  overflow: hidden;
+}
+
+html[data-system-theme="couture"] #system-app :is(.xp-fill, .stat-progress-fill, .quest-progress-fill, #hud-xp-fill, .rp-progress i, .rp-collection-track i) {
+  border-radius: inherit;
+  background: linear-gradient(90deg, #356fb9 0%, #66adf7 67%, #c4e2ff 100%);
+  box-shadow: 0 0 13px rgba(95, 165, 245, .2);
+}
+
+html[data-system-theme="couture"] #system-app #status-page .level-panel,
+html[data-system-theme="couture"] #system-app #status-page .xp-panel,
+html[data-system-theme="couture"] #system-app #status-page .rank-panel,
+html[data-system-theme="couture"] #system-app #status-page .stats-section {
+  background: radial-gradient(ellipse at 0 0, rgba(75, 127, 205, .11), transparent 52%), linear-gradient(145deg, rgba(15, 23, 40, .94), rgba(6, 9, 20, .97));
+}
+
+html[data-system-theme="couture"] #system-app #status-page .rank-image {
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,.25));
+}
+
+html[data-system-theme="couture"] #system-app #quest-page .quest-main-panel,
+html[data-system-theme="couture"] #system-app #quest-page .quest-side-panel {
+  background: radial-gradient(ellipse at 0 0, rgba(76, 126, 196, .08), transparent 48%), linear-gradient(145deg, rgba(14, 21, 37, .95), rgba(5, 8, 18, .98));
+}
+
+html[data-system-theme="couture"] #system-app #quest-page .quest-card {
+  background: linear-gradient(145deg, rgba(18, 27, 45, .93), rgba(6, 9, 19, .98));
+}
+
+html[data-system-theme="couture"] #system-app #quest-page .quest-go,
+html[data-system-theme="couture"] #system-app #rewards-page :is(.claim-button, .daily-login-claim, .rp-actions button, .ra-route-card button),
+html[data-system-theme="couture"] #system-app :is(.system-primary-button, .system-action-button, .ai-generate-button, .ai-primary-button, .chat-input button, .grok-primary) {
+  border: 1px solid rgba(166, 205, 255, .62);
+  border-radius: 12px;
+  background: linear-gradient(135deg, #397ac8 0%, #28568f 54%, #182e50 100%);
+  color: #f8fbff;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 8px 20px rgba(21, 71, 134, .2);
+}
+
+html[data-system-theme="couture"] #system-app :is(.quest-go, .claim-button, .daily-login-claim, .system-primary-button, .system-action-button, .rp-actions button, .exp-actions button, .ai-generate-button, .ai-primary-button, .chat-input button, .grok-primary):not(:disabled):hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  border-color: rgba(203, 226, 255, .85);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 12px 26px rgba(39, 94, 157, .22);
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page {
+  --rp-couture-blue: #81bdff;
+  --rp-couture-gold: #e6c77d;
+  --rp-edge: rgba(126, 162, 214, .27);
+  --rp-edge-active: rgba(156, 199, 255, .68);
+  --rp-accent: #5da9ff;
+  --rp-accent-bright: #c6e2ff;
+  --rp-muted: #94a5bf;
+  --rp-copy: #f2f5fb;
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page::before {
+  background-image: linear-gradient(180deg, rgba(4, 7, 17, .24), rgba(4, 7, 17, .78) 58%, rgba(4, 7, 17, .96)), url("../../assets/images/backgrounds/rewards-bg.webp");
+  background-position: center top;
+  background-size: cover;
+  opacity: .24;
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page > .page-header {
+  border: 1px solid rgba(120, 160, 218, .2);
+  border-radius: 22px;
+  background: radial-gradient(ellipse at 50% -45%, rgba(77, 135, 212, .2), transparent 72%), linear-gradient(135deg, rgba(13, 20, 37, .83), rgba(5, 8, 18, .45));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 16px 36px rgba(0,0,0,.12);
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page > .page-header::before {
+  color: #9dc9ff;
+  letter-spacing: .22em;
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page > .page-header::after {
+  background: linear-gradient(90deg, transparent, #74baff, #e6c77d, transparent);
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .rewards-main-panel,
+html[data-system-theme="couture"] #system-app #rewards-page .selected-reward {
+  border-color: rgba(127, 163, 215, .28);
+  background: radial-gradient(ellipse at 2% 0%, rgba(66, 123, 203, .1), transparent 46%), linear-gradient(145deg, rgba(14, 21, 38, .96), rgba(5, 8, 18, .98));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 21px 48px rgba(0,0,0,.22);
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .reward-tab {
+  border-color: rgba(114, 151, 205, .23);
+  background: linear-gradient(180deg, rgba(18, 27, 45, .92), rgba(7, 11, 22, .96));
+  color: #9eacc2;
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .reward-tab.active,
+html[data-system-theme="couture"] #system-app #rewards-page .reward-tab[aria-selected="true"] {
+  border-color: rgba(152, 194, 251, .65);
+  background: linear-gradient(135deg, rgba(42, 83, 136, .62), rgba(13, 24, 43, .98));
+  color: #f4f8ff;
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .daily-reward-panel {
+  border-color: rgba(135, 173, 227, .4);
+  background: radial-gradient(ellipse at 0 50%, rgba(72, 130, 213, .18), transparent 65%), radial-gradient(ellipse at 100% 0, rgba(230, 199, 125, .075), transparent 42%), linear-gradient(120deg, rgba(13, 25, 46, .97), rgba(5, 8, 18, .98));
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .daily-reward-panel .reward-icon,
+html[data-system-theme="couture"] #system-app #rewards-page .selected-reward-icon,
+html[data-system-theme="couture"] #system-app #rewards-page .reward-card-icon {
+  border-color: rgba(143, 184, 242, .34);
+  background: radial-gradient(circle at 30% 20%, rgba(88, 151, 225, .25), rgba(5, 11, 23, .97) 72%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 8px 24px rgba(0,0,0,.2);
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .daily-reward-panel .reward-icon {
+  color: #c9e2ff;
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .reward-days span {
+  border-color: rgba(117, 151, 198, .24);
+  background: linear-gradient(180deg, rgba(17, 26, 43, .95), rgba(5, 9, 18, .97));
+  color: #9eacc3;
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .reward-days span.is-current {
+  border-color: rgba(160, 202, 255, .75);
+  color: #f1f7ff;
+  background: linear-gradient(150deg, rgba(43, 81, 131, .66), rgba(8, 18, 34, .98));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 0 18px rgba(90, 155, 231, .1);
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .reward-days span.is-claimed {
+  border-color: rgba(101, 207, 163, .32);
+  color: #83d8b5;
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .available-rewards .reward-card,
+html[data-system-theme="couture"] #system-app #rewards-page #reward-card-grid .reward-card {
+  border-color: rgba(119, 157, 211, .24);
+  background: radial-gradient(ellipse at 96% 0%, rgba(65, 122, 201, .13), transparent 54%), linear-gradient(150deg, rgba(17, 26, 44, .96), rgba(5, 8, 18, .99) 76%);
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .available-rewards .reward-card:hover,
+html[data-system-theme="couture"] #system-app #rewards-page #reward-card-grid .reward-card:hover {
+  border-color: rgba(149, 192, 250, .6);
+  background: radial-gradient(ellipse at 100% 0%, rgba(80, 144, 224, .2), transparent 60%), linear-gradient(150deg, rgba(22, 36, 59, .98), rgba(5, 9, 19, .99));
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .rp-r-legendary {
+  border-color: rgba(230, 199, 125, .52);
+  box-shadow: inset 0 0 28px rgba(230, 199, 125, .055), 0 10px 28px rgba(0,0,0,.18);
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .rp-r-legendary .rp-chip,
+html[data-system-theme="couture"] #system-app #rewards-page .rp-r-legendary .rp-detail-meta {
+  color: #e6c77d;
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .rp-chip {
+  border-radius: 999px;
+  border-color: rgba(125, 160, 212, .22);
+  background: rgba(4, 8, 18, .72);
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .selected-reward .reward-cost {
+  border-color: rgba(230, 199, 125, .25);
+  background: linear-gradient(110deg, rgba(77, 106, 151, .14), rgba(230, 199, 125, .075));
+  color: #ead59d;
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .selected-reward .claim-button,
+html[data-system-theme="couture"] #system-app #rewards-page .daily-login-claim,
+html[data-system-theme="couture"] #system-app #rewards-page .rp-actions .rp-box:not(:disabled) {
+  border-color: rgba(230, 199, 125, .53);
+  background: linear-gradient(135deg, #80652f 0%, #5c4825 50%, #332817 100%);
+  color: #fff7de;
+  box-shadow: inset 0 1px 0 rgba(255,245,206,.18), 0 8px 22px rgba(111, 79, 25, .16);
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .selected-reward .claim-button:hover:not(:disabled),
+html[data-system-theme="couture"] #system-app #rewards-page .daily-login-claim:hover:not(:disabled),
+html[data-system-theme="couture"] #system-app #rewards-page .rp-actions .rp-box:not(:disabled):hover {
+  border-color: rgba(255, 229, 163, .82);
+  filter: brightness(1.1);
+  box-shadow: inset 0 1px 0 rgba(255,245,206,.22), 0 12px 27px rgba(133, 99, 40, .22);
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .rp-hub,
+html[data-system-theme="couture"] #system-app #rewards-page .ra-ascension,
+html[data-system-theme="couture"] #system-app #rewards-page .rp-log,
+html[data-system-theme="couture"] #system-app #rewards-page .rp-controls {
+  border-color: rgba(119, 156, 209, .22);
+  background: radial-gradient(ellipse at 5% 0%, rgba(61, 113, 191, .085), transparent 50%), linear-gradient(145deg, rgba(13, 21, 37, .95), rgba(5, 8, 18, .98));
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .rp-stats > div {
+  border-color: rgba(119, 156, 209, .22);
+  background: linear-gradient(145deg, rgba(19, 29, 48, .88), rgba(6, 10, 21, .92));
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .rp-stats strong {
+  color: #eef5ff;
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .rp-stats .rp-stat-ready strong {
+  color: #d9eaff;
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .rp-controls input,
+html[data-system-theme="couture"] #system-app #rewards-page .rp-controls select {
+  border-color: rgba(121, 157, 208, .3);
+  background: rgba(3, 7, 16, .86);
+  color: #eaf2ff;
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .rp-controls input:focus-visible,
+html[data-system-theme="couture"] #system-app #rewards-page .rp-controls select:focus-visible {
+  border-color: rgba(154, 198, 253, .74);
+  box-shadow: 0 0 0 3px rgba(92, 157, 235, .13);
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .rp-result {
+  border-color: rgba(230, 199, 125, .38);
+  background: radial-gradient(ellipse at 0 0, rgba(230, 199, 125, .11), transparent 56%), rgba(16, 18, 28, .9);
+}
+
+html[data-system-theme="couture"] #system-app #rewards-page .rp-result strong,
+html[data-system-theme="couture"] #system-app #rewards-page .rp-result span:last-child {
+  color: #f0d99c;
+}
+
+html[data-system-theme="couture"] #system-app :is(input, textarea, select) {
+  border-color: rgba(121, 157, 208, .28);
+  border-radius: 11px;
+  background-color: rgba(3, 7, 16, .86);
+  color: #edf4ff;
+}
+
+html[data-system-theme="couture"] #system-app :is(input, textarea, select):focus-visible {
+  outline: 2px solid rgba(152, 199, 255, .86);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba(83, 144, 219, .13);
+}
+
+html[data-system-theme="couture"] #system-settings-dialog {
+  border: 1px solid rgba(130, 169, 224, .34);
+  border-radius: 24px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(77, 133, 210, .16), transparent 64%), linear-gradient(145deg, rgba(14, 21, 38, .99), rgba(4, 7, 16, .995));
+  color: #f1f5fc;
+  box-shadow: 0 32px 100px rgba(0,0,0,.64), inset 0 1px 0 rgba(255,255,255,.07);
+}
+
+html[data-system-theme="couture"] #system-settings-dialog::backdrop {
+  background: rgba(1, 3, 9, .78);
+  backdrop-filter: blur(10px);
+}
+
+html[data-system-theme="couture"] #system-settings-dialog .system-modal-header {
+  border-bottom-color: rgba(126, 161, 211, .19);
+}
+
+html[data-system-theme="couture"] #system-settings-dialog .system-modal-eyebrow {
+  color: #9bc9ff;
+  letter-spacing: .2em;
+}
+
+html[data-system-theme="couture"] #system-settings-dialog .system-theme-options > button {
+  border-color: rgba(126, 161, 211, .22);
+  border-radius: 15px;
+  background: linear-gradient(145deg, rgba(18, 28, 46, .94), rgba(6, 10, 21, .98));
+}
+
+html[data-system-theme="couture"] #system-settings-dialog .system-theme-options > button:hover {
+  border-color: rgba(147, 191, 251, .56);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 12px 28px rgba(0,0,0,.27);
+}
+
+html[data-system-theme="couture"] #system-settings-dialog .system-theme-options > button.is-selected {
+  border-color: rgba(230, 199, 125, .65);
+  background: linear-gradient(145deg, rgba(33, 42, 57, .98), rgba(11, 15, 25, .99));
+  box-shadow: inset 0 0 0 1px rgba(230, 199, 125, .13), 0 0 0 1px rgba(0,0,0,.22), 0 10px 28px rgba(0,0,0,.2);
+}
+
+html[data-system-theme="couture"] #system-settings-dialog .system-theme-options > button.is-selected::after {
+  background: #e6c77d;
+  color: #17130b;
+  border-radius: 7px;
+}
+
+html[data-system-theme="couture"] #system-settings-dialog .system-theme-swatch {
+  border-radius: 10px;
+}
+
+html[data-system-theme="couture"] .system-notification {
+  border: 1px solid rgba(124, 164, 220, .3);
+  border-radius: 14px;
+  background: rgba(10, 16, 30, .96);
+  box-shadow: 0 16px 48px rgba(0,0,0,.38);
+  backdrop-filter: blur(16px);
+}
+
+html[data-system-theme="couture"] ::selection {
+  background: rgba(93, 169, 255, .34);
+  color: #fff;
+}
+
+html[data-system-theme="couture"] ::-webkit-scrollbar-thumb {
+  border: 2px solid #080c18;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #4d81c0, #253d62);
+}
+
+html[data-system-theme="couture"] ::-webkit-scrollbar-track {
+  background: #070a14;
+}
+
+@media (max-width: 760px) {
+  html[data-system-theme="couture"] #system-app .player-hud {
+    border-radius: 16px;
+  }
+  html[data-system-theme="couture"] #system-app .nav-item {
+    border-radius: 12px;
+  }
+  html[data-system-theme="couture"] #system-app #rewards-page > .page-header {
+    border-radius: 17px;
+  }
+  html[data-system-theme="couture"] #system-app #rewards-page .selected-reward {
+    border-radius: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-system-theme="couture"] #system-app *,
+  html[data-system-theme="couture"] #system-settings-dialog * {
+    scroll-behavior: auto;
+    transition-duration: .01ms;
+    animation-duration: .01ms;
+  }
+  html[data-system-theme="couture"] #system-app :is(.nav-item, .stat-card, .quest-card, .reward-card, .settings-row, .system-store-card, .system-list-card, .skill-node-wrapper):hover {
+    transform: none;
+  }
+}

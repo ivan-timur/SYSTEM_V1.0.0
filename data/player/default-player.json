@@ -1,0 +1,10 @@
+{
+  "player": {
+    "level": 1,
+    "xp": 500,
+    "xpRequired": 1000,
+    "rank": "E",
+    "coins": 0
+  },
+  "schemaVersion": 1
+}

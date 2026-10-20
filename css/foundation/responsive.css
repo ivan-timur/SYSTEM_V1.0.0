@@ -1,0 +1,687 @@
+/* =========================================================
+   SYSTEM — RESPONSIVE
+   Desktop / Tablet / Mobile Optimization
+   ========================================================= */
+
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1600px) {
+
+    .main-content {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .content-container {
+        max-width: 1600px;
+    }
+
+    
+
+    
+
+    .quest-card {
+        min-height: 94px;
+    }
+}
+
+
+/* =========================================================
+   STANDARD DESKTOP
+   ========================================================= */
+
+@media (min-width: 1200px) {
+
+    .main-content {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns:
+            minmax(0, 1fr) minmax(300px, 0.40fr);
+    }
+}
+
+
+/* =========================================================
+   SMALL DESKTOP / LAPTOP
+   ========================================================= */
+
+@media (max-width: 1199px) {
+
+    :root {
+        --sidebar-width: 225px;
+    }
+
+    .main-content {
+        width: calc(100% - var(--sidebar-width));
+        margin-left: var(--sidebar-width);
+
+        padding: 25px 22px 35px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-side {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    
+
+    .rewards-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 950px) {
+
+    :root {
+        --sidebar-width: 220px;
+    }
+
+    .sidebar {
+        width: 220px;
+        min-width: 220px;
+    }
+
+    .main-content {
+        width: calc(100% - 220px);
+        margin-left: 220px;
+
+        padding: 22px 18px 32px;
+    }
+
+    
+
+    .dashboard-side {
+        grid-template-columns: 1fr;
+    }
+
+    
+
+    .two-column {
+        grid-template-columns: 1fr;
+    }
+
+    .three-column {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* =========================================================
+   MOBILE NAVIGATION ACTIVATION
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .sidebar {
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        width: 245px;
+        min-width: 245px;
+
+        transform: translateX(-105%);
+
+        transition:
+            transform 0.3s cubic-bezier(.2, .8, .2, 1);
+
+        box-shadow:
+            12px 0 40px rgba(0, 20, 80, 0.35);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar-overlay {
+        display: none;
+    }
+
+    .sidebar-overlay.active {
+        display: block;
+    }
+
+    .main-content {
+        width: 100%;
+        margin-left: 0;
+
+        padding:
+            18px 18px 30px;
+    }
+
+    .sidebar-toggle {
+        display: flex;
+    }
+
+    .top-bar {
+        min-height: 44px;
+    }
+}
+
+
+/* =========================================================
+   LARGE MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .main-content {
+        padding:
+            16px 14px 28px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+
+        gap: 8px;
+
+        margin-bottom: 18px;
+    }
+
+    .page-title {
+        font-size: 25px;
+    }
+
+    .page-subtitle {
+        font-size: 10px;
+    }
+
+    
+
+    .three-column {
+        grid-template-columns: 1fr;
+    }
+
+    .rewards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-side {
+        grid-template-columns: 1fr;
+    }
+
+    .top-bar-left,
+    .top-bar-right {
+        gap: 8px;
+    }
+
+    .system-button {
+        min-height: 40px;
+        padding: 7px 13px;
+        font-size: 12px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE — 550px
+   ========================================================= */
+
+@media (max-width: 550px) {
+
+    .main-content {
+        padding-left: 11px;
+        padding-right: 11px;
+    }
+
+    .sidebar {
+        width: 255px;
+        min-width: 255px;
+    }
+
+    .system-logo {
+        font-size: 22px;
+        letter-spacing: 5px;
+    }
+
+    .page-title {
+        font-size: 23px;
+        letter-spacing: 1px;
+    }
+
+    .section-title {
+        font-size: 17px;
+    }
+
+    
+
+    
+
+    
+
+    .stat-value {
+        font-size: 21px;
+    }
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    .quest-card {
+        grid-template-columns:
+            42px minmax(0, 1fr);
+
+        gap: 10px;
+
+        padding: 12px;
+    }
+
+    .quest-card .system-button {
+        grid-column: 2;
+
+        justify-self: start;
+    }
+
+    .quest-description {
+        white-space: normal;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .main-content {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .sidebar {
+        width: 270px;
+        min-width: 270px;
+    }
+
+    .top-bar {
+        margin-bottom: 13px;
+    }
+
+    .page-title {
+        font-size: 21px;
+    }
+
+    .section-title {
+        font-size: 16px;
+    }
+
+    
+
+    
+
+    
+
+    
+
+    .stat-value {
+        font-size: 19px;
+    }
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    .quest-card {
+        min-height: 80px;
+    }
+
+    .quest-title {
+        font-size: 14px;
+    }
+
+    .quest-description {
+        font-size: 10px;
+    }
+
+    .quest-reward {
+        font-size: 10px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+   ========================================================= */
+
+@media (max-width: 340px) {
+
+    .main-content {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    .sidebar {
+        width: 280px;
+        min-width: 280px;
+    }
+
+    
+
+    .system-button {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+
+/* =========================================================
+   LANDSCAPE MOBILE
+   ========================================================= */
+
+@media (max-width: 850px) and (orientation: landscape) {
+
+    .sidebar {
+        overflow-y: auto;
+    }
+
+    .sidebar-header {
+        padding-bottom: 14px;
+    }
+
+    .sidebar-nav {
+        margin-top: 15px;
+    }
+
+    .nav-item {
+        min-height: 44px;
+    }
+
+    .main-content {
+        padding-top: 12px;
+    }
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+
+    .nav-item:hover, .quest-card:hover, .reward-card:hover{
+        transform: none;
+    }
+
+    .system-button:hover {
+        box-shadow: none;
+    }
+
+    .nav-item {
+        min-height: 48px;
+    }
+
+    .system-button {
+        min-height: 44px;
+    }
+}
+
+
+/* =========================================================
+   HIGH RESOLUTION DISPLAYS
+   ========================================================= */
+
+@media (min-resolution: 2dppx) {
+
+    .system-panel, .panel, .card, .quest-card, .reward-card{
+        border-width: 1px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .sidebar {
+        transition: none;
+    }
+}
+
+/* =========================================================
+   SYSTEM — RESPONSIVE CORRECTIONS
+   Reference layout refinements
+   Add at the END of responsive.css
+   ========================================================= */
+
+
+/* =========================================================
+   1. DESKTOP — REFERENCE STATUS LAYOUT
+   ========================================================= */
+
+@media (min-width: 1200px) {
+
+    #system-app .content-container {
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    
+
+    
+
+    
+
+    
+
+    
+}
+
+
+/* =========================================================
+   2. LAPTOP — KEEP STAT CARDS READABLE
+   ========================================================= */
+
+@media (min-width: 851px) and (max-width: 1199px) {
+
+    #system-app .main-content {
+        width: calc(100% - var(--sidebar-width));
+        margin-left: var(--sidebar-width);
+        min-width: 0;
+    }
+
+    #system-app .content-container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+}
+
+
+/* =========================================================
+   3. TABLET — STACK STATUS PANELS
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    #system-app .main-content {
+        width: 100%;
+        margin-left: 0;
+        min-width: 0;
+    }
+
+    #system-app .content-container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+}
+
+
+/* =========================================================
+   4. MOBILE — SINGLE COLUMN
+   ========================================================= */
+
+@media (max-width: 550px) {
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    #system-app #quest-page .quest-layout,
+    #system-app #rewards-page .rewards-layout,
+    #system-app #ai-page .ai-layout {
+        grid-template-columns:
+            minmax(0, 1fr);
+    }
+}
+
+
+/* =========================================================
+   5. PREVENT HORIZONTAL OVERFLOW
+   ========================================================= */
+
+#system-app .main-content, #system-app .content-container, #system-app .page, #system-app .quest-main-panel, #system-app .rewards-main-panel, #system-app .ai-chat-panel{
+    min-width: 0;
+}
+
+#system-app img {
+    max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    #system-app .sidebar {
+        transition: none;
+    }
+}
+/* =========================================================
+   SYSTEM — SHARED PLAYER HUD + MOBILE-FIRST NAVIGATION
+   ========================================================= */
+.player-hud{position:relative;z-index:2;display:grid;grid-template-columns:minmax(150px,.8fr) minmax(220px,1.5fr) minmax(120px,.6fr);align-items:center;gap:16px;width:100%;max-width:var(--content-max-width);margin:0 auto 18px;padding:10px 14px;border:1px solid rgba(66,150,255,.52);background:linear-gradient(100deg,rgba(2,10,27,.96),rgba(4,21,50,.86),rgba(1,6,18,.96));box-shadow:inset 0 0 22px rgba(0,87,255,.08),0 0 14px rgba(15,100,255,.08)}
+.player-hud:before,.player-hud:after{content:"";position:absolute;pointer-events:none}
+.player-hud:before{top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(151,218,255,.85),transparent)}
+.player-hud:after{right:-1px;top:20%;bottom:20%;width:2px;background:#54acff;box-shadow:0 0 10px #168cff}
+.hud-player,.hud-xp-labels,.hud-currency{display:flex;align-items:center}
+.hud-player{gap:10px;min-width:0}
+.hud-player>img{width:43px;height:43px;flex:0 0 43px;object-fit:contain;filter:drop-shadow(0 0 7px rgba(35,145,255,.76))}
+.hud-player-copy,.hud-currency-copy{display:flex;flex-direction:column;min-width:0}
+.hud-eyebrow,.hud-xp-labels>span,.hud-currency small{color:#85a9d7;font-size:9px;letter-spacing:1.15px}
+.hud-player-copy strong{color:#eef8ff;font-family:var(--font-main);font-size:17px;letter-spacing:1px;text-shadow:0 0 9px rgba(75,165,255,.55)}
+.hud-xp{display:flex;flex-direction:column;gap:5px;min-width:0}
+.hud-xp-labels{justify-content:space-between;gap:8px}
+.hud-xp-labels strong{color:#e1f2ff;font-size:11px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.hud-xp-track{width:100%;height:7px;padding:1px;overflow:hidden;border:1px solid rgba(69,155,255,.68);background:rgba(0,2,8,.95)}
+.hud-xp-track>span{display:block;height:100%;background:linear-gradient(90deg,#064bb4,#0783ff,#8bd5ff);box-shadow:0 0 9px rgba(30,140,255,.95);transition:width .4s ease}
+.hud-xp-remaining{color:#7f9fc9;font-size:9px}
+.hud-currency{justify-content:flex-end;gap:9px;min-width:0;padding-left:12px;border-left:1px solid rgba(66,150,255,.28)}
+.hud-coin-icon{color:#91d5ff;font-size:27px;text-shadow:0 0 12px #168cff}
+.hud-currency-copy strong{color:#f4fbff;font-size:17px;font-variant-numeric:tabular-nums}
+@media(min-width:851px){.player-hud{margin-top:-10px}}
+@media(max-width:850px){.player-hud{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:10px 14px;margin:0 auto 14px;padding:10px 12px}.hud-currency{grid-column:1/-1;justify-content:flex-start;padding:7px 0 0;border-left:0;border-top:1px solid rgba(66,150,255,.22)}.hud-player>img{width:36px;height:36px;flex-basis:36px}.hud-player-copy strong{font-size:14px}.hud-xp-labels>span{display:none}.hud-xp-labels strong{font-size:10px}.hud-xp-remaining{font-size:8px}}
+
+/* On phones, use a persistent five-item navigation dock. */
+@media(max-width:700px){
+ #system-app{overflow:clip}
+ #system-app .sidebar{top:auto;bottom:0;left:0;right:0;width:100%;min-width:0;height:auto;max-height:none;padding:7px 7px calc(7px + env(safe-area-inset-bottom));transform:none;overflow:visible;border:0;border-top:1px solid rgba(73,157,255,.58);background:linear-gradient(180deg,rgba(4,14,33,.97),rgba(0,3,12,.99));box-shadow:0 -8px 28px rgba(0,28,92,.28),inset 0 1px rgba(132,205,255,.12);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+ #system-app .sidebar.open{transform:none}
+ #system-app .sidebar-header,#system-app .sidebar-footer{display:none}
+ #system-app .sidebar-nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;width:100%;margin:0}
+ #system-app .nav-item{min-width:0;min-height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:5px 1px;border:1px solid transparent;border-radius:7px;background:transparent;color:#8daed7;font-size:9px;line-height:1.1;letter-spacing:0;transform:none}
+ #system-app .nav-item img,#system-app .nav-item .nav-icon{width:23px;height:23px;opacity:.88}
+ #system-app .nav-item.active{color:#f2f9ff;border-color:rgba(72,158,255,.56);background:linear-gradient(180deg,rgba(9,65,143,.62),rgba(3,20,49,.75));box-shadow:inset 0 0 16px rgba(20,120,255,.12),0 0 12px rgba(15,100,255,.14)}
+ #system-app .nav-item.active:before{top:auto;right:22%;bottom:-1px;left:22%;width:auto;height:2px;background:linear-gradient(90deg,transparent,#8bd5ff,transparent)}
+ #system-app .nav-item:hover{transform:none}
+ #system-app .main-content{width:100%;min-width:0;margin:0;padding:12px 11px calc(100px + env(safe-area-inset-bottom))}
+ #system-app .top-bar{min-height:27px;margin-bottom:8px}
+ #system-app .sidebar-toggle{display:none}
+ #system-app .top-bar-right{margin-left:auto}
+ #system-app .system-status{font-size:9px}
+ #system-app .player-hud{margin-bottom:12px}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ #system-app #quest-page .quest-layout,#system-app #rewards-page .rewards-layout,#system-app #ai-page .ai-layout{gap:12px}
+ #system-app #quest-page .quest-main-panel{padding:9px}
+ #system-app #quest-page .quest-card{padding:9px;gap:8px}
+ #system-app #rewards-page .reward-tabs{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:thin}
+ #system-app #rewards-page .reward-tab{flex:0 0 auto;white-space:nowrap}
+ #system-app #ai-page .ai-chat-panel{min-height:360px}
+ #system-app #settings-page .settings-row{padding:11px}
+}
+@media(max-width:380px){#system-app .main-content{padding-left:8px;padding-right:8px}#system-app .player-hud{padding:8px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}#system-app .hud-player{gap:6px}#system-app .hud-player>img{width:31px;height:31px;flex-basis:31px}#system-app .hud-player-copy strong{font-size:12px}#system-app .hud-eyebrow{font-size:8px;letter-spacing:.6px}#system-app .hud-xp-labels strong{font-size:9px}#system-app .hud-currency-copy strong{font-size:14px}#system-app .nav-item{font-size:8px;min-height:52px}#system-app .nav-item img,#system-app .nav-item .nav-icon{width:21px;height:21px}}
+@media(prefers-reduced-motion:reduce){.hud-xp-track>span{transition:none}}

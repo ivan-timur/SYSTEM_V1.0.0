@@ -1,0 +1,51 @@
+/* SYSTEM Phase 36 — Advanced Theme Engine polish. Additive; no progression logic changes. */
+html[data-system-theme] {
+  --theme-engine-accent: var(--atelier-haze-2, var(--color-blue-light, #8fc7ff));
+  --theme-engine-accent-soft: color-mix(in srgb, var(--theme-engine-accent) 16%, transparent);
+  --theme-engine-accent-line: color-mix(in srgb, var(--theme-engine-accent) 44%, transparent);
+}
+
+/* Theme preview cards use their own palette, so a selected theme cannot recolour every preview. */
+#system-settings-dialog .system-theme-swatch {
+  background: linear-gradient(118deg, var(--theme-swatch-start, #03050a), var(--theme-swatch-mid, #0d5cff), var(--theme-swatch-end, #8fc7ff));
+  position: relative;
+  isolation: isolate;
+}
+#system-settings-dialog .system-theme-swatch::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,255,255,.18), transparent 42%, rgba(0,0,0,.14));
+}
+#system-settings-dialog .system-theme-options > button {
+  min-height: 128px;
+  border-color: color-mix(in srgb, var(--color-border, #29405e) 78%, transparent);
+  background: linear-gradient(145deg, color-mix(in srgb, var(--color-panel-light, #142038) 82%, transparent), color-mix(in srgb, var(--color-panel-dark, #030713) 96%, transparent));
+}
+#system-settings-dialog .system-theme-options > button.is-selected {
+  border-color: var(--theme-engine-accent);
+  box-shadow: inset 0 0 0 1px var(--theme-engine-accent-line), 0 0 0 2px var(--theme-engine-accent-soft), 0 12px 28px rgba(0,0,0,.22);
+}
+#system-settings-dialog .system-theme-options > button.is-selected::before {
+  content: "ACTIVE THEME";
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  z-index: 1;
+  max-width: calc(100% - 20px);
+  color: var(--theme-engine-accent);
+  font: 800 8px/1.2 var(--font-ui, system-ui, sans-serif);
+  letter-spacing: .11em;
+}
+#system-settings-dialog .system-theme-options > button:focus-visible {
+  outline: 2px solid var(--theme-engine-accent);
+  outline-offset: 3px;
+}
+@media (max-width: 620px) {
+  #system-settings-dialog .system-theme-options > button { min-height: 120px; }
+  #system-settings-dialog .system-theme-options small { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #system-settings-dialog .system-theme-options > button { transition: none; }
+}

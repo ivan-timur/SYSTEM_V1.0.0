@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "steps": [
+    {
+      "id": "player-level",
+      "title": "Increase Player Level",
+      "source": "live-player-state"
+    },
+    {
+      "id": "next-rank",
+      "title": "Unlock the Next Rank",
+      "source": "rank-thresholds"
+    },
+    {
+      "id": "strongest-stat",
+      "title": "Develop the Strongest Core Stat",
+      "source": "live-stats"
+    },
+    {
+      "id": "personal-goals",
+      "title": "Complete Personal Goals",
+      "source": "saved-goals"
+    }
+  ]
+}

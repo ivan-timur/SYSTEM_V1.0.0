@@ -1,0 +1,101 @@
+/* Personal Profile & AI Memory — scoped, additive settings extension */
+#system-app #personal-profile.personal-profile-panel{margin-top:22px;padding:clamp(16px,2.5vw,28px);border:1px solid rgba(93,169,255,.32);border-radius:18px;background:linear-gradient(145deg,rgba(10,19,35,.96),rgba(4,8,17,.96));box-shadow:0 18px 55px rgba(0,0,0,.24),inset 0 1px rgba(255,255,255,.035);scroll-margin-top:20px}
+#personal-profile .profile-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:22px}
+#personal-profile .profile-eyebrow{margin:0 0 7px;color:#78baff;font-size:10px;font-weight:800;letter-spacing:2.4px}
+#personal-profile h2{margin:0;color:#f2f6ff;font-size:clamp(21px,3vw,30px);letter-spacing:.2px}
+#personal-profile .profile-intro{max-width:720px;margin:8px 0 0;color:#9aabc3;font-size:13px;line-height:1.65}
+#personal-profile .profile-save-state{flex-shrink:0;padding:7px 10px;border:1px solid rgba(93,169,255,.25);border-radius:999px;color:#9ecaff;background:rgba(36,102,176,.12);font-size:11px}
+#personal-profile .profile-fields-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+#personal-profile .profile-field{display:flex;min-width:0;flex-direction:column;gap:7px;padding:15px;border:1px solid rgba(100,143,196,.19);border-radius:13px;background:rgba(8,14,26,.74)}
+#personal-profile .profile-field>span{color:#e5efff;font-size:13px;font-weight:750}
+#personal-profile .profile-field small{min-height:30px;color:#8498b4;font-size:11px;line-height:1.5}
+#personal-profile textarea,#personal-profile select{width:100%;max-width:100%;box-sizing:border-box;border:1px solid rgba(93,142,205,.28);border-radius:9px;background:#070d18;color:#edf5ff;padding:10px 11px;font:inherit;font-size:12px;line-height:1.6;outline:none}
+#personal-profile textarea{resize:vertical;min-height:86px}
+#personal-profile textarea:focus,#personal-profile select:focus{border-color:#5da9ff;box-shadow:0 0 0 3px rgba(93,169,255,.12)}
+#personal-profile textarea::placeholder{color:#53657e}
+#personal-profile .profile-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:14px}
+#personal-profile .profile-select small{min-height:0}
+#personal-profile .profile-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}
+#personal-profile .profile-actions button{min-height:39px;padding:9px 13px;border:1px solid rgba(110,158,220,.32);border-radius:9px;background:rgba(17,34,58,.86);color:#dceaff;font-size:12px;font-weight:700;cursor:pointer;transition:transform .18s ease,border-color .18s ease,background .18s ease}
+#personal-profile .profile-actions button:hover{transform:translateY(-1px);border-color:#5da9ff;background:rgba(29,64,105,.8)}
+#personal-profile .profile-actions .profile-primary{border-color:rgba(93,169,255,.72);background:linear-gradient(110deg,#174a7e,#176ca5);color:#fff}
+#personal-profile .profile-actions .profile-danger{border-color:rgba(236,111,124,.32);color:#ffb8c0;background:rgba(90,23,37,.25)}
+#personal-profile .profile-privacy-note{margin:16px 0 0;color:#7f92ad;font-size:11px;line-height:1.7}
+@media(max-width:700px){#personal-profile .profile-heading{flex-direction:column}#personal-profile .profile-fields-grid,#personal-profile .profile-controls{grid-template-columns:minmax(0,1fr)}#personal-profile .profile-field small{min-height:0}#personal-profile .profile-actions button{flex:1 1 calc(50% - 9px)}}
+@media(prefers-reduced-motion:reduce){#personal-profile *{scroll-behavior:auto;transition:none}}
+
+/* Profile Forge — deeper information hierarchy and responsive dashboard */
+#personal-profile .profile-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px;max-width:760px}
+#personal-profile .profile-metric{display:flex;flex-direction:column;gap:5px;padding:12px 14px;border:1px solid rgba(93,169,255,.2);border-radius:12px;background:linear-gradient(145deg,rgba(18,37,62,.72),rgba(5,11,22,.86));box-shadow:inset 0 1px rgba(255,255,255,.035)}
+#personal-profile .profile-metric strong{color:#8bc5ff;font-size:clamp(18px,2.2vw,25px);font-variant-numeric:tabular-nums}
+#personal-profile .profile-metric span{color:#8fa4c0;font-size:10px;letter-spacing:.25px}
+#personal-profile .profile-field-feature{border-color:rgba(216,181,109,.25);background:linear-gradient(140deg,rgba(48,37,23,.28),rgba(8,14,26,.85))}
+#personal-profile .profile-field-feature>span{color:#e9ce91}
+#personal-profile .profile-char-count{align-self:flex-end;color:#60758f;font-size:10px;font-variant-numeric:tabular-nums}
+#personal-profile .profile-memory-note{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px;padding:14px;border:1px solid rgba(216,181,109,.19);border-radius:12px;background:rgba(35,28,19,.2)}
+#personal-profile .profile-memory-note strong{grid-column:1/-1;color:#e8cb8c;font-size:12px}
+#personal-profile .profile-memory-note span{color:#91a2ba;font-size:10px;line-height:1.55}
+#personal-profile .profile-memory-note b{display:block;margin-bottom:3px;color:#e5edfb;font-size:11px}
+#personal-profile .profile-actions button:focus-visible{outline:2px solid #8bc5ff;outline-offset:3px}
+#personal-profile textarea:focus-visible,#personal-profile select:focus-visible{outline:2px solid rgba(139,197,255,.42);outline-offset:1px}
+@media(max-width:700px){#personal-profile .profile-metrics{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}#personal-profile .profile-metric{padding:10px 8px}#personal-profile .profile-metric span{font-size:9px}#personal-profile .profile-memory-note{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:390px){#personal-profile .profile-metrics{grid-template-columns:1fr}#personal-profile .profile-memory-note{grid-template-columns:1fr}}
+
+
+/* Personal Profile Intelligence — consent-first context control and reviewable insights */
+#personal-profile .profile-ai-engine{margin-top:18px;padding:clamp(15px,2.5vw,23px);border:1px solid rgba(93,169,255,.28);border-radius:16px;background:radial-gradient(ellipse at 100% 0%,rgba(31,89,151,.16),transparent 44%),linear-gradient(145deg,rgba(8,18,34,.97),rgba(4,8,17,.98));box-shadow:inset 0 1px rgba(255,255,255,.035),0 16px 38px rgba(0,0,0,.15)}
+#personal-profile .profile-ai-engine-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:16px}
+#personal-profile .profile-ai-engine h3{margin:0;color:#e8f2ff;font-size:clamp(17px,2vw,21px)}
+#personal-profile .profile-ai-engine-head p:not(.profile-eyebrow){max-width:760px;margin:7px 0 0;color:#8fa5c2;font-size:12px;line-height:1.65}
+#personal-profile .profile-private-badge{flex-shrink:0;padding:7px 10px;border-radius:999px;border:1px solid rgba(216,181,109,.3);background:rgba(76,57,20,.18);color:#e8cf92;font-size:9px;font-weight:850;letter-spacing:.6px}
+#personal-profile .profile-private-badge[data-enabled="true"]{border-color:rgba(93,169,255,.45);background:rgba(32,105,166,.15);color:#a4d2ff}
+#personal-profile .profile-consent-row{display:flex;align-items:flex-start;gap:12px;padding:15px;border:1px solid rgba(216,181,109,.25);border-radius:12px;background:linear-gradient(120deg,rgba(65,49,19,.2),rgba(7,14,26,.85));cursor:pointer}
+#personal-profile .profile-consent-row>input,#personal-profile .profile-ai-scopes input{accent-color:#6eb4ff;width:16px;height:16px;flex:0 0 auto;margin:2px 0 0}
+#personal-profile .profile-consent-row span{display:flex;flex-direction:column;gap:5px}
+#personal-profile .profile-consent-row b{color:#f0dca9;font-size:12px;line-height:1.5}
+#personal-profile .profile-consent-row small{color:#8fa2bd;font-size:11px;line-height:1.55}
+#personal-profile .profile-ai-scopes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}
+#personal-profile .profile-ai-scopes label{display:flex;align-items:center;gap:8px;min-width:0;padding:9px 10px;border:1px solid rgba(96,139,192,.16);border-radius:9px;background:rgba(7,13,24,.73);color:#c0d0e5;font-size:11px;line-height:1.4;cursor:pointer}
+#personal-profile .profile-ai-scopes label:has(input:checked){border-color:rgba(93,169,255,.3);background:rgba(25,63,104,.22)}
+#personal-profile .profile-ai-scopes input:disabled{opacity:.45}
+#personal-profile .profile-intelligence-actions{margin-top:13px}
+#personal-profile .profile-intelligence-actions button{flex:0 1 auto}
+#personal-profile .profile-ai-status{margin:11px 0 0;padding:9px 11px;border-left:2px solid rgba(93,169,255,.55);background:rgba(17,35,58,.24);color:#93b9e6;font-size:11px;line-height:1.6}
+#personal-profile .profile-brief-card,#personal-profile .profile-insights-panel{margin-top:13px;padding:15px;border:1px solid rgba(101,151,211,.25);border-radius:12px;background:rgba(3,8,17,.72)}
+#personal-profile .profile-brief-card h4,#personal-profile .profile-insights-panel h4{margin:0;color:#dcecff;font-size:14px}
+#personal-profile #profile-local-brief-output{max-height:480px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;margin:12px 0 0;color:#9eb4d1;font:12px/1.75 ui-monospace,SFMono-Regular,Consolas,monospace}
+#personal-profile .profile-insights-heading{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+#personal-profile .profile-insights-heading p{margin:5px 0 0;color:#8098b8;font-size:11px;line-height:1.55}
+#personal-profile #profile-insights-date{color:#8094af;font-size:10px;white-space:nowrap}
+#personal-profile .profile-insight-summary{color:#e0eaf8;font-size:12px;line-height:1.7;margin:14px 0}
+#personal-profile .profile-insight-group{margin-top:12px;padding:11px 12px;border:1px solid rgba(95,136,186,.14);border-radius:9px;background:rgba(10,20,35,.45)}
+#personal-profile .profile-insight-group h5{margin:0 0 7px;color:#a9d4ff;font-size:11px}
+#personal-profile .profile-insight-group ul{margin:0;padding-inline-start:18px;color:#9eb1ca;font-size:11px;line-height:1.7}
+#personal-profile .profile-insight-group li+li{margin-top:4px}
+#personal-profile .profile-insight-review-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+#personal-profile .profile-insight-review-actions button{min-height:35px;padding:7px 11px;border:1px solid rgba(110,158,220,.32);border-radius:8px;background:rgba(17,34,58,.86);color:#dceaff;font-size:11px;font-weight:700;cursor:pointer}
+#personal-profile .profile-insight-review-actions .profile-danger{border-color:rgba(236,111,124,.32);color:#ffb8c0;background:rgba(90,23,37,.25)}
+#personal-profile .profile-insight-review-actions button:disabled{opacity:.45;cursor:not-allowed}
+#personal-profile #profile-insights-review-state{margin:9px 0 0;color:#8298b5;font-size:11px}
+@media(max-width:760px){#personal-profile .profile-ai-scopes{grid-template-columns:repeat(2,minmax(0,1fr))}#personal-profile .profile-ai-engine-head{flex-direction:column}}
+@media(max-width:420px){#personal-profile .profile-ai-scopes{grid-template-columns:1fr}#personal-profile .profile-intelligence-actions button{flex:1 1 100%}#personal-profile .profile-insights-heading{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){#personal-profile .profile-ai-engine *{scroll-behavior:auto;transition:none}}
+
+#personal-profile .profile-insight-history{display:grid;gap:7px;margin-top:15px}
+#personal-profile .profile-insight-history-title{margin:0 0 2px;color:#8aa2c1;font-size:10px;letter-spacing:.7px;text-transform:uppercase}
+#personal-profile .profile-insight-history-item{width:100%;min-height:35px;padding:8px 10px;text-align:left;border:1px solid rgba(91,132,181,.18);border-radius:8px;background:rgba(7,13,24,.75);color:#92a9c7;font-size:10px;line-height:1.5;cursor:pointer;overflow-wrap:anywhere}
+#personal-profile .profile-insight-history-item:hover,#personal-profile .profile-insight-history-item[aria-pressed="true"]{border-color:rgba(93,169,255,.4);background:rgba(25,63,104,.24);color:#d8eaff}
+
+
+/* Dedicated My Profile dialog: independent of the Settings page scroll. */
+#personal-profile-modal.personal-profile-modal[hidden]{display:none}
+#personal-profile-modal.personal-profile-modal{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:clamp(8px,2.5vw,28px);background:rgba(1,4,11,.84);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
+#personal-profile-modal .personal-profile-modal-dialog{display:flex;flex-direction:column;width:min(1180px,100%);height:min(92dvh,1000px);min-height:0;overflow:hidden;border:1px solid rgba(93,169,255,.42);border-radius:22px;background:radial-gradient(ellipse at 85% 0%,rgba(40,100,170,.16),transparent 42%),linear-gradient(145deg,#080f1c,#03060d 70%);box-shadow:0 32px 100px rgba(0,0,0,.72),0 0 55px rgba(48,132,220,.12),inset 0 1px rgba(255,255,255,.06);}
+#personal-profile-modal .personal-profile-modal-topbar{display:flex;flex:0 0 auto;align-items:center;justify-content:space-between;gap:12px;padding:13px 18px;border-bottom:1px solid rgba(93,169,255,.2);background:linear-gradient(90deg,rgba(18,41,68,.9),rgba(6,12,23,.94));}
+#personal-profile-modal .personal-profile-modal-topbar>span{font-size:10px;font-weight:850;letter-spacing:2.2px;color:#8bc5ff;}
+#personal-profile-modal .personal-profile-modal-close{flex:0 0 auto;padding:9px 13px;border:1px solid rgba(139,197,255,.35);border-radius:10px;background:rgba(12,26,44,.9);color:#e8f3ff;font-weight:750;cursor:pointer;}
+#personal-profile-modal .personal-profile-modal-close:hover{border-color:#8bc5ff;background:rgba(30,66,105,.9)}
+#personal-profile-modal #personal-profile.personal-profile-panel{flex:1 1 auto;min-height:0;overflow:auto;margin:0;padding:clamp(15px,2.4vw,30px);border:0;border-radius:0;background:transparent;box-shadow:none;scroll-margin:0;overscroll-behavior:contain;}
+body.profile-modal-open{overflow:hidden}
+@media(max-width:700px){#personal-profile-modal.personal-profile-modal{padding:0;align-items:stretch}#personal-profile-modal .personal-profile-modal-dialog{width:100%;height:100dvh;max-height:100dvh;border-radius:0;border-left:0;border-right:0}#personal-profile-modal .personal-profile-modal-topbar{padding:12px 14px}#personal-profile-modal .personal-profile-modal-topbar>span{font-size:9px;letter-spacing:1.4px}#personal-profile-modal #personal-profile.personal-profile-panel{padding:15px 13px 28px}}
+@media(prefers-reduced-motion:no-preference){#personal-profile-modal .personal-profile-modal-dialog{animation:profile-modal-enter .2s ease-out}@keyframes profile-modal-enter{from{opacity:.75;transform:translateY(8px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}}

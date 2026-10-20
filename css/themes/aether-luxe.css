@@ -1,0 +1,176 @@
+/*
+ * SYSTEM — AETHER LUXE theme
+ * The apex beauty identity: ethereal glass, liquid metal accents,
+ * soft violet-cyan aurora and ultra-refined surfaces.
+ * Additive. Other themes remain fully intact.
+ */
+
+html[data-system-theme="aether"] {
+  color-scheme: dark;
+
+  --color-black: #02040a;
+  --color-background: #05070f;
+  --color-background-2: #0a0e1c;
+  --color-panel: rgba(8, 12, 26, .93);
+  --color-panel-light: rgba(14, 20, 38, .92);
+  --color-panel-dark: rgba(3, 5, 14, .98);
+
+  --color-blue-dark: #1a2a5c;
+  --color-blue: #5b8cff;
+  --color-blue-light: #9ec0ff;
+  --color-blue-bright: #e8f0ff;
+
+  --color-neon: #7dd3fc;
+  --color-neon-light: #bae6fd;
+  --color-neon-white: #f0f9ff;
+
+  --color-text: #f4f7ff;
+  --color-text-light: #d4dcf2;
+  --color-text-muted: #8b9bb8;
+
+  --color-border: rgba(125, 170, 255, .22);
+  --color-border-bright: rgba(158, 200, 255, .68);
+
+  --color-success: #6ee7b7;
+  --color-warning: #fcd34d;
+  --color-danger: #f9a8d4;
+
+  --glow-small: 0 0 10px rgba(125, 211, 252, .18);
+  --glow-medium: 0 0 18px rgba(125, 211, 252, .16);
+  --glow-large: 0 0 32px rgba(125, 211, 252, .12);
+  --glow-intense: 0 0 48px rgba(125, 211, 252, .10);
+  --text-glow: 0 0 18px rgba(186, 230, 253, .18);
+  --panel-glow: 0 20px 50px rgba(0, 0, 0, .32), 0 0 36px rgba(91, 140, 255, .05);
+  --active-glow: 0 0 28px rgba(125, 211, 252, .16);
+
+  --frame-color: rgba(140, 180, 255, .28);
+  --frame-highlight: rgba(210, 230, 255, .75);
+
+  --background-overlay: linear-gradient(180deg, rgba(5, 8, 18, .25), rgba(2, 4, 10, .82));
+  --background-overlay-strong: linear-gradient(180deg, rgba(5, 8, 18, .45), rgba(2, 4, 10, .92));
+  --dark-gradient: linear-gradient(180deg, rgba(12, 16, 32, .97), rgba(3, 5, 14, .99));
+  --panel-gradient: linear-gradient(150deg, rgba(16, 22, 42, .94), rgba(5, 8, 18, .985));
+  --blue-gradient: linear-gradient(90deg, #3b5fb8, #7dd3fc 55%, #c4b5fd);
+
+  --status-bg: rgba(6, 9, 20, .95);
+  --status-border: rgba(125, 180, 255, .32);
+  --status-border-soft: rgba(125, 180, 255, .18);
+  --status-text: #f4f7ff;
+  --status-muted: #8b9bb8;
+  --status-glow: 0 18px 46px rgba(0, 0, 0, .24);
+
+  /* Accent tokens for Aether */
+  --aether-violet: #c4b5fd;
+  --aether-cyan: #7dd3fc;
+  --aether-metal: #e0e7ff;
+  --aether-glass: rgba(14, 20, 42, .78);
+}
+
+/* Background atmosphere */
+html[data-system-theme="aether"] body {
+  background:
+    radial-gradient(ellipse 100% 80% at 15% -5%, rgba(99, 102, 241, .14), transparent 45%),
+    radial-gradient(ellipse 80% 60% at 95% 10%, rgba(56, 189, 248, .10), transparent 40%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(139, 92, 246, .08), transparent 50%),
+    linear-gradient(165deg, #05070f 0%, #070b16 40%, #04060d 100%);
+  background-attachment: fixed;
+  color: var(--color-text);
+}
+
+html[data-system-theme="aether"] #system-app {
+  background: transparent;
+}
+
+/* Panels with ethereal glass */
+html[data-system-theme="aether"] #system-app .card,
+html[data-system-theme="aether"] #system-app .stat-card,
+html[data-system-theme="aether"] #system-app .quest-card,
+html[data-system-theme="aether"] #system-app .reward-card,
+html[data-system-theme="aether"] #system-app .skill-card,
+html[data-system-theme="aether"] #system-app .goal-card,
+html[data-system-theme="aether"] #system-app .panel,
+html[data-system-theme="aether"] #system-app .settings-panel {
+  background: linear-gradient(155deg, rgba(16, 22, 44, .88), rgba(6, 9, 20, .94));
+  border-color: rgba(140, 180, 255, .26);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .07),
+    0 16px 40px rgba(0, 0, 0, .28),
+    0 0 0 1px rgba(99, 102, 241, .04);
+}
+
+html[data-system-theme="aether"] #system-app .stat-card:hover,
+html[data-system-theme="aether"] #system-app .quest-card:hover,
+html[data-system-theme="aether"] #system-app .reward-card:hover,
+html[data-system-theme="aether"] #system-app .skill-card:hover {
+  border-color: rgba(158, 210, 255, .55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .09),
+    0 20px 48px rgba(0, 0, 0, .32),
+    0 0 28px rgba(125, 211, 252, .12);
+}
+
+/* Header accent */
+html[data-system-theme="aether"] #system-app .page-title {
+  background: linear-gradient(105deg, #f0f9ff 10%, #bae6fd 45%, #c4b5fd 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(0 2px 14px rgba(125, 211, 252, .25));
+}
+
+html[data-system-theme="aether"] #system-app .page-header::after {
+  background: linear-gradient(90deg, transparent, #7dd3fc, #c4b5fd, #7dd3fc, transparent);
+  box-shadow: 0 0 20px rgba(125, 211, 252, .4);
+}
+
+/* Navigation */
+html[data-system-theme="aether"] #system-app .nav-item.is-active,
+html[data-system-theme="aether"] #system-app .nav-item[aria-current="page"] {
+  background: linear-gradient(135deg, rgba(91, 140, 255, .22), rgba(125, 211, 252, .12));
+  border-color: rgba(158, 200, 255, .35);
+  color: var(--color-blue-bright);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .08),
+    0 0 24px rgba(125, 211, 252, .12);
+}
+
+/* Buttons */
+html[data-system-theme="aether"] #system-app .btn-primary,
+html[data-system-theme="aether"] #system-app button.primary {
+  background: linear-gradient(135deg, #4f6fd8, #6eb8f5 55%, #a78bfa);
+  border-color: rgba(186, 230, 253, .45);
+  color: #02040a;
+  font-weight: 700;
+  box-shadow: 0 6px 22px rgba(91, 140, 255, .28);
+}
+
+html[data-system-theme="aether"] #system-app .btn-primary:hover,
+html[data-system-theme="aether"] #system-app button.primary:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 8px 28px rgba(125, 211, 252, .35);
+}
+
+/* Status / XP accents */
+html[data-system-theme="aether"] #system-app .xp-fill,
+html[data-system-theme="aether"] #system-app .progress-fill {
+  background: linear-gradient(90deg, #5b8cff, #7dd3fc 50%, #c4b5fd);
+  box-shadow: 0 0 14px rgba(125, 211, 252, .35);
+}
+
+/* Theme picker selected state for Aether */
+html[data-system-theme="aether"] #system-settings-dialog .system-theme-options > button.is-selected {
+  border-color: #9ec0ff;
+  box-shadow:
+    inset 0 0 0 1px rgba(158, 192, 255, .45),
+    0 0 32px rgba(125, 211, 252, .18);
+}
+
+/* Soft rim light on key surfaces */
+html[data-system-theme="aether"] #system-app .page > .content-container > .page,
+html[data-system-theme="aether"] #system-app .main-content .page {
+  border-color: rgba(140, 180, 255, .18);
+  box-shadow:
+    0 0 0 1px rgba(99, 102, 241, .06),
+    0 24px 60px rgba(0, 0, 0, .28);
+}

@@ -1,0 +1,123 @@
+/* SYSTEM — consistent, responsive and keyboard-friendly built-in theme picker. */
+#system-settings-dialog .system-theme-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 11px;
+    margin-top: 16px;
+}
+
+#system-settings-dialog .system-theme-options > button {
+    position: relative;
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    align-content: start;
+    justify-items: stretch;
+    gap: 7px;
+    min-width: 0;
+    min-height: 122px;
+    padding: 11px;
+    overflow: hidden;
+    text-align: start;
+    color: var(--color-text, #eff6ff);
+    background: linear-gradient(145deg, rgba(18, 25, 42, .94), rgba(5, 9, 20, .98));
+    border: 1px solid var(--color-border, rgba(120, 160, 210, .28));
+    border-radius: 12px;
+    box-shadow: inset 0 1px rgba(255, 255, 255, .025), 0 7px 18px rgba(0, 0, 0, .12);
+    transition: border-color .18s ease, background .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+#system-settings-dialog .system-theme-options > button:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-border-bright, rgba(140, 190, 255, .7));
+    box-shadow: inset 0 1px rgba(255, 255, 255, .05), 0 10px 24px rgba(0, 0, 0, .22);
+}
+
+#system-settings-dialog .system-theme-options > button.is-selected {
+    border-color: var(--color-blue-light, #8fc7ff);
+    background: linear-gradient(145deg, rgba(30, 38, 58, .98), rgba(9, 13, 25, .99));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-blue-light, #8fc7ff) 36%, transparent), 0 0 0 1px rgba(0, 0, 0, .22), 0 8px 24px rgba(0, 0, 0, .18);
+}
+
+#system-settings-dialog .system-theme-options > button.is-selected::after {
+    content: "✓";
+    position: absolute;
+    top: 17px;
+    right: 16px;
+    max-width: calc(100% - 28px);
+    display: grid;
+    place-items: center;
+    width: 21px;
+    height: 21px;
+    padding: 0;
+    color: var(--color-background, #08101d);
+    background: var(--color-blue-light, #8fc7ff);
+    border-radius: 4px;
+    font: 900 12px/1 var(--font-ui, system-ui, sans-serif);
+    pointer-events: none;
+}
+
+#system-settings-dialog .system-theme-swatch {
+    display: block;
+    width: 100%;
+    height: 38px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 7px;
+    box-shadow: inset 0 1px rgba(255, 255, 255, .12), 0 2px 8px rgba(0, 0, 0, .18);
+}
+
+#system-settings-dialog .system-theme-options strong {
+    display: block;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    color: var(--color-text, #eff6ff);
+    font-size: 11px;
+    font-weight: 750;
+    line-height: 1.35;
+}
+
+#system-settings-dialog .system-theme-options small {
+    display: block;
+    align-self: end;
+    color: var(--color-text-muted, #91a3bf);
+    font-size: 10px;
+    line-height: 1.45;
+}
+
+#system-settings-dialog .system-theme-options > button:focus-visible {
+    outline: 2px solid var(--color-blue-light, #8fc7ff);
+    outline-offset: 3px;
+}
+
+@media (max-width: 620px) {
+    #system-settings-dialog .system-theme-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+    }
+
+    #system-settings-dialog .system-theme-options > button {
+        min-height: 116px;
+        padding: 9px;
+    }
+
+    #system-settings-dialog .system-theme-options > button.is-selected::after {
+        top: 14px;
+        right: 14px;
+    }
+}
+
+@media (max-width: 350px) {
+    #system-settings-dialog .system-theme-options {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #system-settings-dialog .system-theme-options > button {
+        transition: none;
+    }
+    #system-settings-dialog .system-theme-options > button:hover {
+        transform: none;
+    }
+}

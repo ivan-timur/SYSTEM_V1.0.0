@@ -1,0 +1,422 @@
+/* SYSTEM — REWARD CITADEL
+   Presentation-only reward upgrade: rarity identity, artifact-card depth,
+   clearer progress, premium selection, and restrained claim feedback.
+   Reward definitions, IDs, eligibility and payout logic remain unchanged. */
+
+#system-app #rewards-page {
+  --rc-common: #bac8dc;
+  --rc-uncommon: #78e8b7;
+  --rc-rare: #75c6ff;
+  --rc-epic: #c6a0ff;
+  --rc-legendary: #ffd579;
+  --rc-ready: #8ee7c4;
+  --rc-ease: cubic-bezier(.2,.8,.2,1);
+}
+
+/* The reward collection should feel like one curated armory, not a generic list. */
+#system-app #rewards-page .rewards-main-panel {
+  position: relative;
+  overflow: hidden;
+  border-color: color-mix(in srgb, var(--rp-edge, #3978b9) 82%, transparent);
+  background:
+    radial-gradient(ellipse at 0% 0%, rgba(31,111,221,.12), transparent 42%),
+    radial-gradient(ellipse at 100% 100%, rgba(35,79,158,.08), transparent 38%),
+    linear-gradient(145deg, rgba(7,16,35,.97), rgba(2,6,17,.985));
+  box-shadow: inset 0 1px rgba(255,255,255,.045), 0 20px 48px rgba(0,0,0,.21);
+}
+
+#system-app #rewards-page .sub-title {
+  margin-top: 25px;
+  margin-bottom: 15px;
+  color: #f0f7ff;
+  font-weight: 760;
+  letter-spacing: .01em;
+}
+
+#system-app #rewards-page .available-rewards,
+#system-app #rewards-page #reward-card-grid {
+  align-items: stretch;
+  gap: clamp(10px, 1.15vw, 15px);
+}
+
+/* Base card surface. No decorative emoji or reward icon is added. */
+#system-app #rewards-page .available-rewards .reward-card,
+#system-app #rewards-page #reward-card-grid .reward-card {
+  --rc-rarity: var(--rc-common);
+  --rc-rarity-glow: rgba(186,200,220,.10);
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  min-height: 208px;
+  padding: 43px 15px 14px;
+  gap: 10px;
+  border: 1px solid color-mix(in srgb, var(--rc-rarity) 36%, rgba(83,131,192,.16));
+  border-radius: 17px;
+  background:
+    radial-gradient(ellipse at 100% 0%, var(--rc-rarity-glow), transparent 53%),
+    radial-gradient(ellipse at 0% 100%, rgba(22,74,142,.075), transparent 52%),
+    linear-gradient(148deg, rgba(12,25,47,.985), rgba(3,8,21,.99) 74%);
+  box-shadow: inset 0 1px rgba(255,255,255,.06), inset 0 -18px 34px rgba(0,0,0,.08), 0 9px 23px rgba(0,0,0,.17);
+  transition: transform .26s var(--rc-ease), border-color .26s ease, box-shadow .26s ease, filter .26s ease;
+}
+
+#system-app #rewards-page .available-rewards .reward-card::before,
+#system-app #rewards-page #reward-card-grid .reward-card::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: auto;
+  right: auto;
+  inset-inline: 12%;
+  width: auto;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--rc-rarity), transparent);
+  opacity: .82;
+  pointer-events: none;
+}
+
+#system-app #rewards-page .available-rewards .reward-card::after,
+#system-app #rewards-page #reward-card-grid .reward-card::after {
+  pointer-events: none;
+}
+
+/* Color is meaningful: a collectible has a stable identity at every rarity. */
+#system-app #rewards-page .reward-card.rp-r-common {
+  --rc-rarity: var(--rc-common);
+  --rc-rarity-glow: rgba(186,200,220,.075);
+}
+#system-app #rewards-page .reward-card.rp-r-uncommon {
+  --rc-rarity: var(--rc-uncommon);
+  --rc-rarity-glow: rgba(74,225,164,.12);
+}
+#system-app #rewards-page .reward-card.rp-r-rare {
+  --rc-rarity: var(--rc-rare);
+  --rc-rarity-glow: rgba(75,171,255,.16);
+}
+#system-app #rewards-page .reward-card.rp-r-epic {
+  --rc-rarity: var(--rc-epic);
+  --rc-rarity-glow: rgba(157,98,255,.16);
+}
+#system-app #rewards-page .reward-card.rp-r-legendary {
+  --rc-rarity: var(--rc-legendary);
+  --rc-rarity-glow: rgba(255,186,64,.17);
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(255,190,72,.19), transparent 55%),
+    radial-gradient(ellipse at 0% 100%, rgba(138,83,25,.11), transparent 54%),
+    linear-gradient(148deg, rgba(31,25,24,.99), rgba(9,8,15,.995) 74%);
+  box-shadow: inset 0 1px rgba(255,240,206,.075), inset 0 -20px 40px rgba(0,0,0,.12), 0 10px 26px rgba(0,0,0,.19);
+}
+
+#system-app #rewards-page .available-rewards .reward-card:hover,
+#system-app #rewards-page #reward-card-grid .reward-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--rc-rarity) 75%, white 8%);
+  box-shadow: inset 0 1px rgba(255,255,255,.09), 0 17px 35px rgba(0,0,0,.27), 0 0 22px var(--rc-rarity-glow);
+}
+
+#system-app #rewards-page .available-rewards .reward-card.active,
+#system-app #rewards-page #reward-card-grid .reward-card.active {
+  border-color: color-mix(in srgb, var(--rc-rarity) 86%, white 8%);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--rc-rarity) 18%, transparent), inset 0 1px rgba(255,255,255,.08), 0 0 0 2px color-mix(in srgb, var(--rc-rarity) 11%, transparent), 0 15px 32px rgba(0,0,0,.24), 0 0 24px var(--rc-rarity-glow);
+}
+
+#system-app #rewards-page .available-rewards .reward-card.is-ready,
+#system-app #rewards-page #reward-card-grid .reward-card.is-ready {
+  border-color: color-mix(in srgb, var(--rc-rarity) 60%, rgba(94,154,215,.2));
+}
+
+#system-app #rewards-page .available-rewards .reward-card.is-collected,
+#system-app #rewards-page #reward-card-grid .reward-card.is-collected {
+  border-color: rgba(115,220,177,.34);
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(70,190,143,.08), transparent 54%),
+    linear-gradient(148deg, rgba(8,23,32,.98), rgba(3,8,17,.99) 74%);
+}
+
+/* Compact rarity/value chip. Favourite and collected status use opposite corners. */
+#system-app #rewards-page .reward-card .rp-chip {
+  align-self: flex-start;
+  max-width: calc(100% - 34px);
+  min-height: 22px;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border: 1px solid color-mix(in srgb, var(--rc-rarity, var(--rc-common)) 46%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--rc-rarity, var(--rc-common)) 8%, rgba(2,7,17,.94));
+  color: var(--rc-rarity, var(--rc-common));
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: .065em;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  box-shadow: inset 0 1px rgba(255,255,255,.035);
+}
+
+#system-app #rewards-page .reward-card.rp-r-common .rp-chip { color: var(--rc-common); }
+#system-app #rewards-page .reward-card.rp-r-uncommon .rp-chip { color: var(--rc-uncommon); }
+#system-app #rewards-page .reward-card.rp-r-rare .rp-chip { color: var(--rc-rare); }
+#system-app #rewards-page .reward-card.rp-r-epic .rp-chip { color: var(--rc-epic); }
+#system-app #rewards-page .reward-card.rp-r-legendary .rp-chip { color: var(--rc-legendary); }
+
+#system-app #rewards-page .reward-card .ra-favorite {
+  inset-inline-start: 10px;
+  inset-inline-end: auto;
+  top: 10px;
+  width: 27px;
+  height: 27px;
+  min-width: 27px;
+  min-height: 27px;
+  border-radius: 9px;
+  border-color: color-mix(in srgb, var(--rc-rarity, var(--rc-common)) 28%, transparent);
+  background: rgba(1,6,17,.72);
+  color: #9ab0cb;
+  backdrop-filter: blur(8px);
+  transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+#system-app #rewards-page .available-rewards .reward-card.is-collected::after,
+#system-app #rewards-page #reward-card-grid .reward-card.is-collected::after {
+  right: auto;
+  inset-inline-end: 10px;
+}
+
+#system-app #rewards-page .reward-card .ra-favorite:hover,
+#system-app #rewards-page .reward-card .ra-favorite.is-favorite {
+  border-color: rgba(255,213,121,.7);
+  background: rgba(67,48,18,.66);
+  color: #ffdf96;
+  transform: translateY(-1px);
+}
+
+#system-app #rewards-page .available-rewards .reward-card h3,
+#system-app #rewards-page #reward-card-grid .reward-card h3 {
+  margin-top: 1px;
+  color: #f0f6ff;
+  font-size: clamp(12px, 1.08vw, 14px);
+  font-weight: 780;
+  line-height: 1.45;
+  letter-spacing: -.01em;
+  text-wrap: pretty;
+}
+
+#system-app #rewards-page .available-rewards .reward-card p,
+#system-app #rewards-page #reward-card-grid .reward-card p {
+  flex: 1;
+  margin: 0;
+  color: #9aacc7;
+  font-size: 10.5px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+/* Clean progress track with the numeric requirement retained below it. */
+#system-app #rewards-page .reward-card .rp-progress {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0,1fr);
+  gap: 5px;
+  width: 100%;
+  height: auto;
+  margin: 1px 0 0;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+#system-app #rewards-page .reward-card .rp-progress::before {
+  content: "";
+  grid-area: 1 / 1;
+  align-self: center;
+  height: 6px;
+  border: 1px solid rgba(101,151,209,.15);
+  border-radius: 99px;
+  background: rgba(0,4,14,.9);
+}
+
+#system-app #rewards-page .reward-card .rp-progress i {
+  grid-area: 1 / 1;
+  z-index: 1;
+  align-self: center;
+  height: 6px;
+  min-width: 0;
+  border-radius: 99px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--rc-rarity) 76%, #276bdf), var(--rc-rarity));
+  box-shadow: 0 0 12px var(--rc-rarity-glow);
+  transition: width .4s var(--rc-ease);
+}
+
+#system-app #rewards-page .reward-card .rp-progress em {
+  position: static;
+  grid-area: 2 / 1;
+  display: block;
+  font-style: normal;
+  font-size: 9px;
+  font-weight: 750;
+  line-height: 1.35;
+  text-align: end;
+  color: #8298b8;
+}
+
+/* Buttons are the clearest signal that an action is available. */
+#system-app #rewards-page .available-rewards .reward-card > button:not(.ra-favorite),
+#system-app #rewards-page #reward-card-grid .reward-card > button:not(.ra-favorite) {
+  width: 100%;
+  min-height: 38px;
+  margin-top: auto;
+  padding: 9px 11px;
+  border: 1px solid color-mix(in srgb, var(--rc-rarity) 50%, rgba(78,127,186,.25));
+  border-radius: 11px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--rc-rarity) 18%, rgba(8,22,44,.98)), rgba(3,8,20,.98));
+  color: #eaf5ff;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: .035em;
+  box-shadow: inset 0 1px rgba(255,255,255,.06), 0 5px 13px rgba(0,0,0,.13);
+  transition: transform .2s var(--rc-ease), border-color .2s ease, background .2s ease, box-shadow .2s ease, color .2s ease;
+}
+
+#system-app #rewards-page .available-rewards .reward-card > button:not(.ra-favorite):hover:not(:disabled),
+#system-app #rewards-page #reward-card-grid .reward-card > button:not(.ra-favorite):hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: var(--rc-rarity);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--rc-rarity) 33%, rgba(8,22,44,.98)), rgba(4,12,27,.99));
+  color: #fff;
+  box-shadow: 0 8px 20px var(--rc-rarity-glow), inset 0 1px rgba(255,255,255,.1);
+}
+
+#system-app #rewards-page .available-rewards .reward-card > button:not(.ra-favorite):disabled,
+#system-app #rewards-page #reward-card-grid .reward-card > button:not(.ra-favorite):disabled {
+  border-color: rgba(97,127,166,.2);
+  background: rgba(2,7,17,.76);
+  color: #7488a6;
+  box-shadow: none;
+  filter: saturate(.4);
+}
+
+/* Selected reward: give the current goal a distinct, focused presentation. */
+#system-app #rewards-page .selected-reward {
+  border-color: rgba(105,176,255,.43);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(48,126,238,.2), transparent 52%),
+    radial-gradient(ellipse at 100% 100%, rgba(36,81,163,.09), transparent 48%),
+    linear-gradient(155deg, rgba(8,20,42,.985), rgba(2,6,18,.995));
+  box-shadow: inset 0 1px rgba(255,255,255,.06), 0 20px 45px rgba(0,0,0,.23), 0 0 27px rgba(38,123,238,.055);
+}
+
+#system-app #rewards-page .selected-reward h2 {
+  color: #f4f8ff;
+  font-size: clamp(17px, 1.55vw, 20px);
+  letter-spacing: -.015em;
+}
+
+#system-app #rewards-page .selected-reward .rp-detail-meta {
+  justify-content: center;
+  max-width: 100%;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: rgba(52,117,196,.09);
+  letter-spacing: .12em;
+  line-height: 1.45;
+  text-align: center;
+}
+
+#system-app #rewards-page .selected-reward .rp-detail-meta.rp-detail-common { border-color: rgba(186,200,220,.3); color: var(--rc-common); }
+#system-app #rewards-page .selected-reward .rp-detail-meta.rp-detail-uncommon { border-color: rgba(120,232,183,.34); color: var(--rc-uncommon); }
+#system-app #rewards-page .selected-reward .rp-detail-meta.rp-detail-rare { border-color: rgba(117,198,255,.38); color: var(--rc-rare); }
+#system-app #rewards-page .selected-reward .rp-detail-meta.rp-detail-epic { border-color: rgba(198,160,255,.4); color: var(--rc-epic); }
+#system-app #rewards-page .selected-reward .rp-detail-meta.rp-detail-legendary {
+  border-color: rgba(255,213,121,.46);
+  background: rgba(105,71,20,.14);
+  color: var(--rc-legendary);
+}
+
+#system-app #rewards-page .selected-reward .reward-cost {
+  border-color: rgba(117,187,255,.3);
+  border-radius: 15px;
+  background: linear-gradient(135deg, rgba(18,61,109,.35), rgba(3,12,29,.82));
+  color: #bfe4ff;
+  font-size: clamp(14px, 1.3vw, 17px);
+  font-weight: 850;
+  letter-spacing: .015em;
+  box-shadow: inset 0 1px rgba(255,255,255,.045);
+}
+
+#system-app #rewards-page .selected-reward .claim-button {
+  border: 1px solid rgba(130,202,255,.72);
+  border-radius: 13px;
+  background: linear-gradient(135deg, #1975df, #09439c 66%, #062657);
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: .035em;
+  box-shadow: inset 0 1px rgba(255,255,255,.17), 0 8px 22px rgba(10,94,207,.2);
+}
+
+#system-app #rewards-page .selected-reward .claim-button:hover:not(:disabled) {
+  filter: brightness(1.12);
+  box-shadow: inset 0 1px rgba(255,255,255,.2), 0 11px 26px rgba(17,110,232,.3);
+}
+
+#system-app #rewards-page .rp-result {
+  border-radius: 14px;
+  border-color: rgba(123,190,255,.32);
+  background: radial-gradient(ellipse at 50% 0%, rgba(64,145,255,.2), transparent 75%), rgba(2,8,20,.55);
+  box-shadow: inset 0 1px rgba(255,255,255,.06), 0 8px 22px rgba(0,0,0,.14);
+}
+
+#system-app #rewards-page .rp-result.rp-rare,
+#system-app #rewards-page .rp-result.rp-epic,
+#system-app #rewards-page .rp-result.rp-legendary {
+  padding: 17px 12px;
+}
+
+#system-app #rewards-page .rp-result.rp-rare { border-color: rgba(117,198,255,.42); }
+#system-app #rewards-page .rp-result.rp-epic { border-color: rgba(198,160,255,.46); box-shadow: inset 0 0 30px rgba(157,98,255,.09), 0 8px 22px rgba(0,0,0,.14); }
+#system-app #rewards-page .rp-result.rp-legendary { border-color: rgba(255,213,121,.56); box-shadow: inset 0 0 34px rgba(255,186,64,.14), 0 8px 22px rgba(0,0,0,.14); }
+
+#system-app #rewards-page .rp-collection-track i,
+#system-app #rewards-page .ra-xp-track i,
+#system-app #rewards-page .ra-route-progress i,
+#system-app #rewards-page .ra-pity-track i {
+  filter: saturate(1.12);
+}
+
+#system-app #rewards-page .rp-log summary {
+  transition: color .2s ease, background .2s ease;
+}
+#system-app #rewards-page .rp-log summary:hover { color: #e4f3ff; }
+
+@media (max-width: 760px) {
+  #system-app #rewards-page .rewards-main-panel { padding: 13px; }
+  #system-app #rewards-page .available-rewards,
+  #system-app #rewards-page #reward-card-grid { gap: 9px; }
+  #system-app #rewards-page .available-rewards .reward-card,
+  #system-app #rewards-page #reward-card-grid .reward-card {
+    min-height: 205px;
+    padding: 42px 12px 12px;
+    border-radius: 15px;
+    gap: 9px;
+  }
+  #system-app #rewards-page .reward-card .rp-chip { font-size: 7.5px; padding: 4px 7px; }
+  #system-app #rewards-page .available-rewards .reward-card p,
+  #system-app #rewards-page #reward-card-grid .reward-card p { font-size: 10px; }
+  #system-app #rewards-page .selected-reward { text-align: center; }
+}
+
+@media (max-width: 360px) {
+  #system-app #rewards-page .available-rewards,
+  #system-app #rewards-page #reward-card-grid { grid-template-columns: minmax(0,1fr); }
+  #system-app #rewards-page .available-rewards .reward-card,
+  #system-app #rewards-page #reward-card-grid .reward-card { min-height: 185px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #system-app #rewards-page .available-rewards .reward-card,
+  #system-app #rewards-page #reward-card-grid .reward-card,
+  #system-app #rewards-page .reward-card button { transition: none; }
+  #system-app #rewards-page .available-rewards .reward-card:hover,
+  #system-app #rewards-page #reward-card-grid .reward-card:hover { transform: none; }
+}

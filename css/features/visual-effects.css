@@ -1,0 +1,302 @@
+/* SYSTEM v3.1 — restrained, accessible visual effects. */
+.system-atmosphere-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: .52;
+  contain: strict;
+  transform: translateZ(0);
+}
+.system-atmosphere-canvas[hidden] { display: none; }
+body:has(#system-app) > #system-app { position: relative; z-index: 1; }
+
+/* Deliberate micro-interactions: avoid layout movement and keep touch targets stable. */
+#system-app :where(button, .nav-item, .quest-card, .reward-card, .system-panel, .stat-card) {
+  transition-property: border-color, box-shadow, background-color, color, opacity;
+  transition-duration: 160ms;
+  transition-timing-function: ease-out;
+}
+#system-app :where(button, .nav-item, .quest-card, .reward-card):focus-visible {
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px rgba(65, 171, 255, .14), 0 0 22px rgba(40, 120, 255, .12);
+}
+#system-app :where(button, .nav-item, .quest-card, .reward-card):active {
+  filter: brightness(1.08);
+}
+
+@media (max-width: 600px) {
+  .system-atmosphere-canvas { opacity: .34; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .system-atmosphere-canvas { display: none; }
+  #system-app :where(button, .nav-item, .quest-card, .reward-card, .system-panel, .stat-card) {
+    transition: none;
+    animation: none;
+    scroll-behavior: auto;
+  }
+}
+
+/* Version 3.2.0: compact milestone feedback and per-effect settings. */
+.system-milestone-toast {
+  position: fixed;
+  z-index: 2147482000;
+  left: 50%;
+  bottom: max(22px, env(safe-area-inset-bottom));
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  width: min(420px, calc(100vw - 28px));
+  padding: 13px 16px;
+  border: 1px solid rgba(82, 171, 255, .43);
+  border-radius: 15px;
+  color: #e8f4ff;
+  background: linear-gradient(132deg, rgba(8, 19, 39, .97), rgba(7, 10, 23, .96));
+  box-shadow: 0 16px 48px rgba(0, 0, 0, .42), 0 0 26px rgba(40, 136, 255, .14), inset 0 1px 0 rgba(255,255,255,.045);
+  backdrop-filter: blur(16px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 14px) scale(.985);
+  transition: opacity 200ms ease, transform 240ms cubic-bezier(.2,.75,.25,1);
+  contain: layout paint;
+}
+.system-milestone-toast.is-visible { opacity: 1; transform: translate(-50%, 0) scale(1); }
+.system-milestone-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(92, 180, 255, .45);
+  border-radius: 12px;
+  color: #82d7ff;
+  background: linear-gradient(150deg, rgba(34, 111, 194, .25), rgba(14, 27, 57, .65));
+  font-size: 20px;
+  font-weight: 800;
+  text-shadow: 0 0 15px rgba(87, 202, 255, .35);
+}
+.system-milestone-copy { display: grid; min-width: 0; gap: 3px; }
+.system-milestone-eyebrow { color: #7bbfff; font-size: 9px; font-weight: 800; letter-spacing: .16em; }
+.system-milestone-title { color: #f2f8ff; font-size: 13px; line-height: 1.25; font-weight: 800; }
+.system-milestone-message { color: #adbed4; font-size: 12px; line-height: 1.45; overflow-wrap: anywhere; }
+.system-milestone-toast[data-milestone-kind="rank"] { border-color: rgba(114, 157, 255, .7); box-shadow: 0 16px 48px rgba(0,0,0,.42), 0 0 34px rgba(94,121,255,.22); }
+.system-milestone-toast[data-milestone-kind="rank"] .system-milestone-icon { color: #b2c5ff; border-color: rgba(137,157,255,.65); }
+.system-milestone-toast[data-milestone-kind="achievement"] { border-color: rgba(95, 220, 199, .52); }
+.system-milestone-toast[data-milestone-kind="achievement"] .system-milestone-icon { color: #76f1d5; border-color: rgba(95,220,199,.5); }
+.system-milestone-toast[data-milestone-kind="quest"] .system-milestone-icon { color: #95e6ae; border-color: rgba(95,220,145,.42); }
+
+.system-visual-settings { display: grid; gap: 11px; }
+.system-visual-settings .system-modal-intro { margin: 0 0 2px; }
+.system-visual-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 15px;
+  border: 1px solid rgba(102, 145, 196, .22);
+  border-radius: 12px;
+  background: rgba(14, 25, 45, .52);
+  cursor: pointer;
+}
+.system-visual-option-copy { display: grid; gap: 4px; min-width: 0; }
+.system-visual-option-copy strong { color: var(--text-primary, #eef5ff); font-size: 13px; font-weight: 750; }
+.system-visual-option-copy small { color: var(--text-secondary, #9bb0ca); font-size: 11px; line-height: 1.5; }
+.system-visual-option input[type="checkbox"] {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: #54b7ff;
+  cursor: pointer;
+}
+.system-visual-option:focus-within { outline: 2px solid rgba(87, 175, 255, .72); outline-offset: 2px; }
+.system-visual-motion-note, .system-visual-settings-status { margin: 0; color: var(--text-secondary, #9bb0ca); font-size: 11px; line-height: 1.5; }
+.system-visual-settings-status { min-height: 1.4em; color: #8ed9ff; }
+
+@media (max-width: 600px) {
+  .system-milestone-toast { bottom: max(14px, env(safe-area-inset-bottom)); grid-template-columns: 36px minmax(0,1fr); gap: 10px; padding: 11px 12px; border-radius: 13px; }
+  .system-milestone-icon { width: 36px; height: 36px; border-radius: 10px; }
+  .system-milestone-title { font-size: 12px; }
+  .system-milestone-message { font-size: 11px; }
+  .system-visual-option { padding: 12px; gap: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .system-milestone-toast { transition: none; transform: translate(-50%, 0); }
+}
+
+
+/* PHASE 14 — Canvas Couture: layered depth, restrained response, and polished motion. */
+.system-atmosphere-canvas {
+  opacity: .58;
+  mix-blend-mode: screen;
+  will-change: contents;
+}
+#system-app :where(button, .nav-item, .quest-card, .reward-card, .system-panel, .stat-card) {
+  -webkit-tap-highlight-color: transparent;
+}
+#system-app :where(button, .nav-item, .quest-card, .reward-card, .stat-card) {
+  transform: translateZ(0);
+}
+#system-app :where(button, .nav-item, .quest-card, .reward-card, .stat-card):hover {
+  border-color: rgba(88, 190, 255, .38);
+}
+#system-app :where(button, .nav-item, .quest-card, .reward-card, .stat-card):focus-visible {
+  outline: 1px solid rgba(104, 218, 255, .82);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(65, 171, 255, .10), 0 0 26px rgba(40, 170, 255, .15);
+}
+.system-milestone-toast {
+  border-color: rgba(89, 205, 255, .58);
+  background: linear-gradient(135deg, rgba(5, 17, 37, .97), rgba(8, 12, 29, .96) 58%, rgba(9, 30, 48, .96));
+  box-shadow: 0 20px 58px rgba(0, 0, 0, .46), 0 0 34px rgba(37, 156, 255, .17), inset 0 1px 0 rgba(255,255,255,.07);
+}
+.system-milestone-toast.is-visible .system-milestone-icon {
+  animation: system-milestone-glint 1.4s ease-in-out both;
+}
+@keyframes system-milestone-glint {
+  0% { box-shadow: 0 0 0 rgba(76, 205, 255, 0); }
+  45% { box-shadow: 0 0 24px rgba(76, 205, 255, .28); }
+  100% { box-shadow: 0 0 9px rgba(76, 205, 255, .08); }
+}
+@media (max-width: 600px) {
+  .system-atmosphere-canvas { opacity: .36; mix-blend-mode: normal; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .system-atmosphere-canvas { display: none; }
+  .system-milestone-toast.is-visible .system-milestone-icon { animation: none; }
+}
+
+
+/* PHASE 15 — Aether Motion: spatial orbital layers and cinematic milestone rings. */
+.system-atmosphere-canvas {
+  opacity: .60;
+  isolation: isolate;
+}
+.system-milestone-toast {
+  backdrop-filter: blur(16px) saturate(1.12);
+  -webkit-backdrop-filter: blur(16px) saturate(1.12);
+}
+.system-milestone-toast.is-visible {
+  animation: system-milestone-arrive 520ms cubic-bezier(.2,.82,.22,1) both;
+}
+@keyframes system-milestone-arrive {
+  0% { opacity: 0; transform: translate(-50%, 12px) scale(.975); }
+  72% { opacity: 1; transform: translate(-50%, -2px) scale(1.006); }
+  100% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+@media (max-width: 600px) {
+  .system-atmosphere-canvas { opacity: .38; }
+  .system-milestone-toast { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .system-milestone-toast.is-visible { animation: none; }
+}
+
+
+/* PHASE 16 — Adaptive Aether: quiet energy core and refined interaction feedback. */
+.system-atmosphere-canvas {
+  contain: strict;
+  pointer-events: none;
+}
+#system-app :where(button, .nav-item, .quest-card, .reward-card, .stat-card) {
+  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+#system-app :where(button, .nav-item, .quest-card, .reward-card, .stat-card):active {
+  transition-duration: 80ms;
+}
+.system-milestone-toast[data-milestone-kind="skill"] {
+  border-color: rgba(83, 220, 255, .62);
+  box-shadow: 0 18px 54px rgba(0,0,0,.42), 0 0 30px rgba(55,196,255,.18);
+}
+.system-milestone-toast[data-milestone-kind="skill"] .system-milestone-icon {
+  color: #8feaff;
+  border-color: rgba(83,220,255,.55);
+}
+@media (max-width: 600px) {
+  #system-app :where(button, .nav-item, .quest-card, .reward-card, .stat-card) {
+    transition-duration: 120ms;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #system-app :where(button, .nav-item, .quest-card, .reward-card, .stat-card) {
+    transition: none;
+  }
+}
+
+
+/* PHASE 17 — Aether Cinematic Engine: short, non-blocking transitions. */
+.page.system-page-enter {
+  animation: system-page-arrive 380ms cubic-bezier(.2,.72,.22,1) both;
+  transform-origin: 50% 18%;
+}
+@keyframes system-page-arrive {
+  from { opacity: .72; transform: translate3d(0, 9px, 0) scale(.996); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+body.system-event-quest #system-app { animation: system-quest-pulse 360ms ease-out; }
+body.system-event-level #system-app { animation: system-level-pulse 520ms ease-out; }
+body.system-event-skill #system-app { animation: system-skill-pulse 420ms ease-out; }
+@keyframes system-quest-pulse { 50% { filter: drop-shadow(0 0 8px rgba(69, 203, 255, .12)); } }
+@keyframes system-level-pulse { 45% { filter: drop-shadow(0 0 13px rgba(91, 158, 255, .20)); } }
+@keyframes system-skill-pulse { 45% { filter: drop-shadow(0 0 9px rgba(89, 236, 220, .16)); } }
+@media (prefers-reduced-motion: reduce) {
+  .page.system-page-enter, body.system-event-quest #system-app,
+  body.system-event-level #system-app, body.system-event-skill #system-app { animation: none; }
+}
+
+
+/* PHASE 18 — Aether Evolution: skill-stage and reward-reveal feedback. */
+.system-milestone-toast[data-milestone-kind="evolution"] {
+  border-color: rgba(111, 238, 218, .72);
+  box-shadow: 0 16px 48px rgba(0,0,0,.42), 0 0 30px rgba(74,225,211,.19);
+}
+.system-milestone-toast[data-milestone-kind="evolution"] .system-milestone-icon {
+  color: #9af8e7;
+  border-color: rgba(111,238,218,.68);
+}
+.system-milestone-toast[data-milestone-kind="reward"] {
+  border-color: rgba(224, 193, 118, .66);
+  box-shadow: 0 16px 48px rgba(0,0,0,.42), 0 0 28px rgba(224,193,118,.14);
+}
+.system-milestone-toast[data-milestone-kind="reward"] .system-milestone-icon {
+  color: #f4d99a;
+  border-color: rgba(224,193,118,.62);
+}
+body.system-event-evolution #system-app { animation: system-evolution-accent 460ms ease-out; }
+body.system-event-reward #system-app { animation: system-reward-accent 420ms ease-out; }
+@keyframes system-evolution-accent { 45% { filter: drop-shadow(0 0 11px rgba(74,225,211,.18)); } }
+@keyframes system-reward-accent { 45% { filter: drop-shadow(0 0 10px rgba(224,193,118,.16)); } }
+@media (prefers-reduced-motion: reduce) {
+  body.system-event-evolution #system-app, body.system-event-reward #system-app { animation: none; }
+}
+
+
+/* PHASE 19 — Aether Master Experience: high-signal boss and rank feedback. */
+.system-milestone-toast[data-milestone-kind="boss"] {
+  border-color: rgba(177, 142, 255, .76);
+  background: linear-gradient(132deg, rgba(21, 15, 43, .98), rgba(7, 10, 23, .97));
+  box-shadow: 0 18px 52px rgba(0,0,0,.44), 0 0 34px rgba(151,112,255,.19), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.system-milestone-toast[data-milestone-kind="boss"] .system-milestone-icon {
+  color: #d1bdff;
+  border-color: rgba(177,142,255,.7);
+  background: linear-gradient(145deg, rgba(110,73,190,.3), rgba(20,17,42,.8));
+}
+.system-milestone-toast[data-milestone-kind="rank"] {
+  background: linear-gradient(132deg, rgba(13, 25, 53, .98), rgba(7, 10, 23, .97));
+}
+body.system-event-boss #system-app { animation: system-boss-cleared-accent 620ms ease-out; }
+@keyframes system-boss-cleared-accent {
+  35% { filter: drop-shadow(0 0 15px rgba(151,112,255,.22)); }
+}
+.page.system-page-enter { will-change: opacity, transform; }
+@media (max-width: 600px) {
+  .page.system-page-enter { animation-duration: 260ms; }
+  .system-milestone-toast[data-milestone-kind="boss"] { width: min(390px, calc(100vw - 24px)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page.system-page-enter, body.system-event-boss #system-app { animation: none; will-change: auto; }
+}

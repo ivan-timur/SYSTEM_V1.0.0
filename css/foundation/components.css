@@ -1,0 +1,2030 @@
+/* =========================================================
+   SYSTEM — COMPONENTS
+   Advanced UI Component System
+   ========================================================= */
+
+
+/* =========================================================
+   01 — GLOBAL PANEL
+   ========================================================= */
+
+.system-panel,
+.panel,
+.card {
+
+    position: relative;
+
+    width: 100%;
+
+    background:
+        var(--panel-gradient);
+
+    border:
+        var(--border-thin);
+
+    border-radius:
+        var(--radius-medium);
+
+    box-shadow:
+        inset 0 0 25px rgba(0, 80, 180, 0.06),
+        0 8px 30px rgba(0, 0, 0, 0.28);
+
+    overflow: hidden;
+
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   PANEL LIGHT
+   ========================================================= */
+
+.system-panel::before,
+.panel::before,
+.card::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(135deg,
+            rgba(70, 170, 255, 0.07),
+            transparent 35%,
+            transparent 70%,
+            rgba(20, 100, 255, 0.04));
+
+    z-index: -1;
+}
+
+
+/* =========================================================
+   PANEL TOP LINE
+   ========================================================= */
+
+.system-panel::after,
+.panel::after,
+.card::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 8%;
+
+    width: 84%;
+    height: 1px;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            rgba(90, 180, 255, 0.75),
+            transparent);
+
+    box-shadow:
+        0 0 10px rgba(40, 145, 255, 0.5);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   PANEL PADDING
+   ========================================================= */
+
+.panel-padding {
+    padding: var(--panel-padding);
+}
+
+
+/* =========================================================
+   02 — CORNER FRAME SYSTEM
+   ========================================================= */
+
+.system-frame {
+
+    position: relative;
+
+    border:
+        1px solid rgba(55, 145, 255, 0.42);
+
+    background:
+        rgba(2, 9, 22, 0.76);
+
+    box-shadow:
+        inset 0 0 20px rgba(0, 90, 255, 0.07),
+        0 0 12px rgba(0, 80, 255, 0.08);
+
+}
+
+
+/* =========================================================
+   CORNER LINES
+   ========================================================= */
+
+.system-frame::before,
+.system-frame::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 18px;
+    height: 18px;
+
+    pointer-events: none;
+
+}
+
+
+/* TOP LEFT */
+
+.system-frame::before {
+
+    top: -1px;
+    left: -1px;
+
+    border-top:
+        2px solid var(--color-blue-light);
+
+    border-left:
+        2px solid var(--color-blue-light);
+
+    box-shadow:
+        -2px -2px 10px rgba(50, 155, 255, 0.28);
+
+}
+
+
+/* BOTTOM RIGHT */
+
+.system-frame::after {
+
+    right: -1px;
+    bottom: -1px;
+
+    border-right:
+        2px solid var(--color-blue-light);
+
+    border-bottom:
+        2px solid var(--color-blue-light);
+
+    box-shadow:
+        2px 2px 10px rgba(50, 155, 255, 0.28);
+
+}
+
+
+/* =========================================================
+   03 — BUTTON SYSTEM
+   ========================================================= */
+
+.system-button {
+
+    position: relative;
+
+    min-height: 42px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    padding:
+        8px 18px;
+
+    color:
+        var(--color-text-light);
+
+    background:
+        linear-gradient(180deg,
+            rgba(8, 35, 75, 0.90),
+            rgba(2, 13, 31, 0.95));
+
+    border:
+        1px solid rgba(55, 145, 255, 0.48);
+
+    border-radius:
+        var(--radius-small);
+
+    font-family:
+        var(--font-ui);
+
+    font-size:
+        13px;
+
+    letter-spacing:
+        0.5px;
+
+    transition:
+        all var(--transition-normal);
+
+    overflow: hidden;
+}
+
+
+.system-button::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: -100%;
+
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            rgba(110, 200, 255, 0.14),
+            transparent);
+
+    transition:
+        left 0.45s ease;
+
+}
+
+
+.system-button:hover {
+
+    color:
+        #ffffff;
+
+    border-color:
+        rgba(90, 180, 255, 0.95);
+
+    background:
+        linear-gradient(180deg,
+            rgba(12, 65, 135, 0.95),
+            rgba(3, 23, 53, 0.98));
+
+    box-shadow:
+        0 0 12px rgba(20, 125, 255, 0.25),
+        inset 0 0 15px rgba(40, 150, 255, 0.08);
+
+}
+
+
+.system-button:hover::before {
+    left: 100%;
+}
+
+
+.system-button:active {
+
+    transform:
+        scale(0.97);
+
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+   ========================================================= */
+
+.system-button.primary {
+
+    color:
+        #ffffff;
+
+    border-color:
+        rgba(80, 170, 255, 0.85);
+
+    background:
+        linear-gradient(180deg,
+            #0966d8,
+            #043987);
+
+    box-shadow:
+        0 0 14px rgba(20, 120, 255, 0.28);
+
+}
+
+
+/* =========================================================
+   DANGER BUTTON
+   ========================================================= */
+
+.system-button.danger {
+
+    border-color:
+        rgba(80, 125, 255, 0.45);
+
+}
+
+
+/* =========================================================
+   04 — STAT CARD
+   ========================================================= */
+
+
+
+
+/* STAT LEFT GLOW */
+
+
+
+
+/* STAT BACKGROUND */
+
+
+
+
+
+
+
+/* =========================================================
+   STAT ICON
+   ========================================================= */
+
+
+
+
+
+
+
+/* =========================================================
+   STAT INFORMATION
+   ========================================================= */
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   STAT VALUE
+   ========================================================= */
+
+.stat-value {
+
+    position: relative;
+
+    z-index: 1;
+
+    color:
+        #ffffff;
+
+    font-family:
+        var(--font-main);
+
+    font-size:
+        25px;
+
+    text-shadow:
+        var(--text-glow);
+
+}
+
+
+/* =========================================================
+   05 — STAT PROGRESS
+   ========================================================= */
+
+
+
+
+
+
+
+/* =========================================================
+   06 — PLAYER LEVEL PANEL
+   ========================================================= */
+
+
+
+
+/* =========================================================
+   LEVEL LABEL
+   ========================================================= */
+
+
+
+
+/* =========================================================
+   LEVEL NUMBER
+   ========================================================= */
+
+
+
+
+/* =========================================================
+   07 — XP PANEL
+   ========================================================= */
+
+
+
+
+/* =========================================================
+   XP TEXT
+   ========================================================= */
+
+
+
+
+
+
+
+/* =========================================================
+   08 — XP BAR
+   ========================================================= */
+
+
+
+
+
+
+
+/* =========================================================
+   09 — RANK PANEL
+   ========================================================= */
+
+
+
+
+/* RANK LABEL */
+
+
+
+
+/* RANK IMAGE */
+
+
+
+
+/* RANK NAME */
+
+
+
+
+/* =========================================================
+   10 — QUEST CARD
+   ========================================================= */
+
+.quest-card {
+
+    position: relative;
+
+    min-height:
+        var(--quest-height);
+
+    display:
+        grid;
+
+    grid-template-columns:
+        46px minmax(0, 1fr) auto;
+
+    align-items:
+        center;
+
+    gap:
+        14px;
+
+    padding:
+        13px 16px;
+
+    background:
+        linear-gradient(90deg,
+            rgba(5, 22, 49, 0.94),
+            rgba(2, 8, 20, 0.96));
+
+    border:
+        1px solid rgba(45, 130, 255, 0.34);
+
+    border-radius:
+        5px;
+
+    overflow:
+        hidden;
+
+    transition:
+        border-color var(--transition-normal),
+        background var(--transition-normal),
+        transform var(--transition-normal);
+
+}
+
+
+.quest-card:hover {
+
+    border-color:
+        rgba(75, 165, 255, 0.70);
+
+    background:
+        linear-gradient(90deg,
+            rgba(8, 37, 80, 0.96),
+            rgba(3, 13, 30, 0.98));
+
+    transform:
+        translateX(2px);
+
+}
+
+
+/* =========================================================
+   QUEST ICON
+   ========================================================= */
+
+.quest-icon {
+
+    width:
+        40px;
+
+    height:
+        40px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border:
+        1px solid rgba(65, 155, 255, 0.40);
+
+    background:
+        rgba(4, 25, 58, 0.72);
+
+}
+
+
+.quest-icon img {
+
+    width:
+        28px;
+
+    height:
+        28px;
+
+    object-fit:
+        contain;
+
+}
+
+
+/* =========================================================
+   QUEST INFORMATION
+   ========================================================= */
+
+.quest-info {
+
+    min-width:
+        0;
+
+}
+
+
+.quest-title {
+
+    color:
+        var(--color-text);
+
+    font-family:
+        var(--font-main);
+
+    font-size:
+        16px;
+
+}
+
+
+.quest-description {
+
+    margin-top:
+        3px;
+
+    color:
+        var(--color-text-muted);
+
+    font-size:
+        11px;
+
+    white-space:
+        nowrap;
+
+    overflow:
+        hidden;
+
+    text-overflow:
+        ellipsis;
+
+}
+
+
+/* =========================================================
+   QUEST REWARD
+   ========================================================= */
+
+.quest-reward {
+
+    color:
+        var(--color-blue-bright);
+
+    font-size:
+        11px;
+
+    margin-top:
+        5px;
+
+}
+
+
+/* =========================================================
+   QUEST COMPLETE
+   ========================================================= */
+
+.quest-card.completed {
+
+    opacity:
+        0.58;
+
+    border-color:
+        rgba(70, 160, 255, 0.22);
+
+}
+
+
+.quest-card.completed .quest-title {
+
+    text-decoration:
+        line-through;
+
+}
+
+
+/* =========================================================
+   11 — REWARD CARD
+   ========================================================= */
+
+.reward-card {
+
+    position:
+        relative;
+
+    padding:
+        20px;
+
+    min-height:
+        145px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        space-between;
+
+    background:
+        linear-gradient(145deg,
+            rgba(8, 28, 60, 0.94),
+            rgba(2, 8, 20, 0.98));
+
+    border:
+        1px solid rgba(50, 140, 255, 0.40);
+
+    border-radius:
+        6px;
+
+    transition:
+        all var(--transition-normal);
+
+}
+
+
+.reward-card:hover {
+
+    border-color:
+        rgba(85, 180, 255, 0.82);
+
+    box-shadow:
+        0 0 20px rgba(20, 120, 255, 0.14);
+
+    transform:
+        translateY(-3px);
+
+}
+
+
+/* =========================================================
+   REWARD ICON
+   ========================================================= */
+
+.reward-icon {
+
+    width:
+        46px;
+
+    height:
+        46px;
+
+    object-fit:
+        contain;
+
+    filter:
+        drop-shadow(0 0 8px rgba(45, 155, 255, 0.70));
+
+}
+
+
+/* =========================================================
+   REWARD TITLE
+   ========================================================= */
+
+.reward-title {
+
+    color:
+        #ffffff;
+
+    font-family:
+        var(--font-main);
+
+    font-size:
+        18px;
+
+}
+
+
+/* =========================================================
+   REWARD DESCRIPTION
+   ========================================================= */
+
+.reward-description {
+
+    color:
+        var(--color-text-muted);
+
+    font-size:
+        11px;
+
+    line-height:
+        1.5;
+
+}
+
+
+/* =========================================================
+   12 — BADGE
+   ========================================================= */
+
+.system-badge {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-height:
+        24px;
+
+    padding:
+        3px 9px;
+
+    color:
+        var(--color-blue-bright);
+
+    background:
+        rgba(15, 80, 170, 0.20);
+
+    border:
+        1px solid rgba(60, 150, 255, 0.42);
+
+    border-radius:
+        3px;
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        1px;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+/* =========================================================
+   13 — COIN DISPLAY
+   ========================================================= */
+
+.coin-display {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
+
+    color:
+        #dcefff;
+
+    font-family:
+        var(--font-main);
+
+    font-size:
+        15px;
+
+}
+
+
+.coin-icon {
+
+    width:
+        24px;
+
+    height:
+        24px;
+
+    object-fit:
+        contain;
+
+    filter:
+        drop-shadow(0 0 7px rgba(75, 170, 255, 0.8));
+
+}
+
+
+/* =========================================================
+   14 — DIVIDER
+   ========================================================= */
+
+.system-divider {
+
+    width:
+        100%;
+
+    height:
+        1px;
+
+    margin:
+        14px 0;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            rgba(55, 145, 255, 0.50),
+            transparent);
+
+}
+
+
+/* =========================================================
+   15 — EMPTY STATE
+   ========================================================= */
+
+.empty-state {
+
+    min-height:
+        180px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        10px;
+
+    color:
+        var(--color-text-muted);
+
+    text-align:
+        center;
+
+    border:
+        1px dashed rgba(55, 145, 255, 0.25);
+
+    background:
+        rgba(2, 8, 20, 0.48);
+
+}
+
+
+/* =========================================================
+   16 — NOTIFICATION
+   ========================================================= */
+
+.system-notification {
+
+    position:
+        fixed;
+
+    top:
+        22px;
+
+    right:
+        22px;
+
+    z-index:
+        var(--z-notification);
+
+    min-width:
+        280px;
+
+    max-width:
+        380px;
+
+    padding:
+        15px 18px;
+
+    color:
+        var(--color-text);
+
+    background:
+        linear-gradient(135deg,
+            rgba(7, 35, 76, 0.97),
+            rgba(2, 9, 22, 0.98));
+
+    border:
+        1px solid rgba(65, 160, 255, 0.70);
+
+    box-shadow:
+        0 0 25px rgba(20, 120, 255, 0.20);
+
+    backdrop-filter:
+        blur(12px);
+
+}
+
+
+/* =========================================================
+   17 — RESPONSIVE COMPONENTS
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .quest-card {
+
+        grid-template-columns:
+            40px minmax(0, 1fr);
+
+    }
+
+    .quest-card .system-button {
+
+        grid-column:
+            2;
+
+        justify-self:
+            start;
+
+    }
+
+    
+
+    
+
+    .stat-value {
+
+        font-size:
+            21px;
+
+    }
+
+    
+
+    
+
+}
+
+
+/* =========================================================
+   18 — ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .system-button, .quest-card, .reward-card{
+
+        transition:
+            none;
+
+    }
+
+}
+
+/* =========================================================
+   SYSTEM — REFERENCE DESIGN REFINEMENTS
+   Add this block at the END of components.css
+   ========================================================= */
+
+
+/* =========================================================
+   01 — GLOBAL PAGE SURFACES
+   ========================================================= */
+
+#system-app .page {
+    color: var(--color-text);
+    min-width: 0;
+}
+
+#system-app .page-header {
+    position: relative;
+    border-bottom: 1px solid rgba(63, 150, 255, 0.42);
+    box-shadow: 0 5px 12px -12px #168cff;
+}
+
+#system-app .page-title {
+    text-shadow:
+        0 0 8px rgba(120, 205, 255, 0.7),
+        0 0 22px rgba(30, 130, 255, 0.38);
+}
+
+#system-app .page-subtitle {
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   02 — STATUS: PLAYER XP
+   ========================================================= */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   03 — STATUS: RANK
+   ========================================================= */
+
+
+
+
+
+
+
+
+/* =========================================================
+   04 — STATUS: STAT CARDS
+   ========================================================= */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   05 — SKILL TREE PANEL
+   ========================================================= */
+
+#system-app #skill-tree-panel {
+    min-width: 0;
+    padding: 18px;
+    background: rgba(2, 9, 23, 0.96);
+    border: 1px solid var(--color-border-bright);
+    box-shadow: var(--panel-glow);
+}
+
+#system-app #skill-tree-panel[hidden] {
+    display: none;
+}
+
+#system-app .skill-tree-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+#system-app .skill-tree-label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--color-blue-bright);
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+#system-app #skill-tree-title {
+    font-family: var(--font-main);
+    font-size: 22px;
+}
+
+#system-app #skill-tree-description {
+    margin-top: 6px;
+    color: var(--color-text-muted);
+    font-size: 12px;
+}
+
+#system-app .skill-tree-close {
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    color: var(--color-blue-bright);
+    border: var(--border-thin);
+    background: var(--color-panel);
+    font-size: 22px;
+}
+
+#system-app .skill-tree-content {
+    padding-top: 16px;
+    min-width: 0;
+}
+
+#system-app .skill-tree-empty {
+    min-height: 145px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+#system-app .skill-tree-empty-icon {
+    color: var(--color-blue-bright);
+    font-size: 34px;
+    text-shadow: var(--text-glow);
+}
+
+
+/* =========================================================
+   06 — QUEST PAGE
+   ========================================================= */
+
+#system-app #quest-page .quest-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 205px;
+    align-items: start;
+    gap: 16px;
+    min-width: 0;
+}
+
+#system-app #quest-page .quest-main-panel,
+#system-app #quest-page .quest-side-panel {
+    min-width: 0;
+}
+
+#system-app #quest-page .quest-main-panel {
+    padding: 14px;
+    background: rgba(1, 7, 19, 0.88);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--panel-glow);
+}
+
+#system-app #quest-page .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+#system-app #quest-page .panel-header h2 {
+    font-family: var(--font-main);
+    font-size: 19px;
+}
+
+#system-app #quest-page .panel-header>span {
+    color: var(--color-blue-bright);
+    font-size: 10px;
+}
+
+#system-app #quest-page .quest-list {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+#system-app #quest-page .quest-card {
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr) 68px 46px;
+    align-items: center;
+    gap: 10px;
+    min-height: 76px;
+    padding: 10px;
+    background:
+        linear-gradient(100deg,
+            rgba(5, 24, 53, 0.96),
+            rgba(1, 7, 18, 0.96));
+    border: 1px solid rgba(48, 130, 255, 0.38);
+    border-radius: 4px;
+}
+
+#system-app #quest-page .quest-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    color: var(--color-neon-light);
+    font-size: 19px;
+    border: 1px solid rgba(65, 155, 255, 0.45);
+    background: rgba(5, 27, 62, 0.9);
+    text-shadow: var(--text-glow);
+}
+
+#system-app #quest-page .quest-information {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+#system-app #quest-page .quest-information h3 {
+    font-family: var(--font-main);
+    font-size: 13px;
+    line-height: 1.35;
+}
+
+#system-app #quest-page .quest-information p {
+    margin-top: 3px;
+    color: var(--color-text-muted);
+    font-size: 10px;
+    line-height: 1.45;
+}
+
+#system-app #quest-page .quest-progress {
+    margin-top: 5px;
+    color: var(--color-blue-bright);
+    font-size: 10px;
+}
+
+#system-app #quest-page .quest-reward {
+    margin: 0;
+    color: var(--color-blue-bright);
+    font-size: 10px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+#system-app #quest-page .quest-go {
+    min-height: 29px;
+    padding: 5px 9px;
+    color: #ffffff;
+    font-size: 11px;
+    border: 1px solid rgba(72, 165, 255, 0.8);
+    background: linear-gradient(180deg, #094eac, #031832);
+    box-shadow: 0 0 8px rgba(20, 120, 255, 0.12);
+}
+
+#system-app #quest-page .quest-go:hover {
+    background: linear-gradient(180deg, #0b70ed, #06336d);
+    box-shadow: var(--glow-small);
+}
+
+#system-app #quest-page .quest-side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+#system-app #quest-page .side-quest-card {
+    position: relative;
+    display: flex;
+    min-height: 190px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px;
+    text-align: center;
+    color: var(--color-text);
+    background:
+        radial-gradient(circle at center,
+            rgba(12, 75, 170, 0.24),
+            transparent 72%),
+        rgba(1, 7, 19, 0.94);
+    border: 1px solid var(--color-border-bright);
+    box-shadow: var(--panel-glow);
+}
+
+#system-app #quest-page .side-quest-card h2 {
+    font-size: 18px;
+    text-shadow: var(--text-glow);
+}
+
+#system-app #quest-page .side-quest-card p {
+    color: var(--color-text-light);
+    font-size: 11px;
+}
+
+#system-app #quest-page .side-quest-card>span {
+    color: var(--color-blue-bright);
+    font-size: 24px;
+}
+
+#system-app #quest-page .side-quest-card:hover {
+    border-color: var(--color-neon-light);
+    box-shadow: var(--active-glow);
+}
+
+
+/* =========================================================
+   07 — REWARDS PAGE
+   ========================================================= */
+
+#system-app #rewards-page .rewards-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 205px;
+    align-items: start;
+    gap: 16px;
+}
+
+#system-app #rewards-page .rewards-main-panel {
+    min-width: 0;
+    padding: 14px;
+    background: rgba(1, 7, 19, 0.90);
+    border: 1px solid var(--color-border);
+}
+
+#system-app #rewards-page .reward-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 14px;
+}
+
+#system-app #rewards-page .reward-tab {
+    min-height: 32px;
+    padding: 7px 11px;
+    color: var(--color-text-muted);
+    font-size: 11px;
+    border: 1px solid var(--color-border);
+    background: rgba(3, 14, 32, 0.92);
+}
+
+#system-app #rewards-page .reward-tab.active,
+#system-app #rewards-page .reward-tab:hover {
+    color: #ffffff;
+    border-color: var(--color-blue-light);
+    background: rgba(7, 57, 126, 0.85);
+    box-shadow: var(--glow-small);
+}
+
+#system-app #rewards-page .daily-reward-panel {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    background: var(--panel-gradient);
+    border: 1px solid var(--color-border);
+}
+
+#system-app #rewards-page .daily-reward-panel .reward-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    margin: 0;
+    color: var(--color-blue-bright);
+    font-size: 32px;
+    filter: drop-shadow(0 0 8px rgba(45, 155, 255, 0.65));
+}
+
+#system-app #rewards-page .daily-reward-panel h2 {
+    font-size: 15px;
+}
+
+#system-app #rewards-page .daily-reward-panel p {
+    margin-top: 4px;
+    color: var(--color-text-muted);
+    font-size: 10px;
+}
+
+#system-app #rewards-page .reward-days {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 5px;
+    margin-top: 8px;
+}
+
+#system-app #rewards-page .reward-days span {
+    padding: 7px 2px;
+    color: var(--color-text-light);
+    font-size: 9px;
+    text-align: center;
+    background: rgba(3, 18, 43, 0.96);
+    border: 1px solid var(--color-border);
+}
+
+#system-app #rewards-page .sub-title {
+    margin: 17px 0 10px;
+    font-family: var(--font-main);
+    font-size: 17px;
+}
+
+#system-app #rewards-page .available-rewards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+#system-app #rewards-page .reward-card {
+    min-width: 0;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px;
+    background: var(--panel-gradient);
+    border: 1px solid var(--color-border);
+}
+
+#system-app #rewards-page .reward-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    color: var(--color-blue-bright);
+    font-size: 21px;
+    border: 1px solid var(--color-border);
+    background: rgba(3, 20, 48, 0.92);
+    text-shadow: var(--text-glow);
+}
+
+#system-app #rewards-page .reward-card h3 {
+    font-family: var(--font-main);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+#system-app #rewards-page .reward-card p {
+    flex: 1;
+    color: var(--color-text-muted);
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+#system-app #rewards-page .reward-card button {
+    width: 100%;
+    min-height: 28px;
+    padding: 5px;
+    color: var(--color-text-light);
+    font-size: 10px;
+    border: 1px solid var(--color-border-bright);
+    background: rgba(4, 34, 77, 0.88);
+}
+
+#system-app #rewards-page .reward-card button:disabled {
+    opacity: 0.5;
+}
+
+#system-app #rewards-page .selected-reward {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 14px;
+    text-align: center;
+    background:
+        radial-gradient(circle, rgba(7, 85, 195, 0.22), transparent 75%),
+        rgba(1, 7, 19, 0.95);
+    border: 1px solid var(--color-border-bright);
+}
+
+#system-app #rewards-page .selected-reward-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: 100px;
+    color: #76bdff;
+    font-size: 60px;
+    text-shadow:
+        0 0 12px #168cff,
+        0 0 35px rgba(22, 140, 255, 0.7);
+}
+
+#system-app #rewards-page .selected-reward h2 {
+    font-family: var(--font-main);
+    font-size: 17px;
+}
+
+#system-app #rewards-page .selected-reward p {
+    color: var(--color-text-muted);
+    font-size: 11px;
+}
+
+#system-app #rewards-page .reward-cost {
+    color: var(--color-blue-bright);
+    font-size: 12px;
+}
+
+#system-app #rewards-page .claim-button {
+    width: 100%;
+    min-height: 38px;
+    padding: 8px;
+    color: white;
+    font-size: 11px;
+    border: 1px solid var(--color-border-bright);
+    background: linear-gradient(180deg, #075ac8, #031c42);
+    box-shadow: var(--glow-small);
+}
+
+
+/* =========================================================
+   08 — AI PAGE
+   ========================================================= */
+
+#system-app #ai-page .ai-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 220px;
+    align-items: stretch;
+    gap: 14px;
+    min-width: 0;
+}
+
+#system-app #ai-page .ai-chat-panel,
+#system-app #ai-page .ai-tools-panel {
+    min-width: 0;
+    background: rgba(1, 7, 19, 0.94);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--panel-glow);
+}
+
+#system-app #ai-page .ai-chat-panel {
+    display: flex;
+    flex-direction: column;
+    min-height: 520px;
+    padding: 14px;
+}
+
+#system-app #ai-page .ai-chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+#system-app #ai-page .ai-chat-header h2 {
+    font-size: 15px;
+}
+
+#system-app #ai-page .ai-chat-header span {
+    color: #70c4ff;
+    font-size: 10px;
+}
+
+#system-app #ai-page .ai-model {
+    padding: 7px 10px;
+    color: var(--color-blue-bright);
+    font-size: 10px;
+    border: 1px solid var(--color-border);
+    background: rgba(3, 18, 43, 0.9);
+}
+
+#system-app #ai-page .chat-messages {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 14px;
+    min-height: 220px;
+    max-height: 420px;
+    overflow-y: auto;
+    padding: 16px 2px;
+}
+
+#system-app #ai-page .message {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    max-width: 100%;
+    min-width: 0;
+}
+
+#system-app #ai-page .message-icon {
+    flex: 0 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    color: var(--color-blue-bright);
+    font-size: 10px;
+    border: 1px solid var(--color-border);
+    background: #041a3b;
+}
+
+#system-app #ai-page .message-content {
+    min-width: 0;
+    max-width: 90%;
+    padding: 11px 13px;
+    color: var(--color-text-light);
+    font-size: 12px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+    background: rgba(4, 20, 44, 0.92);
+    border: 1px solid rgba(56, 132, 245, 0.4);
+}
+
+#system-app #ai-page .user-message {
+    justify-content: flex-end;
+}
+
+#system-app #ai-page .user-message .message-content {
+    color: #ffffff;
+    background: rgba(5, 48, 108, 0.92);
+    border-color: rgba(77, 163, 255, 0.65);
+}
+
+#system-app #ai-page .ai-quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin: 8px 0 12px;
+}
+
+#system-app #ai-page .ai-quick-actions button {
+    padding: 7px 10px;
+    color: var(--color-text-light);
+    font-size: 10px;
+    border: 1px solid var(--color-border);
+    background: rgba(3, 18, 43, 0.9);
+}
+
+#system-app #ai-page .ai-quick-actions button:hover {
+    border-color: var(--color-border-bright);
+    color: white;
+}
+
+#system-app #ai-page .chat-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border: 1px solid var(--color-border-bright);
+    background: rgba(0, 4, 13, 0.96);
+}
+
+#system-app #ai-page .chat-input input {
+    flex: 1;
+    width: 0;
+    min-width: 0;
+    color: var(--color-text);
+    font-size: 12px;
+    background: transparent;
+}
+
+#system-app #ai-page .chat-input input::placeholder {
+    color: var(--color-text-muted);
+}
+
+#system-app #ai-page .chat-input button {
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    color: white;
+    font-size: 19px;
+    background: #075ac8;
+    border: 1px solid var(--color-border-bright);
+}
+
+#system-app #ai-page .ai-tools-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    padding: 14px;
+}
+
+#system-app #ai-page .ai-tools-panel>h2 {
+    margin-bottom: 5px;
+    font-size: 17px;
+}
+
+#system-app #ai-page .ai-tools-panel>button {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    min-height: 42px;
+    padding: 9px;
+    text-align: left;
+    color: var(--color-text-light);
+    font-size: 11px;
+    background: rgba(3, 18, 43, 0.88);
+    border: 1px solid var(--color-border);
+}
+
+#system-app #ai-page .ai-tools-panel>button span {
+    color: var(--color-blue-bright);
+    font-size: 17px;
+}
+
+#system-app #ai-page .ai-tools-panel>button:hover {
+    border-color: var(--color-border-bright);
+    background: rgba(6, 43, 94, 0.92);
+}
+
+#system-app #ai-page .ai-stats {
+    margin-top: 12px;
+    padding-top: 13px;
+    border-top: 1px solid var(--color-border);
+}
+
+#system-app #ai-page .ai-stats h3 {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+#system-app #ai-page .ai-stats p {
+    margin-top: 7px;
+    color: var(--color-text-muted);
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   09 — SETTINGS PAGE
+   ========================================================= */
+
+#system-app #settings-page .settings-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+}
+
+#system-app #settings-page .settings-row {
+    display: grid;
+    grid-template-columns: 32px 48px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 13px;
+    min-width: 0;
+    padding: 14px;
+    background: var(--panel-gradient);
+    border: 1px solid var(--color-border);
+    box-shadow: inset 0 0 14px rgba(0, 80, 180, 0.035);
+}
+
+#system-app #settings-page .settings-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    color: var(--color-blue-bright);
+    font-size: 11px;
+    border: 1px solid var(--color-border-bright);
+    background: rgba(3, 22, 53, 0.9);
+}
+
+#system-app #settings-page .settings-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    color: var(--color-blue-bright);
+    font-size: 28px;
+    border: 1px solid var(--color-border);
+    background: rgba(3, 18, 43, 0.9);
+    text-shadow: var(--text-glow);
+}
+
+#system-app #settings-page .settings-information {
+    min-width: 0;
+}
+
+#system-app #settings-page .settings-information h2 {
+    font-family: var(--font-main);
+    font-size: 15px;
+}
+
+#system-app #settings-page .settings-information p {
+    margin-top: 4px;
+    color: var(--color-text-muted);
+    font-size: 11px;
+    line-height: 1.55;
+}
+
+#system-app #settings-page .settings-row>button {
+    min-height: 34px;
+    padding: 8px 12px;
+    white-space: nowrap;
+    color: var(--color-text-light);
+    font-size: 11px;
+    border: 1px solid var(--color-border-bright);
+    background: rgba(3, 24, 57, 0.92);
+}
+
+#system-app #settings-page .settings-row>button:hover {
+    color: white;
+    background: rgba(7, 65, 140, 0.9);
+    box-shadow: var(--glow-small);
+}
+
+
+/* =========================================================
+   10 — RESPONSIVE REFINEMENTS
+   ========================================================= */
+
+@media (max-width: 1000px) {
+    #system-app #rewards-page .available-rewards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #system-app #ai-page .ai-layout {
+        grid-template-columns: minmax(0, 1fr) 190px;
+    }
+
+    #system-app #quest-page .quest-layout,
+    #system-app #rewards-page .rewards-layout {
+        grid-template-columns: minmax(0, 1fr) 185px;
+    }
+}
+
+@media (max-width: 760px) {
+
+    #system-app #quest-page .quest-layout,
+    #system-app #rewards-page .rewards-layout,
+    #system-app #ai-page .ai-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    #system-app #quest-page .quest-side-panel {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #system-app #quest-page .side-quest-card {
+        min-height: 145px;
+    }
+
+    #system-app #rewards-page .selected-reward {
+        max-width: none;
+    }
+
+    #system-app #ai-page .ai-chat-panel {
+        min-height: 420px;
+    }
+
+    #system-app #ai-page .ai-tools-panel {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+    }
+
+    #system-app #ai-page .ai-tools-panel>h2,
+    #system-app #ai-page .ai-stats {
+        grid-column: 1 / -1;
+    }
+
+    #system-app #settings-page .settings-row {
+        grid-template-columns: 30px 42px minmax(0, 1fr);
+    }
+
+    #system-app #settings-page .settings-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+    }
+
+    #system-app #settings-page .settings-row>button {
+        grid-column: 3;
+        justify-self: start;
+    }
+}
+
+@media (max-width: 500px) {
+
+    #system-app #rewards-page .available-rewards{
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    #system-app #quest-page .quest-card {
+        grid-template-columns: 34px minmax(0, 1fr);
+    }
+
+    #system-app #quest-page .quest-reward {
+        grid-column: 2;
+        text-align: left;
+    }
+
+    #system-app #quest-page .quest-go {
+        grid-column: 2;
+        justify-self: start;
+        min-width: 60px;
+    }
+
+    #system-app #quest-page .quest-side-panel {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    #system-app #rewards-page .reward-days span {
+        font-size: 8px;
+        overflow-wrap: anywhere;
+    }
+
+    #system-app #ai-page .ai-tools-panel {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    #system-app #ai-page .ai-tools-panel>h2,
+    #system-app #ai-page .ai-stats {
+        grid-column: 1;
+    }
+
+    #system-app #settings-page .settings-row {
+        grid-template-columns: 28px minmax(0, 1fr);
+        gap: 10px;
+    }
+
+    #system-app #settings-page .settings-icon {
+        display: none;
+    }
+
+    #system-app #settings-page .settings-information,
+    #system-app #settings-page .settings-row>button {
+        grid-column: 2;
+    }
+}
+
+/* Clear startup diagnostics: never leave a partially loaded UI unexplained. */
+.system-boot-error {
+    position: fixed;
+    z-index: 100000;
+    top: max(12px, env(safe-area-inset-top, 12px));
+    left: 12px;
+    right: 12px;
+    max-width: 720px;
+    margin-inline: auto;
+    padding: 16px 18px;
+    border: 1px solid rgba(255, 115, 125, .7);
+    border-radius: 14px;
+    background: #230d17;
+    color: #fff3f4;
+    box-shadow: 0 14px 44px rgba(0, 0, 0, .42);
+    font: 500 14px/1.55 system-ui, sans-serif;
+}
+.system-boot-error strong { display: block; margin-bottom: 5px; font-size: 15px; }
+.system-boot-error p { margin: 0; color: #ffd8dc; overflow-wrap: anywhere; }

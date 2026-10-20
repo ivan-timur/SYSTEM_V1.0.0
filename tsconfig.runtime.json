@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "none",
+    "lib": ["ES2022", "DOM"],
+    "strict": true,
+    "noEmitOnError": true,
+    "outFile": "js/generated/progression-math.js",
+    "skipLibCheck": true
+  },
+  "files": ["src/core/progression-math-runtime.ts"]
+}

@@ -1,0 +1,36 @@
+/* SYSTEM — player header and mobile layout reconstruction */
+
+
+/* Three coordinated panels at the very top of Status */
+
+
+
+
+
+
+
+
+
+
+/* Status top row is a balanced pair: Level + Rank; XP spans beneath them. */
+
+/* Prevent language selector from covering page content. */
+#system-app .language-switcher, #system-app .language-toggle, #system-app [data-language-switcher] { max-width:calc(100vw - 24px); }
+/* Rewards: grid children may shrink, but text itself must keep usable width. */
+#system-app #rewards-page .daily-reward-panel { display:grid; grid-template-columns:minmax(0,1fr); align-items:start; gap:12px; }
+#system-app #rewards-page .daily-reward-panel > * { min-width:0; max-width:100%; }
+#system-app #rewards-page .daily-reward-panel h2 { font-size:clamp(18px,4.6vw,23px); line-height:1.3; width:auto; overflow-wrap:normal; word-break:normal; }
+#system-app #rewards-page .daily-reward-panel p { font-size:clamp(14px,3.7vw,17px); line-height:1.55; width:auto; overflow-wrap:break-word; word-break:normal; }
+#system-app #rewards-page .reward-days { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:7px; }
+#system-app #rewards-page .reward-days > * { min-width:0; white-space:normal; overflow-wrap:normal; word-break:normal; }
+@media (min-width:700px) {
+ 
+ 
+ 
+}
+@media (max-width:420px) {
+ 
+ 
+ 
+ #system-app #rewards-page .reward-days { grid-template-columns:repeat(4,minmax(0,1fr)); }
+}

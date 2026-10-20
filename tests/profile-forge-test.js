@@ -1,0 +1,24 @@
+'use strict';
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const root = path.resolve(__dirname, '..');
+const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const js = fs.readFileSync(path.join(root, 'js/features/personal-profile-settings.js'), 'utf8');
+const css = fs.readFileSync(path.join(root, 'css/features/personal-profile-settings.css'), 'utf8');
+const version = fs.readFileSync(path.join(root, 'VERSION'), 'utf8').trim();
+const checks = [];
+function check(condition, message) { assert.ok(condition, message); checks.push(message); }
+check(/^\d+\.\d+\.\d+$/.test(version), 'release version uses semantic versioning');
+check(html.includes('id="personal-profile-form"'), 'profile form exists');
+for (const field of ['northStar','currentFocus','identity','interests','goals','strengths','learning','lifestyle','motivation','visual','patterns','rules','evidence','boundaries','autonomy','responseStyle']) check(html.includes(`name="${field}"`), `profile field ${field} exists`);
+for (const id of ['profile-completion','profile-filled-count','profile-last-updated']) check(html.includes(`id="${id}"`), `${id} metric exists`);
+check(js.includes('setTimeout(() => persist(true), 650)'), 'debounced autosave exists');
+check(js.includes('const SCHEMA = 3'), 'schema versioning exists');
+check(js.includes('system-personal-profile.json'), 'neutral export filename exists');
+check(js.includes('window.confirm('), 'profile deletion requires confirmation');
+check(js.includes('localStorage.setItem(KEY'), 'profile remains local-first');
+check(html.includes('Profile sharing is off'), 'privacy default is disclosed');
+check(css.includes('@media(max-width:390px)'), 'narrow-mobile layout exists');
+check(css.includes(':focus-visible'), 'keyboard focus styling exists');
+console.log(`SYSTEM Profile Forge tests passed: ${checks.length} checks.`);

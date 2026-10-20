@@ -1,0 +1,54 @@
+name: SYSTEM quality gate
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: system-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install pinned JavaScript test dependency
+        run: npm install --no-package-lock --no-audit --no-fund
+
+      - name: Run build and static tests
+        run: npm test
+
+      - name: Run project health checks
+        run: npm run doctor
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run real-browser IndexedDB transaction tests
+        run: npm run test:browser-idb
+
+      - name: Run real-browser tests
+        run: npm run test:e2e
+
+      - name: Preserve Playwright diagnostics
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: system-playwright-diagnostics
+          path: |
+            test-results/
+            playwright-report/
+          if-no-files-found: ignore
+          retention-days: 7

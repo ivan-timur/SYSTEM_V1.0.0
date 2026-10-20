@@ -1,0 +1,1487 @@
+/* =========================================================
+   SYSTEM — AI PAGE
+   Cosmic Blue / Neon Intelligence Interface
+   ========================================================= */
+
+
+/* =========================================================
+   01 — PAGE FOUNDATION
+   ========================================================= */
+
+#system-app #ai-page {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    color: var(--color-text);
+}
+
+#system-app #ai-page.active {
+    display: block;
+}
+
+
+/* =========================================================
+   02 — PAGE HEADER
+   ========================================================= */
+
+#system-app #ai-page>.page-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 68px;
+    margin-bottom: 18px;
+    padding: 4px 0 14px;
+
+    text-align: center;
+
+    border-bottom:
+        1px solid rgba(60, 145, 255, 0.4);
+}
+
+#system-app #ai-page>.page-header .page-title {
+    margin: 0;
+
+    color: #eff7ff;
+    font-family: var(--font-main);
+    font-size: clamp(30px, 3vw, 42px);
+    font-weight: 600;
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 0 8px rgba(150, 215, 255, 0.85),
+        0 0 23px rgba(25, 125, 255, 0.6);
+}
+
+#system-app #ai-page>.page-header .page-subtitle {
+    margin-top: 5px;
+
+    color: #9ab9df;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   03 — MAIN AI LAYOUT
+   ========================================================= */
+
+#system-app #ai-page .ai-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr) 220px;
+
+    align-items: stretch;
+    gap: 14px;
+
+    width: 100%;
+    min-width: 0;
+}
+
+
+/* =========================================================
+   04 — CHAT PANEL
+   ========================================================= */
+
+#system-app #ai-page .ai-chat-panel {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 560px;
+
+    padding: 15px;
+
+    background:
+        linear-gradient(145deg,
+            rgba(3, 15, 36, 0.96),
+            rgba(0, 4, 15, 0.98));
+
+    border:
+        1px solid rgba(63, 150, 255, 0.6);
+
+    box-shadow:
+        inset 0 0 25px rgba(0, 80, 200, 0.06),
+        0 0 17px rgba(0, 80, 255, 0.08);
+}
+
+#system-app #ai-page .ai-chat-panel::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 8%;
+
+    width: 84%;
+    height: 1px;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            rgba(130, 207, 255, 0.85),
+            transparent);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   05 — CHAT HEADER
+   ========================================================= */
+
+#system-app #ai-page .ai-chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+    min-width: 0;
+
+    padding-bottom: 13px;
+    border-bottom:
+        1px solid rgba(58, 135, 230, 0.34);
+}
+
+#system-app #ai-page .ai-chat-header h2 {
+    margin: 0;
+
+    color: #edf6ff;
+    font-family: var(--font-main);
+    font-size: 17px;
+    font-weight: 600;
+
+    text-shadow:
+        0 0 8px rgba(75, 155, 255, 0.4);
+}
+
+#system-app #ai-page .ai-chat-header>div:first-child>span {
+    display: inline-block;
+    margin-top: 5px;
+
+    color: #6fc5ff;
+    font-size: 10px;
+}
+
+#system-app #ai-page .ai-model {
+    max-width: 55%;
+    padding: 7px 10px;
+
+    color: #9acbff;
+    font-size: 10px;
+    text-align: center;
+
+    background: rgba(3, 21, 49, 0.92);
+    border: 1px solid rgba(58, 140, 240, 0.45);
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   06 — CHAT MESSAGES AREA
+   ========================================================= */
+
+#system-app #ai-page .chat-messages {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 16px;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 280px;
+    max-height: 440px;
+
+    padding: 20px 3px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    scrollbar-width: thin;
+    scrollbar-color: #1459b8 #020611;
+}
+
+#system-app #ai-page .chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+#system-app #ai-page .chat-messages::-webkit-scrollbar-track {
+    background: #020611;
+}
+
+#system-app #ai-page .chat-messages::-webkit-scrollbar-thumb {
+    background: #1459b8;
+    border-radius: 4px;
+}
+
+
+/* =========================================================
+   07 — MESSAGE ROW
+   ========================================================= */
+
+#system-app #ai-page .message {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 10px;
+
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+}
+
+#system-app #ai-page .ai-message {
+    justify-content: flex-start;
+}
+
+#system-app #ai-page .user-message {
+    justify-content: flex-end;
+}
+
+
+/* =========================================================
+   08 — AI AVATAR
+   ========================================================= */
+
+#system-app #ai-page .message-icon {
+    flex: 0 0 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    color: #a8d9ff;
+    font-size: 11px;
+    font-weight: 600;
+
+    background:
+        linear-gradient(145deg,
+            rgba(9, 60, 132, 0.95),
+            rgba(2, 15, 37, 0.98));
+
+    border:
+        1px solid rgba(83, 170, 255, 0.7);
+
+    box-shadow:
+        inset 0 0 12px rgba(25, 120, 255, 0.1),
+        0 0 10px rgba(20, 110, 255, 0.1);
+
+    text-shadow:
+        0 0 8px rgba(65, 160, 255, 0.7);
+}
+
+
+/* =========================================================
+   09 — MESSAGE BUBBLES
+   ========================================================= */
+
+#system-app #ai-page .message-content {
+    width: fit-content;
+    max-width: min(88%, 680px);
+    min-width: 0;
+
+    padding: 12px 14px;
+
+    color: #d8e9ff;
+    font-size: 12px;
+    line-height: 1.8;
+
+    overflow-wrap: anywhere;
+    white-space: normal;
+
+    background:
+        linear-gradient(135deg,
+            rgba(5, 25, 57, 0.96),
+            rgba(2, 10, 25, 0.98));
+
+    border:
+        1px solid rgba(49, 125, 230, 0.43);
+
+    box-shadow:
+        inset 0 0 12px rgba(0, 75, 180, 0.035);
+}
+
+#system-app #ai-page .user-message .message-content {
+    color: #f0f7ff;
+
+    background:
+        linear-gradient(135deg,
+            rgba(7, 58, 127, 0.96),
+            rgba(3, 23, 57, 0.98));
+
+    border-color:
+        rgba(82, 166, 255, 0.68);
+
+    box-shadow:
+        inset 0 0 14px rgba(20, 100, 255, 0.06),
+        0 0 9px rgba(20, 100, 255, 0.06);
+}
+
+
+/* =========================================================
+   10 — QUICK ACTIONS
+   ========================================================= */
+
+#system-app #ai-page .ai-quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    gap: 8px;
+
+    width: 100%;
+    min-width: 0;
+
+    margin: 9px 0 13px;
+}
+
+#system-app #ai-page .ai-quick-actions button {
+    min-height: 32px;
+    padding: 7px 10px;
+
+    color: #a9ccef;
+    font-size: 10px;
+    line-height: 1.4;
+
+    background: rgba(3, 17, 40, 0.94);
+    border: 1px solid rgba(54, 129, 224, 0.43);
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#system-app #ai-page .ai-quick-actions button:hover {
+    color: #ffffff;
+
+    background: rgba(6, 47, 105, 0.97);
+    border-color: rgba(102, 182, 255, 0.82);
+
+    box-shadow:
+        0 0 10px rgba(20, 105, 255, 0.12);
+}
+
+
+/* =========================================================
+   11 — CHAT INPUT FORM
+   ========================================================= */
+
+#system-app #ai-page .chat-input {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    width: 100%;
+    min-width: 0;
+
+    margin-top: auto;
+    padding: 8px;
+
+    background: rgba(0, 4, 14, 0.97);
+    border: 1px solid rgba(75, 158, 255, 0.63);
+
+    box-shadow:
+        inset 0 0 14px rgba(0, 70, 170, 0.05),
+        0 0 9px rgba(0, 75, 255, 0.06);
+}
+
+#system-app #ai-page .chat-input input {
+    flex: 1 1 auto;
+
+    width: 0;
+    min-width: 0;
+    min-height: 36px;
+
+    padding: 8px 10px;
+
+    color: #e7f3ff;
+    font-size: 12px;
+
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+#system-app #ai-page .chat-input input::placeholder {
+    color: #718cad;
+    opacity: 1;
+}
+
+#system-app #ai-page .chat-input input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+#system-app #ai-page .chat-input button {
+    flex: 0 0 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    color: #ffffff;
+    font-size: 20px;
+
+    background:
+        linear-gradient(180deg,
+            #0b71e5,
+            #053b85);
+
+    border: 1px solid rgba(106, 190, 255, 0.82);
+
+    box-shadow:
+        0 0 10px rgba(20, 105, 255, 0.16);
+
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#system-app #ai-page .chat-input button:hover {
+    background:
+        linear-gradient(180deg,
+            #1788ff,
+            #0752b0);
+
+    box-shadow:
+        0 0 15px rgba(20, 120, 255, 0.3);
+}
+
+
+/* =========================================================
+   12 — AI TOOLS PANEL
+   ========================================================= */
+
+#system-app #ai-page .ai-tools-panel {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 9px;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 100%;
+
+    padding: 14px;
+
+    background:
+        linear-gradient(155deg,
+            rgba(3, 16, 39, 0.97),
+            rgba(0, 4, 16, 0.98));
+
+    border:
+        1px solid rgba(61, 147, 255, 0.59);
+
+    box-shadow:
+        inset 0 0 22px rgba(0, 80, 200, 0.06),
+        0 0 14px rgba(0, 80, 255, 0.07);
+}
+
+#system-app #ai-page .ai-tools-panel>h2 {
+    margin: 0 0 7px;
+    padding-bottom: 11px;
+
+    color: #edf6ff;
+    font-family: var(--font-main);
+    font-size: 18px;
+    font-weight: 600;
+
+    border-bottom:
+        1px solid rgba(58, 135, 230, 0.33);
+
+    text-shadow:
+        0 0 8px rgba(70, 150, 255, 0.4);
+}
+
+
+/* =========================================================
+   13 — TOOL BUTTONS
+   ========================================================= */
+
+#system-app #ai-page .ai-tools-panel>button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 10px;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 43px;
+
+    padding: 9px 10px;
+
+    color: #b6cfea;
+    font-size: 11px;
+    text-align: left;
+
+    background:
+        linear-gradient(100deg,
+            rgba(5, 27, 60, 0.94),
+            rgba(2, 10, 26, 0.97));
+
+    border:
+        1px solid rgba(49, 122, 219, 0.43);
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#system-app #ai-page .ai-tools-panel>button span {
+    flex: 0 0 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 25px;
+    height: 25px;
+
+    color: #83c6ff;
+    font-size: 17px;
+
+    background: rgba(5, 32, 75, 0.9);
+    border: 1px solid rgba(61, 143, 239, 0.34);
+
+    text-shadow:
+        0 0 8px rgba(40, 145, 255, 0.65);
+}
+
+#system-app #ai-page .ai-tools-panel>button:hover {
+    color: #ffffff;
+
+    background:
+        linear-gradient(100deg,
+            rgba(8, 48, 103, 0.97),
+            rgba(2, 15, 37, 0.98));
+
+    border-color: rgba(104, 183, 255, 0.8);
+
+    box-shadow:
+        0 0 11px rgba(20, 105, 255, 0.1);
+}
+
+
+/* =========================================================
+   14 — AI STATISTICS
+   ========================================================= */
+
+#system-app #ai-page .ai-stats {
+    margin-top: 12px;
+    padding-top: 13px;
+
+    border-top:
+        1px solid rgba(56, 132, 225, 0.32);
+}
+
+#system-app #ai-page .ai-stats h3 {
+    margin: 0 0 10px;
+
+    color: #e4f0ff;
+    font-family: var(--font-main);
+    font-size: 14px;
+}
+
+#system-app #ai-page .ai-stats p {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    margin-top: 8px;
+
+    color: #91aacb;
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   15 — RESPONSIVE: TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    #system-app #ai-page .ai-layout {
+        grid-template-columns:
+            minmax(0, 1fr) 195px;
+
+        gap: 11px;
+    }
+
+    #system-app #ai-page .ai-chat-panel {
+        padding: 12px;
+    }
+
+    #system-app #ai-page .ai-tools-panel {
+        padding: 11px;
+    }
+
+    #system-app #ai-page .message-content {
+        font-size: 11px;
+    }
+}
+
+
+/* =========================================================
+   16 — RESPONSIVE: SMALL TABLET
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    #system-app #ai-page .ai-layout {
+        grid-template-columns:
+            minmax(0, 1fr);
+    }
+
+    #system-app #ai-page .ai-chat-panel {
+        min-height: 460px;
+    }
+
+    #system-app #ai-page .ai-tools-panel {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        align-items: start;
+        gap: 8px;
+    }
+
+    #system-app #ai-page .ai-tools-panel>h2,
+    #system-app #ai-page .ai-stats {
+        grid-column: 1 / -1;
+    }
+
+    #system-app #ai-page .ai-tools-panel>button {
+        min-height: 44px;
+    }
+
+    #system-app #ai-page .chat-messages {
+        max-height: 380px;
+    }
+}
+
+
+/* =========================================================
+   17 — RESPONSIVE: MOBILE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    #system-app #ai-page>.page-header {
+        min-height: 60px;
+    }
+
+    #system-app #ai-page .ai-chat-panel {
+        min-height: 420px;
+        padding: 10px;
+    }
+
+    #system-app #ai-page .ai-chat-header {
+        gap: 8px;
+    }
+
+    #system-app #ai-page .ai-chat-header h2 {
+        font-size: 14px;
+    }
+
+    #system-app #ai-page .ai-model {
+        max-width: 48%;
+        padding: 6px;
+        font-size: 9px;
+    }
+
+    #system-app #ai-page .chat-messages {
+        gap: 12px;
+        min-height: 240px;
+        max-height: 350px;
+        padding: 14px 1px;
+    }
+
+    #system-app #ai-page .message {
+        gap: 7px;
+    }
+
+    #system-app #ai-page .message-icon {
+        flex-basis: 29px;
+        width: 29px;
+        height: 29px;
+    }
+
+    #system-app #ai-page .message-content {
+        max-width: 92%;
+        padding: 10px;
+        font-size: 11px;
+    }
+
+    #system-app #ai-page .ai-quick-actions {
+        gap: 6px;
+    }
+
+    #system-app #ai-page .ai-quick-actions button {
+        flex: 1 1 auto;
+        min-height: 34px;
+        padding: 7px;
+    }
+
+    #system-app #ai-page .chat-input {
+        padding: 6px;
+    }
+
+    #system-app #ai-page .chat-input input {
+        font-size: 11px;
+    }
+
+    #system-app #ai-page .ai-tools-panel {
+        grid-template-columns:
+            minmax(0, 1fr);
+    }
+
+    #system-app #ai-page .ai-tools-panel>h2,
+    #system-app #ai-page .ai-stats {
+        grid-column: 1;
+    }
+}
+
+
+/* =========================================================
+   18 — REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    #system-app #ai-page .ai-tools-panel>button,
+    #system-app #ai-page .ai-quick-actions button,
+    #system-app #ai-page .chat-input button {
+        transition: none;
+    }
+}
+/* =========================================================
+   SYSTEM — AI WORKSPACE / BROWSER / AI QUEST
+   ========================================================= */
+
+#system-app #ai-page .ai-mode-panel[hidden] {
+    display: none;
+}
+
+#system-app #ai-page .ai-workspace-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+    margin: 0 0 14px;
+    padding: 6px;
+    background: rgba(1, 7, 20, 0.92);
+    border: 1px solid rgba(55, 132, 231, 0.35);
+    box-shadow: inset 0 0 18px rgba(0, 70, 170, 0.06);
+}
+
+#system-app #ai-page .ai-workspace-tab {
+    flex: 1 1 120px;
+    min-height: 40px;
+    padding: 9px 13px;
+    color: #91b4dc;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: transparent;
+    border: 1px solid transparent;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#system-app #ai-page .ai-workspace-tab:hover,
+#system-app #ai-page .ai-workspace-tab.is-active {
+    color: #f3f9ff;
+    background: linear-gradient(135deg, rgba(10, 65, 145, 0.72), rgba(3, 20, 49, 0.95));
+    border-color: rgba(91, 172, 255, 0.78);
+    box-shadow: inset 0 0 16px rgba(20, 105, 255, 0.1), 0 0 12px rgba(20, 105, 255, 0.12);
+    text-shadow: 0 0 9px rgba(107, 190, 255, 0.48);
+}
+
+#system-app #ai-page .ai-provider-panel,
+#system-app #ai-page .ai-quest-panel {
+    width: 100%;
+    min-width: 0;
+    padding: clamp(12px, 2vw, 20px);
+    color: #d8e9ff;
+    background: linear-gradient(145deg, rgba(3, 15, 36, 0.97), rgba(0, 4, 15, 0.99));
+    border: 1px solid rgba(63, 150, 255, 0.58);
+    box-shadow: inset 0 0 25px rgba(0, 80, 200, 0.06), 0 0 17px rgba(0, 80, 255, 0.08);
+}
+
+#system-app #ai-page .ai-provider-panel .ai-provider-status {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0 0 14px;
+    padding: 12px;
+    border: 1px solid rgba(76, 151, 255, .25);
+    border-radius: 10px;
+    color: #a9c9f4;
+    overflow-wrap: anywhere;
+}
+
+#system-app #ai-page .ai-provider-panel .groq-connect-panel {
+    margin: 0;
+}
+
+#system-app #ai-page .ai-subpanel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0 0 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(63, 145, 255, 0.31);
+}
+
+#system-app #ai-page .ai-section-kicker {
+    display: block;
+    margin-bottom: 6px;
+    color: #75baff;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+#system-app #ai-page .ai-subpanel-heading h2 {
+    margin: 0;
+    color: #eff7ff;
+    font-family: var(--font-main);
+    font-size: clamp(21px, 2.4vw, 30px);
+    letter-spacing: 1px;
+    text-shadow: 0 0 12px rgba(35, 130, 255, 0.4);
+}
+
+#system-app #ai-page .ai-subpanel-heading p {
+    max-width: 730px;
+    margin-top: 7px;
+    color: #8faed2;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+#system-app #ai-page .ai-panel-symbol {
+    flex: 0 0 48px;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    color: #c7e6ff;
+    font-size: 25px;
+    background: linear-gradient(145deg, rgba(14, 72, 151, 0.7), rgba(2, 14, 34, 0.95));
+    border: 1px solid rgba(107, 187, 255, 0.68);
+    box-shadow: inset 0 0 14px rgba(20, 115, 255, 0.13), 0 0 13px rgba(20, 115, 255, 0.1);
+}
+
+/* Browser toolbar and viewport */
+#system-app #ai-page .ai-browser-toolbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
+    width: 100%;
+    min-width: 0;
+    padding: 9px;
+    background: rgba(0, 4, 14, 0.93);
+    border: 1px solid rgba(58, 136, 232, 0.42);
+}
+
+#system-app #ai-page .ai-browser-control,
+#system-app #ai-page .ai-primary-button,
+#system-app #ai-page .ai-secondary-button,
+#system-app #ai-page .ai-quiet-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 38px;
+    padding: 9px 13px;
+    color: #d6eaff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.35px;
+    border: 1px solid rgba(75, 156, 255, 0.55);
+    transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+#system-app #ai-page .ai-browser-control {
+    min-width: 36px;
+    padding: 7px;
+    font-size: 16px;
+    background: rgba(6, 25, 55, 0.94);
+}
+
+#system-app #ai-page .ai-primary-button {
+    color: #fff;
+    background: linear-gradient(135deg, #1264be, #07346d);
+    border-color: rgba(123, 196, 255, 0.83);
+    box-shadow: inset 0 0 12px rgba(100, 190, 255, 0.12), 0 0 10px rgba(20, 105, 255, 0.08);
+}
+
+#system-app #ai-page .ai-secondary-button {
+    background: linear-gradient(135deg, rgba(9, 43, 87, 0.92), rgba(2, 13, 31, 0.98));
+}
+
+#system-app #ai-page .ai-quiet-button {
+    color: #8da8c9;
+    background: rgba(1, 8, 21, 0.85);
+    border-color: rgba(65, 105, 157, 0.4);
+}
+
+#system-app #ai-page .ai-browser-control:hover:not(:disabled),
+#system-app #ai-page .ai-primary-button:hover:not(:disabled),
+#system-app #ai-page .ai-secondary-button:hover:not(:disabled),
+#system-app #ai-page .ai-quiet-button:hover:not(:disabled) {
+    border-color: #b3dfff;
+    box-shadow: 0 0 13px rgba(35, 125, 255, 0.18);
+}
+
+#system-app #ai-page .ai-browser-control:disabled,
+#system-app #ai-page .ai-primary-button:disabled,
+#system-app #ai-page .ai-secondary-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+#system-app #ai-page .ai-browser-address-wrap {
+    display: flex;
+    align-items: center;
+    flex: 1 1 240px;
+    gap: 8px;
+    min-width: 130px;
+    min-height: 38px;
+    padding: 0 11px;
+    color: #76bfff;
+    background: #030a17;
+    border: 1px solid rgba(63, 127, 204, 0.44);
+}
+
+#system-app #ai-page .ai-browser-address-wrap input {
+    width: 100%;
+    min-width: 0;
+    color: #e5f2ff;
+    font-size: 11px;
+    background: transparent;
+    border: 0;
+    outline: 0;
+}
+
+#system-app #ai-page .ai-browser-address-wrap input:focus-visible {
+    outline: 1px solid rgba(97, 177, 255, 0.7);
+    outline-offset: 3px;
+}
+
+#system-app #ai-page .ai-browser-note {
+    margin: 11px 0;
+    color: #8eaed1;
+    font-size: 10px;
+    line-height: 1.65;
+}
+
+#system-app #ai-page .ai-browser-viewport {
+    position: relative;
+    min-height: 460px;
+    overflow: hidden;
+    background: #020611;
+    border: 1px solid rgba(66, 137, 225, 0.45);
+    box-shadow: inset 0 0 24px rgba(0, 45, 135, 0.15);
+}
+
+#system-app #ai-page .ai-browser-viewport iframe {
+    display: block;
+    width: 100%;
+    min-height: 460px;
+    height: min(67vh, 760px);
+    background: #fff;
+    border: 0;
+}
+
+#system-app #ai-page .ai-browser-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    padding: 24px;
+    color: #a8c9ed;
+    text-align: center;
+    background: radial-gradient(circle at 50% 40%, rgba(7, 52, 111, 0.45), rgba(1, 5, 16, 0.97) 65%);
+    pointer-events: none;
+}
+
+#system-app #ai-page .ai-browser-placeholder.is-hidden {
+    display: none;
+}
+
+#system-app #ai-page .ai-browser-placeholder > span {
+    color: #9ed5ff;
+    font-size: 42px;
+    text-shadow: 0 0 22px rgba(35, 132, 255, 0.7);
+}
+
+#system-app #ai-page .ai-browser-placeholder strong {
+    color: #e5f4ff;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+#system-app #ai-page .ai-browser-placeholder p {
+    max-width: 470px;
+    color: #8aa9ce;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+/* AI Quest paste-and-import flow */
+#system-app #ai-page .ai-quest-input-label {
+    display: block;
+    margin: 0 0 8px;
+    color: #c9e4ff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+#system-app #ai-page .ai-quest-input {
+    display: block;
+    width: 100%;
+    min-height: 170px;
+    padding: 14px;
+    resize: vertical;
+    color: #e5f2ff;
+    font-size: 12px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+    background: rgba(0, 5, 16, 0.96);
+    border: 1px solid rgba(69, 145, 240, 0.57);
+    box-shadow: inset 0 0 18px rgba(0, 55, 145, 0.09);
+}
+
+#system-app #ai-page .ai-quest-input::placeholder {
+    color: #6384ab;
+    opacity: 1;
+}
+
+#system-app #ai-page .ai-quest-input:focus-visible {
+    outline: 1px solid #8dccff;
+    outline-offset: 2px;
+    border-color: #8dccff;
+}
+
+#system-app #ai-page .ai-quest-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 11px 0;
+}
+
+#system-app #ai-page .ai-quest-status {
+    padding: 11px 13px;
+    color: #95b5d8;
+    font-size: 10px;
+    line-height: 1.7;
+    background: rgba(4, 20, 43, 0.74);
+    border-left: 2px solid rgba(80, 161, 255, 0.72);
+}
+
+#system-app #ai-page .ai-quest-preview-block {
+    margin-top: 17px;
+    padding: 13px;
+    background: rgba(0, 5, 16, 0.78);
+    border: 1px solid rgba(59, 130, 217, 0.36);
+}
+
+#system-app #ai-page .ai-quest-preview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(64, 132, 216, 0.3);
+}
+
+#system-app #ai-page .ai-quest-preview-header h3 {
+    color: #e1f0ff;
+    font-size: 12px;
+    letter-spacing: 0.8px;
+}
+
+#system-app #ai-page .ai-quest-preview-header span {
+    color: #7fbfff;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+#system-app #ai-page .ai-quest-preview-list {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: ai-quest-preview;
+}
+
+#system-app #ai-page .ai-quest-preview-list li {
+    position: relative;
+    padding: 10px 12px 10px 43px;
+    color: #c5dcf7;
+    font-size: 11px;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+    background: linear-gradient(100deg, rgba(6, 30, 65, 0.84), rgba(2, 9, 23, 0.92));
+    border: 1px solid rgba(51, 115, 192, 0.35);
+    counter-increment: ai-quest-preview;
+}
+
+#system-app #ai-page .ai-quest-preview-list li::before {
+    content: counter(ai-quest-preview, decimal-leading-zero);
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    color: #78bdff;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+#system-app #ai-page .ai-quest-preview-list li.ai-quest-preview-empty {
+    padding: 13px;
+    color: #7897bb;
+    text-align: center;
+    border-style: dashed;
+}
+
+#system-app #ai-page .ai-quest-preview-list li.ai-quest-preview-empty::before {
+    content: none;
+}
+
+@media (max-width: 760px) {
+    #system-app #ai-page .ai-browser-toolbar {
+        gap: 6px;
+    }
+
+    #system-app #ai-page .ai-browser-address-wrap {
+        order: 1;
+        flex-basis: 100%;
+    }
+
+    #system-app #ai-page .ai-browser-toolbar .ai-primary-button {
+        flex: 1 1 52px;
+    }
+
+    #system-app #ai-page .ai-browser-toolbar .ai-secondary-button {
+        flex: 1 1 160px;
+    }
+
+    #system-app #ai-page .ai-browser-viewport,
+    #system-app #ai-page .ai-browser-viewport iframe {
+        min-height: 390px;
+    }
+}
+
+@media (max-width: 500px) {
+    #system-app #ai-page .ai-workspace-tabs {
+        gap: 5px;
+        padding: 4px;
+    }
+
+    #system-app #ai-page .ai-workspace-tab {
+        flex: 1 1 92px;
+        padding: 8px 5px;
+        font-size: 9px;
+        letter-spacing: 0.5px;
+    }
+
+    #system-app #ai-page .ai-subpanel-heading {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    #system-app #ai-page .ai-panel-symbol {
+        flex-basis: 37px;
+        width: 37px;
+        height: 37px;
+        font-size: 20px;
+    }
+
+    #system-app #ai-page .ai-browser-viewport,
+    #system-app #ai-page .ai-browser-viewport iframe {
+        min-height: 320px;
+    }
+
+    #system-app #ai-page .ai-quest-actions > button {
+        flex: 1 1 100%;
+    }
+
+    #system-app #ai-page .ai-quest-preview-block {
+        padding: 9px;
+    }
+}
+
+
+/* =========================================================
+   SYSTEM — EXTERNAL CHATGPT ACCESS + SAVED CHAT HISTORY
+   ========================================================= */
+#system-app #ai-page .ai-chat-header-tools {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    min-width: 0;
+    max-width: 52%;
+}
+
+#system-app #ai-page .ai-chat-header-tools .ai-model {
+    width: 100%;
+    max-width: 100%;
+}
+
+#system-app #ai-page .ai-chat-open-chatgpt,
+#system-app #ai-page .ai-chat-clear,
+#system-app #ai-page .ai-open-chatgpt {
+    text-decoration: none;
+    text-align: center;
+}
+
+#system-app #ai-page .ai-chat-open-chatgpt {
+    min-height: 31px;
+    width: 100%;
+    padding: 7px 9px;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+#system-app #ai-page .ai-chat-clear {
+    min-height: 27px;
+    width: 100%;
+    padding: 5px 8px;
+    font-size: 9px;
+}
+
+#system-app #ai-page .ai-open-chatgpt {
+    color: #f0f8ff;
+    background: linear-gradient(135deg, rgba(24, 93, 164, 0.98), rgba(3, 23, 52, 0.98));
+    border-color: rgba(148, 210, 255, 0.9);
+    box-shadow: 0 0 12px rgba(35, 130, 255, 0.18);
+    white-space: nowrap;
+}
+
+#system-app #ai-page .ai-stats strong {
+    color: #d5eaff;
+    font-weight: 800;
+}
+
+@media (max-width: 500px) {
+    #system-app #ai-page .ai-chat-header-tools {
+        max-width: 58%;
+        gap: 4px;
+    }
+    #system-app #ai-page .ai-chat-open-chatgpt {
+        min-height: 29px;
+        padding: 6px;
+        font-size: 9px;
+    }
+    #system-app #ai-page .ai-chat-clear {
+        min-height: 25px;
+    }
+    #system-app #ai-page .ai-browser-toolbar .ai-open-chatgpt,
+    #system-app #ai-page .ai-browser-toolbar #ai-browser-open-tab {
+        flex: 1 1 140px;
+    }
+}
+
+
+/* SYSTEM — Adaptive AI Planner */
+#system-app #ai-page .ai-adaptive-controls {
+    display: grid;
+    gap: 9px;
+    margin: 2px 0 15px;
+    padding: 15px;
+    background: linear-gradient(140deg, rgba(4, 29, 64, 0.92), rgba(1, 8, 24, 0.96));
+    border: 1px solid rgba(75, 155, 255, 0.56);
+    box-shadow: inset 0 0 22px rgba(16, 100, 230, 0.07);
+}
+#system-app #ai-page .ai-adaptive-controls > label,
+#system-app #ai-page .ai-adaptive-options label {
+    color: #c9e4ff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .3px;
+}
+#system-app #ai-page #ai-quest-focus,
+#system-app #ai-page #ai-quest-count {
+    width: 100%;
+    min-width: 0;
+    padding: 11px 12px;
+    color: #e5f2ff;
+    font: inherit;
+    background: rgba(0, 5, 16, .94);
+    border: 1px solid rgba(69, 145, 240, .57);
+}
+#system-app #ai-page #ai-quest-count { max-width: 220px; }
+#system-app #ai-page .ai-adaptive-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+#system-app #ai-page .ai-generate-button { width: 100%; min-height: 47px; }
+#system-app #ai-page .ai-adaptive-controls > small,
+#system-app #ai-page #ai-progress-evidence {
+    color: #7998be;
+    font-size: 10px;
+    line-height: 1.7;
+}
+#system-app #ai-page .ai-progress-analysis {
+    margin: 0 0 15px;
+    padding: 15px;
+    background: linear-gradient(145deg, rgba(3, 19, 44, .96), rgba(1, 7, 21, .98));
+    border: 1px solid rgba(70, 153, 250, .52);
+}
+#system-app #ai-page .ai-progress-analysis h3 {
+    margin: 0 0 10px;
+    color: #a9d6ff;
+    font-size: 14px;
+    letter-spacing: .6px;
+}
+#system-app #ai-page .ai-progress-analysis p {
+    color: #c7ddf6;
+    font-size: 11px;
+    line-height: 1.75;
+}
+#system-app #ai-page .ai-progress-analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 12px 0;
+}
+#system-app #ai-page .ai-progress-analysis-grid > div {
+    min-width: 0;
+    padding: 11px;
+    background: rgba(6, 28, 58, .74);
+    border: 1px solid rgba(66, 129, 211, .28);
+}
+#system-app #ai-page .ai-progress-analysis-grid strong,
+#system-app #ai-page .ai-progress-next strong {
+    color: #8fc8ff;
+    font-size: 10px;
+}
+#system-app #ai-page .ai-progress-analysis-grid ul {
+    display: grid;
+    gap: 7px;
+    margin: 8px 0 0;
+    padding-left: 17px;
+    color: #bdd4ef;
+    font-size: 10px;
+    line-height: 1.65;
+}
+#system-app #ai-page .ai-progress-next { margin: 8px 0; }
+#system-app #ai-page .ai-manual-import {
+    margin: 12px 0;
+    border: 1px solid rgba(65, 125, 203, .34);
+    background: rgba(0, 6, 18, .48);
+}
+#system-app #ai-page .ai-manual-import summary {
+    padding: 12px;
+    color: #9ecaff;
+    cursor: pointer;
+    font-size: 11px;
+}
+#system-app #ai-page .ai-manual-import[open] { padding: 0 12px 12px; }
+#system-app #ai-page .ai-manual-import[open] summary { margin: 0 -12px 12px; }
+#system-app #ai-page .ai-quest-approve-actions { justify-content: flex-end; }
+#system-app #ai-page .ai-quest-preview-list li strong {
+    display: block;
+    color: #dceeff;
+    font-size: 11px;
+    font-weight: 700;
+}
+#system-app #ai-page .ai-quest-preview-description {
+    display: block;
+    margin-top: 5px;
+    color: #abc4e2;
+    font-size: 10px;
+    line-height: 1.7;
+}
+#system-app #ai-page .ai-quest-preview-list li small {
+    display: block;
+    margin-top: 7px;
+    color: #78bdff;
+    font-size: 9px;
+    line-height: 1.6;
+}
+@media (max-width: 580px) {
+    #system-app #ai-page .ai-progress-analysis-grid { grid-template-columns: minmax(0, 1fr); }
+    #system-app #ai-page .ai-quest-approve-actions > button { width: 100%; }
+}
+
+/* Transparent learning signals: data sufficiency, review opportunities, and explicit outcomes. */
+#system-app #ai-page .ai-intelligence-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    margin: 12px 0 7px;
+}
+#system-app #ai-page .ai-intelligence-metrics > div {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px;
+    background: linear-gradient(145deg, rgba(9, 27, 52, .84), rgba(3, 10, 23, .88));
+    border: 1px solid rgba(87, 156, 236, .24);
+    border-radius: 10px;
+}
+#system-app #ai-page .ai-intelligence-metrics span {
+    color: #829fbe;
+    font-size: 9px;
+    line-height: 1.4;
+    letter-spacing: .45px;
+    text-transform: uppercase;
+}
+#system-app #ai-page .ai-intelligence-metrics strong {
+    overflow-wrap: anywhere;
+    color: #d7ebff;
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 750;
+}
+#system-app #ai-page .ai-intelligence-method-note {
+    display: block;
+    margin: 0 0 10px;
+    color: #7998be;
+    font-size: 10px;
+    line-height: 1.7;
+}
+@media (max-width: 700px) {
+    #system-app #ai-page .ai-intelligence-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

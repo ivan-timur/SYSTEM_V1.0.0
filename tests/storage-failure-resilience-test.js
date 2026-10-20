@@ -1,0 +1,15 @@
+'use strict';
+const fs = require('node:fs');
+const path = require('node:path');
+const root = path.resolve(__dirname, '..');
+const i18n = fs.readFileSync(path.join(root, 'js/features/i18n.js'), 'utf8');
+const grok = fs.readFileSync(path.join(root, 'js/features/grok-suite.js'), 'utf8');
+const check = (condition, message) => { if (!condition) throw new Error(`Storage resilience test failed: ${message}`); };
+check(/function readSavedLanguage\(\)\s*\{\s*try\s*\{\s*return localStorage\.getItem\(KEY\)/.test(i18n), 'Language initialization must tolerate unavailable browser storage.');
+check(/function saveLanguage\(value\)\s*\{\s*try\s*\{\s*localStorage\.setItem\(KEY, value\); return true;\s*\}\s*catch/.test(i18n), 'Language preference writes must not prevent the UI language from changing.');
+check(/saveLanguage\(language\);apply\(\)/.test(i18n), 'Language toggle must apply the selected language even if persistence fails.');
+check(/Number\.isFinite\(remaining\).*Math\.max\(0,Math\.min\(1500/.test(grok), 'Focus timer remaining seconds must be finite and bounded.');
+check(/running:saved\.running===true/.test(grok), 'Persisted timer running flag must be a strict boolean.');
+check(/function saveTimer\(\)\{try\{localStorage\.setItem\('system_v39_focus_timer'/.test(grok), 'Timer persistence must tolerate quota and storage-access failures.');
+check(/timer\.remaining=0;timer\.running=false;timer\.ends=0/.test(grok), 'Expired or invalid running timers must be normalized on restore.');
+console.log('Storage failure resilience tests passed: 7 checks.');

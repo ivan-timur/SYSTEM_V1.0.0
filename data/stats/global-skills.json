@@ -1,0 +1,14 @@
+{
+  "id": "global-skills",
+  "name": "Global Skills",
+  "skills": [
+    "English",
+    "Communication",
+    "Public Speaking",
+    "Negotiation",
+    "Networking"
+  ],
+  "level": 1,
+  "xp": 0,
+  "xpRequired": 100
+}

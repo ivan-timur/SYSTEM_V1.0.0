@@ -1,0 +1,881 @@
+/* SYSTEM — skill progression, crystal level focus, and restrained navigation.
+   Loaded last so it cleanly overrides the legacy layered skins. */
+
+/* Keep the Status screen focused: its own Level, Rank and XP surfaces replace the duplicate HUD. */
+
+
+
+
+
+
+
+
+/* LEVEL — the central value is the visual anchor, in cool crystal typography. */
+
+
+
+
+
+
+
+
+
+
+
+
+/* RANK — a compact frame, with the actual image as the only rank marker. */
+
+
+
+
+
+
+
+
+
+
+/* XP and six core stats sit on the full content width, without the old empty rank column. */
+
+
+
+
+
+
+
+
+/* Navigation: remove the heavy individual rectangles. Keep the five image icons. */
+#system-app .sidebar-nav {
+    gap: 5px;
+    padding: 8px 0;
+    border-top: 0;
+    border-bottom: 0;
+}
+
+#system-app .sidebar-nav .nav-item,
+#system-app .nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    min-height: 52px;
+    margin: 0;
+    padding: 9px 13px;
+    clip-path: none;
+    border: 0;
+    border-radius: 11px;
+    border-bottom: 0;
+    background: transparent;
+    box-shadow: none;
+    color: rgba(212, 230, 252, .74);
+    text-shadow: none;
+    font-family: var(--cr-title, "Cinzel", Georgia, serif);
+    font-size: 14px;
+    letter-spacing: .045em;
+    text-align: left;
+    transform: none;
+    transition: background .2s ease, color .2s ease;
+}
+
+#system-app .sidebar-nav .nav-item::before,
+#system-app .nav-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 15px;
+    bottom: 15px;
+    width: 2px;
+    border: 0;
+    border-radius: 2px;
+    background: linear-gradient(180deg, transparent, #8bcfff, transparent);
+    box-shadow: 0 0 9px rgba(65, 157, 255, .45);
+    opacity: 0;
+    pointer-events: none;
+}
+
+#system-app .sidebar-nav .nav-item::after,
+#system-app .nav-item::after {
+    content: none;
+    display: none;
+}
+
+#system-app .sidebar-nav .nav-item:hover,
+#system-app .nav-item:hover {
+    color: #f3f9ff;
+    background: linear-gradient(90deg, rgba(40, 119, 222, .13), rgba(8, 29, 62, .07) 72%, transparent);
+    box-shadow: none;
+    transform: none;
+}
+
+#system-app .sidebar-nav .nav-item.active,
+#system-app .nav-item.active {
+    color: #ffffff;
+    background: linear-gradient(90deg, rgba(48, 127, 232, .17), rgba(20, 61, 118, .07) 64%, transparent);
+    border: 0;
+    box-shadow: none;
+    text-shadow: 0 0 12px rgba(99, 177, 255, .16);
+}
+
+#system-app .sidebar-nav .nav-item.active::before,
+#system-app .nav-item.active::before {
+    opacity: 1;
+}
+
+#system-app .sidebar-nav .nav-item img,
+#system-app .nav-item img {
+    display: block;
+    flex: 0 0 27px;
+    width: 27px;
+    height: 27px;
+    object-fit: contain;
+    opacity: .82;
+    filter: drop-shadow(0 0 4px rgba(70, 157, 255, .36));
+}
+
+#system-app .sidebar-nav .nav-item.active img,
+#system-app .nav-item.active img {
+    opacity: 1;
+    filter: drop-shadow(0 0 6px rgba(108, 194, 255, .70));
+}
+
+/* A CSS hamburger and small CSS status lamps replace keyboard-drawn icons. */
+#system-app .sidebar-toggle {
+    font-size: 0;
+    color: transparent;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(92, 158, 235, .25);
+    border-radius: 10px;
+    background: rgba(5, 17, 39, .75);
+}
+
+#system-app .sidebar-toggle::before {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 12px;
+    margin: auto;
+    border-top: 2px solid #d7edff;
+    border-bottom: 2px solid #d7edff;
+    box-sizing: border-box;
+}
+
+#system-app .sidebar-toggle::after {
+    content: "";
+    position: absolute;
+    left: 11px;
+    right: 11px;
+    top: 19px;
+    height: 2px;
+    background: #d7edff;
+}
+
+#system-app .logo-icon:empty,
+#system-app .hud-coin-icon:empty,
+#system-app .skill-tree-empty-icon:empty,
+#system-app .quest-icon:empty,
+#system-app .reward-icon:empty,
+#system-app .reward-card-icon:empty,
+#system-app .selected-reward-icon:empty,
+#system-app .settings-icon:empty,
+#system-app .ai-panel-symbol:empty {
+    display: none;
+}
+
+#system-app .system-status::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin: 0 7px 1px 0;
+    border-radius: 50%;
+    background: #65e6b0;
+    box-shadow: 0 0 8px rgba(101, 230, 176, .45);
+    vertical-align: middle;
+}
+
+#system-app .ai-connection-status::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-right: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: .75;
+    vertical-align: middle;
+}
+
+#system-app #settings-page .settings-row {
+    grid-template-columns: 32px minmax(0, 1fr) auto;
+}
+
+#system-app #settings-page .settings-icon:empty {
+    display: none;
+}
+
+#system-app #ai-page .ai-tools-panel button span:empty {
+    display: none;
+}
+
+/* Separate skill space: skill cards are mapped to this stat only and show both gates. */
+#system-app #skill-tree-panel {
+    padding: clamp(14px, 2vw, 22px);
+    border: 1px solid rgba(82, 158, 255, .30);
+    border-radius: 15px;
+    clip-path: none;
+    background:
+        radial-gradient(ellipse at 8% 0, rgba(30, 103, 214, .10), transparent 44%),
+        linear-gradient(145deg, rgba(3, 11, 27, .96), rgba(1, 5, 16, .97));
+    box-shadow: inset 0 0 24px rgba(40, 116, 255, .06), 0 8px 26px rgba(0, 0, 0, .15);
+}
+
+#system-app .skill-tree-header {
+    align-items: center;
+    gap: 15px;
+    margin: 0 0 16px;
+    padding: 0 0 14px;
+    border-bottom: 1px solid rgba(97, 161, 244, .20);
+}
+
+#system-app .skill-tree-label {
+    margin: 0 0 5px;
+    color: #82bcff;
+    font-family: var(--cr-title, "Cinzel", Georgia, serif);
+    font-size: 9px;
+    letter-spacing: .20em;
+    text-shadow: none;
+}
+
+#system-app #skill-tree-title {
+    display: block;
+    margin: 0;
+    color: #edf7ff;
+    font-family: var(--cr-title, "Cinzel", Georgia, serif);
+    font-size: clamp(19px, 2.2vw, 25px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: .015em;
+    overflow-wrap: anywhere;
+}
+
+#system-app #skill-tree-description {
+    margin-top: 6px;
+    color: rgba(177, 201, 230, .78);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+#system-app .skill-tree-close {
+    display: grid;
+    place-items: center;
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(112, 178, 250, .25);
+    border-radius: 10px;
+    color: #d8edff;
+    background: rgba(14, 35, 66, .45);
+    font-size: 21px;
+    line-height: 1;
+}
+
+#system-app .skill-tree-content {
+    padding-top: 0;
+}
+
+#system-app .skill-tree {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 265px), 1fr));
+    gap: 10px;
+    align-items: stretch;
+}
+
+#system-app .skill-node-wrapper {
+    min-width: 0;
+}
+
+#system-app .skill-connection {
+    display: none;
+}
+
+#system-app .skill-node {
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr);
+    align-items: start;
+    gap: 12px;
+    min-width: 0;
+    min-height: 142px;
+    height: 100%;
+    padding: 13px;
+    overflow: hidden;
+    border: 1px solid rgba(82, 141, 215, .23);
+    border-radius: 12px;
+    clip-path: none;
+    background: linear-gradient(145deg, rgba(8, 24, 49, .82), rgba(3, 9, 23, .95));
+    box-shadow: inset 0 1px rgba(190, 225, 255, .035);
+    opacity: 1;
+    filter: none;
+    transition: border-color .18s ease, background .18s ease, transform .18s ease;
+}
+
+#system-app .skill-node.locked {
+    border-color: rgba(97, 119, 151, .21);
+    background: linear-gradient(145deg, rgba(9, 17, 31, .78), rgba(4, 8, 17, .94));
+}
+
+#system-app .skill-node-number {
+    display: grid;
+    place-items: center;
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(110, 180, 247, .32);
+    border-radius: 11px;
+    color: #c3e3ff;
+    background: linear-gradient(145deg, rgba(34, 92, 161, .35), rgba(5, 18, 42, .8));
+    box-shadow: inset 0 0 12px rgba(48, 137, 255, .08);
+    font-family: var(--cr-title, "Cinzel", Georgia, serif);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#system-app .skill-node.unlocked .skill-node-number {
+    color: #e7f7ff;
+    border-color: rgba(112, 197, 255, .60);
+    box-shadow: 0 0 14px rgba(47, 147, 255, .11), inset 0 0 12px rgba(58, 148, 255, .14);
+}
+
+#system-app .skill-node-info {
+    min-width: 0;
+}
+
+#system-app .skill-node-info h3 {
+    margin: 1px 0 0;
+    color: #eff7ff;
+    font-family: var(--cr-title, "Cinzel", Georgia, serif);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+#system-app .skill-node-description {
+    margin: 6px 0 0;
+    color: rgba(179, 199, 223, .73);
+    font-size: 11px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+#system-app .skill-node-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+    margin-top: 11px;
+}
+
+#system-app .skill-status,
+#system-app .skill-requirement {
+    display: inline-flex;
+    align-items: center;
+    min-height: 22px;
+    padding: 4px 7px;
+    border: 1px solid rgba(103, 149, 204, .20);
+    border-radius: 6px;
+    color: rgba(196, 216, 239, .80);
+    background: rgba(13, 27, 47, .65);
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: .07em;
+    white-space: nowrap;
+}
+
+#system-app .skill-status.is-unlocked {
+    color: #9ee7ff;
+    border-color: rgba(70, 190, 255, .28);
+    background: rgba(18, 89, 135, .20);
+}
+
+#system-app .skill-status.is-locked {
+    color: #d1b783;
+    border-color: rgba(191, 152, 77, .20);
+    background: rgba(98, 68, 18, .12);
+}
+
+#system-app .skill-node-lock-reason {
+    margin: 8px 0 0;
+    color: rgba(196, 174, 134, .83);
+    font-size: 10px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+#system-app .skill-node.unlocked:hover {
+    border-color: rgba(104, 191, 255, .54);
+    background: linear-gradient(145deg, rgba(11, 34, 68, .92), rgba(3, 10, 25, .97));
+    transform: translateY(-1px);
+}
+
+@media (max-width: 850px) {
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+}
+
+@media (max-width: 600px) {
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    #system-app #skill-tree-panel {
+        padding: 13px;
+    }
+
+    #system-app .skill-tree-header {
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+    }
+
+    #system-app .skill-tree {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px;
+    }
+
+    #system-app .skill-node {
+        min-height: 0;
+        padding: 12px;
+        grid-template-columns: 34px minmax(0, 1fr);
+        gap: 10px;
+    }
+
+    #system-app .skill-node-number {
+        width: 34px;
+        height: 34px;
+    }
+
+    #system-app #settings-page .settings-row {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #system-app .skill-node,
+    #system-app .sidebar-nav .nav-item {
+        transition: none;
+    }
+}
+
+/* =============================================================
+   SYSTEM — compact navigation, dense quests, refined frames
+   Visual-only overrides. Preserves navigation and progression JS.
+   ============================================================= */
+
+/* One elegant four-sided outline instead of layered angular boxes. */
+#system-app #quest-page .quest-main-panel,
+#system-app #quest-page .quest-card,
+#system-app #quest-page .side-quest-card {
+    clip-path: none;
+    border: 1px solid rgba(83, 157, 255, .34);
+    border-radius: 12px;
+    box-shadow: inset 0 0 16px rgba(27, 106, 214, .045), 0 3px 12px rgba(0, 0, 0, .13);
+}
+
+#system-app #quest-page .quest-main-panel {
+    padding: 10px;
+    background: rgba(2, 8, 22, .38);
+}
+
+#system-app #quest-page .quest-list {
+    gap: 8px;
+}
+
+#system-app #quest-page .quest-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+    gap: 5px 12px;
+    min-height: 0;
+    height: auto;
+    margin: 0;
+    padding: 11px 13px;
+    background: linear-gradient(135deg, rgba(5, 20, 44, .91), rgba(2, 7, 20, .92));
+    border-color: rgba(79, 151, 236, .30);
+}
+
+#system-app #quest-page .quest-card::before {
+    content: "";
+    inset: 0 12px auto;
+    width: auto;
+    height: 1px;
+    opacity: .48;
+    background: linear-gradient(90deg, transparent, rgba(115, 192, 255, .65), transparent);
+}
+
+#system-app #quest-page .quest-card .quest-icon:empty {
+    display: none;
+}
+
+#system-app #quest-page .quest-card .quest-information {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    min-width: 0;
+}
+
+#system-app #quest-page .quest-information h3 {
+    font-size: 13px;
+    line-height: 1.3;
+    font-weight: 600;
+    margin: 0;
+}
+
+#system-app #quest-page .quest-information p {
+    margin: 3px 0 0;
+    font-size: 10px;
+    line-height: 1.35;
+}
+
+#system-app #quest-page .quest-progress {
+    margin-top: 5px;
+    font-size: 9px;
+    line-height: 1.25;
+}
+
+#system-app #quest-page .quest-reward {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start;
+    text-align: left;
+    white-space: normal;
+    font-size: 10px;
+    line-height: 1.25;
+}
+
+#system-app #quest-page .quest-go {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
+    align-self: center;
+    min-width: 68px;
+    min-height: 31px;
+    padding: 5px 11px;
+    font-size: 10px;
+    line-height: 1.1;
+    border: 1px solid rgba(111, 190, 255, .68);
+    border-radius: 9px;
+    box-shadow: 0 0 8px rgba(22, 113, 255, .11);
+}
+
+#system-app #quest-page .side-quest-card {
+    min-height: 120px;
+    height: auto;
+    gap: 5px;
+    padding: 12px 10px;
+    background-position: center;
+    background-size: cover;
+    border-color: rgba(105, 158, 255, .36);
+    border-radius: 13px;
+    box-shadow: inset 0 0 18px rgba(1, 14, 40, .24);
+}
+
+#system-app #quest-page .side-quest-card::before {
+    content: none;
+    display: none;
+}
+
+#system-app #quest-page .side-quest-card::after {
+    left: 12%;
+    width: 76%;
+    opacity: .48;
+    box-shadow: none;
+}
+
+#system-app #quest-page .side-quest-card h2 {
+    font-size: clamp(13px, 3.4vw, 17px);
+    line-height: 1.22;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, .8);
+}
+
+#system-app #quest-page .side-quest-card p {
+    max-width: 100%;
+    font-size: 9px;
+    line-height: 1.35;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, .9);
+}
+
+#system-app #quest-page .side-quest-card > span {
+    font-size: 17px;
+}
+
+/* Keep the navigation icons and labels familiar, compact, and individually framed. */
+#system-app .sidebar-nav .nav-item,
+#system-app .nav-item {
+    border: 1px solid rgba(91, 157, 238, .17);
+    border-radius: 9px;
+    transition: background .18s ease, border-color .18s ease, color .18s ease;
+}
+
+#system-app .sidebar-nav .nav-item.active,
+#system-app .nav-item.active {
+    border-color: rgba(91, 177, 255, .46);
+}
+
+@media (max-width: 700px) {
+    /* Restore the bottom dock to a short bar, not a large framed block. */
+    #system-app .sidebar,
+    #system-app .sidebar.open {
+        top: auto;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        min-height: 0;
+        max-height: none;
+        padding: 4px 6px calc(4px + env(safe-area-inset-bottom));
+        margin: 0;
+        overflow: visible;
+        clip-path: none;
+        border: 0;
+        border-top: 1px solid rgba(81, 156, 244, .38);
+        border-radius: 0;
+        background: linear-gradient(180deg, rgba(4, 13, 30, .97), rgba(1, 4, 13, .99));
+        box-shadow: 0 -5px 15px rgba(0, 22, 68, .16), inset 0 1px rgba(147, 203, 255, .06);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        transform: none;
+        z-index: 1000;
+    }
+
+    #system-app .sidebar::before,
+    #system-app .sidebar::after,
+    #system-app .sidebar-nav::before,
+    #system-app .sidebar-nav::after {
+        content: none;
+        display: none;
+    }
+
+    #system-app .sidebar-header,
+    #system-app .sidebar-footer {
+        display: none;
+    }
+
+    #system-app .sidebar-nav {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        align-items: stretch;
+        gap: 4px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    #system-app .sidebar-nav .nav-item,
+    #system-app .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        width: 100%;
+        min-width: 0;
+        min-height: 49px;
+        height: 49px;
+        margin: 0;
+        padding: 3px 1px;
+        overflow: hidden;
+        color: rgba(184, 207, 239, .80);
+        font-size: 9px;
+        line-height: 1.05;
+        letter-spacing: .015em;
+        text-align: center;
+        white-space: nowrap;
+        border: 1px solid rgba(87, 143, 214, .14);
+        border-radius: 8px;
+        background: rgba(5, 13, 29, .28);
+        box-shadow: none;
+        transform: none;
+    }
+
+    #system-app .sidebar-nav .nav-item img,
+    #system-app .nav-item img,
+    #system-app .sidebar-nav .nav-item .nav-icon,
+    #system-app .nav-item .nav-icon {
+        display: block;
+        flex: 0 0 20px;
+        width: 20px;
+        height: 20px;
+        max-width: 20px;
+        max-height: 20px;
+        margin: 0;
+        object-fit: contain;
+        opacity: .90;
+    }
+
+    #system-app .sidebar-nav .nav-item::before,
+    #system-app .sidebar-nav .nav-item.active::before,
+    #system-app .nav-item::before,
+    #system-app .nav-item::after {
+        content: none;
+        display: none;
+    }
+
+    #system-app .sidebar-nav .nav-item.active,
+    #system-app .nav-item.active {
+        color: #f2f8ff;
+        border-color: rgba(105, 190, 255, .47);
+        background: linear-gradient(180deg, rgba(14, 61, 124, .46), rgba(4, 20, 47, .56));
+        box-shadow: inset 0 0 10px rgba(42, 134, 255, .09);
+    }
+
+    #system-app .main-content {
+        padding-bottom: calc(72px + env(safe-area-inset-bottom));
+    }
+
+    #system-app #quest-page > .page-header {
+        min-height: 0;
+        margin: 0 0 9px;
+        padding: 3px 0 8px;
+    }
+
+    #system-app #quest-page > .page-header .page-title {
+        font-size: clamp(24px, 6.2vw, 31px);
+        line-height: 1.14;
+        letter-spacing: .04em;
+    }
+
+    #system-app #quest-page .quest-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 9px;
+    }
+
+    #system-app #quest-page .quest-main-panel {
+        padding: 8px;
+        border-radius: 13px;
+    }
+
+    #system-app #quest-page .quest-side-panel {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    #system-app #quest-page .side-quest-card {
+        min-height: 106px;
+        height: 106px;
+        padding: 9px 7px;
+        gap: 4px;
+        border-radius: 11px;
+    }
+
+    #system-app #quest-page .side-quest-card h2 {
+        font-size: clamp(11px, 3vw, 14px);
+    }
+
+    #system-app #quest-page .side-quest-card p {
+        font-size: 8px;
+        line-height: 1.28;
+    }
+
+    #system-app #quest-page .side-quest-card > span {
+        font-size: 14px;
+    }
+
+    #system-app #quest-page .panel-header {
+        min-height: 0;
+        margin: 0 0 8px;
+        padding: 0 0 7px;
+        gap: 8px;
+    }
+
+    #system-app #quest-page .panel-header h2 {
+        font-size: 15px;
+        line-height: 1.25;
+    }
+
+    #system-app #quest-page .quest-countdown {
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 380px) {
+    #system-app .sidebar-nav .nav-item,
+    #system-app .nav-item {
+        min-height: 46px;
+        height: 46px;
+        font-size: 8px;
+    }
+
+    #system-app .sidebar-nav .nav-item img,
+    #system-app .nav-item img,
+    #system-app .sidebar-nav .nav-item .nav-icon,
+    #system-app .nav-item .nav-icon {
+        width: 18px;
+        height: 18px;
+        flex-basis: 18px;
+    }
+
+    #system-app #quest-page .quest-card {
+        padding: 10px 11px;
+        gap: 5px 8px;
+    }
+}
+
+@media (min-width: 701px) {
+    #system-app #quest-page .quest-side-panel {
+        gap: 10px;
+    }
+
+    #system-app #quest-page .side-quest-card {
+        min-height: 132px;
+        padding: 12px;
+    }
+}
+
+/* Quest text badges are not real image assets; keep these cards icon-free and clean. */
+#system-app #quest-page .quest-card .quest-icon {
+    display: none;
+}

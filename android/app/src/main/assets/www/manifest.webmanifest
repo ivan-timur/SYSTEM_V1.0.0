@@ -1,0 +1,25 @@
+{
+  "name": "SYSTEM",
+  "version": "1.0.0",
+  "short_name": "SYSTEM",
+  "description": "Personal Progress and Development System",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#030611",
+  "theme_color": "#060b18",
+  "icons": [
+    {
+      "src": "assets/images/icons/status.webp",
+      "sizes": "any",
+      "type": "image/webp",
+      "purpose": "any"
+    }
+  ],
+  "id": "./",
+  "scope": "./",
+  "orientation": "portrait-primary",
+  "categories": [
+    "productivity",
+    "education"
+  ]
+}

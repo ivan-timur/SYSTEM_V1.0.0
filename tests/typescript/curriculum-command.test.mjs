@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import { addCurriculumMilestone, recordCurriculumEvidence, getCurriculumCompletionDecision } from '../../dist/ts/features/curriculum-command.js';
+let checks = 0;
+const eq = (a,b,m) => { assert.equal(a,b,m); checks++; };
+const throws = (fn,re,m) => { assert.throws(fn,re,m); checks++; };
+const at = '2026-10-19T12:00:00.000Z';
+const goal = { id:'g1', title:'Learn robotics', stat:'computer', completed:false,
+ milestones:[{id:'m1',title:'Foundations',requiredEvidence:1,requiredSkillIds:['python'],prerequisiteIds:[]}],
+ evidence:[] };
+const expanded = addCurriculumMilestone(goal,{id:'m2',title:'Prototype',requiredEvidence:2,requiredSkillIds:[],prerequisiteIds:['m1']});
+eq(expanded.goal.milestones.length,2,'milestone command returns expanded curriculum');
+eq(goal.milestones.length,1,'milestone command does not mutate source');
+eq(expanded.evaluation.milestones[1].unlocked,false,'new milestone stays locked until prerequisite is complete');
+throws(()=>recordCurriculumEvidence(expanded.goal,{id:'q-locked',title:'Premature task',completed:true,goalId:'g1',milestoneId:'m2',stat:'computer'},'e-locked',at),/Milestone is locked/,'locked milestone rejects evidence until prerequisite is complete');
+eq(expanded.rewardIssued,false,'authoring a milestone never grants rewards');
+throws(()=>addCurriculumMilestone(goal,{id:'m2',title:'Cycle',requiredEvidence:1,prerequisiteIds:['missing']}),/Unknown prerequisite/,'unknown prerequisite rejected');
+throws(()=>addCurriculumMilestone({...goal,completed:true},{id:'m2',title:'No',requiredEvidence:1}),/Completed goals/,'completed goal is immutable');
+const evidenceGoal = {...goal, milestones:[{...goal.milestones[0],requiredSkillIds:[]}]};
+const recorded = recordCurriculumEvidence(evidenceGoal,{id:'q1',title:'Python practice',completed:true,goalId:'g1',milestoneId:'m1',stat:'computer',skillId:'python'},'e1',at);
+eq(recorded.goal.evidence.length,1,'completed linked quest becomes evidence');
+eq(recorded.evaluation.progressPercent,100,'evidence can complete a milestone with no required skills');
+eq(evidenceGoal.evidence.length,0,'evidence command does not mutate source');
+eq(recorded.rewardIssued,false,'evidence command never grants rewards');
+throws(()=>recordCurriculumEvidence(recorded.goal,{id:'q1',title:'Python practice',completed:true,goalId:'g1',milestoneId:'m1',stat:'computer'},'e2',at),/already has evidence/,'duplicate quest evidence rejected');
+throws(()=>recordCurriculumEvidence(evidenceGoal,{id:'q2',title:'Wrong goal',completed:true,goalId:'other',milestoneId:'m1'},'e3',at),/does not belong/,'cross-goal evidence rejected');
+const decision = getCurriculumCompletionDecision(recorded.goal);
+eq(decision.eligible,true,'completion decision reflects curriculum evidence');
+eq(decision.rewardIssued,false,'completion decision is read-only and reward-free');
+eq(getCurriculumCompletionDecision({...recorded.goal,completed:true}).eligible,false,'already completed goal cannot be completed twice');
+console.log(`Curriculum command tests passed: ${checks} assertions.`);

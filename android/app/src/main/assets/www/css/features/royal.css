@@ -1,0 +1,2 @@
+/* SYSTEM — removed rank titles, keyboard crowns and coronation overlays. */
+.royal-title, .royal-crown, .royal-overlay { display: none; }

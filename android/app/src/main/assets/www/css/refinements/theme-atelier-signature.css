@@ -1,0 +1,123 @@
+/* SYSTEM — ATELIER SIGNATURE: refined material, hierarchy, and interaction polish.
+   Additive only: preserves existing theme IDs, page artwork, layout semantics, and app logic. */
+html[data-system-theme] {
+  --atelier-line: color-mix(in srgb, var(--atelier-haze-2) 24%, transparent);
+  --atelier-line-strong: color-mix(in srgb, var(--atelier-haze-2) 48%, transparent);
+  --atelier-surface: color-mix(in srgb, var(--color-panel, #09101e) 86%, transparent);
+  --atelier-lift: 0 18px 44px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.055);
+  --atelier-lift-hover: 0 25px 55px rgba(0,0,0,.32), 0 0 28px color-mix(in srgb, var(--atelier-haze-1) 9%, transparent), inset 0 1px 0 rgba(255,255,255,.08);
+  --atelier-ease: cubic-bezier(.2,.75,.25,1);
+  color-scheme: dark;
+}
+
+/* Fine-grain luminous grid is restricted to empty backdrop areas, never over content. */
+html[data-system-theme] body {
+  background-image:
+    radial-gradient(ellipse at 50% -12%, color-mix(in srgb, var(--atelier-haze-2) 8%, transparent), transparent 58%),
+    radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--atelier-haze-3) 5%, transparent) 1px, transparent 1.6px),
+    radial-gradient(ellipse 72% 52% at 100% 100%, color-mix(in srgb, var(--atelier-haze-1) 8%, transparent), transparent 75%),
+    linear-gradient(155deg, var(--color-background, #050816), var(--color-black, #02040a) 82%);
+  background-size: auto, 28px 28px, auto, auto;
+  background-attachment: fixed;
+}
+
+/* Refined panel material with a soft top glint and restrained theme edge. */
+#system-app :is(.card,.stat-card,.quest-card,.reward-card,.skill-card,.goal-card,.panel,.settings-panel,.settings-row,.modal-content,.profile-card) {
+  position: relative;
+  border-color: color-mix(in srgb, var(--atelier-line) 82%, var(--color-border, #1b2a42));
+  box-shadow: var(--atelier-lift);
+  transition: border-color .22s var(--atelier-ease), box-shadow .25s var(--atelier-ease), transform .25s var(--atelier-ease), background-color .22s ease;
+}
+#system-app :is(.card,.stat-card,.quest-card,.reward-card,.skill-card,.goal-card,.panel,.settings-panel):not(:has(button:focus-visible))::before {
+  content: "";
+  position: absolute;
+  inset: 0 12% auto;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--atelier-haze-2) 34%, transparent), transparent);
+  opacity: .68;
+}
+#system-app :is(.stat-card,.quest-card,.reward-card,.skill-card,.goal-card,.settings-row):hover {
+  border-color: var(--atelier-line-strong);
+  box-shadow: var(--atelier-lift-hover);
+}
+
+/* Stronger type hierarchy, using existing font stack to avoid remote dependencies. */
+#system-app :is(.page-title,h1.page-title,.section-title,.panel-title,.card-title) {
+  text-wrap: balance;
+  letter-spacing: -.025em;
+  text-shadow: 0 2px 24px color-mix(in srgb, var(--atelier-haze-1) 10%, transparent);
+}
+#system-app :is(.page-subtitle,.section-description,.card-description,.muted,.text-muted) {
+  line-height: 1.68;
+  text-wrap: pretty;
+}
+#system-app :is(.eyebrow,.section-eyebrow,.system-modal-eyebrow) {
+  color: var(--atelier-haze-2);
+  letter-spacing: .14em;
+}
+
+/* Progress tracks: layered inset and subtle moving highlight; no value or semantics changed. */
+#system-app :is(.progress-bar,.xp-bar,.skill-progress,.progress-track) {
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--atelier-haze-2) 15%, transparent);
+  box-shadow: inset 0 2px 5px rgba(0,0,0,.42);
+}
+#system-app :is(.progress-fill,.xp-fill,.skill-progress-fill,.progress-bar-fill) {
+  position: relative;
+  box-shadow: 0 0 13px color-mix(in srgb, var(--atelier-haze-2) 18%, transparent), inset 0 1px 0 rgba(255,255,255,.23);
+}
+#system-app :is(.progress-fill,.xp-fill,.skill-progress-fill,.progress-bar-fill)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 20%, rgba(255,255,255,.18) 48%, transparent 72%);
+  opacity: .5;
+}
+
+/* Deliberate keyboard focus: visible, theme-aware, and independent of hover. */
+#system-app :is(a,button,input,select,textarea,[tabindex]):focus-visible,
+#system-settings-dialog :is(button,input,select,textarea,[tabindex]):focus-visible {
+  outline: 2px solid var(--atelier-haze-2);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--atelier-haze-2) 15%, transparent);
+}
+#system-app button:disabled,
+#system-settings-dialog button:disabled { filter: saturate(.45); box-shadow: none; }
+#system-app :is(button,.btn-primary,.system-button,.nav-item) { -webkit-tap-highlight-color: transparent; }
+#system-app button:not(:disabled):active { transform: translateY(1px) scale(.99); }
+
+/* Theme chooser cards become collectible swatches while keeping original selection logic. */
+#system-settings-dialog .system-theme-options > button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform .22s var(--atelier-ease), border-color .22s ease, box-shadow .22s ease;
+}
+#system-settings-dialog .system-theme-options > button::after {
+  content: "";
+  position: absolute;
+  inset: auto -20% -38% 20%;
+  height: 78px;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse, color-mix(in srgb, var(--atelier-haze-2) 12%, transparent), transparent 72%);
+  opacity: .6;
+}
+#system-settings-dialog .system-theme-options > button:focus-visible { outline-offset: -4px; }
+
+/* Motion is expressive on desktop and restrained on touch screens. */
+@media (hover: hover) and (pointer: fine) and (min-width: 901px) {
+  #system-app :is(.stat-card,.quest-card,.reward-card,.skill-card,.goal-card):hover { transform: translateY(-3px); }
+  #system-app .nav-item:hover { transform: translateX(2px); }
+}
+@media (max-width: 700px) {
+  #system-app :is(.card,.stat-card,.quest-card,.reward-card,.skill-card,.goal-card,.panel,.settings-panel,.settings-row) { box-shadow: 0 10px 28px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.04); }
+  #system-app :is(.page-title,h1.page-title) { line-height: 1.16; }
+  #system-app button:not(:disabled):active { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #system-app *, #system-settings-dialog * { transition-duration: .01ms; animation-duration: .01ms; animation-iteration-count: 1; scroll-behavior: auto; }
+  #system-app button:not(:disabled):active { transform: none; }
+}

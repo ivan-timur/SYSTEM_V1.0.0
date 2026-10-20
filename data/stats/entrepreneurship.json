@@ -1,0 +1,14 @@
+{
+  "id": "entrepreneurship",
+  "name": "Entrepreneurship",
+  "skills": [
+    "Business Fundamentals",
+    "Problem Solving",
+    "Market Research",
+    "Business Model",
+    "Leadership"
+  ],
+  "level": 1,
+  "xp": 0,
+  "xpRequired": 100
+}

@@ -1,0 +1,330 @@
+/* =========================================================
+   SYSTEM — Layout Organization & Visual Hierarchy
+   Makes every page feel ordered instead of a random stack.
+   ========================================================= */
+
+/* ---------- Global page rhythm ---------- */
+#system-app .page {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* we control gaps via children */
+}
+
+#system-app .page > * + * {
+  margin-top: 0; /* reset old margins, use our system */
+}
+
+/* Consistent vertical rhythm between major blocks */
+#system-app .page-header {
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(70, 140, 255, 0.18);
+}
+
+#system-app .page-header .page-title {
+  margin: 0 0 4px;
+  line-height: 1.2;
+}
+
+#system-app .page-header .page-subtitle {
+  margin: 0;
+  opacity: 0.75;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* ---------- Major section blocks ---------- */
+#system-app .player-overview,
+#system-app .stats-section,
+#system-app .skill-tree-panel,
+#system-app .quest-layout,
+#system-app .quest-main-panel,
+#system-app .ai-workspace,
+#system-app .settings-panel,
+#system-app .grok-suite-panel,
+#system-app .system-intelligence-card,
+#system-app [class*="-section"],
+#system-app [class*="-panel"]:not(.sidebar):not(.player-hud) {
+  margin-bottom: 22px;
+}
+
+/* Clear visual separation between big blocks */
+#system-app .player-overview,
+#system-app .stats-section,
+#system-app .skill-tree-panel,
+#system-app .grok-suite-panel,
+#system-app .quest-layout > *,
+#system-app .settings-panel {
+  position: relative;
+}
+
+/* Subtle section divider line for stacked content */
+#system-app .stats-section::before,
+#system-app .skill-tree-panel:not([hidden])::before,
+#system-app .grok-suite-panel::before {
+  content: "";
+  display: block;
+  height: 1px;
+  margin: 0 0 18px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(80, 160, 255, 0.28) 20%,
+    rgba(80, 160, 255, 0.28) 80%,
+    transparent 100%
+  );
+}
+
+/* ---------- Section headers (consistent style) ---------- */
+#system-app .section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+}
+
+#system-app .section-title,
+#system-app .grok-suite-head h2 {
+  margin: 0;
+  font-size: clamp(16px, 2.2vw, 19px);
+  letter-spacing: -0.02em;
+  color: #e8f3ff;
+}
+
+#system-app .section-header p,
+#system-app .grok-suite-head p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: rgba(170, 200, 240, 0.75);
+  line-height: 1.4;
+}
+
+/* ---------- Player Overview: tighter internal grid ---------- */
+#system-app .player-overview {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(70, 150, 255, 0.22);
+  background:
+    linear-gradient(155deg, rgba(9, 20, 40, 0.92), rgba(3, 9, 20, 0.96));
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+}
+
+#system-app .player-overview .level-panel,
+#system-app .player-overview .xp-panel,
+#system-app .player-overview .rank-panel {
+  margin: 0;
+}
+
+/* Stats stay inside the overview visually as a sub-group */
+#system-app .player-overview .stats-section {
+  margin-top: 6px;
+  margin-bottom: 0;
+  padding-top: 14px;
+  border-top: 1px solid rgba(70, 140, 255, 0.15);
+}
+
+#system-app .player-overview .stats-section::before {
+  display: none; /* already has border-top */
+}
+
+/* ---------- Stats grid: cleaner cards ---------- */
+#system-app .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+#system-app .stat-card {
+  border-radius: 14px;
+  padding: 12px;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+/* ---------- Grok Progress Suite: make it a deliberate section ---------- */
+#system-app .grok-suite-panel {
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(70, 150, 255, 0.22);
+  background:
+    linear-gradient(160deg, rgba(8, 18, 36, 0.94), rgba(3, 9, 20, 0.97));
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+}
+
+#system-app .grok-suite-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(70, 140, 255, 0.16);
+}
+
+#system-app .grok-suite-head .grok-eyebrow {
+  margin: 0 0 4px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(140, 190, 255, 0.7);
+}
+
+#system-app .grok-progress-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+#system-app .grok-progress-card {
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(60, 130, 230, 0.18);
+  background: rgba(5, 12, 26, 0.6);
+}
+
+#system-app .grok-progress-card h3 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: #b8d4f5;
+  font-weight: 600;
+}
+
+#system-app .grok-subsection {
+  padding-top: 12px;
+  border-top: 1px solid rgba(70, 140, 255, 0.12);
+}
+
+#system-app .grok-subsection h3 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: #b8d4f5;
+}
+
+#system-app .grok-history-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(50, 100, 180, 0.12);
+  font-size: 13px;
+}
+
+#system-app .grok-history-row:last-child {
+  border-bottom: none;
+}
+
+/* ---------- Quest page organization ---------- */
+#system-app .quest-layout {
+  display: grid;
+  gap: 18px;
+}
+
+#system-app .quest-main-panel {
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(70, 150, 255, 0.2);
+  background: linear-gradient(160deg, rgba(8, 18, 36, 0.94), rgba(3, 9, 20, 0.97));
+}
+
+#system-app .quest-list {
+  display: grid;
+  gap: 12px;
+}
+
+#system-app .quest-card {
+  border-radius: 14px;
+}
+
+/* ---------- AI page ---------- */
+#system-app .ai-workspace-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+  padding: 4px;
+  border-radius: 14px;
+  background: rgba(5, 12, 26, 0.7);
+  border: 1px solid rgba(60, 130, 230, 0.2);
+}
+
+#system-app .ai-workspace-tab {
+  flex: 1;
+  min-height: 42px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ---------- Settings ---------- */
+#system-app .settings-panel {
+  display: grid;
+  gap: 10px;
+}
+
+#system-app .settings-row {
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+/* ---------- Intelligence card sits cleanly ---------- */
+#system-app .system-intelligence-card {
+  margin-bottom: 18px;
+}
+
+/* ---------- Mobile: stronger hierarchy ---------- */
+@media (max-width: 850px) {
+  #system-app .page-header {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+  }
+
+  #system-app .player-overview,
+  #system-app .grok-suite-panel,
+  #system-app .quest-main-panel,
+  #system-app .skill-tree-panel {
+    padding: 14px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+  }
+
+  #system-app .grok-progress-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  #system-app .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  /* Reduce visual noise of consecutive cards */
+  #system-app .quest-card + .quest-card,
+  #system-app .settings-row + .settings-row {
+    margin-top: 0;
+  }
+
+  /* Clearer separation for injected progress suite */
+  #system-app .grok-suite-panel::before {
+    margin-bottom: 14px;
+  }
+}
+
+@media (max-width: 420px) {
+  #system-app .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  #system-app .player-overview {
+    padding: 12px;
+  }
+}
+
+/* ---------- Prevent double spacing from old rules ---------- */
+#system-app .page > .player-hud {
+  margin-bottom: 16px;
+}

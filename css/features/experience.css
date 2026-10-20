@@ -1,0 +1,9 @@
+/* SYSTEM — Sound & Alerts panel */
+.exp-panel{display:grid;gap:10px}
+.exp-row{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:10px 14px;background:rgba(8,22,56,.6);box-shadow:inset 0 0 0 1px var(--color-border);color:var(--color-text-light)}
+.exp-row input[type=range]{flex:1;max-width:200px;accent-color:var(--color-neon)}
+.exp-row input[type=checkbox]{width:20px;height:20px;accent-color:var(--color-neon)}
+.exp-row select{background:#030914;color:var(--color-text);border:1px solid var(--color-border);padding:6px 8px}
+.exp-actions{display:flex;gap:8px;flex-wrap:wrap}
+.exp-actions button{flex:1 1 150px;min-height:42px}
+.exp-panel small{color:var(--color-text-muted);line-height:1.6}

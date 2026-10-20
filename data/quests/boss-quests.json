@@ -1,0 +1,23 @@
+[
+  {
+    "id": "boss-consistency",
+    "title": "Consistency Trial",
+    "xp": 250,
+    "coins": 60,
+    "requirement": "Complete 3 Daily Quests today"
+  },
+  {
+    "id": "boss-awakening",
+    "title": "Awakening Trial",
+    "xp": 300,
+    "coins": 80,
+    "requirement": "Reach Player Level 3"
+  },
+  {
+    "id": "boss-skill-ascendant",
+    "title": "Skill Ascendant",
+    "xp": 350,
+    "coins": 100,
+    "requirement": "Reach Level 3 in any core Stat"
+  }
+]

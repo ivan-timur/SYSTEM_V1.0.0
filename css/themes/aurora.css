@@ -1,0 +1,764 @@
+/* ================================================================
+   SYSTEM — AURORA NEBULA THEME
+   A complete, optional visual skin. Every rule is scoped to the
+   selected data-system-theme so the original themes remain intact.
+   ================================================================ */
+
+html[data-system-theme="aurora"] {
+    color-scheme: dark;
+    --color-black: #02040c;
+    --color-background: #050817;
+    --color-background-2: #0a1024;
+    --color-panel: rgba(5, 10, 27, .94);
+    --color-panel-light: rgba(10, 18, 43, .94);
+    --color-panel-dark: rgba(2, 5, 17, .98);
+    --color-blue-dark: #14235c;
+    --color-blue: #2578ff;
+    --color-blue-light: #54d6ff;
+    --color-blue-bright: #d0f7ff;
+    --color-neon: #20d9ff;
+    --color-neon-light: #a4f4ff;
+    --color-neon-white: #f3f8ff;
+    --color-text: #f3f6ff;
+    --color-text-light: #c7d4f2;
+    --color-text-muted: #8297c1;
+    --color-border: rgba(67, 190, 255, .38);
+    --color-border-bright: rgba(90, 220, 255, .88);
+    --color-success: #20e2c2;
+    --color-warning: #ffc66b;
+    --color-danger: #ff5c9b;
+    --glow-small: 0 0 8px rgba(56, 213, 255, .42);
+    --glow-medium: 0 0 16px rgba(56, 213, 255, .38);
+    --glow-large: 0 0 28px rgba(56, 213, 255, .28);
+    --glow-intense: 0 0 52px rgba(129, 67, 255, .26);
+    --text-glow: 0 0 12px rgba(117, 219, 255, .42);
+    --panel-glow: 0 0 24px rgba(47, 130, 255, .13);
+    --active-glow: 0 0 28px rgba(50, 214, 255, .23);
+    --radius-small: 9px;
+    --radius-medium: 14px;
+    --radius-large: 22px;
+    --aurora-violet: #a855f7;
+    --aurora-pink: #f05ccb;
+    --aurora-cyan: #3ce7ff;
+    --aurora-teal: #20e2c2;
+    --aurora-gold: #ffc56c;
+    --aurora-surface: rgba(5, 11, 30, .82);
+}
+
+html[data-system-theme="aurora"] body {
+    background:
+        radial-gradient(ellipse at 82% 8%, rgba(120, 45, 190, .22), transparent 34%),
+        radial-gradient(ellipse at 68% 38%, rgba(18, 137, 255, .13), transparent 38%),
+        radial-gradient(ellipse at 12% 84%, rgba(33, 213, 226, .10), transparent 32%),
+        linear-gradient(135deg, #02040c 0%, #05091b 48%, #080719 100%);
+    background-attachment: fixed;
+}
+
+html[data-system-theme="aurora"] #system-app {
+    background:
+        radial-gradient(ellipse at 78% 4%, rgba(145, 57, 231, .11), transparent 34%),
+        linear-gradient(110deg, rgba(2, 7, 21, .34), rgba(2, 4, 13, .10) 52%, rgba(5, 3, 20, .25));
+}
+
+html[data-system-theme="aurora"] #system-app::before {
+    opacity: .34;
+    background-image:
+        radial-gradient(circle at 18% 23%, rgba(91, 214, 255, .56) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 76% 18%, rgba(213, 139, 255, .56) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 63% 77%, rgba(91, 214, 255, .42) 0 1px, transparent 1.8px),
+        linear-gradient(rgba(90, 155, 245, .026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90, 155, 245, .026) 1px, transparent 1px);
+    background-size: 173px 173px, 211px 211px, 257px 257px, 38px 38px, 38px 38px;
+    mask-image: radial-gradient(ellipse at center, #000 10%, transparent 91%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 10%, transparent 91%);
+}
+
+html[data-system-theme="aurora"] #system-app::after {
+    background:
+        radial-gradient(ellipse at 78% 6%, rgba(179, 65, 220, .10), transparent 28%),
+        radial-gradient(ellipse at 48% 52%, rgba(23, 166, 255, .055), transparent 50%),
+        radial-gradient(ellipse at 7% 93%, rgba(22, 221, 209, .07), transparent 35%);
+}
+
+/* Sidebar: glassy command deck */
+html[data-system-theme="aurora"] #system-app .sidebar {
+    background:
+        linear-gradient(180deg, rgba(4, 8, 25, .97), rgba(3, 5, 17, .94)),
+        url("../../assets/images/backgrounds/settings-bg.webp") center / cover no-repeat;
+    background-blend-mode: normal, soft-light;
+    border-right: 1px solid rgba(75, 200, 255, .34);
+    box-shadow: 12px 0 42px rgba(0, 0, 0, .30), inset -1px 0 24px rgba(76, 135, 255, .06);
+    backdrop-filter: blur(18px);
+}
+html[data-system-theme="aurora"] #system-app .sidebar-header,
+html[data-system-theme="aurora"] #system-app .sidebar-header,
+html[data-system-theme="aurora"] #system-app .sidebar-footer {
+    border-color: rgba(95, 178, 255, .19);
+}
+html[data-system-theme="aurora"] #system-app .system-logo {
+    text-shadow: 0 0 10px rgba(100, 219, 255, .8), 0 0 26px rgba(130, 76, 255, .44);
+    letter-spacing: .22em;
+}
+html[data-system-theme="aurora"] #system-app .system-logo .logo-icon {
+    color: #f8fbff;
+    border: 1px solid rgba(88, 224, 255, .55);
+    border-radius: 15px;
+    background: linear-gradient(145deg, rgba(44, 210, 255, .24), rgba(121, 72, 255, .23));
+    box-shadow: 0 0 23px rgba(62, 202, 255, .3), inset 0 0 15px rgba(155, 100, 255, .17);
+}
+html[data-system-theme="aurora"] #system-app .system-logo::after {
+    background: linear-gradient(90deg, transparent, #45e7ff, #bb79ff, transparent);
+    box-shadow: 0 0 18px rgba(105, 193, 255, .52);
+}
+html[data-system-theme="aurora"] #system-app .sidebar-nav .nav-item {
+    position: relative;
+    border: 1px solid transparent;
+    border-radius: 13px;
+    transition: background .22s ease, border-color .22s ease, transform .22s ease, box-shadow .22s ease;
+}
+html[data-system-theme="aurora"] #system-app .sidebar-nav .nav-item:hover {
+    transform: translateX(3px);
+    background: linear-gradient(100deg, rgba(36, 151, 255, .13), rgba(155, 77, 246, .08));
+    border-color: rgba(84, 191, 255, .22);
+}
+html[data-system-theme="aurora"] #system-app .sidebar-nav .nav-item.active {
+    color: #fff;
+    background: linear-gradient(105deg, rgba(21, 155, 255, .28), rgba(112, 61, 236, .19) 62%, rgba(16, 220, 215, .09));
+    border-color: rgba(65, 211, 255, .74);
+    box-shadow: 0 0 24px rgba(25, 143, 255, .19), inset 0 0 22px rgba(64, 197, 255, .08);
+}
+html[data-system-theme="aurora"] #system-app .sidebar-nav .nav-item.active::before {
+    background: linear-gradient(180deg, var(--aurora-cyan), var(--aurora-violet));
+    box-shadow: 0 0 12px rgba(60, 231, 255, .68);
+}
+html[data-system-theme="aurora"] #system-app .sidebar-nav .nav-item.active::after {
+    background: radial-gradient(circle, rgba(67, 225, 255, .34), transparent 72%);
+}
+html[data-system-theme="aurora"] #system-app .sidebar-nav .nav-item img {
+    filter: drop-shadow(0 0 7px rgba(109, 195, 255, .3));
+}
+html[data-system-theme="aurora"] #system-app .sidebar-footer span {
+    color: #78eadf;
+    text-shadow: 0 0 10px rgba(32, 226, 194, .28);
+}
+
+/* Main column and top progression strip */
+html[data-system-theme="aurora"] #system-app .main-content {
+    background: transparent;
+}
+html[data-system-theme="aurora"] #system-app .top-bar {
+    border-color: rgba(87, 165, 255, .16);
+}
+html[data-system-theme="aurora"] #system-app .system-status {
+    color: #80f1e0;
+    text-shadow: 0 0 11px rgba(32, 226, 194, .25);
+}
+html[data-system-theme="aurora"] #system-app .player-hud {
+    isolation: isolate;
+    overflow: hidden;
+    border: 1px solid rgba(70, 197, 255, .42);
+    border-radius: 22px;
+    background:
+        linear-gradient(105deg, rgba(4, 8, 23, .96) 0%, rgba(5, 12, 33, .9) 42%, rgba(19, 17, 47, .68) 100%),
+        url("../../assets/images/backgrounds/status-bg.webp") 74% 46% / cover no-repeat;
+    box-shadow: 0 18px 55px rgba(0, 0, 0, .23), 0 0 28px rgba(38, 137, 255, .12), inset 0 1px 0 rgba(255, 255, 255, .065);
+    backdrop-filter: blur(14px);
+}
+html[data-system-theme="aurora"] #system-app .player-hud::before {
+    background: linear-gradient(108deg, transparent 2%, rgba(61, 216, 255, .07) 47%, rgba(190, 94, 255, .12) 100%);
+    opacity: 1;
+}
+html[data-system-theme="aurora"] #system-app .player-hud::after {
+    background: linear-gradient(90deg, transparent, rgba(64, 218, 255, .27), rgba(178, 105, 255, .18), transparent);
+    height: 1px;
+    box-shadow: 0 0 13px rgba(75, 211, 255, .45);
+}
+html[data-system-theme="aurora"] #system-app .hud-eyebrow,
+html[data-system-theme="aurora"] #system-app .hud-xp-labels > span,
+html[data-system-theme="aurora"] #system-app .hud-currency small {
+    color: #9caed9;
+    letter-spacing: .17em;
+}
+html[data-system-theme="aurora"] #system-app .hud-player-copy strong,
+html[data-system-theme="aurora"] #system-app .hud-xp-labels strong,
+html[data-system-theme="aurora"] #system-app .hud-currency-copy strong {
+    color: #f5f8ff;
+    text-shadow: 0 0 12px rgba(104, 201, 255, .23);
+}
+html[data-system-theme="aurora"] #system-app .hud-player > img {
+    filter: drop-shadow(0 0 13px rgba(62, 200, 255, .38));
+}
+html[data-system-theme="aurora"] #system-app .hud-coin-icon {
+    color: var(--aurora-gold);
+    text-shadow: 0 0 15px rgba(255, 197, 108, .4);
+}
+html[data-system-theme="aurora"] #system-app .hud-xp-track{
+    background: rgba(1, 5, 17, .78);
+    border: 1px solid rgba(103, 164, 221, .18);
+    overflow: hidden;
+}
+html[data-system-theme="aurora"] #system-app .hud-xp-track > span{
+    background: linear-gradient(90deg, #177dff, #3be4ff 56%, #b17bff);
+    box-shadow: 0 0 16px rgba(46, 199, 255, .36);
+}
+
+/* Atmospheric page backdrop. Dedicated local artwork is used only as a dim layer. */
+html[data-system-theme="aurora"] #system-app .content-container {
+    background:
+        linear-gradient(180deg, rgba(3, 6, 19, .42), rgba(3, 6, 19, .72)),
+        url("../../assets/images/backgrounds/status-bg.webp") center top / cover fixed no-repeat;
+    border-radius: 24px;
+}
+html[data-system-theme="aurora"] #system-app .content-container:has(#quest-page.active) {
+    background-image: linear-gradient(180deg, rgba(3, 6, 19, .4), rgba(3, 6, 19, .76)), url("../../assets/images/backgrounds/quest-bg.webp");
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+}
+html[data-system-theme="aurora"] #system-app .content-container:has(#rewards-page.active) {
+    background-image: linear-gradient(180deg, rgba(3, 6, 19, .4), rgba(3, 6, 19, .76)), url("../../assets/images/backgrounds/rewards-bg.webp");
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+}
+html[data-system-theme="aurora"] #system-app .content-container:has(#ai-page.active) {
+    background-image: linear-gradient(180deg, rgba(3, 6, 19, .4), rgba(3, 6, 19, .76)), url("../../assets/images/backgrounds/ai-bg.webp");
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+}
+html[data-system-theme="aurora"] #system-app .content-container:has(#settings-page.active) {
+    background-image: linear-gradient(180deg, rgba(3, 6, 19, .42), rgba(3, 6, 19, .78)), url("../../assets/images/backgrounds/settings-bg.webp");
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+}
+html[data-system-theme="aurora"] #system-app .page-header::after {
+    background: linear-gradient(90deg, var(--aurora-cyan), var(--aurora-violet), rgba(240, 92, 203, .0));
+    box-shadow: 0 0 16px rgba(60, 231, 255, .45);
+}
+html[data-system-theme="aurora"] #system-app .page-title {
+    text-shadow: 0 0 15px rgba(90, 202, 255, .24), 0 0 30px rgba(158, 83, 246, .16);
+}
+html[data-system-theme="aurora"] #system-app .section-title::before {
+    background: linear-gradient(180deg, var(--aurora-cyan), var(--aurora-violet));
+    box-shadow: 0 0 13px rgba(60, 231, 255, .36);
+}
+html[data-system-theme="aurora"] #system-app .section-header::after {
+    background: linear-gradient(90deg, rgba(60, 231, 255, .48), rgba(168, 85, 247, .22), transparent);
+}
+
+/* Elevated glass panels */
+html[data-system-theme="aurora"] #system-app .quest-main-panel, html[data-system-theme="aurora"] #system-app .quest-side-panel, html[data-system-theme="aurora"] #system-app .rewards-main-panel, html[data-system-theme="aurora"] #system-app .daily-reward-panel, html[data-system-theme="aurora"] #system-app .settings-panel, html[data-system-theme="aurora"] #system-app .ai-chat-panel, html[data-system-theme="aurora"] #system-app .ai-tools-panel, html[data-system-theme="aurora"] #system-app .ai-progress-analysis, html[data-system-theme="aurora"] #system-app .groq-connect-panel{
+    background: linear-gradient(145deg, rgba(9, 18, 43, .91), rgba(3, 7, 22, .91));
+    border-color: rgba(88, 175, 255, .30);
+    border-radius: 19px;
+    box-shadow: 0 14px 42px rgba(0, 0, 0, .16), inset 0 1px 0 rgba(255, 255, 255, .035);
+    backdrop-filter: blur(12px);
+}
+
+
+
+/* Status cards: differentiated light colors like the reference artwork */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Quest page */
+html[data-system-theme="aurora"] #system-app #quest-page .quest-card,
+html[data-system-theme="aurora"] #system-app #quest-page .side-quest-card {
+    border: 1px solid rgba(80, 174, 255, .30);
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(8, 22, 48, .92), rgba(4, 8, 22, .95));
+    box-shadow: 0 14px 34px rgba(0, 0, 0, .18), inset 0 1px 0 rgba(255, 255, 255, .035);
+    backdrop-filter: blur(10px);
+}
+html[data-system-theme="aurora"] #system-app #quest-page .quest-card::before,
+html[data-system-theme="aurora"] #system-app #quest-page .side-quest-card::before {
+    background: linear-gradient(115deg, rgba(55, 218, 255, .10), transparent 54%, rgba(168, 85, 247, .10));
+    border-radius: inherit;
+}
+html[data-system-theme="aurora"] #system-app #quest-page .quest-card:hover,
+html[data-system-theme="aurora"] #system-app #quest-page .side-quest-card:hover {
+    border-color: rgba(66, 221, 255, .75);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .23), 0 0 23px rgba(36, 182, 255, .12);
+    transform: translateY(-2px);
+}
+html[data-system-theme="aurora"] #system-app #quest-page .quest-reward {
+    color: var(--aurora-gold);
+    text-shadow: 0 0 12px rgba(255, 197, 108, .25);
+}
+html[data-system-theme="aurora"] #system-app #quest-page .quest-progress {
+    background: rgba(1, 6, 20, .75);
+    border: 1px solid rgba(88, 177, 255, .13);
+}
+
+/* Rewards */
+html[data-system-theme="aurora"] #system-app #rewards-page .available-rewards .reward-card,
+html[data-system-theme="aurora"] #system-app #rewards-page .selected-reward {
+    border: 1px solid rgba(127, 115, 255, .38);
+    border-radius: 20px;
+    background: linear-gradient(145deg, rgba(29, 19, 58, .83), rgba(5, 9, 25, .96));
+    box-shadow: 0 16px 38px rgba(0, 0, 0, .22), inset 0 1px 0 rgba(255, 255, 255, .04);
+}
+html[data-system-theme="aurora"] #system-app #rewards-page .available-rewards .reward-card::before,
+html[data-system-theme="aurora"] #system-app #rewards-page .selected-reward::before,
+html[data-system-theme="aurora"] #system-app #rewards-page .daily-reward-panel::before {
+    background: radial-gradient(ellipse at 50% 0%, rgba(181, 73, 255, .2), transparent 68%);
+}
+html[data-system-theme="aurora"] #system-app #rewards-page .reward-cost,
+html[data-system-theme="aurora"] #system-app #rewards-page .reward-days span.is-current {
+    color: var(--aurora-gold);
+}
+html[data-system-theme="aurora"] #system-app #rewards-page .daily-reward-panel {
+    border-color: rgba(211, 142, 255, .35);
+    background: linear-gradient(135deg, rgba(45, 19, 73, .76), rgba(5, 8, 25, .95));
+}
+
+/* AI: polished conversation surfaces and action chips */
+html[data-system-theme="aurora"] #system-app #ai-page .ai-chat-panel,
+html[data-system-theme="aurora"] #system-app #ai-page .ai-tools-panel,
+html[data-system-theme="aurora"] #system-app #ai-page .ai-provider-panel,
+html[data-system-theme="aurora"] #system-app #ai-page .ai-progress-analysis,
+html[data-system-theme="aurora"] #system-app #ai-page .ai-quest-preview-block {
+    border-color: rgba(95, 178, 255, .3);
+    border-radius: 19px;
+    background: linear-gradient(145deg, rgba(7, 16, 40, .92), rgba(3, 7, 21, .96));
+    box-shadow: 0 14px 35px rgba(0, 0, 0, .20), inset 0 1px 0 rgba(255, 255, 255, .035);
+}
+html[data-system-theme="aurora"] #system-app #ai-page .chat-messages,
+html[data-system-theme="aurora"] #system-app #ai-page .ai-chat-panel::before {
+    background: rgba(2, 6, 19, .52);
+}
+html[data-system-theme="aurora"] #system-app #ai-page .message-content,
+html[data-system-theme="aurora"] #system-app #ai-page .ai-quick-actions button,
+html[data-system-theme="aurora"] #system-app #ai-page .ai-workspace-tab {
+    border-color: rgba(93, 188, 255, .26);
+    background: linear-gradient(135deg, rgba(13, 37, 71, .83), rgba(7, 16, 39, .9));
+    border-radius: 13px;
+}
+html[data-system-theme="aurora"] #system-app #ai-page .user-message .message-content {
+    background: linear-gradient(135deg, rgba(32, 114, 255, .25), rgba(124, 62, 222, .22));
+    border-color: rgba(94, 181, 255, .45);
+}
+html[data-system-theme="aurora"] #system-app #ai-page input,
+html[data-system-theme="aurora"] #system-app #ai-page textarea,
+html[data-system-theme="aurora"] #system-app #ai-page select {
+    color: #f2f7ff;
+    background: rgba(2, 7, 21, .88);
+    border-color: rgba(84, 168, 255, .32);
+    border-radius: 12px;
+}
+html[data-system-theme="aurora"] #system-app #ai-page input:focus,
+html[data-system-theme="aurora"] #system-app #ai-page textarea:focus,
+html[data-system-theme="aurora"] #system-app #ai-page select:focus {
+    outline: none;
+    border-color: rgba(60, 231, 255, .82);
+    box-shadow: 0 0 0 3px rgba(60, 231, 255, .10), 0 0 20px rgba(60, 231, 255, .10);
+}
+
+/* Settings gets the same glass finish as the main dashboard */
+html[data-system-theme="aurora"] #system-app #settings-page .settings-row {
+    border: 1px solid rgba(82, 175, 255, .26);
+    border-radius: 16px;
+    background: linear-gradient(110deg, rgba(9, 21, 47, .88), rgba(5, 9, 26, .91));
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .15);
+    transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+html[data-system-theme="aurora"] #system-app #settings-page .settings-row:hover {
+    border-color: rgba(75, 214, 255, .62);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, .2), 0 0 20px rgba(45, 171, 255, .10);
+}
+html[data-system-theme="aurora"] #system-app #settings-page .settings-number {
+    color: rgba(116, 197, 255, .6);
+}
+html[data-system-theme="aurora"] #system-app #settings-page .settings-icon {
+    color: #9e92ff;
+    filter: drop-shadow(0 0 9px rgba(154, 110, 255, .24));
+}
+
+/* Unified neon controls */
+html[data-system-theme="aurora"] #system-app button.system-button,
+html[data-system-theme="aurora"] #system-app #quest-page .quest-go,
+html[data-system-theme="aurora"] #system-app #rewards-page .claim-button,
+html[data-system-theme="aurora"] #system-app #rewards-page .daily-login-claim,
+html[data-system-theme="aurora"] #system-app #ai-page .ai-primary-button,
+html[data-system-theme="aurora"] #system-app #ai-page .ai-generate-button,
+html[data-system-theme="aurora"] #system-app .settings-row > button {
+    color: #f8fbff;
+    border: 1px solid rgba(94, 223, 255, .63);
+    border-radius: 12px;
+    background: linear-gradient(110deg, #126bdf, #7554e8 62%, #a543d6);
+    box-shadow: 0 8px 22px rgba(34, 109, 255, .18), inset 0 1px 0 rgba(255, 255, 255, .17);
+    transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+}
+html[data-system-theme="aurora"] #system-app button.system-button:hover,
+html[data-system-theme="aurora"] #system-app #quest-page .quest-go:hover:not(:disabled),
+html[data-system-theme="aurora"] #system-app #rewards-page .claim-button:hover,
+html[data-system-theme="aurora"] #system-app #rewards-page .daily-login-claim:hover:not(:disabled),
+html[data-system-theme="aurora"] #system-app #ai-page .ai-primary-button:hover,
+html[data-system-theme="aurora"] #system-app #ai-page .ai-generate-button:hover,
+html[data-system-theme="aurora"] #system-app .settings-row > button:hover {
+    filter: brightness(1.13) saturate(1.12);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 26px rgba(43, 147, 255, .28), 0 0 17px rgba(153, 84, 255, .16);
+}
+html[data-system-theme="aurora"] #system-app button:focus-visible,
+html[data-system-theme="aurora"] #system-settings-dialog button:focus-visible {
+    outline: 2px solid #91efff;
+    outline-offset: 3px;
+}
+html[data-system-theme="aurora"] #system-app button:disabled {
+    filter: grayscale(.35);
+    opacity: .48;
+    cursor: not-allowed;
+}
+
+/* Native settings dialog / theme picker */
+html[data-system-theme="aurora"] #system-settings-dialog {
+    color: #f2f5ff;
+    background: linear-gradient(150deg, rgba(10, 17, 42, .985), rgba(3, 6, 19, .99));
+    border: 1px solid rgba(80, 205, 255, .55);
+    border-radius: 22px;
+    box-shadow: 0 26px 100px rgba(0, 0, 0, .58), 0 0 42px rgba(52, 150, 255, .16), inset 0 1px 0 rgba(255, 255, 255, .06);
+}
+html[data-system-theme="aurora"] #system-settings-dialog::backdrop {
+    background: rgba(0, 2, 10, .78);
+    backdrop-filter: blur(11px);
+}
+html[data-system-theme="aurora"] #system-settings-dialog .system-modal-header {
+    border-color: rgba(92, 171, 255, .22);
+}
+html[data-system-theme="aurora"] #system-settings-dialog .system-modal-eyebrow {
+    color: var(--aurora-cyan);
+}
+html[data-system-theme="aurora"] #system-settings-dialog .system-modal-header button,
+html[data-system-theme="aurora"] #system-settings-dialog [data-theme] {
+    color: #eef7ff;
+    background: rgba(15, 27, 57, .9);
+    border-color: rgba(95, 174, 255, .3);
+}
+html[data-system-theme="aurora"] #system-settings-dialog .system-theme-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+html[data-system-theme="aurora"] #system-settings-dialog .system-theme-options button {
+    position: relative;
+    overflow: hidden;
+    padding: 13px;
+    min-height: 112px;
+    gap: 8px;
+    border-radius: 14px;
+    background: linear-gradient(145deg, rgba(9, 21, 48, .92), rgba(4, 8, 23, .96));
+    text-align: left;
+}
+html[data-system-theme="aurora"] #system-settings-dialog .system-theme-options button.is-selected {
+    border-color: var(--aurora-cyan);
+    background: linear-gradient(135deg, rgba(18, 74, 117, .48), rgba(48, 23, 82, .42));
+    box-shadow: 0 0 0 1px rgba(60, 231, 255, .22), 0 0 26px rgba(60, 231, 255, .12);
+}
+html[data-system-theme="aurora"] #system-settings-dialog .system-theme-options button.is-selected::after {
+    content: "✓ ACTIVE";
+    position: absolute;
+    right: 9px;
+    top: 9px;
+    color: #8cf8ed;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .13em;
+}
+html[data-system-theme="aurora"] #system-settings-dialog .system-theme-options strong {
+    font-size: 12px;
+}
+html[data-system-theme="aurora"] #system-settings-dialog .system-theme-options small {
+    color: #a6b5d7;
+    font-size: 10px;
+}
+html[data-system-theme="aurora"] #system-settings-dialog .system-theme-swatch {
+    height: 42px;
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 9px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12);
+}
+html[data-system-theme="aurora"] #system-settings-dialog .system-theme-swatch.cosmic { background: linear-gradient(120deg, #020611, #0d5cff, #8fc7ff); }
+html[data-system-theme="aurora"] #system-settings-dialog .system-theme-swatch.abyss { background: linear-gradient(120deg, #02040d, #3d33a8, #a69aff); }
+html[data-system-theme="aurora"] #system-settings-dialog .system-theme-swatch.ice { background: linear-gradient(120deg, #001018, #007f9e, #c2f3ff); }
+html[data-system-theme="aurora"] #system-settings-dialog .system-theme-swatch.aurora {
+    background:
+        radial-gradient(circle at 16% 22%, #ffffff 0 1px, transparent 2px),
+        radial-gradient(circle at 78% 70%, #a3f9ff 0 1px, transparent 2px),
+        radial-gradient(ellipse at 78% 0%, rgba(246, 87, 202, .9), transparent 48%),
+        radial-gradient(ellipse at 31% 110%, rgba(37, 230, 234, .98), transparent 49%),
+        linear-gradient(120deg, #030611, #173a85 44%, #301247 78%, #f08a78);
+    background-size: 100% 100%;
+}
+html[data-system-theme="aurora"] #system-settings-dialog .system-store-card,
+html[data-system-theme="aurora"] #system-settings-dialog .system-list-card,
+html[data-system-theme="aurora"] #system-settings-dialog .system-roadmap-step {
+    border-color: rgba(88, 176, 255, .25);
+    border-radius: 13px;
+    background: rgba(6, 15, 37, .82);
+}
+html[data-system-theme="aurora"] #system-settings-dialog .system-list-card.is-complete {
+    border-color: rgba(32, 226, 194, .4);
+}
+
+/* General input focus and scrollbars */
+html[data-system-theme="aurora"] #system-app input,
+html[data-system-theme="aurora"] #system-app textarea,
+html[data-system-theme="aurora"] #system-app select {
+    accent-color: #4edfff;
+}
+html[data-system-theme="aurora"] ::selection {
+    color: #fff;
+    background: rgba(92, 102, 255, .55);
+}
+html[data-system-theme="aurora"] ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #2e91ff, #8c5af4);
+    border: 2px solid #080d21;
+    border-radius: 99px;
+}
+html[data-system-theme="aurora"] ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #52e4ff, #b58aff);
+}
+html[data-system-theme="aurora"] ::-webkit-scrollbar-track {
+    background: rgba(1, 4, 14, .7);
+}
+
+@media (max-width: 900px) {
+    html[data-system-theme="aurora"] #system-app .player-hud {
+        background-position: 68% center;
+    }
+    html[data-system-theme="aurora"] #system-app .content-container {
+        border-radius: 17px;
+    }
+}
+@media (max-width: 600px) {
+    html[data-system-theme="aurora"] #system-settings-dialog .system-theme-options {
+        grid-template-columns: 1fr;
+    }
+    html[data-system-theme="aurora"] #system-app .player-hud {
+        border-radius: 16px;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    html[data-system-theme="aurora"] #system-app *,
+    html[data-system-theme="aurora"] #system-settings-dialog * {
+        scroll-behavior: auto;
+        animation-duration: .01ms;
+        animation-iteration-count: 1;
+        transition-duration: .01ms;
+    }
+}
+
+/* High-specificity polish for the custom Status reference layout, whose
+   cinematic skin deliberately defines its own hard-coded royal-blue borders. */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Make the background art feel like distant scenery, not a competing panel. */
+html[data-system-theme="aurora"] #system-app .content-container {
+    background-image: linear-gradient(180deg, rgba(2, 5, 18, .72), rgba(2, 5, 18, .84)), url("../../assets/images/backgrounds/status-bg.webp");
+}
+html[data-system-theme="aurora"] #system-app .content-container:has(#quest-page.active) {
+    background-image: linear-gradient(180deg, rgba(2, 5, 18, .72), rgba(2, 5, 18, .86)), url("../../assets/images/backgrounds/quest-bg.webp");
+}
+html[data-system-theme="aurora"] #system-app .content-container:has(#rewards-page.active) {
+    background-image: linear-gradient(180deg, rgba(2, 5, 18, .72), rgba(2, 5, 18, .86)), url("../../assets/images/backgrounds/rewards-bg.webp");
+}
+html[data-system-theme="aurora"] #system-app .content-container:has(#ai-page.active) {
+    background-image: linear-gradient(180deg, rgba(2, 5, 18, .72), rgba(2, 5, 18, .86)), url("../../assets/images/backgrounds/ai-bg.webp");
+}
+html[data-system-theme="aurora"] #system-app .content-container:has(#settings-page.active) {
+    background-image: linear-gradient(180deg, rgba(2, 5, 18, .72), rgba(2, 5, 18, .86)), url("../../assets/images/backgrounds/settings-bg.webp");
+}
+
+/* Mission cards use a rotating aurora spectrum rather than one flat blue. */
+html[data-system-theme="aurora"] #system-app #quest-page .quest-card:nth-child(5n + 1) {
+    border-color: rgba(60, 220, 255, .5);
+    background: linear-gradient(125deg, rgba(4, 37, 65, .92), rgba(5, 10, 27, .96));
+}
+html[data-system-theme="aurora"] #system-app #quest-page .quest-card:nth-child(5n + 2) {
+    border-color: rgba(255, 190, 94, .47);
+    background: linear-gradient(125deg, rgba(64, 39, 18, .62), rgba(7, 10, 26, .96));
+}
+html[data-system-theme="aurora"] #system-app #quest-page .quest-card:nth-child(5n + 3) {
+    border-color: rgba(184, 106, 255, .52);
+    background: linear-gradient(125deg, rgba(50, 21, 74, .66), rgba(6, 9, 26, .96));
+}
+html[data-system-theme="aurora"] #system-app #quest-page .quest-card:nth-child(5n + 4) {
+    border-color: rgba(36, 220, 189, .45);
+    background: linear-gradient(125deg, rgba(4, 51, 52, .65), rgba(5, 10, 25, .96));
+}
+html[data-system-theme="aurora"] #system-app #quest-page .quest-card:nth-child(5n) {
+    border-color: rgba(243, 98, 198, .46);
+    background: linear-gradient(125deg, rgba(64, 20, 50, .62), rgba(7, 9, 25, .96));
+}
+html[data-system-theme="aurora"] #system-app #quest-page .quest-icon {
+    border-radius: 12px;
+    background: linear-gradient(140deg, rgba(57, 200, 255, .15), rgba(159, 86, 255, .12));
+    box-shadow: inset 0 0 14px rgba(79, 209, 255, .08);
+}
+html[data-system-theme="aurora"] #system-app #quest-page .quest-progress {
+    border-radius: 999px;
+    background: rgba(1, 4, 17, .9);
+}
+html[data-system-theme="aurora"] #system-app #quest-page .quest-progress > span,
+html[data-system-theme="aurora"] #system-app #quest-page .quest-progress-fill {
+    background: linear-gradient(90deg, #287cff, #32e4ff, #ab79ff);
+    box-shadow: 0 0 11px rgba(60, 231, 255, .3);
+}
+html[data-system-theme="aurora"] #system-app #quest-page .quest-go {
+    background: linear-gradient(115deg, #1b82ee, #8653ee 70%, #c24fd0);
+    border-color: rgba(109, 223, 255, .58);
+    border-radius: 11px;
+}
+html[data-system-theme="aurora"] #system-app #quest-page .side-quest-card {
+    border-color: rgba(177, 118, 255, .43);
+    background: linear-gradient(145deg, rgba(33, 17, 65, .83), rgba(4, 7, 23, .94));
+}
+
+/* Reward surfaces: more violet light, warm gold for the reward economy. */
+html[data-system-theme="aurora"] #system-app #rewards-page .reward-tab {
+    border-color: rgba(120, 150, 255, .30);
+    background: rgba(5, 12, 32, .85);
+    border-radius: 10px 10px 4px 4px;
+}
+html[data-system-theme="aurora"] #system-app #rewards-page .reward-tab.active,
+html[data-system-theme="aurora"] #system-app #rewards-page .reward-tab[aria-selected="true"] {
+    color: #f7fbff;
+    border-color: rgba(62, 231, 255, .66);
+    background: linear-gradient(120deg, rgba(26, 125, 230, .53), rgba(121, 62, 204, .47));
+    box-shadow: 0 0 18px rgba(60, 231, 255, .1);
+}
+html[data-system-theme="aurora"] #system-app #rewards-page .claim-button,
+html[data-system-theme="aurora"] #system-app #rewards-page .daily-login-claim {
+    color: #fff;
+    border-color: rgba(114, 225, 255, .63);
+    background: linear-gradient(110deg, #1879ed, #7951e9 64%, #b84fd1);
+    border-radius: 12px;
+}
+html[data-system-theme="aurora"] #system-app #rewards-page .reward-cost,
+html[data-system-theme="aurora"] #system-app #rewards-page .daily-reward-status,
+html[data-system-theme="aurora"] #system-app #rewards-page .reward-days span.is-current {
+    color: #ffd48d;
+    text-shadow: 0 0 10px rgba(255, 197, 108, .2);
+}
+
+/* AI workspace: selected tabs, quick prompts, send action and tool tiles. */
+html[data-system-theme="aurora"] #system-app #ai-page .ai-workspace-tabs {
+    gap: 9px;
+    padding: 5px 0 10px;
+}
+html[data-system-theme="aurora"] #system-app #ai-page .ai-workspace-tab {
+    border: 1px solid rgba(91, 174, 255, .28);
+    border-radius: 12px;
+    background: linear-gradient(130deg, rgba(10, 24, 52, .9), rgba(6, 10, 30, .92));
+}
+html[data-system-theme="aurora"] #system-app #ai-page .ai-workspace-tab.active,
+html[data-system-theme="aurora"] #system-app #ai-page .ai-workspace-tab[aria-selected="true"] {
+    color: #fff;
+    border-color: rgba(64, 226, 255, .74);
+    background: linear-gradient(110deg, rgba(26, 122, 227, .52), rgba(127, 68, 222, .48));
+    box-shadow: 0 0 22px rgba(58, 190, 255, .11), inset 0 1px 0 rgba(255,255,255,.06);
+}
+html[data-system-theme="aurora"] #system-app #ai-page .ai-tools-panel > button {
+    border-color: rgba(98, 160, 255, .28);
+    border-radius: 11px;
+    background: linear-gradient(120deg, rgba(9, 28, 57, .91), rgba(21, 13, 47, .84));
+}
+html[data-system-theme="aurora"] #system-app #ai-page .ai-tools-panel > button:hover {
+    border-color: rgba(62, 231, 255, .7);
+    background: linear-gradient(120deg, rgba(17, 76, 112, .83), rgba(66, 29, 97, .84));
+}
+html[data-system-theme="aurora"] #system-app #ai-page .ai-quick-actions button {
+    border-color: rgba(109, 140, 255, .35);
+    background: linear-gradient(120deg, rgba(11, 34, 64, .94), rgba(28, 17, 55, .92));
+}
+html[data-system-theme="aurora"] #system-app #ai-page .ai-quick-actions button:hover {
+    border-color: rgba(60, 231, 255, .76);
+    box-shadow: 0 0 16px rgba(60, 231, 255, .12);
+}
+html[data-system-theme="aurora"] #system-app #ai-page .chat-input button,
+html[data-system-theme="aurora"] #system-app #ai-page .ai-generate-button,
+html[data-system-theme="aurora"] #system-app #ai-page .ai-primary-button {
+    color: #fff;
+    border-color: rgba(94, 223, 255, .62);
+    background: linear-gradient(115deg, #1979ee, #7a50eb 65%, #b94fd2);
+    box-shadow: 0 6px 18px rgba(48, 111, 255, .15);
+}
+html[data-system-theme="aurora"] #system-app #ai-page .ai-chat-header {
+    border-bottom-color: rgba(106, 170, 255, .25);
+}
+html[data-system-theme="aurora"] #system-app #ai-page .ai-chat-header h2,
+html[data-system-theme="aurora"] #system-app #ai-page .ai-subpanel-heading h2,
+html[data-system-theme="aurora"] #system-app #ai-page .ai-tools-panel > h2 {
+    color: #f4f4ff;
+    text-shadow: 0 0 14px rgba(168, 85, 247, .16);
+}
+
+/* Settings: each row has a quiet different edge tint, matching its purpose. */
+html[data-system-theme="aurora"] #system-app #settings-page .settings-row {
+    border-color: rgba(89, 170, 255, .34);
+    background: linear-gradient(110deg, rgba(8, 23, 47, .9), rgba(8, 10, 31, .93) 68%, rgba(29, 12, 47, .75));
+}
+html[data-system-theme="aurora"] #system-app #settings-page .settings-row:nth-child(6n + 2) { border-color: rgba(255, 195, 103, .40); }
+html[data-system-theme="aurora"] #system-app #settings-page .settings-row:nth-child(6n + 3) { border-color: rgba(184, 125, 255, .42); }
+html[data-system-theme="aurora"] #system-app #settings-page .settings-row:nth-child(6n + 4) { border-color: rgba(57, 220, 214, .39); }
+html[data-system-theme="aurora"] #system-app #settings-page .settings-row:nth-child(6n + 5) { border-color: rgba(221, 115, 255, .37); }
+html[data-system-theme="aurora"] #system-app #settings-page .settings-row > button {
+    color: #fbfcff;
+    border: 1px solid rgba(97, 218, 255, .62);
+    border-radius: 12px;
+    background: linear-gradient(110deg, #176fe0, #6548d9 68%, #9548c6);
+    box-shadow: 0 7px 20px rgba(50, 100, 255, .15), inset 0 1px 0 rgba(255,255,255,.14);
+}
+html[data-system-theme="aurora"] #system-app #settings-page .settings-row > button:hover {
+    filter: brightness(1.14);
+    box-shadow: 0 10px 24px rgba(68, 151, 255, .25), 0 0 18px rgba(168, 85, 247, .14);
+}

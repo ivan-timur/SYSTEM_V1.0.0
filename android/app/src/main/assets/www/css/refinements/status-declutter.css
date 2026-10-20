@@ -1,0 +1,347 @@
+/* =========================================================
+   SYSTEM — Status Declutter
+   Status page shows only the 6 stats by default.
+   Secondary tools (progress graph, timer, intelligence)
+   live behind the ⋯ More button.
+   ========================================================= */
+
+/* Hide heavy secondary blocks from the main Status flow */
+#status-page > #grok-progress-suite,
+#status-page > .grok-suite-panel,
+#status-page > .system-intelligence-card {
+  display: none;
+}
+
+/* Keep skill-tree as on-demand (already has [hidden]) */
+#status-page .skill-tree-panel[hidden] {
+  display: none;
+}
+
+/* ---------- More bar (three-dots) ---------- */
+.status-more-bar {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 4px;
+  margin-top: 8px;
+}
+
+.status-more-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  min-width: 88px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(80, 160, 255, 0.28);
+  background: rgba(8, 18, 36, 0.85);
+  color: #c5ddff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+}
+
+.status-more-btn:hover,
+.status-more-btn:focus-visible {
+  background: rgba(20, 60, 120, 0.45);
+  border-color: rgba(100, 180, 255, 0.5);
+  outline: none;
+}
+
+.status-more-btn:active {
+  transform: scale(0.96);
+}
+
+.status-more-dots {
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+.status-more-label {
+  font-size: 13px;
+}
+
+/* ---------- Bottom sheet ---------- */
+.status-more-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(0, 4, 14, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 0;
+}
+
+.status-more-sheet[hidden] {
+  display: none;
+}
+
+.status-more-sheet-inner {
+  width: 100%;
+  max-width: 480px;
+  max-height: min(78vh, 640px);
+  overflow: auto;
+  border-radius: 22px 22px 0 0;
+  border: 1px solid rgba(80, 160, 255, 0.28);
+  border-bottom: none;
+  background:
+    linear-gradient(165deg, rgba(10, 22, 44, 0.98), rgba(3, 9, 20, 0.99));
+  box-shadow: 0 -16px 48px rgba(0, 0, 0, 0.5);
+  padding: 16px 16px calc(16px + env(safe-area-inset-bottom));
+  animation: statusSheetUp 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes statusSheetUp {
+  from { transform: translateY(24px); opacity: 0.6; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.status-more-sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(70, 140, 255, 0.18);
+}
+
+.status-more-sheet-head h2 {
+  margin: 0;
+  font-size: 17px;
+  color: #e8f3ff;
+}
+
+.status-more-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid rgba(80, 150, 255, 0.25);
+  background: rgba(15, 35, 70, 0.5);
+  color: #c5ddff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.status-more-actions {
+  display: grid;
+  gap: 10px;
+}
+
+.status-more-action {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  text-align: left;
+  padding: 14px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(70, 140, 255, 0.22);
+  background: rgba(6, 14, 30, 0.75);
+  color: #e2efff;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.status-more-action:hover,
+.status-more-action:focus-visible {
+  background: rgba(20, 55, 110, 0.45);
+  border-color: rgba(100, 180, 255, 0.45);
+  outline: none;
+}
+
+.status-more-action-icon {
+  flex: 0 0 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: rgba(30, 90, 200, 0.3);
+  font-size: 18px;
+}
+
+.status-more-action strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.status-more-action small {
+  display: block;
+  font-size: 12px;
+  color: rgba(170, 200, 240, 0.75);
+  line-height: 1.35;
+}
+
+/* Tool panel inside the sheet (hosts moved content) */
+.status-tool-panel {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(70, 140, 255, 0.16);
+}
+
+.status-tool-panel[hidden] {
+  display: none;
+}
+
+.status-tool-panel .grok-suite-panel,
+.status-tool-panel .system-intelligence-card {
+  display: block;
+  margin: 0;
+  box-shadow: none;
+}
+
+/* When a tool is open, hide the action list a bit or keep both */
+.status-tool-panel.is-open {
+  display: block;
+}
+
+/* Desktop: sheet as centered card instead of bottom */
+@media (min-width: 851px) {
+  .status-more-sheet {
+    align-items: center;
+    padding: 24px;
+  }
+  .status-more-sheet-inner {
+    border-radius: 18px;
+    border-bottom: 1px solid rgba(80, 160, 255, 0.28);
+    max-height: min(70vh, 560px);
+  }
+}
+
+/* =========================================================
+   Smaller corner ⋯ + Quest declutter
+   ========================================================= */
+
+/* Status & Quest More buttons: small, corner, low visibility */
+.status-more-bar,
+.quest-more-bar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 2px 0 0;
+  margin-top: 4px;
+}
+
+.status-more-btn,
+.quest-more-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  min-height: 30px;
+  min-width: 30px;
+  padding: 0;
+  gap: 0;
+  border-radius: 9px;
+  border: 1px solid rgba(80, 160, 255, 0.16);
+  background: rgba(8, 18, 36, 0.45);
+  color: rgba(170, 200, 255, 0.45);
+  font-size: 15px;
+  font-weight: 600;
+  opacity: 0.65;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, opacity 0.18s ease, color 0.18s ease;
+}
+
+.status-more-btn:hover,
+.status-more-btn:focus-visible,
+.quest-more-btn:hover,
+.quest-more-btn:focus-visible {
+  background: rgba(20, 60, 120, 0.4);
+  border-color: rgba(100, 180, 255, 0.4);
+  color: #c5ddff;
+  opacity: 1;
+  outline: none;
+}
+
+.status-more-dots,
+.quest-more-dots {
+  font-size: 17px;
+  line-height: 1;
+}
+
+.status-more-label,
+.quest-more-label {
+  display: none;
+}
+
+/* Quest: hide secondary injected UI by default (Command Center, filters, footer) */
+#quest-page .quest-command,
+#quest-page .quest-list-footer {
+  display: none;
+}
+
+/* When shown inside the More sheet tool panel, allow them */
+.status-tool-panel .quest-command,
+.status-tool-panel .quest-list-footer,
+.quest-tool-panel .quest-command,
+.quest-tool-panel .quest-list-footer {
+  display: block;
+}
+
+/* Quest more sheet reuses status sheet styles */
+.quest-more-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(0, 4, 14, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 0;
+}
+.quest-more-sheet[hidden] { display: none; }
+.quest-more-sheet .status-more-sheet-inner {
+  width: 100%;
+  max-width: 480px;
+  max-height: min(78vh, 640px);
+  overflow: auto;
+  border-radius: 22px 22px 0 0;
+  border: 1px solid rgba(80, 160, 255, 0.28);
+  border-bottom: none;
+  background: linear-gradient(165deg, rgba(10, 22, 44, 0.98), rgba(3, 9, 20, 0.99));
+  box-shadow: 0 -16px 48px rgba(0, 0, 0, 0.5);
+  padding: 16px 16px calc(16px + env(safe-area-inset-bottom));
+  animation: statusSheetUp 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (min-width: 851px) {
+  .quest-more-sheet {
+    align-items: center;
+    padding: 24px;
+  }
+  .quest-more-sheet .status-more-sheet-inner {
+    border-radius: 18px;
+    border-bottom: 1px solid rgba(80, 160, 255, 0.28);
+    max-height: min(70vh, 560px);
+  }
+}
+
+
+/* Readable activity ledger, responsive and theme-aware. */
+.system-ledger { display: grid; gap: 14px; color: var(--text-primary, #f2f6ff); }
+.system-ledger-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.system-ledger-head h3 { margin: 0 0 5px; font-size: 1.05rem; }
+.system-ledger-head p, .system-ledger-note { margin: 0; color: var(--text-secondary, #94a3b8); font-size: .82rem; line-height: 1.5; }
+.system-ledger-head button { border: 1px solid var(--border-color, #1c2b43); border-radius: 10px; padding: 9px 12px; color: var(--text-primary, #f2f6ff); background: var(--panel-secondary, #0b1220); cursor: pointer; white-space: nowrap; }
+.system-ledger-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+.system-ledger-stats > div { display: grid; gap: 4px; padding: 12px; border: 1px solid var(--border-color, #1c2b43); border-radius: 12px; background: var(--panel-bg, #070b13); }
+.system-ledger-stats strong { font-size: 1.25rem; overflow-wrap: anywhere; }
+.system-ledger-stats span { color: var(--text-secondary, #94a3b8); font-size: .78rem; }
+.system-ledger-list { display: grid; gap: 8px; max-height: 360px; overflow: auto; }
+.system-ledger-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 12px; border: 1px solid var(--border-color, #1c2b43); border-radius: 11px; background: var(--panel-bg, #070b13); }
+.system-ledger-row-main { min-width: 0; display: grid; gap: 4px; }
+.system-ledger-row-main strong { overflow-wrap: anywhere; font-size: .9rem; }
+.system-ledger-row-main small { color: var(--text-secondary, #94a3b8); font-size: .75rem; }
+.system-ledger-rewards { display: grid; justify-items: end; gap: 3px; flex-shrink: 0; color: var(--accent-color, #8bc5ff); font-size: .78rem; }
+@media (max-width: 480px) { .system-ledger-head { flex-direction: column; } .system-ledger-stats > div { padding: 9px; } .system-ledger-stats strong { font-size: 1.05rem; } .system-ledger-row { align-items: flex-start; } }

@@ -1,0 +1,327 @@
+/*
+ * SYSTEM — APEX BEAUTY LAYER
+ * Maximum visual refinement across every theme.
+ * Glass depth, material hierarchy, micro-motion, refined typography and focus.
+ * Additive only. No logic or data changes.
+ */
+
+:root {
+  --apex-radius-sm: 10px;
+  --apex-radius: 16px;
+  --apex-radius-lg: 22px;
+  --apex-ease: cubic-bezier(.22, .9, .28, 1);
+  --apex-ease-out: cubic-bezier(.16, 1, .3, 1);
+  --apex-shadow-soft: 0 8px 28px rgba(0, 0, 0, .22);
+  --apex-shadow-lift: 0 18px 48px rgba(0, 0, 0, .28);
+  --apex-inset: inset 0 1px 0 rgba(255, 255, 255, .06);
+  --apex-glass: blur(18px) saturate(1.35);
+}
+
+/* ---------- Global material & depth ---------- */
+#system-app {
+  --tf-radius: var(--apex-radius);
+}
+
+#system-app .card,
+#system-app .stat-card,
+#system-app .quest-card,
+#system-app .reward-card,
+#system-app .skill-card,
+#system-app .goal-card,
+#system-app .panel,
+#system-app .settings-panel,
+#system-app .settings-row {
+  border-radius: var(--apex-radius);
+  border-color: color-mix(in srgb, var(--color-border-bright, #8fc7ff) 38%, transparent);
+  box-shadow:
+    var(--apex-inset),
+    0 1px 0 rgba(255, 255, 255, .03),
+    0 14px 36px rgba(0, 0, 0, .22);
+  backdrop-filter: var(--apex-glass);
+  -webkit-backdrop-filter: var(--apex-glass);
+  transition:
+    transform .28s var(--apex-ease),
+    border-color .28s var(--apex-ease),
+    box-shadow .28s var(--apex-ease),
+    filter .28s var(--apex-ease),
+    background .28s var(--apex-ease);
+}
+
+#system-app .stat-card,
+#system-app .quest-card,
+#system-app .reward-card,
+#system-app .skill-card,
+#system-app .settings-row {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+#system-app .stat-card::before,
+#system-app .quest-card::before,
+#system-app .reward-card::before,
+#system-app .skill-card::before,
+#system-app .settings-row::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 auto;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-neon, #5da9ff) 70%, white),
+    color-mix(in srgb, var(--color-blue-light, #8fc7ff) 90%, white),
+    transparent
+  );
+  opacity: .78;
+  pointer-events: none;
+}
+
+#system-app .stat-card:hover,
+#system-app .quest-card:hover,
+#system-app .reward-card:hover,
+#system-app .skill-card:hover,
+#system-app .settings-row:hover {
+  transform: translateY(-4px) scale(1.008);
+  border-color: var(--color-border-bright, #8fc7ff);
+  box-shadow:
+    var(--apex-inset),
+    0 0 0 1px color-mix(in srgb, var(--color-neon, #5da9ff) 18%, transparent),
+    var(--apex-shadow-lift),
+    var(--glow-small, 0 0 12px rgba(93, 169, 255, .15));
+  filter: brightness(1.03);
+}
+
+/* ---------- Page headers & typography ---------- */
+#system-app .page-header {
+  position: relative;
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+}
+
+#system-app .page-header::after {
+  content: "";
+  display: block;
+  width: min(240px, 48%);
+  height: 2px;
+  margin: 14px auto 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-blue-light, #8fc7ff),
+    var(--color-neon, #5da9ff),
+    var(--color-blue-light, #8fc7ff),
+    transparent
+  );
+  box-shadow: 0 0 18px color-mix(in srgb, var(--color-neon, #5da9ff) 35%, transparent);
+  border-radius: 99px;
+}
+
+#system-app .page-title {
+  letter-spacing: -0.03em;
+  font-weight: 740;
+  text-shadow: 0 2px 20px color-mix(in srgb, var(--color-neon, #5da9ff) 22%, transparent);
+}
+
+#system-app .page-subtitle {
+  color: var(--color-text-muted, #91a3bf);
+  font-size: 13.5px;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- Buttons & controls ---------- */
+#system-app button:not(.nav-item):not([data-theme]):not(.system-theme-options > button) {
+  border-radius: 12px;
+  transition:
+    transform .2s var(--apex-ease),
+    border-color .2s var(--apex-ease),
+    background .2s var(--apex-ease),
+    box-shadow .2s var(--apex-ease),
+    filter .2s var(--apex-ease);
+}
+
+#system-app button:not(.nav-item):not([data-theme]):not(.system-theme-options > button):hover {
+  filter: brightness(1.09);
+  transform: translateY(-1px);
+}
+
+#system-app button:not(.nav-item):not([data-theme]):not(.system-theme-options > button):active {
+  transform: translateY(0) scale(0.985);
+}
+
+#system-app button:focus-visible,
+#system-app a:focus-visible,
+#system-app [tabindex]:focus-visible {
+  outline: 2px solid var(--color-blue-light, #8fc7ff);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-neon, #5da9ff) 22%, transparent);
+}
+
+/* ---------- Navigation polish ---------- */
+#system-app .nav-item {
+  border-radius: 12px;
+  transition:
+    background .22s var(--apex-ease),
+    color .22s var(--apex-ease),
+    box-shadow .22s var(--apex-ease),
+    transform .22s var(--apex-ease);
+}
+
+#system-app .nav-item:hover {
+  transform: translateX(2px);
+}
+
+#system-app .nav-item.is-active,
+#system-app .nav-item[aria-current="page"] {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .07),
+    0 0 20px color-mix(in srgb, var(--color-neon, #5da9ff) 12%, transparent);
+}
+
+/* ---------- Scrollbars ---------- */
+#system-app ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+#system-app ::-webkit-scrollbar-track {
+  background: transparent;
+}
+#system-app ::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-border, #6a8ab8) 55%, transparent);
+  border-radius: 99px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+#system-app ::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--color-blue-light, #8fc7ff) 70%, transparent);
+  background-clip: padding-box;
+}
+
+/* ---------- Modals & dialogs ---------- */
+#system-settings-dialog,
+#system-app .modal,
+#system-app [role="dialog"] {
+  border-radius: var(--apex-radius-lg);
+}
+
+#system-settings-dialog .system-theme-options > button {
+  border-radius: 14px;
+  min-height: 128px;
+  padding: 12px;
+  background: linear-gradient(155deg, rgba(18, 26, 48, .92), rgba(6, 10, 22, .97));
+  border: 1px solid color-mix(in srgb, var(--color-border, #6a8ab8) 50%, transparent);
+  box-shadow: var(--apex-inset), 0 10px 28px rgba(0, 0, 0, .2);
+  transition:
+    transform .25s var(--apex-ease),
+    border-color .25s var(--apex-ease),
+    box-shadow .25s var(--apex-ease),
+    background .25s var(--apex-ease);
+}
+
+#system-settings-dialog .system-theme-options > button:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-border-bright, #8fc7ff);
+  box-shadow:
+    var(--apex-inset),
+    0 16px 36px rgba(0, 0, 0, .28),
+    0 0 20px color-mix(in srgb, var(--color-neon, #5da9ff) 12%, transparent);
+}
+
+#system-settings-dialog .system-theme-options > button.is-selected {
+  border-color: var(--color-blue-light, #8fc7ff);
+  background: linear-gradient(155deg, rgba(28, 42, 72, .98), rgba(8, 14, 28, .99));
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--color-blue-light, #8fc7ff) 40%, transparent),
+    0 0 0 1px rgba(0, 0, 0, .25),
+    0 12px 32px rgba(0, 0, 0, .22),
+    0 0 28px color-mix(in srgb, var(--color-neon, #5da9ff) 14%, transparent);
+}
+
+#system-settings-dialog .system-theme-swatch {
+  height: 42px;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, .2);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, .14),
+    0 3px 10px rgba(0, 0, 0, .22);
+}
+
+#system-settings-dialog .system-theme-options strong {
+  font-size: 12px;
+  font-weight: 760;
+  letter-spacing: -0.01em;
+}
+
+#system-settings-dialog .system-theme-options small {
+  font-size: 10.5px;
+  line-height: 1.4;
+  opacity: .92;
+}
+
+/* ---------- Ambient background refinement ---------- */
+html[data-system-theme] body,
+html[data-system-theme] #system-app {
+  background-attachment: fixed;
+}
+
+/* Soft vignette for depth */
+#system-app::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% -10%, color-mix(in srgb, var(--color-neon, #5da9ff) 7%, transparent), transparent 55%),
+    radial-gradient(ellipse 60% 50% at 100% 100%, color-mix(in srgb, var(--color-blue-dark, #102a50) 18%, transparent), transparent 50%);
+  opacity: .85;
+}
+
+#system-app > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Progress bars & status accents ---------- */
+#system-app .progress-bar,
+#system-app .xp-bar,
+#system-app [class*="progress"] > div[style*="width"] {
+  border-radius: 99px;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--color-neon, #5da9ff) 25%, transparent);
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  #system-app .card,
+  #system-app .stat-card,
+  #system-app .quest-card,
+  #system-app .reward-card,
+  #system-app .skill-card,
+  #system-app .settings-row,
+  #system-app button,
+  #system-app .nav-item,
+  #system-settings-dialog .system-theme-options > button {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* ---------- Mobile polish ---------- */
+@media (max-width: 720px) {
+  #system-app .card,
+  #system-app .stat-card,
+  #system-app .quest-card,
+  #system-app .reward-card,
+  #system-app .skill-card {
+    border-radius: 14px;
+  }
+
+  #system-app .stat-card:hover,
+  #system-app .quest-card:hover,
+  #system-app .reward-card:hover,
+  #system-app .skill-card:hover {
+    transform: translateY(-2px) scale(1.004);
+  }
+}

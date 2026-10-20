@@ -1,0 +1,35 @@
+/* Final cascade safeguard: reduced-motion preferences override later hover polish. */
+@media (prefers-reduced-motion: reduce) {
+  #system-app .card,
+  #system-app .stat-card,
+  #system-app .quest-card,
+  #system-app .reward-card,
+  #system-app .skill-card,
+  #system-app .settings-row,
+  #system-app button,
+  #system-app .nav-item,
+  #system-settings-dialog .system-theme-options > button {
+    transition: none;
+    animation: none;
+  }
+
+  #system-app .card:hover,
+  #system-app .stat-card:hover,
+  #system-app .quest-card:hover,
+  #system-app .reward-card:hover,
+  #system-app .skill-card:hover,
+  #system-app .settings-row:hover,
+  #system-app button:hover,
+  #system-app button:focus,
+  #system-app button:active,
+  #system-app .nav-item:hover,
+  #system-app .nav-item:focus,
+  #system-app .nav-item:active,
+  #system-settings-dialog .system-theme-options > button:hover,
+  #system-settings-dialog .system-theme-options > button:focus,
+  #system-settings-dialog .system-theme-options > button:active {
+    transition: none;
+    transform: none;
+    animation: none;
+  }
+}
