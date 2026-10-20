@@ -6,6 +6,10 @@ android {
     namespace 'com.cronus.system'
     compileSdk 36
 
+    buildFeatures {
+        buildConfig true
+    }
+
     signingConfigs {
         release {
             def signingStore = System.getenv('ANDROID_KEYSTORE_FILE')
